@@ -9,4 +9,4 @@ Y = np.sin(X)
 
 fig, ax = plt.subplots()
 ax.plot(X, Y)
-fig.show()
+plt.show()
