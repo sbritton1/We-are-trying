@@ -1,33 +1,19 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@sbritton1 
-minprog
-/
-voorbeeld-repo
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Security
-Insights
-voorbeeld-repo/.gitignore
-@OkkeVanEck
-OkkeVanEck Merged voorbeeld repo van Maarten vd Sande into master. Fixed conflicts
-Latest commit 224b675 on May 22, 2020
- History
- 3 contributors
-@Maarten-vd-Sande@WouterVrielink@OkkeVanEck
-132 lines (107 sloc)  1.78 KB
+Pycharm
+.idea/
 
-<<<<<<< HEAD
+# Pipenv files
+Pipfile
+Pipfile.lock
+
+.vs/
+.vscode/
+
+# Bokeh visualisations
+main.html
+
+# Profile files
+output.prof
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -139,7 +125,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-.idea/*
 
 # Spyder project settings
 .spyderproject
@@ -158,19 +143,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-voorbeeld-repo/.gitignore at master · minprog/voorbeeld-repo
