@@ -8,8 +8,8 @@ class Grid:
         file_batteries: str = "../../data/district_" + district + "/district-" + district + "_batteries.csv"
         file_houses: str= "../../data/district_" + district + "/district-" + district + "_houses.csv"
 
-        self.batteries: list[Battery] = self.read_file(file_batteries)
-        self.houses: list[House] = self.read_file(file_houses)
+        self.batteries: list[Battery] = self.read_batteries(file_batteries)
+        self.houses: list[House] = self.read_houses(file_houses)
 
         self.grid = self.init_grid()
 
