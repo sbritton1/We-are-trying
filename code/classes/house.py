@@ -4,11 +4,39 @@ class House():
         self.coord_y = y
         self.maxoutput = maxoutput
 
-    def has_connection(self):
+        self.has_connection: bool = False
+
+        self.connection: tuple(int, int) = (-1, -1)
+
+    def has_connection(self) -> bool:
         """
-        checkt of een huis een connectie heeft met een ba
+        checkt of een huis een connectie heeft met een batterij
         """
+        return self.has_connection
 
+    def make_connection(self, bat_x: int, bat_y: int) -> None:
+        """
+        Deze methode zorgt er voor dat een huis een connectie 
+        heeft met een bepaalde batterij
+        """
+        if self.has_connection is False:
+            self.has_connection = True
+            self.connection = (bat_x, bat_y)   
 
+    def delete_connection(self) -> None:
+        """
+        verwijdert een connectie met een batterij, waardoor er geen
+        connectie meer is.
+        """
+        if self.has_connection is True:
+            self.has_connection = False
+            self.connection = (-1, -1)  
 
-    
+    # Xander: Denk niet dat dit echt nodig is, maar toch maar toegevoegd
+    def distance_to_battery(self) -> float:
+        """
+        berekent wanneer aangesloten wat de afstand tussen de batterij en het huis is
+        """
+        if self.has_connection:
+            distance = abs(self.coord_x - self.connection[0]) + abs(self.coord_y - self.connection[1])
+            return distance
