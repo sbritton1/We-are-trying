@@ -5,32 +5,28 @@ class Battery:
         self.total_capacity = capacity
         self.current_capacity = capacity
 
-        self.connected_homes: list[tuple(int, int, float)] = [] 
+        self.connected_homes: list[object] = [] 
 
-    def connect_homes(self, x_house: int, y_house: int, output_house: float) -> None:
+    def connect_homes(self, house: object) -> None:
         """
         Haalt van de totale capaciteit, de output af van een specifieke huis
         als er nog capaciteit is. Ook zet deze methode een aangesloten huis
         in de lijst van de battery
         """
-        if self.current_capacity - output_house >= 0:
-            self.current_capacity = self.current_capacity - output_house
-            new_house = (x_house, y_house, output_house)
-            self.connected_homes.append(new_house)
+        if self.current_capacity - house.maxoutput >= 0:
+            self.current_capacity = self.current_capacity - house.maxoutput
+            self.connected_homes.append(house)
 
 
-    def disconnect_homes(self, x_house: int, y_house: int, output_house: float) -> None:
+    def disconnect_homes(self, house: object) -> None:
         """
         Deze methode haalt de connectie van een huis weg, en past de capaciteit aan, 
         wanneer een huis is aangesloten
         """
-        house = (x_house, y_house, output_house)
+
         if house in self.connected_homes:
-            self.current_capacity = self.current_capacity + output_house
-            for i in self.connected_homes:
-                if self.connected_homes[i] == house:
-                    self.connected_homes[i] = 0
-                    break
+            self.current_capacity = self.current_capacity + house.maxoutput
+            self.connected_homes.remove(house)
 
     def get_capacity(self) -> float:
         """

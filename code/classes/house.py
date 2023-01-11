@@ -6,7 +6,7 @@ class House:
 
         self.has_connection: bool = False
 
-        self.connection: tuple(int, int) = (-1, -1)
+        self.connection: object = None
 
     def has_connection(self) -> bool:
         """
@@ -14,14 +14,14 @@ class House:
         """
         return self.has_connection
 
-    def make_connection(self, bat_x: int, bat_y: int) -> None:
+    def make_connection(self, battery: object) -> None:
         """
         Deze methode zorgt er voor dat een huis een connectie 
         heeft met een bepaalde batterij
         """
         if self.has_connection is False:
             self.has_connection = True
-            self.connection = (bat_x, bat_y)   
+            self.connection = battery  
 
     def delete_connection(self) -> None:
         """
@@ -30,13 +30,12 @@ class House:
         """
         if self.has_connection is True:
             self.has_connection = False
-            self.connection = (-1, -1)  
+            self.connection = None 
 
-    # Xander: Denk niet dat dit echt nodig is, maar toch maar toegevoegd
     def distance_to_battery(self) -> float:
         """
         berekent wanneer aangesloten wat de afstand tussen de batterij en het huis is
         """
         if self.has_connection:
-            distance = abs(self.coord_x - self.connection[0]) + abs(self.coord_y - self.connection[1])
+            distance = abs(self.coord_x - self.connection.coord_x) + abs(self.coord_y - self.connection.coord_y)
             return distance
