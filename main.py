@@ -12,8 +12,8 @@ def main(district: str):
     file_houses: str= "data/district_" + district + "/district-" + district + "_houses.csv"
 
     grid = Grid(district)
-    baseline(grid)
 
+    baseline(grid)
 
 if __name__ == "__main__":
     district: str = "2"
