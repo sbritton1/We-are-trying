@@ -33,3 +33,9 @@ class Battery:
         Verkrijgt de capaciteit van de batterij
         """
         return self.current_capacity
+
+    def is_connection_possible(self, house: object) -> bool:
+        if self.current_capacity - house.maxoutput >= 0:
+            return True
+        else:
+            return False
