@@ -16,7 +16,7 @@ def main(district: str):
 
     # baseline(grid)
 
-    # visualize(grid)
+    visualize(grid)
 
 if __name__ == "__main__":
     district: str = "2"

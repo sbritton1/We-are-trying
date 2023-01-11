@@ -57,10 +57,10 @@ class Grid:
         grid: list[list[tuple[str, int]]] = np.zeros((size_grid[0], size_grid[1]), dtype=tuple)
 
         for battery in self.batteries:
-            grid[battery.coord_x][battery.coord_y] = battery
+            grid[battery.coord_y][battery.coord_x] = battery
 
         for house in self.houses:
-            grid[house.coord_x][house.coord_y] = house
+            grid[house.coord_y][house.coord_x] = house
 
         return grid
 

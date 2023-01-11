@@ -19,8 +19,7 @@ def visualize(grid: Grid):
     house_imagebox, battery_imagebox = load_image_boxes()
 
     # random plots
-    ax.plot(range(grid_size))
-    ax.plot([4, 3, 2, 1])
+    ax.plot(range(grid_size), alpha=0)
 
     # get the grid
     grid = grid.grid
@@ -70,8 +69,8 @@ def load_image_boxes() -> tuple[OffsetImage, OffsetImage]:
 
     #The OffsetBox is a simple container artist.
     #The child artists are meant to be drawn at a relative position to its #parent.
-    house_imagebox = OffsetImage(house_image, zoom = 0.15)
-    battery_imagebox = OffsetImage(battery_image, zoom = 0.15)
+    house_imagebox = OffsetImage(house_image, zoom = 0.2)
+    battery_imagebox = OffsetImage(battery_image, zoom = 0.4)
 
     return (house_imagebox, battery_imagebox)
 
