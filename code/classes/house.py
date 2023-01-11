@@ -1,4 +1,4 @@
-class House():
+class House:
     def __init__(self, x: int, y: int, maxoutput: float):
         self.coord_x = x
         self.coord_y = y

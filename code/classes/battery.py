@@ -1,4 +1,4 @@
-class Battery():
+class Battery:
     def __init__(self, x: int, y: int, capacity: float):
         self.coord_x = x
         self.coord_y = y

@@ -1,7 +1,6 @@
-from battery import Battery
 from house import House
+from battery import Battery
 import numpy as np
-from typing import Union
 
 class Grid:
     def __init__(self, district: str):
