@@ -8,6 +8,8 @@ class House:
 
         self.connection: object = None
 
+        self.cables: list[tuple[int, int]] = []
+
     def has_connection(self) -> bool:
         """
         checkt of een huis een connectie heeft met een batterij
@@ -39,3 +41,21 @@ class House:
         if self.has_connection:
             distance = abs(self.coord_x - self.connection.coord_x) + abs(self.coord_y - self.connection.coord_y)
             return distance
+
+
+    def lay_cables(self):
+        """
+        Zet alle kabels in een lijst
+        """
+        dist_x = abs(self.coord_x - self.connection.coord_x)
+        dist_y = abs(self.coord_y - self.connection.coord_y)
+
+        for new_y in dist_y:
+            new_cable = (self.coord_x, self.coord_y - new_y)
+            self.cables.append(new_cable)
+
+        for new_x in dist_x:
+            new_cable = (self.coord_x - new_x, self.coord_y - dist_y)
+            self.cables.append(new_cable)
+
+
