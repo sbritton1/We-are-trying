@@ -1,16 +1,19 @@
-from house import House
-from battery import Battery
+from .house import House
+from .battery import Battery
 import numpy as np
+import sys
 
 class Grid:
     def __init__(self, district: str):
-        file_batteries: str = "../../data/district_" + district + "/district-" + district + "_batteries.csv"
-        file_houses: str= "../../data/district_" + district + "/district-" + district + "_houses.csv"
-
+        file_batteries: str = "data/district_" + district + "/district-" + district + "_batteries.csv"
+        file_houses: str= "data/district_" + district + "/district-" + district + "_houses.csv"
         self.batteries: list[Battery] = self.read_batteries(file_batteries)
         self.houses: list[House] = self.read_houses(file_houses)
 
         self.grid = self.init_grid()
+
+        np.set_printoptions(threshold=sys.maxsize)
+        print(self.grid)
 
     def read_batteries(self, filename) -> list[Battery]:
         batteries: list[Battery] = []
@@ -40,7 +43,7 @@ class Grid:
 
         return houses
 
-    def split_line_in_file(line: str) -> tuple[int, int, float]:
+    def split_line_in_file(self, line: str) -> tuple[int, int, float]:
         line = line.replace("\"", "")
         line = line.replace("\n", "")
         values: list[str] = line.split(",")
