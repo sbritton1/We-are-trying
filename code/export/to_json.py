@@ -15,11 +15,11 @@ def to_json(grid):
 
         houses = []
 
-        for house in grid.houses:
+        for house in battery.connected_homes:
             house_dict = {}
             house_dict["location"] = f"{house.coord_x, house.coord_y}"
             house_dict["output"] = f"{house.maxoutput}"
-            house_dict["cables"] = f"{house.cables}"
+            house_dict["cables"] = house.cables
             houses.append(house_dict)
 
         bat_dict["houses"] = houses

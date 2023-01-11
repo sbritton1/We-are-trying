@@ -6,7 +6,7 @@ def baseline(grid):
 
     costs: list[int] = []
 
-    for i in range(1):
+    for i in range(1000):
         tmp_grid = add_connections(grid)
         cost = price(tmp_grid)
         tmp_grid.add_cost(cost)
