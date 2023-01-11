@@ -7,7 +7,7 @@ class Battery:
 
         self.connected_homes: list[object] = [] 
 
-    def connect_homes(self, house: object) -> None:
+    def connect_home(self, house: object) -> None:
         """
         Haalt van de totale capaciteit, de output af van een specifieke huis
         als er nog capaciteit is. Ook zet deze methode een aangesloten huis
@@ -18,7 +18,7 @@ class Battery:
             self.connected_homes.append(house)
 
 
-    def disconnect_homes(self, house: object) -> None:
+    def disconnect_home(self, house: object) -> None:
         """
         Deze methode haalt de connectie van een huis weg, en past de capaciteit aan, 
         wanneer een huis is aangesloten

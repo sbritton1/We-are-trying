@@ -12,9 +12,6 @@ class Grid:
 
         self.grid = self.init_grid()
 
-        np.set_printoptions(threshold=sys.maxsize)
-        print(self.grid)
-
     def read_batteries(self, filename) -> list[Battery]:
         batteries: list[Battery] = []
 
@@ -88,3 +85,6 @@ class Grid:
 
         return (max_x, max_y)
 
+    def print_grid(self):
+        np.set_printoptions(threshold=sys.maxsize)
+        print(self.grid)

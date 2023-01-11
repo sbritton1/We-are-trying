@@ -6,11 +6,11 @@ def baseline(grid):
 
     costs: list[int] = []
 
-    for i in range(1000):
+    for i in range(10000):
         tmp_grid = add_connections(grid)
         cost = price(tmp_grid)
         costs.append(cost)
-        
+
     plot_cost(costs)
 
 
@@ -24,18 +24,18 @@ def add_connections(grid):
 
     return tmp_grid
 
+
 def price(tmp_grid):
     cost: int = 0
     cost += len(tmp_grid.batteries) * 5000
-    print(cost)
 
     for house in tmp_grid.houses:
-        cost += house.distance_to_battery * 9
-    
-    print(f"Total cost = {cost}")
+        cost += house.distance_to_battery() * 9
 
     return cost
 
+
 def plot_cost(costs: list[int]):
     plt.hist(costs)
+    plt.show()
 
