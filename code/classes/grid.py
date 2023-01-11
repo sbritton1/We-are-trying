@@ -7,10 +7,14 @@ class Grid:
     def __init__(self, district: str):
         file_batteries: str = "data/district_" + district + "/district-" + district + "_batteries.csv"
         file_houses: str= "data/district_" + district + "/district-" + district + "_houses.csv"
+
+        self.district = district
         self.batteries: list[Battery] = self.read_batteries(file_batteries)
         self.houses: list[House] = self.read_houses(file_houses)
 
         self.grid = self.init_grid()
+
+        self.cost = 0
 
     def read_batteries(self, filename) -> list[Battery]:
         batteries: list[Battery] = []
@@ -85,3 +89,6 @@ class Grid:
     def print_grid(self):
         np.set_printoptions(threshold=sys.maxsize)
         print(self.grid)
+
+    def add_cost(self, cost):
+        self.cost = cost
