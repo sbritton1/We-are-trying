@@ -3,6 +3,7 @@ import sys
 from code.classes.grid import Grid
 from code.classes.house import House
 from code.algorithms.baseline import baseline
+from code.visualization.visualization import visualize
 
 loc_type = list[tuple[int, int, float]]
 
@@ -13,7 +14,9 @@ def main(district: str):
 
     grid = Grid(district)
 
-    baseline(grid)
+    # baseline(grid)
+
+    # visualize(grid)
 
 if __name__ == "__main__":
     district: str = "2"

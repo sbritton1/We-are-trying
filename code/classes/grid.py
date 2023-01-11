@@ -62,9 +62,6 @@ class Grid:
         for house in self.houses:
             grid[house.coord_x][house.coord_y] = house
 
-        # mirror rows, so first row now appears lasts
-        grid = np.flipud(grid)
-
         return grid
 
     def size_grid(self):
