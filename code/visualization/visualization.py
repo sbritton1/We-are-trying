@@ -1,31 +1,37 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+from matplotlib.offsetbox import (OffsetImage, AnnotationBbox)
 from matplotlib.ticker import MultipleLocator, AutoMinorLocator
 
-from code.classes.grid import Grid
-from code.classes.house import House
-from code.classes.battery import Battery
+from ..classes.grid import Grid
+from ..classes.house import House
+from ..classes.battery import Battery
+
 
 grid_size = 50
 
 def visualize(grid: Grid):
+    # set up canvas
     fig, ax = set_up_canvas()
+
+    # load the images and make imageboxes
+    house_imagebox, battery_imagebox = load_image_boxes()
 
     # random plots
     ax.plot(range(grid_size))
     ax.plot([4, 3, 2, 1])
 
     # get the grid
-    grid = Grid.grid
+    grid = grid.grid
 
     # loop through the grid
     for y, row in enumerate(grid):
         for x, cell in enumerate(row):
             if isinstance(cell, House):
-                pass
+                place_image(ax, x, y, house_imagebox)
             elif isinstance(cell, Battery):
-                pass
+                place_image(ax, x, y, battery_imagebox)
     
     # show the plot
     plt.show()
@@ -55,15 +61,31 @@ def set_up_canvas():
 
     return (fig, ax)
 
-def load_images():
-    house_path = "../../data/images/house.png"
-    battery_path = "../../data/images/battery.png"
+def load_image_boxes() -> tuple[OffsetImage, OffsetImage]:
+    house_path = "data/images/house.png"
+    battery_path = "data/images/battery.png"
 
     house_image = mpimg.imread(house_path)
     battery_image = mpimg.imread(battery_path)
 
-def place_image(x, y, image):
-    pass
+    #The OffsetBox is a simple container artist.
+    #The child artists are meant to be drawn at a relative position to its #parent.
+    house_imagebox = OffsetImage(house_image, zoom = 0.15)
+    battery_imagebox = OffsetImage(battery_image, zoom = 0.15)
+
+    return (house_imagebox, battery_imagebox)
+
+def place_image(ax, x: int, y: int, image_box: OffsetImage):
+    #Annotation box for image
+    #Container for the imagebox referring to a specific position *xy*.
+    ab = AnnotationBbox(image_box, (x, y), frameon = False)
+    ax.add_artist(ab)
+
+def place_dot(ax, x, y, house: bool) -> None:
+    if house:
+        ax.plot(x, y, 'ro')
+    else:
+        ax.plot(x, y, 'go')
 
 
 if __name__ == "__main__":
