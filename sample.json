@@ -1,0 +1,3786 @@
+[
+    {
+        "district": "2",
+        "costs-shared": 70945
+    },
+    {
+        "location": "(19, 20)",
+        "capacity": "1508.25",
+        "houses": [
+            {
+                "location": "(44, 6)",
+                "output": "48.76400191",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 35)",
+                "output": "44.09168174",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 6)",
+                "output": "38.4723184",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 21)",
+                "output": "36.40331775",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 40)",
+                "output": "44.36102572",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 40)",
+                "output": "55.71262043",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 36)",
+                "output": "45.9622578",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 4)",
+                "output": "36.90684143",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 48)",
+                "output": "49.9985406",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 18)",
+                "output": "63.12038188",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 41)",
+                "output": "63.7118043",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 5)",
+                "output": "56.91378259",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 19)",
+                "output": "40.60892953",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 1)",
+                "output": "35.82814756",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 26)",
+                "output": "36.88169378",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 4)",
+                "output": "64.52218421",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 40)",
+                "output": "39.38884807",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 9)",
+                "output": "49.84931475",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 30)",
+                "output": "61.0137363",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 47)",
+                "output": "62.28650955",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 4)",
+                "output": "36.98224478",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 19)",
+                "output": "64.06758851",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 19)",
+                "output": "41.79763764",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 8)",
+                "output": "56.03098521",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 12)",
+                "output": "64.50983467",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 29)",
+                "output": "53.17296019",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 40)",
+                "output": "36.37710418",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 32)",
+                "output": "55.38231616",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 41)",
+                "output": "61.3949773",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 32)",
+                "output": "52.84858044",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 5)",
+                "output": "37.73044496",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 2)",
+                "output": "47.48157843",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 18)",
+                "output": "36.13312321",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 37)",
+                "output": "47.33240149",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 50)",
+                "output": "57.24475908",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 29)",
+                "output": "63.05172666",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 29)",
+                "output": "40.77396592",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 3)",
+                "output": "54.13000914",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 28)",
+                "output": "57.01992312",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 42)",
+                "output": "49.57599547",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 26)",
+                "output": "48.83351279",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 15)",
+                "output": "64.4517609",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 10)",
+                "output": "39.91374306",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 48)",
+                "output": "64.79397046",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 7)",
+                "output": "58.44840778",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 40)",
+                "output": "52.20518124",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 18)",
+                "output": "51.14671974",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 38)",
+                "output": "41.12708974",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 28)",
+                "output": "48.50865344",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 5)",
+                "output": "59.78619507",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 2)",
+                "output": "39.31626881",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 27)",
+                "output": "58.76139914",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 16)",
+                "output": "63.73606908",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 1)",
+                "output": "52.204709",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 5)",
+                "output": "36.7394839",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 18)",
+                "output": "39.8339645",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 19)",
+                "output": "40.4929237",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 9)",
+                "output": "61.5437326",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 15)",
+                "output": "52.23919855",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 29)",
+                "output": "57.03641574",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 10)",
+                "output": "61.57329114",
+                "cables": "[]"
+            },
+            {
+                "location": "(19, 28)",
+                "output": "54.48982494",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 34)",
+                "output": "38.62374353",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 39)",
+                "output": "43.1260208",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 18)",
+                "output": "44.4066236",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 19)",
+                "output": "64.44382811",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 38)",
+                "output": "38.40462319",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 6)",
+                "output": "64.1795134",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 44)",
+                "output": "40.87885768",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 1)",
+                "output": "63.87700034",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 50)",
+                "output": "47.14949021",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 9)",
+                "output": "58.3986013",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 45)",
+                "output": "64.49005705",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 31)",
+                "output": "62.88141752",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 35)",
+                "output": "43.94928406",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 31)",
+                "output": "50.35807729",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 50)",
+                "output": "56.40032746",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 45)",
+                "output": "60.93412813",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 19)",
+                "output": "58.6298162",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 43)",
+                "output": "47.39904077",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 4)",
+                "output": "61.34791216",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 21)",
+                "output": "59.05896036",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 44)",
+                "output": "59.68436389",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 29)",
+                "output": "49.50781665",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 29)",
+                "output": "39.81936486",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 13)",
+                "output": "41.68226663",
+                "cables": "[]"
+            },
+            {
+                "location": "(42, 28)",
+                "output": "40.61631674",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 12)",
+                "output": "55.90292767",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 44)",
+                "output": "42.61411328",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 46)",
+                "output": "49.44122897",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 12)",
+                "output": "49.04859791",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 18)",
+                "output": "57.36334288",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 12)",
+                "output": "38.33821095",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 4)",
+                "output": "54.0265882",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 12)",
+                "output": "57.39706274",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 35)",
+                "output": "43.25342339",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 33)",
+                "output": "49.04355789",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 44)",
+                "output": "63.56837786",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 29)",
+                "output": "58.39362925",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 11)",
+                "output": "38.79808279",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 32)",
+                "output": "35.44113109",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 25)",
+                "output": "46.87020086",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 35)",
+                "output": "64.6667857",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 19)",
+                "output": "52.89669021",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 12)",
+                "output": "36.64489815",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 18)",
+                "output": "38.48596722",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 11)",
+                "output": "47.63820126",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 3)",
+                "output": "63.8665196",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 18)",
+                "output": "62.12319013",
+                "cables": "[]"
+            },
+            {
+                "location": "(30, 35)",
+                "output": "50.13812647",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 9)",
+                "output": "45.04775519",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 50)",
+                "output": "39.51931013",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 4)",
+                "output": "64.74853094",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 9)",
+                "output": "45.54974087",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 3)",
+                "output": "38.76288176",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 29)",
+                "output": "54.907644",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 33)",
+                "output": "57.5929688",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 5)",
+                "output": "54.51204967",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 13)",
+                "output": "45.8934274",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 48)",
+                "output": "41.48920914",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 26)",
+                "output": "43.44180597",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 38)",
+                "output": "39.14559958",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 26)",
+                "output": "38.69040639",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 27)",
+                "output": "38.17991123",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 31)",
+                "output": "50.56612579",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 32)",
+                "output": "54.8377261",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 15)",
+                "output": "36.67499817",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 34)",
+                "output": "41.88875758",
+                "cables": "[]"
+            },
+            {
+                "location": "(7, 29)",
+                "output": "52.8837846",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 34)",
+                "output": "44.36408371",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 42)",
+                "output": "40.7044132",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 37)",
+                "output": "48.28655559",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 16)",
+                "output": "47.83949256",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 27)",
+                "output": "51.50674585",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 47)",
+                "output": "59.37576043",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 50)",
+                "output": "50.04026027",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 8)",
+                "output": "49.40039856",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 34)",
+                "output": "55.9303441",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 41)",
+                "output": "41.16116018",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 37)",
+                "output": "50.75214489",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 29)",
+                "output": "60.91065902",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 11)",
+                "output": "40.55434782",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 35)",
+                "output": "44.58706876",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 30)",
+                "output": "58.83768219",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 38)",
+                "output": "56.32473588",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 37)",
+                "output": "54.95406591",
+                "cables": "[]"
+            },
+            {
+                "location": "(38, 47)",
+                "output": "35.5552718",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 25)",
+                "output": "38.40802103",
+                "cables": "[]"
+            },
+            {
+                "location": "(34, 1)",
+                "output": "37.82715244",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 31)",
+                "output": "57.12008594",
+                "cables": "[]"
+            }
+        ]
+    },
+    {
+        "location": "(1, 36)",
+        "capacity": "1508.25",
+        "houses": [
+            {
+                "location": "(44, 6)",
+                "output": "48.76400191",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 35)",
+                "output": "44.09168174",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 6)",
+                "output": "38.4723184",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 21)",
+                "output": "36.40331775",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 40)",
+                "output": "44.36102572",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 40)",
+                "output": "55.71262043",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 36)",
+                "output": "45.9622578",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 4)",
+                "output": "36.90684143",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 48)",
+                "output": "49.9985406",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 18)",
+                "output": "63.12038188",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 41)",
+                "output": "63.7118043",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 5)",
+                "output": "56.91378259",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 19)",
+                "output": "40.60892953",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 1)",
+                "output": "35.82814756",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 26)",
+                "output": "36.88169378",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 4)",
+                "output": "64.52218421",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 40)",
+                "output": "39.38884807",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 9)",
+                "output": "49.84931475",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 30)",
+                "output": "61.0137363",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 47)",
+                "output": "62.28650955",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 4)",
+                "output": "36.98224478",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 19)",
+                "output": "64.06758851",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 19)",
+                "output": "41.79763764",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 8)",
+                "output": "56.03098521",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 12)",
+                "output": "64.50983467",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 29)",
+                "output": "53.17296019",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 40)",
+                "output": "36.37710418",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 32)",
+                "output": "55.38231616",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 41)",
+                "output": "61.3949773",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 32)",
+                "output": "52.84858044",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 5)",
+                "output": "37.73044496",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 2)",
+                "output": "47.48157843",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 18)",
+                "output": "36.13312321",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 37)",
+                "output": "47.33240149",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 50)",
+                "output": "57.24475908",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 29)",
+                "output": "63.05172666",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 29)",
+                "output": "40.77396592",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 3)",
+                "output": "54.13000914",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 28)",
+                "output": "57.01992312",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 42)",
+                "output": "49.57599547",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 26)",
+                "output": "48.83351279",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 15)",
+                "output": "64.4517609",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 10)",
+                "output": "39.91374306",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 48)",
+                "output": "64.79397046",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 7)",
+                "output": "58.44840778",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 40)",
+                "output": "52.20518124",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 18)",
+                "output": "51.14671974",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 38)",
+                "output": "41.12708974",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 28)",
+                "output": "48.50865344",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 5)",
+                "output": "59.78619507",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 2)",
+                "output": "39.31626881",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 27)",
+                "output": "58.76139914",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 16)",
+                "output": "63.73606908",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 1)",
+                "output": "52.204709",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 5)",
+                "output": "36.7394839",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 18)",
+                "output": "39.8339645",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 19)",
+                "output": "40.4929237",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 9)",
+                "output": "61.5437326",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 15)",
+                "output": "52.23919855",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 29)",
+                "output": "57.03641574",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 10)",
+                "output": "61.57329114",
+                "cables": "[]"
+            },
+            {
+                "location": "(19, 28)",
+                "output": "54.48982494",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 34)",
+                "output": "38.62374353",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 39)",
+                "output": "43.1260208",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 18)",
+                "output": "44.4066236",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 19)",
+                "output": "64.44382811",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 38)",
+                "output": "38.40462319",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 6)",
+                "output": "64.1795134",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 44)",
+                "output": "40.87885768",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 1)",
+                "output": "63.87700034",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 50)",
+                "output": "47.14949021",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 9)",
+                "output": "58.3986013",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 45)",
+                "output": "64.49005705",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 31)",
+                "output": "62.88141752",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 35)",
+                "output": "43.94928406",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 31)",
+                "output": "50.35807729",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 50)",
+                "output": "56.40032746",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 45)",
+                "output": "60.93412813",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 19)",
+                "output": "58.6298162",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 43)",
+                "output": "47.39904077",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 4)",
+                "output": "61.34791216",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 21)",
+                "output": "59.05896036",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 44)",
+                "output": "59.68436389",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 29)",
+                "output": "49.50781665",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 29)",
+                "output": "39.81936486",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 13)",
+                "output": "41.68226663",
+                "cables": "[]"
+            },
+            {
+                "location": "(42, 28)",
+                "output": "40.61631674",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 12)",
+                "output": "55.90292767",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 44)",
+                "output": "42.61411328",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 46)",
+                "output": "49.44122897",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 12)",
+                "output": "49.04859791",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 18)",
+                "output": "57.36334288",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 12)",
+                "output": "38.33821095",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 4)",
+                "output": "54.0265882",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 12)",
+                "output": "57.39706274",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 35)",
+                "output": "43.25342339",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 33)",
+                "output": "49.04355789",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 44)",
+                "output": "63.56837786",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 29)",
+                "output": "58.39362925",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 11)",
+                "output": "38.79808279",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 32)",
+                "output": "35.44113109",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 25)",
+                "output": "46.87020086",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 35)",
+                "output": "64.6667857",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 19)",
+                "output": "52.89669021",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 12)",
+                "output": "36.64489815",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 18)",
+                "output": "38.48596722",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 11)",
+                "output": "47.63820126",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 3)",
+                "output": "63.8665196",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 18)",
+                "output": "62.12319013",
+                "cables": "[]"
+            },
+            {
+                "location": "(30, 35)",
+                "output": "50.13812647",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 9)",
+                "output": "45.04775519",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 50)",
+                "output": "39.51931013",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 4)",
+                "output": "64.74853094",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 9)",
+                "output": "45.54974087",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 3)",
+                "output": "38.76288176",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 29)",
+                "output": "54.907644",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 33)",
+                "output": "57.5929688",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 5)",
+                "output": "54.51204967",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 13)",
+                "output": "45.8934274",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 48)",
+                "output": "41.48920914",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 26)",
+                "output": "43.44180597",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 38)",
+                "output": "39.14559958",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 26)",
+                "output": "38.69040639",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 27)",
+                "output": "38.17991123",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 31)",
+                "output": "50.56612579",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 32)",
+                "output": "54.8377261",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 15)",
+                "output": "36.67499817",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 34)",
+                "output": "41.88875758",
+                "cables": "[]"
+            },
+            {
+                "location": "(7, 29)",
+                "output": "52.8837846",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 34)",
+                "output": "44.36408371",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 42)",
+                "output": "40.7044132",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 37)",
+                "output": "48.28655559",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 16)",
+                "output": "47.83949256",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 27)",
+                "output": "51.50674585",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 47)",
+                "output": "59.37576043",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 50)",
+                "output": "50.04026027",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 8)",
+                "output": "49.40039856",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 34)",
+                "output": "55.9303441",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 41)",
+                "output": "41.16116018",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 37)",
+                "output": "50.75214489",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 29)",
+                "output": "60.91065902",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 11)",
+                "output": "40.55434782",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 35)",
+                "output": "44.58706876",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 30)",
+                "output": "58.83768219",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 38)",
+                "output": "56.32473588",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 37)",
+                "output": "54.95406591",
+                "cables": "[]"
+            },
+            {
+                "location": "(38, 47)",
+                "output": "35.5552718",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 25)",
+                "output": "38.40802103",
+                "cables": "[]"
+            },
+            {
+                "location": "(34, 1)",
+                "output": "37.82715244",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 31)",
+                "output": "57.12008594",
+                "cables": "[]"
+            }
+        ]
+    },
+    {
+        "location": "(34, 49)",
+        "capacity": "1508.25",
+        "houses": [
+            {
+                "location": "(44, 6)",
+                "output": "48.76400191",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 35)",
+                "output": "44.09168174",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 6)",
+                "output": "38.4723184",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 21)",
+                "output": "36.40331775",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 40)",
+                "output": "44.36102572",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 40)",
+                "output": "55.71262043",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 36)",
+                "output": "45.9622578",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 4)",
+                "output": "36.90684143",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 48)",
+                "output": "49.9985406",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 18)",
+                "output": "63.12038188",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 41)",
+                "output": "63.7118043",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 5)",
+                "output": "56.91378259",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 19)",
+                "output": "40.60892953",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 1)",
+                "output": "35.82814756",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 26)",
+                "output": "36.88169378",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 4)",
+                "output": "64.52218421",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 40)",
+                "output": "39.38884807",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 9)",
+                "output": "49.84931475",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 30)",
+                "output": "61.0137363",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 47)",
+                "output": "62.28650955",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 4)",
+                "output": "36.98224478",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 19)",
+                "output": "64.06758851",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 19)",
+                "output": "41.79763764",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 8)",
+                "output": "56.03098521",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 12)",
+                "output": "64.50983467",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 29)",
+                "output": "53.17296019",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 40)",
+                "output": "36.37710418",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 32)",
+                "output": "55.38231616",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 41)",
+                "output": "61.3949773",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 32)",
+                "output": "52.84858044",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 5)",
+                "output": "37.73044496",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 2)",
+                "output": "47.48157843",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 18)",
+                "output": "36.13312321",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 37)",
+                "output": "47.33240149",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 50)",
+                "output": "57.24475908",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 29)",
+                "output": "63.05172666",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 29)",
+                "output": "40.77396592",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 3)",
+                "output": "54.13000914",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 28)",
+                "output": "57.01992312",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 42)",
+                "output": "49.57599547",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 26)",
+                "output": "48.83351279",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 15)",
+                "output": "64.4517609",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 10)",
+                "output": "39.91374306",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 48)",
+                "output": "64.79397046",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 7)",
+                "output": "58.44840778",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 40)",
+                "output": "52.20518124",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 18)",
+                "output": "51.14671974",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 38)",
+                "output": "41.12708974",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 28)",
+                "output": "48.50865344",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 5)",
+                "output": "59.78619507",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 2)",
+                "output": "39.31626881",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 27)",
+                "output": "58.76139914",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 16)",
+                "output": "63.73606908",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 1)",
+                "output": "52.204709",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 5)",
+                "output": "36.7394839",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 18)",
+                "output": "39.8339645",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 19)",
+                "output": "40.4929237",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 9)",
+                "output": "61.5437326",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 15)",
+                "output": "52.23919855",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 29)",
+                "output": "57.03641574",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 10)",
+                "output": "61.57329114",
+                "cables": "[]"
+            },
+            {
+                "location": "(19, 28)",
+                "output": "54.48982494",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 34)",
+                "output": "38.62374353",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 39)",
+                "output": "43.1260208",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 18)",
+                "output": "44.4066236",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 19)",
+                "output": "64.44382811",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 38)",
+                "output": "38.40462319",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 6)",
+                "output": "64.1795134",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 44)",
+                "output": "40.87885768",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 1)",
+                "output": "63.87700034",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 50)",
+                "output": "47.14949021",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 9)",
+                "output": "58.3986013",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 45)",
+                "output": "64.49005705",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 31)",
+                "output": "62.88141752",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 35)",
+                "output": "43.94928406",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 31)",
+                "output": "50.35807729",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 50)",
+                "output": "56.40032746",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 45)",
+                "output": "60.93412813",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 19)",
+                "output": "58.6298162",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 43)",
+                "output": "47.39904077",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 4)",
+                "output": "61.34791216",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 21)",
+                "output": "59.05896036",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 44)",
+                "output": "59.68436389",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 29)",
+                "output": "49.50781665",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 29)",
+                "output": "39.81936486",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 13)",
+                "output": "41.68226663",
+                "cables": "[]"
+            },
+            {
+                "location": "(42, 28)",
+                "output": "40.61631674",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 12)",
+                "output": "55.90292767",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 44)",
+                "output": "42.61411328",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 46)",
+                "output": "49.44122897",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 12)",
+                "output": "49.04859791",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 18)",
+                "output": "57.36334288",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 12)",
+                "output": "38.33821095",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 4)",
+                "output": "54.0265882",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 12)",
+                "output": "57.39706274",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 35)",
+                "output": "43.25342339",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 33)",
+                "output": "49.04355789",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 44)",
+                "output": "63.56837786",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 29)",
+                "output": "58.39362925",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 11)",
+                "output": "38.79808279",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 32)",
+                "output": "35.44113109",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 25)",
+                "output": "46.87020086",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 35)",
+                "output": "64.6667857",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 19)",
+                "output": "52.89669021",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 12)",
+                "output": "36.64489815",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 18)",
+                "output": "38.48596722",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 11)",
+                "output": "47.63820126",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 3)",
+                "output": "63.8665196",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 18)",
+                "output": "62.12319013",
+                "cables": "[]"
+            },
+            {
+                "location": "(30, 35)",
+                "output": "50.13812647",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 9)",
+                "output": "45.04775519",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 50)",
+                "output": "39.51931013",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 4)",
+                "output": "64.74853094",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 9)",
+                "output": "45.54974087",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 3)",
+                "output": "38.76288176",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 29)",
+                "output": "54.907644",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 33)",
+                "output": "57.5929688",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 5)",
+                "output": "54.51204967",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 13)",
+                "output": "45.8934274",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 48)",
+                "output": "41.48920914",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 26)",
+                "output": "43.44180597",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 38)",
+                "output": "39.14559958",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 26)",
+                "output": "38.69040639",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 27)",
+                "output": "38.17991123",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 31)",
+                "output": "50.56612579",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 32)",
+                "output": "54.8377261",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 15)",
+                "output": "36.67499817",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 34)",
+                "output": "41.88875758",
+                "cables": "[]"
+            },
+            {
+                "location": "(7, 29)",
+                "output": "52.8837846",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 34)",
+                "output": "44.36408371",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 42)",
+                "output": "40.7044132",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 37)",
+                "output": "48.28655559",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 16)",
+                "output": "47.83949256",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 27)",
+                "output": "51.50674585",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 47)",
+                "output": "59.37576043",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 50)",
+                "output": "50.04026027",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 8)",
+                "output": "49.40039856",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 34)",
+                "output": "55.9303441",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 41)",
+                "output": "41.16116018",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 37)",
+                "output": "50.75214489",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 29)",
+                "output": "60.91065902",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 11)",
+                "output": "40.55434782",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 35)",
+                "output": "44.58706876",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 30)",
+                "output": "58.83768219",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 38)",
+                "output": "56.32473588",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 37)",
+                "output": "54.95406591",
+                "cables": "[]"
+            },
+            {
+                "location": "(38, 47)",
+                "output": "35.5552718",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 25)",
+                "output": "38.40802103",
+                "cables": "[]"
+            },
+            {
+                "location": "(34, 1)",
+                "output": "37.82715244",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 31)",
+                "output": "57.12008594",
+                "cables": "[]"
+            }
+        ]
+    },
+    {
+        "location": "(41, 21)",
+        "capacity": "1508.25",
+        "houses": [
+            {
+                "location": "(44, 6)",
+                "output": "48.76400191",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 35)",
+                "output": "44.09168174",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 6)",
+                "output": "38.4723184",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 21)",
+                "output": "36.40331775",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 40)",
+                "output": "44.36102572",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 40)",
+                "output": "55.71262043",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 36)",
+                "output": "45.9622578",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 4)",
+                "output": "36.90684143",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 48)",
+                "output": "49.9985406",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 18)",
+                "output": "63.12038188",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 41)",
+                "output": "63.7118043",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 5)",
+                "output": "56.91378259",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 19)",
+                "output": "40.60892953",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 1)",
+                "output": "35.82814756",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 26)",
+                "output": "36.88169378",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 4)",
+                "output": "64.52218421",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 40)",
+                "output": "39.38884807",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 9)",
+                "output": "49.84931475",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 30)",
+                "output": "61.0137363",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 47)",
+                "output": "62.28650955",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 4)",
+                "output": "36.98224478",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 19)",
+                "output": "64.06758851",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 19)",
+                "output": "41.79763764",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 8)",
+                "output": "56.03098521",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 12)",
+                "output": "64.50983467",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 29)",
+                "output": "53.17296019",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 40)",
+                "output": "36.37710418",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 32)",
+                "output": "55.38231616",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 41)",
+                "output": "61.3949773",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 32)",
+                "output": "52.84858044",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 5)",
+                "output": "37.73044496",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 2)",
+                "output": "47.48157843",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 18)",
+                "output": "36.13312321",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 37)",
+                "output": "47.33240149",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 50)",
+                "output": "57.24475908",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 29)",
+                "output": "63.05172666",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 29)",
+                "output": "40.77396592",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 3)",
+                "output": "54.13000914",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 28)",
+                "output": "57.01992312",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 42)",
+                "output": "49.57599547",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 26)",
+                "output": "48.83351279",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 15)",
+                "output": "64.4517609",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 10)",
+                "output": "39.91374306",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 48)",
+                "output": "64.79397046",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 7)",
+                "output": "58.44840778",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 40)",
+                "output": "52.20518124",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 18)",
+                "output": "51.14671974",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 38)",
+                "output": "41.12708974",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 28)",
+                "output": "48.50865344",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 5)",
+                "output": "59.78619507",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 2)",
+                "output": "39.31626881",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 27)",
+                "output": "58.76139914",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 16)",
+                "output": "63.73606908",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 1)",
+                "output": "52.204709",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 5)",
+                "output": "36.7394839",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 18)",
+                "output": "39.8339645",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 19)",
+                "output": "40.4929237",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 9)",
+                "output": "61.5437326",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 15)",
+                "output": "52.23919855",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 29)",
+                "output": "57.03641574",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 10)",
+                "output": "61.57329114",
+                "cables": "[]"
+            },
+            {
+                "location": "(19, 28)",
+                "output": "54.48982494",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 34)",
+                "output": "38.62374353",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 39)",
+                "output": "43.1260208",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 18)",
+                "output": "44.4066236",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 19)",
+                "output": "64.44382811",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 38)",
+                "output": "38.40462319",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 6)",
+                "output": "64.1795134",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 44)",
+                "output": "40.87885768",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 1)",
+                "output": "63.87700034",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 50)",
+                "output": "47.14949021",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 9)",
+                "output": "58.3986013",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 45)",
+                "output": "64.49005705",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 31)",
+                "output": "62.88141752",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 35)",
+                "output": "43.94928406",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 31)",
+                "output": "50.35807729",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 50)",
+                "output": "56.40032746",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 45)",
+                "output": "60.93412813",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 19)",
+                "output": "58.6298162",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 43)",
+                "output": "47.39904077",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 4)",
+                "output": "61.34791216",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 21)",
+                "output": "59.05896036",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 44)",
+                "output": "59.68436389",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 29)",
+                "output": "49.50781665",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 29)",
+                "output": "39.81936486",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 13)",
+                "output": "41.68226663",
+                "cables": "[]"
+            },
+            {
+                "location": "(42, 28)",
+                "output": "40.61631674",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 12)",
+                "output": "55.90292767",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 44)",
+                "output": "42.61411328",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 46)",
+                "output": "49.44122897",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 12)",
+                "output": "49.04859791",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 18)",
+                "output": "57.36334288",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 12)",
+                "output": "38.33821095",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 4)",
+                "output": "54.0265882",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 12)",
+                "output": "57.39706274",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 35)",
+                "output": "43.25342339",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 33)",
+                "output": "49.04355789",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 44)",
+                "output": "63.56837786",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 29)",
+                "output": "58.39362925",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 11)",
+                "output": "38.79808279",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 32)",
+                "output": "35.44113109",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 25)",
+                "output": "46.87020086",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 35)",
+                "output": "64.6667857",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 19)",
+                "output": "52.89669021",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 12)",
+                "output": "36.64489815",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 18)",
+                "output": "38.48596722",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 11)",
+                "output": "47.63820126",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 3)",
+                "output": "63.8665196",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 18)",
+                "output": "62.12319013",
+                "cables": "[]"
+            },
+            {
+                "location": "(30, 35)",
+                "output": "50.13812647",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 9)",
+                "output": "45.04775519",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 50)",
+                "output": "39.51931013",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 4)",
+                "output": "64.74853094",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 9)",
+                "output": "45.54974087",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 3)",
+                "output": "38.76288176",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 29)",
+                "output": "54.907644",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 33)",
+                "output": "57.5929688",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 5)",
+                "output": "54.51204967",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 13)",
+                "output": "45.8934274",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 48)",
+                "output": "41.48920914",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 26)",
+                "output": "43.44180597",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 38)",
+                "output": "39.14559958",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 26)",
+                "output": "38.69040639",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 27)",
+                "output": "38.17991123",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 31)",
+                "output": "50.56612579",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 32)",
+                "output": "54.8377261",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 15)",
+                "output": "36.67499817",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 34)",
+                "output": "41.88875758",
+                "cables": "[]"
+            },
+            {
+                "location": "(7, 29)",
+                "output": "52.8837846",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 34)",
+                "output": "44.36408371",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 42)",
+                "output": "40.7044132",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 37)",
+                "output": "48.28655559",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 16)",
+                "output": "47.83949256",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 27)",
+                "output": "51.50674585",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 47)",
+                "output": "59.37576043",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 50)",
+                "output": "50.04026027",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 8)",
+                "output": "49.40039856",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 34)",
+                "output": "55.9303441",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 41)",
+                "output": "41.16116018",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 37)",
+                "output": "50.75214489",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 29)",
+                "output": "60.91065902",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 11)",
+                "output": "40.55434782",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 35)",
+                "output": "44.58706876",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 30)",
+                "output": "58.83768219",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 38)",
+                "output": "56.32473588",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 37)",
+                "output": "54.95406591",
+                "cables": "[]"
+            },
+            {
+                "location": "(38, 47)",
+                "output": "35.5552718",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 25)",
+                "output": "38.40802103",
+                "cables": "[]"
+            },
+            {
+                "location": "(34, 1)",
+                "output": "37.82715244",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 31)",
+                "output": "57.12008594",
+                "cables": "[]"
+            }
+        ]
+    },
+    {
+        "location": "(26, 22)",
+        "capacity": "1508.25",
+        "houses": [
+            {
+                "location": "(44, 6)",
+                "output": "48.76400191",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 35)",
+                "output": "44.09168174",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 6)",
+                "output": "38.4723184",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 21)",
+                "output": "36.40331775",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 40)",
+                "output": "44.36102572",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 40)",
+                "output": "55.71262043",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 36)",
+                "output": "45.9622578",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 4)",
+                "output": "36.90684143",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 48)",
+                "output": "49.9985406",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 18)",
+                "output": "63.12038188",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 41)",
+                "output": "63.7118043",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 5)",
+                "output": "56.91378259",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 19)",
+                "output": "40.60892953",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 1)",
+                "output": "35.82814756",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 26)",
+                "output": "36.88169378",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 4)",
+                "output": "64.52218421",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 40)",
+                "output": "39.38884807",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 9)",
+                "output": "49.84931475",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 30)",
+                "output": "61.0137363",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 47)",
+                "output": "62.28650955",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 4)",
+                "output": "36.98224478",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 19)",
+                "output": "64.06758851",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 19)",
+                "output": "41.79763764",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 8)",
+                "output": "56.03098521",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 12)",
+                "output": "64.50983467",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 29)",
+                "output": "53.17296019",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 40)",
+                "output": "36.37710418",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 32)",
+                "output": "55.38231616",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 41)",
+                "output": "61.3949773",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 32)",
+                "output": "52.84858044",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 5)",
+                "output": "37.73044496",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 2)",
+                "output": "47.48157843",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 18)",
+                "output": "36.13312321",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 37)",
+                "output": "47.33240149",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 50)",
+                "output": "57.24475908",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 29)",
+                "output": "63.05172666",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 29)",
+                "output": "40.77396592",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 3)",
+                "output": "54.13000914",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 28)",
+                "output": "57.01992312",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 42)",
+                "output": "49.57599547",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 26)",
+                "output": "48.83351279",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 15)",
+                "output": "64.4517609",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 10)",
+                "output": "39.91374306",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 48)",
+                "output": "64.79397046",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 7)",
+                "output": "58.44840778",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 40)",
+                "output": "52.20518124",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 18)",
+                "output": "51.14671974",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 38)",
+                "output": "41.12708974",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 28)",
+                "output": "48.50865344",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 5)",
+                "output": "59.78619507",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 2)",
+                "output": "39.31626881",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 27)",
+                "output": "58.76139914",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 16)",
+                "output": "63.73606908",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 1)",
+                "output": "52.204709",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 5)",
+                "output": "36.7394839",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 18)",
+                "output": "39.8339645",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 19)",
+                "output": "40.4929237",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 9)",
+                "output": "61.5437326",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 15)",
+                "output": "52.23919855",
+                "cables": "[]"
+            },
+            {
+                "location": "(44, 29)",
+                "output": "57.03641574",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 10)",
+                "output": "61.57329114",
+                "cables": "[]"
+            },
+            {
+                "location": "(19, 28)",
+                "output": "54.48982494",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 34)",
+                "output": "38.62374353",
+                "cables": "[]"
+            },
+            {
+                "location": "(49, 39)",
+                "output": "43.1260208",
+                "cables": "[]"
+            },
+            {
+                "location": "(27, 18)",
+                "output": "44.4066236",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 19)",
+                "output": "64.44382811",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 38)",
+                "output": "38.40462319",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 6)",
+                "output": "64.1795134",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 44)",
+                "output": "40.87885768",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 1)",
+                "output": "63.87700034",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 50)",
+                "output": "47.14949021",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 9)",
+                "output": "58.3986013",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 45)",
+                "output": "64.49005705",
+                "cables": "[]"
+            },
+            {
+                "location": "(26, 31)",
+                "output": "62.88141752",
+                "cables": "[]"
+            },
+            {
+                "location": "(47, 35)",
+                "output": "43.94928406",
+                "cables": "[]"
+            },
+            {
+                "location": "(29, 31)",
+                "output": "50.35807729",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 50)",
+                "output": "56.40032746",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 45)",
+                "output": "60.93412813",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 19)",
+                "output": "58.6298162",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 43)",
+                "output": "47.39904077",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 4)",
+                "output": "61.34791216",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 21)",
+                "output": "59.05896036",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 44)",
+                "output": "59.68436389",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 29)",
+                "output": "49.50781665",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 29)",
+                "output": "39.81936486",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 13)",
+                "output": "41.68226663",
+                "cables": "[]"
+            },
+            {
+                "location": "(42, 28)",
+                "output": "40.61631674",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 12)",
+                "output": "55.90292767",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 44)",
+                "output": "42.61411328",
+                "cables": "[]"
+            },
+            {
+                "location": "(28, 46)",
+                "output": "49.44122897",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 12)",
+                "output": "49.04859791",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 18)",
+                "output": "57.36334288",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 12)",
+                "output": "38.33821095",
+                "cables": "[]"
+            },
+            {
+                "location": "(9, 4)",
+                "output": "54.0265882",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 12)",
+                "output": "57.39706274",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 35)",
+                "output": "43.25342339",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 33)",
+                "output": "49.04355789",
+                "cables": "[]"
+            },
+            {
+                "location": "(17, 44)",
+                "output": "63.56837786",
+                "cables": "[]"
+            },
+            {
+                "location": "(15, 29)",
+                "output": "58.39362925",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 11)",
+                "output": "38.79808279",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 32)",
+                "output": "35.44113109",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 25)",
+                "output": "46.87020086",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 35)",
+                "output": "64.6667857",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 19)",
+                "output": "52.89669021",
+                "cables": "[]"
+            },
+            {
+                "location": "(36, 12)",
+                "output": "36.64489815",
+                "cables": "[]"
+            },
+            {
+                "location": "(18, 18)",
+                "output": "38.48596722",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 11)",
+                "output": "47.63820126",
+                "cables": "[]"
+            },
+            {
+                "location": "(48, 3)",
+                "output": "63.8665196",
+                "cables": "[]"
+            },
+            {
+                "location": "(2, 18)",
+                "output": "62.12319013",
+                "cables": "[]"
+            },
+            {
+                "location": "(30, 35)",
+                "output": "50.13812647",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 9)",
+                "output": "45.04775519",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 50)",
+                "output": "39.51931013",
+                "cables": "[]"
+            },
+            {
+                "location": "(14, 4)",
+                "output": "64.74853094",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 9)",
+                "output": "45.54974087",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 3)",
+                "output": "38.76288176",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 29)",
+                "output": "54.907644",
+                "cables": "[]"
+            },
+            {
+                "location": "(13, 33)",
+                "output": "57.5929688",
+                "cables": "[]"
+            },
+            {
+                "location": "(1, 5)",
+                "output": "54.51204967",
+                "cables": "[]"
+            },
+            {
+                "location": "(31, 13)",
+                "output": "45.8934274",
+                "cables": "[]"
+            },
+            {
+                "location": "(21, 48)",
+                "output": "41.48920914",
+                "cables": "[]"
+            },
+            {
+                "location": "(0, 26)",
+                "output": "43.44180597",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 38)",
+                "output": "39.14559958",
+                "cables": "[]"
+            },
+            {
+                "location": "(24, 26)",
+                "output": "38.69040639",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 27)",
+                "output": "38.17991123",
+                "cables": "[]"
+            },
+            {
+                "location": "(50, 31)",
+                "output": "50.56612579",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 32)",
+                "output": "54.8377261",
+                "cables": "[]"
+            },
+            {
+                "location": "(11, 15)",
+                "output": "36.67499817",
+                "cables": "[]"
+            },
+            {
+                "location": "(23, 34)",
+                "output": "41.88875758",
+                "cables": "[]"
+            },
+            {
+                "location": "(7, 29)",
+                "output": "52.8837846",
+                "cables": "[]"
+            },
+            {
+                "location": "(46, 34)",
+                "output": "44.36408371",
+                "cables": "[]"
+            },
+            {
+                "location": "(6, 42)",
+                "output": "40.7044132",
+                "cables": "[]"
+            },
+            {
+                "location": "(25, 37)",
+                "output": "48.28655559",
+                "cables": "[]"
+            },
+            {
+                "location": "(4, 16)",
+                "output": "47.83949256",
+                "cables": "[]"
+            },
+            {
+                "location": "(10, 27)",
+                "output": "51.50674585",
+                "cables": "[]"
+            },
+            {
+                "location": "(33, 47)",
+                "output": "59.37576043",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 50)",
+                "output": "50.04026027",
+                "cables": "[]"
+            },
+            {
+                "location": "(8, 8)",
+                "output": "49.40039856",
+                "cables": "[]"
+            },
+            {
+                "location": "(41, 34)",
+                "output": "55.9303441",
+                "cables": "[]"
+            },
+            {
+                "location": "(12, 41)",
+                "output": "41.16116018",
+                "cables": "[]"
+            },
+            {
+                "location": "(37, 37)",
+                "output": "50.75214489",
+                "cables": "[]"
+            },
+            {
+                "location": "(16, 29)",
+                "output": "60.91065902",
+                "cables": "[]"
+            },
+            {
+                "location": "(43, 11)",
+                "output": "40.55434782",
+                "cables": "[]"
+            },
+            {
+                "location": "(5, 35)",
+                "output": "44.58706876",
+                "cables": "[]"
+            },
+            {
+                "location": "(45, 30)",
+                "output": "58.83768219",
+                "cables": "[]"
+            },
+            {
+                "location": "(32, 38)",
+                "output": "56.32473588",
+                "cables": "[]"
+            },
+            {
+                "location": "(20, 37)",
+                "output": "54.95406591",
+                "cables": "[]"
+            },
+            {
+                "location": "(38, 47)",
+                "output": "35.5552718",
+                "cables": "[]"
+            },
+            {
+                "location": "(3, 25)",
+                "output": "38.40802103",
+                "cables": "[]"
+            },
+            {
+                "location": "(34, 1)",
+                "output": "37.82715244",
+                "cables": "[]"
+            },
+            {
+                "location": "(40, 31)",
+                "output": "57.12008594",
+                "cables": "[]"
+            }
+        ]
+    }
+]

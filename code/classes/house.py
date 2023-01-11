@@ -24,6 +24,7 @@ class House:
         if self.has_connection is False:
             self.has_connection = True
             self.connection = battery  
+            self.lay_cables()
 
     def delete_connection(self) -> None:
         """
@@ -52,7 +53,7 @@ class House:
 
         non_abs_dist_y = self.coord_y - self.connection.coord_y
 
-        for new_y in dist_y + 1:
+        for new_y in range(dist_y + 1):
             if self.coord_y - self.connection.coord_y > 0:
                 new_cable = f"{self.coord_x},{self.coord_y - new_y}"
                 self.cables.append(new_cable)
@@ -60,7 +61,7 @@ class House:
                 new_cable = f"{self.coord_x},{self.coord_y + new_y}"
                 self.cables.append(new_cable)
 
-        for new_x in dist_x + 1:
+        for new_x in range(dist_x + 1):
             if self.coord_x - self.connection.coord_x > 0:
                 new_cable = f"{self.coord_x - new_x},{self.coord_y - non_abs_dist_y}"
                 self.cables.append(new_cable)
