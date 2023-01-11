@@ -8,7 +8,7 @@ class House:
 
         self.connection: object = None
 
-        self.cables: list[tuple[int, int]] = []
+        self.cables: list[str] = []
 
     def has_connection(self) -> bool:
         """
@@ -50,12 +50,20 @@ class House:
         dist_x = abs(self.coord_x - self.connection.coord_x)
         dist_y = abs(self.coord_y - self.connection.coord_y)
 
-        for new_y in dist_y:
-            new_cable = (self.coord_x, self.coord_y - new_y)
-            self.cables.append(new_cable)
+        non_abs_dist_y = self.coord_y - self.connection.coord_y
 
-        for new_x in dist_x:
-            new_cable = (self.coord_x - new_x, self.coord_y - dist_y)
-            self.cables.append(new_cable)
+        for new_y in dist_y + 1:
+            if self.coord_y - self.connection.coord_y > 0:
+                new_cable = f"{self.coord_x},{self.coord_y - new_y}"
+                self.cables.append(new_cable)
+            else:
+                new_cable = f"{self.coord_x},{self.coord_y + new_y}"
+                self.cables.append(new_cable)
 
-
+        for new_x in dist_x + 1:
+            if self.coord_x - self.connection.coord_x > 0:
+                new_cable = f"{self.coord_x - new_x},{self.coord_y - non_abs_dist_y}"
+                self.cables.append(new_cable)
+            else:
+                new_cable = f"{self.coord_x + new_x},{self.coord_y - non_abs_dist_y}"
+                self.cables.append(new_cable)
