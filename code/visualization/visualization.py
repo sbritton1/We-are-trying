@@ -28,7 +28,7 @@ def visualize(grid: Grid):
 
     # get and display the houses together with their cables
     houses = grid.houses
-    display_houses(ax, houses)
+    display_houses_and_cables(ax, houses, batteries)
     
     # show the plot
     plt.show()
@@ -70,15 +70,20 @@ def display_battery(ax, battery: Battery, battery_imagebox: OffsetImage) -> None
     # place a battery image on the plot
     place_image(ax, x, y, battery_imagebox)
 
-def display_houses(ax, houses: list[House]) -> None:
+def display_houses_and_cables(ax, houses: list[House], batteries: list[Battery]) -> None:
     # load house image
     house_path = "data/images/house.png"
     house_imagebox = load_imagebox(house_path, 0.2)
 
+    n_batteries = len(batteries)
+
     # loop through houses and display the house and its cables
     for house in houses:
         display_house(ax, house, house_imagebox)
-        display_cables(ax, house.cables)
+
+        if house.connection is not None:
+            color_idx = batteries.index(house.connection) / n_batteries
+            display_cables(ax, house.cables, plt.cm.hsv(color_idx))
 
 def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
     # get house coordinates
@@ -108,20 +113,20 @@ def place_dot(ax, x, y, house: bool) -> None:
     else:
         ax.plot(x, y, 'go')
 
-def display_cables(ax, cable_coordinates: list[str]) -> None:
+def display_cables(ax, cable_coordinates: list[str], color) -> None:
     # loop over all elements except the last
     for i in range(len(cable_coordinates) - 1):
         start_x, start_y = get_x_y(cable_coordinates[i])
         end_x, end_y = get_x_y(cable_coordinates[i + 1])
 
-        display_cable(ax, [start_x, end_x], [start_y, end_y])
+        display_cable(ax, [start_x, end_x], [start_y, end_y], color)
 
 def get_x_y(coordinates: str) -> tuple[int, int]:
     x, y = coordinates.split(",")
     return (int(x), int(y))
 
-def display_cable(ax, x: list[int], y: list[int]) -> None:
-    ax.plot(x, y, 'b')
+def display_cable(ax, x: list[int], y: list[int], color) -> None:
+    ax.plot(x, y, c=color)
 
 
 if __name__ == "__main__":
