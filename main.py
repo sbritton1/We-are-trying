@@ -14,7 +14,7 @@ def main(district: str):
 
     grid = baseline(grid)
 
-    to_json(grid)
+    # to_json(grid)
 
     visualize(grid)
 
