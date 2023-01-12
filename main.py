@@ -3,6 +3,7 @@ import sys
 from code.classes.grid import Grid
 from code.classes.house import House
 from code.algorithms.baseline import baseline
+from code.algorithms.miguel_algo import miguel_algo
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -13,6 +14,7 @@ def main(district: str):
     grid = Grid(district)
 
     grid = baseline(grid)
+    # grid = miguel_algo(grid)
 
     for house in grid.houses:
         house.lay_cables()
@@ -22,5 +24,5 @@ def main(district: str):
 
 
 if __name__ == "__main__":
-    district: str = "2"
+    district: str = "1"
     main(district)

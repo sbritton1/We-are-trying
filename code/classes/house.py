@@ -1,5 +1,3 @@
-from .battery import Battery
-
 class House:
     def __init__(self, x: int, y: int, maxoutput: float):
         self.coord_x = x
@@ -7,7 +5,7 @@ class House:
         self.maxoutput = maxoutput
 
         self.has_connection: bool = False
-        self.connection: Battery = None
+        self.connection: object = None
         self.cables: list[str] = []
 
     def has_connection(self) -> bool:
@@ -17,7 +15,7 @@ class House:
         """
         return self.has_connection
 
-    def make_connection(self, battery: Battery) -> None:
+    def make_connection(self, battery: object) -> None:
         """
         Deze methode zorgt er voor dat een huis een connectie
         heeft met een bepaalde batterij, wanneer een huis nog geen
@@ -26,7 +24,7 @@ class House:
         """
         if self.has_connection is False:
             self.has_connection = True
-            self.connection: Battery = battery
+            self.connection: object = battery
 
     def delete_connection(self) -> None:
         """
@@ -48,7 +46,7 @@ class House:
             distance = dist_x + dist_y
             return distance
 
-    def distance_to_any_battery(self, battery: Battery) -> int:
+    def distance_to_any_battery(self, battery: object) -> int:
         """
         Calculates distance between house and any battery object
         Pre: battery of class Battery
