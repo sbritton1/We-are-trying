@@ -111,7 +111,8 @@ def display_houses_and_cables(ax, houses: list[House],
         objects and ax is an Axes object
     post: the houses are displayed on the grid at their corresponding
         coordinates with a house image and for every house their cables are
-        plotted on the """
+        plotted"""
+
     # load house image
     house_path = "data/images/house.png"
     house_imagebox = load_imagebox(house_path, 0.2)
@@ -128,6 +129,14 @@ def display_houses_and_cables(ax, houses: list[House],
 
 
 def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
+    """
+    Display a house on the plot
+
+    pre : ax is an Axes object, house is a House object and house_imagebox is
+        an OffsetImage object
+    post: the house is displayed with a house image given by house_imagebox
+        at the corresponding coordinates"""
+
     # get house coordinates
     x, y = house.coord_x, house.coord_y
 
@@ -136,6 +145,12 @@ def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
 
 
 def load_imagebox(path: str, zoom: float) -> OffsetImage:
+    """
+    Load and create an imagebox
+
+    pre : path is an existing path and a string, zoom is a float
+    post: the imagebox is returned as a OffsetImage object"""
+
     image = mpimg.imread(path)
 
     # The OffsetBox is a simple container artist.
@@ -147,20 +162,29 @@ def load_imagebox(path: str, zoom: float) -> OffsetImage:
 
 
 def place_image(ax, x: int, y: int, imagebox: OffsetImage):
+    """
+    Place image on plot
+
+    pre : ax is an Axes object, x and y are ints and imagebox is an OffsetImage
+        object
+    post: the image given by imagebox is displayed on the grid at coordinates
+        given by x and y"""
+
     # Annotation box for image
     # Container for the imagebox referring to a specific position *xy*.
     ab = AnnotationBbox(imagebox, (x, y), frameon=False)
     ax.add_artist(ab)
 
 
-def place_dot(ax, x, y, house: bool) -> None:
-    if house:
-        ax.plot(x, y, 'ro')
-    else:
-        ax.plot(x, y, 'go')
-
-
 def display_cables(ax, cable_coordinates: list[str], color) -> None:
+    """
+    Display cables on grid
+
+    pre : ax is an Axes object, cable_coordinates is a list of strings
+        containing the coordinates of the cable and color is a usable color
+        for the plot function of pyplot
+    post: the cables are plotted at the correct coordinates"""
+
     # loop over all elements except the last
     for i in range(len(cable_coordinates) - 1):
         start_x, start_y = get_x_y(cable_coordinates[i])
@@ -170,13 +194,25 @@ def display_cables(ax, cable_coordinates: list[str], color) -> None:
 
 
 def get_x_y(coordinates: str) -> tuple[int, int]:
+    """
+    Get the x and y values from a string
+
+    pre : coordinates is a string and is structured as 'x-value,y-value', which
+        are both strings
+    post: a tuple of 2 integers x and y is returned"""
+
     x, y = coordinates.split(",")
     return (int(x), int(y))
 
 
 def display_cable(ax, x: list[int], y: list[int], color) -> None:
+    """
+    Display a cable segment
+
+    pre : ax is an Axes object, x is a list of integers containing the start x
+        and then the end x, same goes for y, color should be a usable color for
+        the plot function of pyplot
+    post: the cable segment is plotted on the ax object with a color depicting
+        from which battery it came from"""
+
     ax.plot(x, y, c=color)
-
-
-if __name__ == "__main__":
-    visualize()
