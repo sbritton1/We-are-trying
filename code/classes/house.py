@@ -23,8 +23,7 @@ class House:
         """
         if self.has_connection is False:
             self.has_connection = True
-            self.connection = battery  
-            self.lay_cables()
+            self.connection = battery
 
     def delete_connection(self) -> None:
         """
