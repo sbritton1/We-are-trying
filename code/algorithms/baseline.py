@@ -120,5 +120,7 @@ def plot_cost(costs: list[int]):
     """
 
     plt.hist(costs)
+    plt.xlabel("Cost")
+    plt.ylabel("quantity")
     plt.show()
 
