@@ -9,11 +9,6 @@ def to_json(grid: Grid) -> None:
     Post: .json file is created
     """
 
-    # Lays cables for each house
-    for house in grid.houses:
-        if house.has_connection is True:
-            house.lay_cables()
-
     # list of dictionaries
     all_dicts: list[dict[str, Any]] = []
 

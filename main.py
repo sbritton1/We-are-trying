@@ -14,8 +14,10 @@ def main(district: str):
 
     grid = baseline(grid)
 
-    # to_json(grid)
-
+    for house in grid.houses:
+        house.lay_cables()
+        
+    to_json(grid)
     visualize(grid)
 
 
