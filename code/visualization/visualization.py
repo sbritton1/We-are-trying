@@ -80,6 +80,7 @@ def display_houses_and_cables(ax, houses: list[House], batteries: list[Battery])
     # loop through houses and display the house and its cables
     for house in houses:
         display_house(ax, house, house_imagebox)
+        house.lay_cables()
 
         if house.connection is not None:
             color_idx = batteries.index(house.connection) / n_batteries
