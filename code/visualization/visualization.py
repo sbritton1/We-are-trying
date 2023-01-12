@@ -19,22 +19,16 @@ def visualize(grid: Grid):
     # set up canvas
     fig, ax = set_up_canvas()
 
-    # load the images and make imageboxes
-    house_imagebox, battery_imagebox = load_image_boxes()
-
     # plot to make sure the entire grid is shown
     ax.plot(range(grid_size), alpha=0)
 
-    # get the grid
-    grid = grid.grid
+    # get and display the batteries
+    batteries = grid.batteries
+    display_batteries(ax, batteries)
 
-    # loop through the grid
-    for y, row in enumerate(grid):
-        for x, cell in enumerate(row):
-            if isinstance(cell, House):
-                place_image(ax, x, y, house_imagebox)
-            elif isinstance(cell, Battery):
-                place_image(ax, x, y, battery_imagebox)
+    # get and display the houses together with their cables
+    houses = grid.houses
+    display_houses(ax, houses)
     
     # show the plot
     plt.show()
@@ -46,10 +40,6 @@ def set_up_canvas():
     # show grid lines
     ax.grid(visible=True, axis='both', which='major', linewidth=1)
     ax.grid(visible=True, axis='both', which='minor', linewidth=0.5)
-
-    # set limits of grid
-    # ax.set_xlim(0, grid_size)
-    # ax.set_ylim(0, grid_size)
     
     # Intervals for major x-ticks
     ax.xaxis.set_major_locator(MultipleLocator(10))    
@@ -64,24 +54,52 @@ def set_up_canvas():
 
     return (fig, ax)
 
-def load_image_boxes() -> tuple[OffsetImage, OffsetImage]:
-    house_path = "data/images/house.png"
+def display_batteries(ax, batteries: list[Battery]) -> None:
+    # load battery image
     battery_path = "data/images/battery.png"
+    battery_imagebox = load_imagebox(battery_path, 0.4)
 
-    house_image = mpimg.imread(house_path)
-    battery_image = mpimg.imread(battery_path)
+    # loop through batteries and display
+    for battery in batteries:
+        display_battery(ax, battery, battery_imagebox)
+
+def display_battery(ax, battery: Battery, battery_imagebox: OffsetImage) -> None:
+    # get battery coordinates
+    x, y = battery.coord_x, battery.coord_y
+
+    # place a battery image on the plot
+    place_image(ax, x, y, battery_imagebox)
+
+def display_houses(ax, houses: list[House]) -> None:
+    # load house image
+    house_path = "data/images/house.png"
+    house_imagebox = load_imagebox(house_path, 0.2)
+
+    # loop through houses and display the house and its cables
+    for house in houses:
+        display_house(ax, house, house_imagebox)
+        display_cables(ax, house.cables)
+
+def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
+    # get house coordinates
+    x, y = house.coord_x, house.coord_y
+
+    # place a house image on the plot
+    place_image(ax, x, y, house_imagebox)
+
+def load_imagebox(path: str, zoom: float) -> OffsetImage:
+    image = mpimg.imread(path)
 
     #The OffsetBox is a simple container artist.
     #The child artists are meant to be drawn at a relative position to its #parent.
-    house_imagebox = OffsetImage(house_image, zoom = 0.2)
-    battery_imagebox = OffsetImage(battery_image, zoom = 0.4)
+    imagebox = OffsetImage(image, zoom = zoom)
 
-    return (house_imagebox, battery_imagebox)
+    return imagebox
 
-def place_image(ax, x: int, y: int, image_box: OffsetImage):
+def place_image(ax, x: int, y: int, imagebox: OffsetImage):
     #Annotation box for image
     #Container for the imagebox referring to a specific position *xy*.
-    ab = AnnotationBbox(image_box, (x, y), frameon = False)
+    ab = AnnotationBbox(imagebox, (x, y), frameon = False)
     ax.add_artist(ab)
 
 def place_dot(ax, x, y, house: bool) -> None:
@@ -90,19 +108,19 @@ def place_dot(ax, x, y, house: bool) -> None:
     else:
         ax.plot(x, y, 'go')
 
-def place_cables(ax, cable_coordinates: list[str]) -> None:
+def display_cables(ax, cable_coordinates: list[str]) -> None:
     # loop over all elements except the last
     for i in range(len(cable_coordinates) - 1):
         start_x, start_y = get_x_y(cable_coordinates[i])
         end_x, end_y = get_x_y(cable_coordinates[i + 1])
 
-        place_cable(ax, [start_x, end_x], [start_y, end_y])
+        display_cable(ax, [start_x, end_x], [start_y, end_y])
 
 def get_x_y(coordinates: str) -> tuple[int, int]:
     x, y = coordinates.split(",")
     return (int(x), int(y))
 
-def place_cable(ax, x: list[int], y: list[int]) -> None:
+def display_cable(ax, x: list[int], y: list[int]) -> None:
     ax.plot(x, y, 'b')
 
 

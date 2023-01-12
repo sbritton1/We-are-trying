@@ -12,7 +12,7 @@ class Grid:
         self.batteries: list[Battery] = self.read_batteries(file_batteries)
         self.houses: list[House] = self.read_houses(file_houses)
 
-        self.grid = self.init_grid()
+        # self.grid = self.init_grid()
 
         self.cost = 0
 
