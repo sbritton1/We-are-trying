@@ -5,36 +5,38 @@ class Battery:
         self.total_capacity = capacity
         self.current_capacity = capacity
 
-        self.connected_homes: list[object] = [] 
+        self.connected_homes: list[object] = []
 
     def connect_home(self, house: object) -> None:
         """
         Haalt van de totale capaciteit, de output af van een specifieke huis
         als er nog capaciteit is. Ook zet deze methode een aangesloten huis
-        in de lijst van de battery
+        in de lijst van de battery.
         """
         if self.current_capacity - house.maxoutput >= 0:
             self.current_capacity = self.current_capacity - house.maxoutput
             self.connected_homes.append(house)
 
-
     def disconnect_home(self, house: object) -> None:
         """
-        Deze methode haalt de connectie van een huis weg, en past de capaciteit aan, 
-        wanneer een huis is aangesloten
+        Deze methode haalt de connectie van een huis weg en past de huidige
+        capaciteit van een huis aan wanneer een huis is aangesloten.
         """
-
         if house in self.connected_homes:
             self.current_capacity = self.current_capacity + house.maxoutput
             self.connected_homes.remove(house)
 
     def get_capacity(self) -> float:
         """
-        Verkrijgt de capaciteit van de batterij
+        Verkrijgt de huidige capaciteit van de batterij.
         """
         return self.current_capacity
 
     def is_connection_possible(self, house: object) -> bool:
+        """
+        Deze methode checkt of er nog genoeg capaciteit
+        is om een huis aan te sluiten.
+        """
         if self.current_capacity - house.maxoutput >= 0:
             return True
         else:
