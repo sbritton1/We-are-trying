@@ -11,6 +11,10 @@ from ..classes.battery import Battery
 
 grid_size = 50
 
+# * TEST STUFF
+# grid_lines = ["0,0", "0,1", "1,1", "2,1", "3,1", "4,1", "4,2"]
+# grid_lines2 = ["0,0", "0,1", "1,1", "2,1", "2,2", "2,3", "3,3"]
+
 def visualize(grid: Grid):
     # set up canvas
     fig, ax = set_up_canvas()
@@ -18,7 +22,7 @@ def visualize(grid: Grid):
     # load the images and make imageboxes
     house_imagebox, battery_imagebox = load_image_boxes()
 
-    # random plots
+    # plot to make sure the entire grid is shown
     ax.plot(range(grid_size), alpha=0)
 
     # get the grid
@@ -85,6 +89,21 @@ def place_dot(ax, x, y, house: bool) -> None:
         ax.plot(x, y, 'ro')
     else:
         ax.plot(x, y, 'go')
+
+def place_cables(ax, cable_coordinates: list[str]) -> None:
+    # loop over all elements except the last
+    for i in range(len(cable_coordinates) - 1):
+        start_x, start_y = get_x_y(cable_coordinates[i])
+        end_x, end_y = get_x_y(cable_coordinates[i + 1])
+
+        place_cable(ax, [start_x, end_x], [start_y, end_y])
+
+def get_x_y(coordinates: str) -> tuple[int, int]:
+    x, y = coordinates.split(",")
+    return (int(x), int(y))
+
+def place_cable(ax, x: list[int], y: list[int]) -> None:
+    ax.plot(x, y, 'b')
 
 
 if __name__ == "__main__":
