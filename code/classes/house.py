@@ -78,3 +78,4 @@ class House:
                 self.cables.append(new_cable)
             else:
                 new_cable = f"{self.coord_x + new_x},{last_y_value}"
+                self.cables.append(new_cable)
