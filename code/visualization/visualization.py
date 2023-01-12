@@ -19,6 +19,9 @@ def visualize(grid: Grid):
     # set up canvas
     fig, ax = set_up_canvas()
 
+    # set title
+    ax.set_title(f"District {grid.district} with cost {grid.cost}")
+
     # plot to make sure the entire grid is shown
     ax.plot(range(grid_size), alpha=0)
 
@@ -50,7 +53,10 @@ def set_up_canvas():
     ax.yaxis.set_minor_locator(AutoMinorLocator(10)) 
 
     # add margins
-    ax.margins(0.1)
+    ax.margins(0.05)
+
+    # set aspect ratio to be square
+    ax.set_aspect('equal')
 
     return (fig, ax)
 
