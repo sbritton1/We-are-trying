@@ -50,6 +50,10 @@ class House:
         """
         Zet alle kabels in een lijst, op basis van de kortste afstand.
         """
+
+        if self.has_connection is False:
+            return
+
         dist_x = abs(self.coord_x - self.connection.coord_x)
         dist_y = abs(self.coord_y - self.connection.coord_y)
 
