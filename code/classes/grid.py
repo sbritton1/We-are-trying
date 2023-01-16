@@ -26,8 +26,6 @@ class Grid:
 
         # self.grid = self.init_grid()
 
-        self.cost = 0
-
     def read_batteries(self, filename: str) -> list[Battery]:
         """
         Reads files where data for the batteries is stored
@@ -157,11 +155,20 @@ class Grid:
         np.set_printoptions(threshold=sys.maxsize)
         print(self.grid)
 
-    def add_cost(self, cost: int):
+    def calc_cost(self) -> int:
         """
-        Give grid a cost based on calculation elsewhere
-        Pre: cost is an int
-        Post: self.cost has been given a value
+        Calculates the price of a grid.
+        Pre: tmp_grid is of class Grid
+        Post: returns an int cost
         """
 
-        self.cost = cost
+        # each battery in the grid costs 5000
+        self.cost: int = len(self.batteries) * 5000
+
+        for house in self.houses:
+            if house.has_connection is True:
+
+                # each grid piece length of cable costs 9
+                self.cost += house.distance_to_battery() * 9
+
+        return self.cost

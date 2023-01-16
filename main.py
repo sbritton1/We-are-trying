@@ -13,8 +13,8 @@ loc_type = list[tuple[int, int, float]]
 def main(district: str):
     grid = Grid(district)
 
-    grid = baseline(grid)
-    # grid = miguel_algo(grid)
+    # grid = baseline(grid)
+    grid = miguel_algo(grid)
 
     for house in grid.houses:
         house.lay_cables()

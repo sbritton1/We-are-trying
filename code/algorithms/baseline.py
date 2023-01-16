@@ -22,8 +22,7 @@ def baseline(grid: Grid) -> Grid:
 
         # create a temporary grid, all houses are connected to random battery
         tmp_grid: Grid = add_connections(grid)
-        cost: int = price(tmp_grid)
-        tmp_grid.add_cost(cost)
+        cost: int = tmp_grid.calc_cost()
 
         # add cost to list and check if it's the new best solution
         costs.append(cost)
@@ -67,6 +66,7 @@ def add_connections(grid: Grid) -> Grid:
 
     return tmp_grid
 
+
 def all_batteries_capped(house: House, batteries: list[Battery]) -> bool:
     """
     Checks if any battery has enough capacity left
@@ -84,32 +84,6 @@ def all_batteries_capped(house: House, batteries: list[Battery]) -> bool:
             return False
 
     return True
-
-
-def price(tmp_grid: Grid) -> int:
-    """
-    Calculates the price of a grid.
-    Pre: tmp_grid is of class Grid
-    Post: returns an int cost
-    """
-
-    cost: int = 0
-
-    # each battery in the grid costs 5000
-    cost += len(tmp_grid.batteries) * 5000
-
-    # not every house may be connected to a battery
-    qty_unconnected_houses = 0
-
-    for house in tmp_grid.houses:
-        if house.has_connection == True:
-
-            # each grid piece length of cable costs 9
-            cost += house.distance_to_battery() * 9
-        else:
-            qty_unconnected_houses += 1
-
-    return cost
 
 
 def plot_cost(costs: list[int]):
