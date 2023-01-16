@@ -22,8 +22,10 @@ def miguel_algo(grid: Grid) -> Grid:
     while valid_solution(grid) is False:
         resolve_error(grid)
 
+    improve_solution(grid)
+
     grid.calc_cost()
-    
+
     return grid
 
 
@@ -93,5 +95,60 @@ def resolve_error(grid: Grid) -> None:
             return
 
 
+def improve_solution(grid: Grid) -> None:
+    improve_loc = 0
+
+    while True:
+        grid.houses.sort(key=lambda house: house.distance_to_battery(), reverse=True)
+
+        best_improvement: int = 0
+        target: House = None
+
+        for house in grid.houses[improve_loc:]:
+            if possible_swap(grid.houses[improve_loc], house) is True:
+                improvement = calc_improvement(grid.houses[improve_loc], house)
+                if improvement > best_improvement:
+                    best_improvement = improvement
+                    target = house
+
+        if best_improvement == 0:
+            improve_loc += 1
+            if improve_loc == len(grid.houses):
+                return
+
+        else:
+            swap_houses(grid.houses[improve_loc], target)
+
+        
+def possible_swap(house1: House, house2: House) -> bool:
+    if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
+        return False
+
+    elif house2.maxoutput > house1.maxoutput + house1.connection.current_capacity:
+        return False
+
+    return True
 
 
+def calc_improvement(house1: House, house2: House) -> int:
+    diff1 = house1.distance_to_battery() - house1.distance_to_any_battery(house2.connection)
+    diff2 = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
+
+    # print(diff1, house1.coord_x, house1.coord_y, house2.connection.coord_x, house2.connection.coord_y, house1.distance_to_battery())
+
+    return diff1 + diff2
+
+
+def swap_houses(house1: House, house2: House):
+    house1_bat: Battery = house1.connection
+    house2_bat: Battery = house2.connection
+
+    house1_bat.disconnect_home(house1)
+    house1.delete_connection()
+    house2_bat.disconnect_home(house2)
+    house2.delete_connection()
+
+    house1_bat.connect_home(house2)
+    house2.make_connection(house1_bat)
+    house2_bat.connect_home(house1)
+    house1.make_connection(house2_bat)
