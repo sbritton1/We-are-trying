@@ -24,5 +24,5 @@ def main(district: str):
 
 
 if __name__ == "__main__":
-    district: str = "1"
+    district: str = "2"
     main(district)

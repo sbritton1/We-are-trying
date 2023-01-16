@@ -4,6 +4,7 @@ from ..classes.battery import Battery
 from .valid_solution import valid_solution
 import random
 
+
 def miguel_algo(grid: Grid) -> Grid:
     unconnected: list[int] = [*range(len(grid.houses))]
 
@@ -51,38 +52,24 @@ def resolve_error(grid: Grid) -> None:
         if house.has_connection is False:
             unconnected = house
 
-    # grid.batteries.sort(key=lambda battery: battery.current_capacity, reverse=True)
-
     battery_weights = []
     for battery in grid.batteries:
         battery_weights.append(battery.current_capacity)
 
     best_bat = random.choices(grid.batteries, weights=battery_weights, k=1)[0]
 
-
-    #######################################
-    print("\n")
-    print(unconnected.maxoutput)
-    for battery in grid.batteries:
-        print(battery.current_capacity)
-    print("\n")
-    #######################################
-
     if best_bat.is_connection_possible(unconnected) is True:
-        print("check")
         best_bat.connect_home(unconnected)
         unconnected.make_connection(best_bat)
         return
 
-    # best_bat.connected_homes.sort(key=lambda house: house.maxoutput, reverse=False)
-
-    while True:
+    for i in range(10000):
         house_weights = []
         for house in best_bat.connected_homes:
             house_weights.append(1/house.maxoutput)
 
         house = random.choices(best_bat.connected_homes, weights=house_weights, k=1)[0]
-        print(house.maxoutput, best_bat.current_capacity, unconnected.maxoutput)
+
         if house.maxoutput + best_bat.current_capacity > unconnected.maxoutput:
             best_bat.disconnect_home(house)
             house.delete_connection()
@@ -119,7 +106,7 @@ def improve_solution(grid: Grid) -> None:
         else:
             swap_houses(grid.houses[improve_loc], target)
 
-        
+
 def possible_swap(house1: House, house2: House) -> bool:
     if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
         return False
@@ -133,8 +120,6 @@ def possible_swap(house1: House, house2: House) -> bool:
 def calc_improvement(house1: House, house2: House) -> int:
     diff1 = house1.distance_to_battery() - house1.distance_to_any_battery(house2.connection)
     diff2 = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
-
-    # print(diff1, house1.coord_x, house1.coord_y, house2.connection.coord_x, house2.connection.coord_y, house1.distance_to_battery())
 
     return diff1 + diff2
 
