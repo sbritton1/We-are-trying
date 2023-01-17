@@ -39,7 +39,4 @@ class Battery:
         Deze methode checkt of er nog genoeg capaciteit
         is om een huis aan te sluiten.
         """
-        if self.current_capacity - house.maxoutput >= 0:
-            return True
-        else:
-            return False
+        return self.current_capacity - house.maxoutput >= 0
