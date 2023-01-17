@@ -22,7 +22,7 @@ def baseline(grid: Grid) -> Grid:
 
         # create a temporary grid, all houses are connected to random battery
         tmp_grid: Grid = add_connections(grid)
-        cost: int = tmp_grid.calc_cost()
+        cost: int = tmp_grid.calc_cost_normal()
 
         # add cost to list and check if it's the new best solution
         costs.append(cost)

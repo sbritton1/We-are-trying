@@ -155,7 +155,7 @@ class Grid:
         np.set_printoptions(threshold=sys.maxsize)
         print(self.grid)
 
-    def calc_cost(self) -> int:
+    def calc_cost_normal(self) -> int:
         """
         Calculates the price of a grid.
         Pre: tmp_grid is of class Grid
@@ -170,5 +170,23 @@ class Grid:
 
                 # each grid piece length of cable costs 9
                 self.cost += house.distance_to_battery() * 9
+
+        return self.cost
+
+    def calc_cost_shared(self) -> int:
+        """
+        Calculates the price of a grid when cables can be shared.
+        Pre: tmp_grid is of class Grid
+        Post: returns an int cost
+        """
+
+        # each battery in the grid costs 5000
+        self.cost: int = len(self.batteries) * 5000
+
+        for house in self.houses:
+            if house.has_connection is True:
+
+                # each grid piece length of cable costs 9
+                self.cost += len(house.cables) * 9
 
         return self.cost
