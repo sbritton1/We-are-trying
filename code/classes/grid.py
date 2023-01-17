@@ -9,7 +9,7 @@ class Grid:
     Class to read out files and store its contents
     """
 
-    def __init__(self, district: str):
+    def __init__(self, district: str) -> None:
         """
         Class initializer.
         Pre: district is a string of a number
@@ -36,23 +36,21 @@ class Grid:
         batteries: list[Battery] = []
 
         with open(filename) as f:
+            # skip header line
+            next(f)
+
             for line in f:
-
-                # Ignore the first line in the file
-                if line == "positie,capaciteit\n":
-                    pass
-                else:
-
                     # split the line into only its relevant data
-                    data = self.split_line_in_file(line)
+                    x, y, capacity = self.split_line_in_file(line)
                         
-                    batteries.append(Battery(data[0], data[1], data[2]))
+                    batteries.append(Battery(x, y, capacity))
 
         return batteries
 
     def read_houses(self, filename) -> list[House]:
         """
         Reads files where data for the houses is stored
+
         Pre: filename is a string
         Post: returns list of objects of class House
         """
@@ -60,24 +58,22 @@ class Grid:
         houses: list[House] = []
 
         with open(filename) as f:
+            # skip header line
+            next(f)
+
             for line in f:
+                # split line into only its relevant data
+                x, y, maxoutput = self.split_line_in_file(line)
 
-                # ignores first line in the file
-                if line == "x,y,maxoutput\n":
-                    pass
-                else:
-
-                    # split line into only its relevant data
-                    data = self.split_line_in_file(line)
-                        
-                    houses.append(House(data[0], data[1], data[2]))
+                # make House object and add it to the houses list    
+                houses.append(House(x, y, maxoutput))
 
         return houses
 
     def split_line_in_file(self, line: str) -> tuple[int, int, float]:
         """
-        Removes junk characters from line and
-        split the line into components
+        Removes junk characters from line and split the line into components
+
         Pre: line is a string
         Post: returns tuple of int, int, float
         """
@@ -96,8 +92,9 @@ class Grid:
 
     def init_grid(self) -> list[list[tuple[Union[Battery, House]]]]:
         """
-        Creates 2d numpy array, which represents the
-        grid in which all the batteries and houses lie
+        Creates 2d numpy array, which represents the grid in which all the 
+        batteries and houses lie
+
         Post: returns 2d array of 0's and objects
         """
 
@@ -119,8 +116,9 @@ class Grid:
 
     def size_grid(self):
         """
-        Find largest x and y coordinates of objects
-        to know how large the grid will be
+        Find largest x and y coordinates of objects to know how large the grid
+        will be
+
         Pre: self has non-empty list of batteries and houses
         Post: return tuple of two ints
         """
@@ -129,9 +127,9 @@ class Grid:
         max_y: int = 0
 
         # combine lists to make looping easier
-        all: list[object] = self.batteries + self.houses
+        all_objects: list[object] = self.batteries + self.houses
 
-        for obj in all:
+        for obj in all_objects:
 
             # check if x or y coordinate is larger than previous max
             if obj.coord_x > max_x:
@@ -148,6 +146,7 @@ class Grid:
     def print_grid(self):
         """
         Print out the grid into the terminal.
+
         Post: prints array
         """
 
@@ -158,6 +157,7 @@ class Grid:
     def calc_cost_normal(self) -> int:
         """
         Calculates the price of a grid.
+
         Pre: tmp_grid is of class Grid
         Post: returns an int cost
         """

@@ -39,10 +39,7 @@ class Battery:
         Deze methode checkt of er nog genoeg capaciteit
         is om een huis aan te sluiten.
         """
-        if self.current_capacity - house.maxoutput >= 0:
-            return True
-        else:
-            return False
+        return self.current_capacity - house.maxoutput >= 0
 
     def lay_shared_cables(self):
         battery_cable = f"{self.coord_x},{self.coord_y}"
@@ -50,7 +47,7 @@ class Battery:
 
         unconnected: list[int] = [*range(len(self.connected_homes))]
 
-        for i in range(len(self.connected_homes)):
+        for _ in range(len(self.connected_homes)):
 
             min_dist: int = 100
             min_house: House = None
@@ -98,9 +95,8 @@ class Battery:
 
             unconnected.remove(loc_in_list)
 
-    def calc_distance(self, house: House, cable) -> int:
-        cable_x = int(cable.split(",")[0])
-        cable_y = int(cable.split(",")[1])
+    def calc_distance(self, house: House, cable: str) -> int:
+        cable_x, cable_y = [int(coord) for coord in cable.split(",")]
 
         distance = abs(house.coord_x - cable_x) + abs(house.coord_y - cable_y)
 
