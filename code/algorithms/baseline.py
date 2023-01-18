@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
+from ..helper_functions.valid_solution import valid_solution
 import random
 import copy
 
@@ -25,10 +26,13 @@ def baseline(grid: Grid) -> Grid:
         tmp_grid: Grid = add_connections(grid)
         cost: int = tmp_grid.calc_cost_normal()
 
-        # add cost to list and check if it's the new best solution
-        costs.append(cost)
-        if min(costs) == cost:
-            best_solution = tmp_grid
+        # add cost if it was a valid solution
+        if valid_solution(tmp_grid):
+            costs.append(cost)
+            
+            # check if the solution is the best solution
+            if min(costs) == cost:
+                best_solution = tmp_grid
 
     # make histogram of costs of all solutions
     plot_cost(costs)
