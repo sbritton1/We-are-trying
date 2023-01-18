@@ -75,7 +75,7 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int):
     Post: displays histogram
     """
     
-    plt.title(f"Histogram of costs for district {grid.district} using baseline\n with {n_iterations} iterations and {len(costs)} valid solutions")
+    plt.title(f"Histogram of costs (algorithm: baseline, district: {grid.district}, iterations: {n_iterations}, valid solutions: {len(costs)})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
     plt.ylabel("Frequency")

@@ -45,5 +45,5 @@ def to_json(grid: Grid) -> None:
     json_object = json.dumps(all_dicts, indent=4)
 
     # write output.json file
-    with open("output.json", "w") as outfile:
+    with open("results/output.json", "w") as outfile:
         outfile.write(json_object)

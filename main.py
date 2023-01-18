@@ -18,13 +18,14 @@ def main(district: str):
 
     # ================ CHOOSE ALGORITHM ======================
 
-    # grid = baseline(grid, 10000)
+    grid = baseline(grid, 1000)
     # grid = greedy(grid)
     # grid = init_sd_hill_climber(grid)
     # grid = testen_algo(grid)
     grid = init_simulated_annealing(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
+    
     # METHOD: non-shared cables
     # for house in grid.houses:
     #    house.lay_cables()
