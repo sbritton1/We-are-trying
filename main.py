@@ -21,7 +21,8 @@ def main(district: str):
     # grid = baseline(grid, 10000)
     # grid = greedy(grid)
     # grid = init_sd_hill_climber(grid)
-    grid = testen_algo(grid)
+    grid = init_simulated_annealing(grid)
+    # grid = testen_algo(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
     
@@ -45,6 +46,6 @@ def main(district: str):
 
 if __name__ == "__main__":
     # choose district
-    district: str = "1"
+    district: str = "2"
 
     main(district)

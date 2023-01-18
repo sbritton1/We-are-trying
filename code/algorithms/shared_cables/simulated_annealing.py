@@ -13,7 +13,8 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     lowest_cost: int = None
     best_solution: Grid = None
 
-    for i in range(1):
+    for i in range(10):
+        print(f"=============================={i}==============================")
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
@@ -29,8 +30,6 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         if lowest_cost is None or cost < lowest_cost:
             lowest_cost = cost
             best_solution = tmp_grid
-
-        print(i)
 
     best_solution.remove_cables()
     return best_solution
