@@ -45,10 +45,10 @@ class Battery:
         battery_cable = f"{self.coord_x},{self.coord_y}"
         self.cables: set[str] = {battery_cable}
 
-        unconnected: list[int] = [*range(len(self.connected_homes))]
+        unconnected: list[int] = list(range(len(self.connected_homes)))
 
         for _ in range(len(self.connected_homes)):
-
+            # random high placeholder
             min_dist: int = 100
             min_house: House = None
             min_cable: str = None
@@ -72,8 +72,7 @@ class Battery:
             min_house.cables.append(house_cable)
             self.cables.add(house_cable)
 
-            min_cable_x = int(min_cable.split(",")[0])
-            min_cable_y = int(min_cable.split(",")[1])
+            min_cable_x, min_cable_y = [int(coord) for coord in min_cable.split(",")]
 
             dir_y = 1
             if min_house.coord_y - min_cable_y > 0:
