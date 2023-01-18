@@ -1,26 +1,34 @@
 from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
+from ..helper_functions.valid_solution import valid_solution
+from ..helper_functions.resolve_error import resolve_error
 import random
 import copy
 
 
-def init_steepest_descent_hill_climber(grid: Grid) -> Grid:
+def init_sd_hill_climber(grid: Grid) -> Grid:
 
     # keeps track of costs of all solutions
     lowest_cost: int = None
     best_solution: Grid = None
 
-    for i in range(1000):
+    for i in range(10):
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
-        steepest_descent_hill_climber(tmp_grid)
+
+        while valid_solution(tmp_grid) is False:
+            resolve_error(tmp_grid)
+
+        sd_hill_climber(tmp_grid)
 
         cost: int = tmp_grid.calc_cost_normal()
 
         if lowest_cost is None or cost < lowest_cost:
             lowest_cost = cost
             best_solution = tmp_grid
+
+        print(i)
 
     return best_solution
 
@@ -51,29 +59,30 @@ def add_random_connections(tmp_grid: Grid) -> Grid:
     return tmp_grid
 
 
-def steepest_descent_hill_climber(grid: Grid) -> None:
+def sd_hill_climber(grid: Grid) -> None:
     improve_loc: int = 0
 
     while True:
         grid.houses.sort(key=lambda house: house.distance_to_battery(), reverse=True)
 
         best_improvement: int = 0
-        target: House = None
+        target1: House = None
+        target2: House = None
 
-        for house in grid.houses[improve_loc:]:
-            if possible_swap(grid.houses[improve_loc], house) is True:
-                improvement = calc_improvement(grid.houses[improve_loc], house)
-                if improvement > best_improvement:
-                    best_improvement = improvement
-                    target = house
+        for house1 in grid.houses:
+            for house2 in grid.houses:
+                if possible_swap(house1, house2) is True:
+                    improvement = calc_improvement(house1, house2)
+                    if improvement > best_improvement:
+                        best_improvement = improvement
+                        target1 = house1
+                        target2 = house2
 
         if best_improvement == 0:
-            improve_loc += 1
-            if improve_loc == len(grid.houses):
-                return
+            return
 
         else:
-            swap_houses(grid.houses[improve_loc], target)
+            swap_houses(target1, target2)
 
 
 def possible_swap(house1: House, house2: House) -> bool:

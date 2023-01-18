@@ -184,9 +184,6 @@ class Grid:
         self.cost: int = len(self.batteries) * 5000
 
         for house in self.houses:
-            if house.has_connection is True:
-
-                # each grid piece length of cable costs 9
-                self.cost += len(house.cables) * 9
+            self.cost += (len(house.cables) - 1) * 9
 
         return self.cost
