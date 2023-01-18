@@ -23,6 +23,7 @@ def main(district: str):
     # grid = testen_algo(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
+    
     # METHOD: non-shared cables
     # for house in grid.houses:
     #    house.lay_cables()
