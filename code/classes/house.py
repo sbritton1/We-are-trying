@@ -83,14 +83,18 @@ class House:
         # voegt alle kabels toe langs de y-as
         for new_y in range(dist_y + 1):
             new_cable = f"{start_x},{start_y + new_y * y_direction}"
+            print(new_cable)
             self.cables.append(new_cable)
 
         x_direction = self.get_axis_direction(start_x, end_x)
 
         # voegt alle kabels toe langs de x-as
-        for new_x in range(dist_x + 1):
+        for new_x in range(1, dist_x + 1):
             new_cable = f"{start_x + new_x * x_direction},{end_y}"
+            print(new_cable)
             self.cables.append(new_cable)
+
+        print("\n\n")
 
     def get_axis_direction(self, start, end) -> int:
         """

@@ -34,8 +34,6 @@ def main(district: str):
     # =============== CHOOSE METHOD(S) OF OUTPUT =================
 
     #grid.calc_cost_shared()
-    print(grid.calc_cost_shared())
-    print(grid.calc_cost_normal())
         
     to_json(grid)
     visualize(grid)
