@@ -17,9 +17,9 @@ def main(district: str):
 
     # ================ CHOOSE ALGORITHM ======================
 
-    # grid = baseline(grid, 10000)
+    grid = baseline(grid, 1000)
     # grid = greedy(grid)
-    grid = init_sd_hill_climber(grid)
+    # grid = init_sd_hill_climber(grid)
     # grid = testen_algo(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
