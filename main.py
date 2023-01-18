@@ -5,6 +5,7 @@ from code.classes.house import House
 from code.algorithms.baseline import baseline
 from code.algorithms.greedy import greedy
 from code.algorithms.sd_hill_climber import init_sd_hill_climber
+from code.algorithms.testen_algo import testen_algo
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -16,9 +17,11 @@ def main(district: str):
 
     # ================ CHOOSE ALGORITHM ======================
 
-    grid = baseline(grid, 10000)
-    # grid = greedy(grid)
-    grid = init_sd_hill_climber(grid)
+    # grid = baseline(grid, 10000)
+    # # grid = greedy(grid)
+    # grid = init_sd_hill_climber(grid)
+    
+    grid = testen_algo(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
     # METHOD: non-shared cables
