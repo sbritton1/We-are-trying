@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
+import random
 import copy
 
 def baseline(grid: Grid) -> Grid:
@@ -52,14 +53,11 @@ def add_connections(grid: Grid) -> Grid:
     for house in tmp_grid.houses:
 
         # loops until available battery is found
-        while True:
-
-            # check if any battery has enough capacity left
-            if all_batteries_capped(house, tmp_grid.batteries) is True:
-                break
+        for i in range(len(tmp_grid.batteries)):
+            random.shuffle(tmp_grid.batteries)
 
             # select random battery
-            battery = random.choice(tmp_grid.batteries)
+            battery = tmp_grid.batteries[i]
 
             # if battery has enough capacity left, make connection
             if battery.is_connection_possible(house) is True:
@@ -68,25 +66,6 @@ def add_connections(grid: Grid) -> Grid:
                 break
 
     return tmp_grid
-
-
-def all_batteries_capped(house: House, batteries: list[Battery]) -> bool:
-    """
-    Checks if any battery has enough capacity left
-    for a given house.
-    Pre: house of class House
-         batteries list of objects of class Battery
-    Post: returns True if all batteries are at max capacity
-          else return False
-    """
-
-    for battery in batteries:
-
-        # if a battery has enough capacity, return False
-        if battery.is_connection_possible(house) is True:
-            return False
-
-    return True
 
 
 def plot_cost(costs: list[int]):

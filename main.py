@@ -3,7 +3,7 @@ import sys
 from code.classes.grid import Grid
 from code.classes.house import House
 from code.algorithms.baseline import baseline
-from code.algorithms.miguel_algo import miguel_algo
+from code.algorithms.greedy import greedy
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -13,14 +13,14 @@ loc_type = list[tuple[int, int, float]]
 def main(district: str):
     grid = Grid(district)
 
-    #grid = baseline(grid)
-    grid = miguel_algo(grid)
+    grid = baseline(grid)
+    # grid = greedy(grid)
 
-    #for house in grid.houses:
-    #   house.lay_cables()
+    for house in grid.houses:
+        house.lay_cables()
 
-    for battery in grid.batteries:
-        battery.lay_shared_cables()
+    #for battery in grid.batteries:
+    #    battery.lay_shared_cables()
 
     grid.calc_cost_shared()
         
@@ -29,5 +29,5 @@ def main(district: str):
 
 
 if __name__ == "__main__":
-    district: str = "1"
+    district: str = "2"
     main(district)
