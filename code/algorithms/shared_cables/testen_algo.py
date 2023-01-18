@@ -1,6 +1,6 @@
-from ..classes.grid import Grid
-from ..classes.house import House
-from ..classes.battery import Battery
+from ...classes.grid import Grid
+from ...classes.house import House
+from ...classes.battery import Battery
 import random
 import copy
 

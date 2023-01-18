@@ -1,8 +1,8 @@
-from ..classes.grid import Grid
-from ..classes.house import House
-from ..classes.battery import Battery
-from ..helper_functions.valid_solution import valid_solution
-from ..helper_functions.resolve_error import resolve_error
+from ...classes.grid import Grid
+from ...classes.house import House
+from ...classes.battery import Battery
+from ...helper_functions.valid_solution import valid_solution
+from ...helper_functions.resolve_error import resolve_error
 import random
 import copy
 
