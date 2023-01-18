@@ -101,3 +101,8 @@ class Battery:
 
         return distance
 
+    def remove_cables(self):
+        self.cables = None
+        for house in self.connected_homes:
+            house.remove_cables()
+

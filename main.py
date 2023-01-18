@@ -6,6 +6,7 @@ from code.algorithms.own_cables.baseline import baseline
 from code.algorithms.own_cables.greedy import greedy
 from code.algorithms.own_cables.sd_hill_climber import init_sd_hill_climber
 from code.algorithms.shared_cables.testen_algo import testen_algo
+from code.algorithms.shared_cables.simulated_annealing import init_simulated_annealing
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -19,8 +20,9 @@ def main(district: str):
 
     # grid = baseline(grid, 10000)
     # grid = greedy(grid)
-    grid = init_sd_hill_climber(grid)
+    # grid = init_sd_hill_climber(grid)
     # grid = testen_algo(grid)
+    grid = init_simulated_annealing(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
     # METHOD: non-shared cables

@@ -187,3 +187,11 @@ class Grid:
             self.cost += (len(house.cables) - 1) * 9
 
         return self.cost
+
+    def lay_shared_cables(self) -> None:
+        for battery in self.batteries:
+            battery.lay_shared_cables()
+
+    def remove_cables(self) -> None:
+        for battery in self.batteries:
+            battery.remove_cables()
