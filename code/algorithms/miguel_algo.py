@@ -25,7 +25,7 @@ def miguel_algo(grid: Grid) -> Grid:
 
     improve_solution(grid)
 
-    grid.calc_cost()
+    grid.calc_cost_normal()
 
     return grid
 

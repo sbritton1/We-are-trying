@@ -13,16 +13,21 @@ loc_type = list[tuple[int, int, float]]
 def main(district: str):
     grid = Grid(district)
 
-    # grid = baseline(grid)
+    #grid = baseline(grid)
     grid = miguel_algo(grid)
 
-    for house in grid.houses:
-        house.lay_cables()
+    #for house in grid.houses:
+    #   house.lay_cables()
+
+    for battery in grid.batteries:
+        battery.lay_shared_cables()
+
+    grid.calc_cost_shared()
         
     to_json(grid)
     visualize(grid)
 
 
 if __name__ == "__main__":
-    district: str = "2"
+    district: str = "1"
     main(district)

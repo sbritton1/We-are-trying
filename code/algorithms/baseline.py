@@ -18,11 +18,11 @@ def baseline(grid: Grid) -> Grid:
     best_solution: Grid = grid
 
     # 1000 iterations
-    for i in range(1000):
+    for _ in range(1000):
 
         # create a temporary grid, all houses are connected to random battery
         tmp_grid: Grid = add_connections(grid)
-        cost: int = tmp_grid.calc_cost()
+        cost: int = tmp_grid.calc_cost_normal()
 
         # add cost to list and check if it's the new best solution
         costs.append(cost)
@@ -45,6 +45,9 @@ def add_connections(grid: Grid) -> Grid:
 
     # create deepcopy of original grid
     tmp_grid = copy.deepcopy(grid)
+
+    # ! Hier kunnen we slimmer checken of alle batterijen al zijn gecapped om
+    # ! zo minder vaak te checken of alles gecapped is en ook eerder te stoppen
 
     for house in tmp_grid.houses:
 
