@@ -106,3 +106,6 @@ class House:
             return -1
         return 1
 
+    def remove_cables(self):
+        self.cables = []
+
