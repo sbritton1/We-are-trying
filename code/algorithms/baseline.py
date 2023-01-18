@@ -19,8 +19,9 @@ def baseline(grid: Grid) -> Grid:
     costs: list[int] = []
     best_solution: Grid = grid
 
-    # 1000 iterations
-    for _ in range(1000):
+    n_iterations = 10000
+
+    for _ in range(n_iterations):
 
         # create a temporary grid, all houses are connected to random battery
         tmp_grid: Grid = add_connections(grid)
@@ -35,7 +36,7 @@ def baseline(grid: Grid) -> Grid:
                 best_solution = tmp_grid
 
     # make histogram of costs of all solutions
-    plot_cost(costs)
+    plot_cost(costs, grid, n_iterations)
 
     return best_solution
 
@@ -50,9 +51,6 @@ def add_connections(grid: Grid) -> Grid:
 
     # create deepcopy of original grid
     tmp_grid = copy.deepcopy(grid)
-
-    # ! Hier kunnen we slimmer checken of alle batterijen al zijn gecapped om
-    # ! zo minder vaak te checken of alles gecapped is en ook eerder te stoppen
 
     for house in tmp_grid.houses:
 
@@ -72,15 +70,16 @@ def add_connections(grid: Grid) -> Grid:
     return tmp_grid
 
 
-def plot_cost(costs: list[int]):
+def plot_cost(costs: list[int], grid: Grid, n_iterations: int):
     """
     Plots a histogram of the costs of all solutions.
     Pre: costs is a list of ints
     Post: displays histogram
     """
-
-    plt.hist(costs)
+    
+    plt.title(f"Histogram of costs for district {grid.district} using baseline with {n_iterations} iterations")
+    plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
-    plt.ylabel("quantity")
+    plt.ylabel("Frequency")
     plt.show()
 

@@ -15,8 +15,8 @@ def main(district: str):
 
     # ================ CHOOSE ALGORITHM ======================
 
-    # grid = baseline(grid)
-    grid = greedy(grid)
+    grid = baseline(grid)
+    # grid = greedy(grid)
 
     # ================ CHOOSE METHOD OF CABLES ===============
     # METHOD: non-shared cables
@@ -40,5 +40,5 @@ def main(district: str):
 if __name__ == "__main__":
     # choose district
     district: str = "2"
-    
+
     main(district)
