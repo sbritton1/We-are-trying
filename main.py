@@ -13,21 +13,32 @@ loc_type = list[tuple[int, int, float]]
 def main(district: str):
     grid = Grid(district)
 
-    grid = baseline(grid)
-    # grid = greedy(grid)
+    # ================ CHOOSE ALGORITHM ======================
 
+    # grid = baseline(grid)
+    grid = greedy(grid)
+
+    # ================ CHOOSE METHOD OF CABLES ===============
+    # METHOD: non-shared cables
     for house in grid.houses:
         house.lay_cables()
 
-    #for battery in grid.batteries:
+    grid.calc_cost_normal()
+    
+    # METHOD: shared cables
+    # for battery in grid.batteries:
     #    battery.lay_shared_cables()
+    # 
+    # grid.calc_cost_shared()
 
-    grid.calc_cost_shared()
-        
+    # =============== CHOOSE METHOD(S) OF OUTPUT =================
+
     to_json(grid)
     visualize(grid)
 
 
 if __name__ == "__main__":
+    # choose district
     district: str = "2"
+    
     main(district)

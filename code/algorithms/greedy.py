@@ -1,8 +1,8 @@
 from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
-from .valid_solution import valid_solution
-from .resolve_error import resolve_error
+from ..helper_functions.valid_solution import valid_solution
+from ..helper_functions.resolve_error import resolve_error
 
 
 def greedy(grid: Grid) -> Grid:
