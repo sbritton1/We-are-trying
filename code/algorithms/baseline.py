@@ -7,7 +7,7 @@ from ..helper_functions.valid_solution import valid_solution
 import random
 import copy
 
-def baseline(grid: Grid) -> Grid:
+def baseline(grid: Grid, n_iterations: int) -> Grid:
     """
     Creates a baseline for what cost we can expect, based on what
     the cost would be if the houses are randomly connected to batteries.
@@ -18,8 +18,6 @@ def baseline(grid: Grid) -> Grid:
     # keeps track of costs of all solutions
     costs: list[int] = []
     best_solution: Grid = grid
-
-    n_iterations = 10000
 
     for _ in range(n_iterations):
 
@@ -77,7 +75,7 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int):
     Post: displays histogram
     """
     
-    plt.title(f"Histogram of costs for district {grid.district} using baseline with {n_iterations} iterations")
+    plt.title(f"Histogram of costs for district {grid.district} using baseline\n with {n_iterations} iterations and {len(costs)} valid solutions")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
     plt.ylabel("Frequency")

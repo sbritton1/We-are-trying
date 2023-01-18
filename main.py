@@ -14,7 +14,9 @@ loc_type = list[tuple[int, int, float]]
 def main(district: str):
     grid = Grid(district)
 
-    # grid = baseline(grid)
+    # ================ CHOOSE ALGORITHM ======================
+
+    grid = baseline(grid, 10000)
     # grid = greedy(grid)
     grid = init_sd_hill_climber(grid)
 
