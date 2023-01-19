@@ -11,6 +11,7 @@ import copy
 def init_simulated_annealing(grid: Grid) -> Grid:
 
     # keeps track of costs of all solutions
+    costs_best_solution: list[int] = []
     lowest_cost: int = None
     best_solution: Grid = None
 
@@ -24,13 +25,18 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         
         tmp_grid.lay_shared_cables()
 
-        tmp_grid: Grid = simulated_annealing(tmp_grid)
+        run_algo = simulated_annealing(tmp_grid)
+
+        tmp_grid: Grid = run_algo[0]
 
         cost: int = tmp_grid.calc_cost_shared()
 
         if lowest_cost is None or cost < lowest_cost:
+            costs_best_solution = run_algo[1]
             lowest_cost = cost
             best_solution = tmp_grid
+        
+    plot_costs_graph(costs_best_solution)
 
     best_solution.remove_cables()
     return best_solution
@@ -62,7 +68,7 @@ def add_random_connections(tmp_grid: Grid) -> Grid:
     return tmp_grid
 
 
-def simulated_annealing(grid: Grid) -> Grid:
+def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     cost_grid = grid.calc_cost_shared()
     costs = []
     iteration = 0
@@ -105,11 +111,7 @@ def simulated_annealing(grid: Grid) -> Grid:
 
         costs.append(cost_grid)
 
-    iterations = list(range(len(costs)))
-    plt.plot(iterations, costs)
-    plt.show()
-
-    return grid
+    return grid, costs
 
 
 def possible_swap(house1: House, house2: House) -> bool:
@@ -135,3 +137,12 @@ def swap_houses(house1: House, house2: House):
     house2.make_connection(house1_bat)
     house2_bat.connect_home(house1)
     house1.make_connection(house2_bat)
+
+
+def plot_costs_graph(costs: list[int]) -> None:
+    iterations = list(range(len(costs)))
+    plt.plot(iterations, costs)
+    plt.title("Graph of cost at each iteration for best found\nsolution of simulated annealing algorithm")
+    plt.xlabel("Iteration")
+    plt.ylabel("Cost")
+    plt.show()
