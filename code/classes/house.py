@@ -109,3 +109,5 @@ class House:
     def remove_cables(self):
         self.cables = []
 
+    def set_cables(self, cables: list[str]) -> None:
+        self.cables = cables
