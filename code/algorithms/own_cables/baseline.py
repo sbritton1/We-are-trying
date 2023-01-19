@@ -7,13 +7,16 @@ from ...helper_functions.valid_solution import valid_solution
 import random
 import copy
 
-def baseline(grid: Grid, n_iterations: int) -> Grid:
+def baseline(grid: Grid) -> Grid:
     """
     Creates a baseline for what cost we can expect, based on what
     the cost would be if the houses are randomly connected to batteries.
     Pre: grid is of class Grid
     Post: returns lowest cost solution
     """
+
+    # set the amount of iterations
+    n_iterations = 1000
 
     # keeps track of costs of all solutions
     costs: list[int] = []
