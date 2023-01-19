@@ -17,11 +17,20 @@ python3 -m pip install -r requirements.txt
 
 ### Hoe te gebruiken
 
-Het programma kan worden gerund door de main.py file te runnen. Hierin kan nog het een en ander gecomment en ongecomment worden om de werking aan te passen.
+Het programma kan worden gerund door de main.py file te runnen. Hiervoor moeten wel nog enkele command-line arguments worden toegevoegd voordat het programma kan werken. Zo moet het eerste argument het district zijn en het tweede argument welk algoritme. Een algemeen voorbeeld is hieronder gegeven:
 
 ```bash
-python3 main.py
+python3 main.py [DISTRICT] [ALGORITHM]
 ```
+
+Voor `district` kan je 0 t/m 4 invullen en voor `algorithm` kan je kiezen uit een van de volgende algoritmes:
+- baseline
+- greedy
+- sd_hill_climber
+- baseline_shared
+- hill_climber_shared
+- sd_hill_climber_shared
+- simulated_annealing
 
 Na het runnen zou een matplotlib venster moeten openen met de verbonden Smart Grid.
 
@@ -39,7 +48,11 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
     - /code/algorithms: bevat de code voor algoritmes
     - /code/classes: bevat de benodigde classes voor deze case
     - /code/visualisation: bevat de code voor de visualisatie
+    - /code/export: bevat de code voor het exporteren naar een JSON bestand
+    - /code/helper_functions: bevat functies die in meerdere algoritmes worden gebruikt
 - /data: bevat de verschillende databestanden die nodig zijn om de grid in te laden
+- /docs: bevat de verslagen voor dit project
+- /results: bevat de resultaten van eerdere runs 
 
 ## Auteurs
 
