@@ -8,7 +8,10 @@ import random
 import copy
 
 
-def baseline_shared(grid: Grid, iterations) -> Grid:
+def baseline_shared(grid: Grid) -> Grid:
+
+    # set the amount of iterations
+    iterations = 1000
 
     # keeps track of costs of all solutions
     costs = []

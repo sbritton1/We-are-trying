@@ -20,10 +20,11 @@ class House:
 
     def make_connection(self, battery: object) -> None:
         """
-        Deze methode zorgt er voor dat een huis een connectie
-        heeft met een bepaalde batterij, wanneer een huis nog geen
-        connectie heeft. Deze methode zorgt er ook voor dat alle
-        kabels worden gelegd naar de batterij.
+        This method connects a house to a battery if it is not already
+        connected. 
+        
+        Pre: battery of class Battery
+        Post: none
         """
         # ! Moet er niet een error worden geraised als er al een connectie is?
         if self.has_connection is False:
@@ -32,8 +33,10 @@ class House:
 
     def delete_connection(self) -> None:
         """
-        Verwijdert een connectie met een batterij, waardoor er geen
-        connectie meer is.
+        Deletes connection with a battery.
+        
+        Pre: none
+        Post: none
         """
         # ! Deze check is niet echt nodig
         if self.has_connection is True:
@@ -42,8 +45,10 @@ class House:
 
     def distance_to_battery(self) -> int:
         """
-        Berekent wanneer een huis is aangesloten aan een batterij
-        wat de afstand tussen de batterij en het huis is.
+        Calculates the distance to the connected battery.
+        
+        Pre: none
+        Post: returns distance as integer
         """
         if self.has_connection:
             dist_x = abs(self.coord_x - self.connection.coord_x)
@@ -54,6 +59,7 @@ class House:
     def distance_to_any_battery(self, battery: object) -> int:
         """
         Calculates distance between house and any battery object
+        
         Pre: battery of class Battery
         Post: returns an int
         """
@@ -66,7 +72,10 @@ class House:
     
     def lay_cables(self) -> None:
         """
-        Zet alle kabels in een lijst, op basis van de kortste afstand.
+        Puts all cables in list for the smallest distance
+        
+        Pre: none
+        Post: none
         """
 
         if self.has_connection is False:
@@ -95,7 +104,10 @@ class House:
     def get_axis_direction(self, start, end) -> int:
         """
         Returns 1 if the connection is in the negative axis direction and 1 if
-        in the positive direction
+        in the positive direction.
+        
+        Pre: a start and end coordinate as integer
+        Post: returns direction as integer
         """
 
         if end - start < 0:
@@ -107,7 +119,8 @@ class House:
 
     def set_cables(self, cables: list[str]) -> None:
         """
-        Sets the cables of the house to the given cables
+        Sets the cables of the house to the given cables.
+        
         Pre: cables argument is a list of strings, where the strings are in the
             shape of 'x,y'
         Post: the cables attribute is set to the cables argument"""
