@@ -7,7 +7,7 @@ import random
 import copy
 
 
-def testen_algo(grid: Grid):
+def hill_climber_shared(grid: Grid):
     """
     dit is een hill climber algoritme
     """
