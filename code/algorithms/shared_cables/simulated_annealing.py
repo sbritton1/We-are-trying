@@ -6,40 +6,50 @@ from ...helper_functions.resolve_error import resolve_error
 import matplotlib.pyplot as plt
 import random
 import copy
+import multiprocessing
 
 
 def init_simulated_annealing(grid: Grid) -> Grid:
+    grids: list[Grid] = []
+
+    for i in range(4):
+        tmp_grid = copy.deepcopy(grid)
+        tmp_grid = add_random_connections(tmp_grid)
+
+        while valid_solution(tmp_grid) is False:
+            resolve_error(tmp_grid)
+
+        tmp_grid.lay_shared_cables()
+            
+        grids.append(tmp_grid)
+
+    p = multiprocessing.Pool(4)
+    results = (p.map(work, grids))
 
     # keeps track of costs of all solutions
     costs_best_solution: list[int] = []
     lowest_cost: int = None
     best_solution: Grid = None
 
-    for i in range(1):
-        print(f"=============================={i}==============================")
-        tmp_grid: Grid = copy.deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
-
-        while valid_solution(tmp_grid) is False:
-            resolve_error(tmp_grid)
-        
-        tmp_grid.lay_shared_cables()
-
-        run_algo = simulated_annealing(tmp_grid)
-
-        tmp_grid: Grid = run_algo[0]
-
-        cost: int = tmp_grid.calc_cost_shared()
-
-        if lowest_cost is None or cost < lowest_cost:
-            costs_best_solution = run_algo[1]
-            lowest_cost = cost
+    for result in results:
+        tmp_grid: Grid = result[0]
+        costs: list[int] = result[1]
+        if lowest_cost is None or tmp_grid.cost < lowest_cost:
+            costs_best_solution = costs
+            lowest_cost = tmp_grid.cost
             best_solution = tmp_grid
         
     plot_costs_graph(costs_best_solution)
 
     best_solution.remove_cables()
     return best_solution
+
+def work(tmp_grid: Grid) -> tuple[Grid, int]:
+    run_algo = simulated_annealing(tmp_grid)
+    tmp_grid: Grid = run_algo[0]
+    costs = run_algo[1]
+    print("check")
+    return (tmp_grid, costs)
 
 
 def add_random_connections(tmp_grid: Grid) -> Grid:
@@ -75,7 +85,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     last_update = 0
 
     while iteration < 10000:
-        print(iteration)
+        # print(iteration)
         tmp_grid = copy.deepcopy(grid)
 
         while True:

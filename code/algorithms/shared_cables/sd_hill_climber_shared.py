@@ -22,13 +22,15 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
 
         sd_hill_climber_shared(tmp_grid)
 
-        cost: int = tmp_grid.calc_cost_normal()
+        cost: int = tmp_grid.calc_cost_shared()
 
         if lowest_cost is None or cost < lowest_cost:
             lowest_cost = cost
             best_solution = tmp_grid
 
     return best_solution
+
+
 
 
 def add_random_connections(tmp_grid: Grid) -> Grid:
