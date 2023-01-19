@@ -48,7 +48,7 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     run_algo = simulated_annealing(tmp_grid)
     tmp_grid: Grid = run_algo[0]
     costs = run_algo[1]
-    print("check")
+    print(tmp_grid.cost)
     return (tmp_grid, costs)
 
 
@@ -108,7 +108,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
             cost_grid = new_cost
             last_update = iteration
         else:
-            temperature = 1000 * (0.997 ** iteration)
+            temperature = 500 * (0.997 ** iteration)
             acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
             if acceptation_chance > random.random():
                 grid = tmp_grid

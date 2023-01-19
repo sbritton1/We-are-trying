@@ -31,8 +31,6 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
     return best_solution
 
 
-
-
 def add_random_connections(tmp_grid: Grid) -> Grid:
     """
     Connects houses to random batteries.

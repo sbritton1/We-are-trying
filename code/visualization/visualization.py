@@ -9,7 +9,7 @@ from ..classes.battery import Battery
 
 def visualize(grid: Grid) -> None:
     """
-    Visualize a smart grid
+    Visualize a smart grid.
 
     pre : grid is a Grid object
     post: a window should be opened with a plot containing the grid with its
@@ -32,7 +32,7 @@ def visualize(grid: Grid) -> None:
 
 def set_up_canvas(grid: Grid):
     """
-    Sets up the 'canvas' to plot upon
+    Sets up the 'canvas' to plot upon.
 
     pre : grid is a Grid object
     post: a tuple with a figure object and axis object is returned"""
@@ -69,7 +69,7 @@ def set_up_canvas(grid: Grid):
 
 def display_batteries(ax, batteries: list[Battery]) -> None:
     """
-    Places images of batteries on the given ax
+    Places images of batteries on the given ax.
 
     pre : ax is an Axes object, batteries a list of Battery objects and the
         hardcoded path exists and contains a png of a battery
@@ -88,7 +88,7 @@ def display_batteries(ax, batteries: list[Battery]) -> None:
 def display_battery(ax, battery: Battery,
                     battery_imagebox: OffsetImage) -> None:
     """
-    Display a battery on the given Axes object
+    Display a battery on the given Axes object.
 
     pre : ax is an Axes object, battery is a Battery object and
         battery_imagebox is an OffsetImage object
@@ -105,7 +105,7 @@ def display_battery(ax, battery: Battery,
 def display_houses_and_cables(ax, houses: list[House],
                               batteries: list[Battery]) -> None:
     """
-    Display the houses and their cables
+    Display the houses and their cables.
 
     pre : houses is a list of House objects, batteries is a list of Battery
         objects and ax is an Axes object
@@ -130,7 +130,7 @@ def display_houses_and_cables(ax, houses: list[House],
 
 def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
     """
-    Display a house on the plot
+    Display a house on the plot.
 
     pre : ax is an Axes object, house is a House object and house_imagebox is
         an OffsetImage object
@@ -147,7 +147,7 @@ def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
 
 def load_imagebox(path: str, zoom: float) -> OffsetImage:
     """
-    Load and create an imagebox
+    Load and create an imagebox.
 
     pre : path is an existing path and a string, zoom is a float
     post: the imagebox is returned as a OffsetImage object"""
@@ -164,7 +164,7 @@ def load_imagebox(path: str, zoom: float) -> OffsetImage:
 
 def place_image(ax, x: int, y: int, imagebox: OffsetImage):
     """
-    Place image on plot
+    Place image on plot.
 
     pre : ax is an Axes object, x and y are ints and imagebox is an OffsetImage
         object
@@ -179,7 +179,7 @@ def place_image(ax, x: int, y: int, imagebox: OffsetImage):
 
 def display_cables(ax, cable_coordinates: list[str], color) -> None:
     """
-    Display cables on grid
+    Display cables on grid.
 
     pre : ax is an Axes object, cable_coordinates is a list of strings
         containing the coordinates of the cable and color is a usable color
@@ -196,7 +196,7 @@ def display_cables(ax, cable_coordinates: list[str], color) -> None:
 
 def get_x_y(coordinates: str) -> tuple[int, int]:
     """
-    Get the x and y values from a string
+    Get the x and y values from a string.
 
     pre : coordinates is a string and is structured as 'x-value,y-value', which
         are both strings
@@ -208,7 +208,7 @@ def get_x_y(coordinates: str) -> tuple[int, int]:
 
 def display_cable(ax, x: list[int], y: list[int], color) -> None:
     """
-    Display a cable segment
+    Display a cable segment.
 
     pre : ax is an Axes object, x is a list of integers containing the start x
         and then the end x, same goes for y, color should be a usable color for
