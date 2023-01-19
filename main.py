@@ -66,7 +66,7 @@ if __name__ == "__main__":
                   "hill_climber_shared", "sd_hill_climber_shared", "simulated_annealing"]
 
     if len(sys.argv) != 3:
-        print("Usage: python kalender.py <district> <algorithm>")
+        print("Usage: python main.py <district> <algorithm>")
         sys.exit(1)
 
     elif sys.argv[2] not in algorithms:

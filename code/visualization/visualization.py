@@ -135,7 +135,8 @@ def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
     pre : ax is an Axes object, house is a House object and house_imagebox is
         an OffsetImage object
     post: the house is displayed with a house image given by house_imagebox
-        at the corresponding coordinates"""
+        at the corresponding coordinates
+    """
 
     # get house coordinates
     x, y = house.coord_x, house.coord_y
