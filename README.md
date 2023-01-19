@@ -25,6 +25,12 @@ python3 main.py
 
 Na het runnen zou een matplotlib venster moeten openen met de verbonden Smart Grid.
 
+Resultaten van runs worden opgeslagen in een json bestand in de results folder. Om deze te visualiseren kan het volgende commando gebruikt worden:
+
+```bash
+python3 visualize_json.py [FILEPATH]
+```
+
 ### Structuur
 
 De hierop volgende lijst beschrijft de belangrijkste mappen en files in het project, en waar je ze kan vinden:
