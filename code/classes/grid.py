@@ -188,6 +188,10 @@ class Grid:
 
         return self.cost
 
+    def lay_unique_cables(self) -> None:
+        for house in self.houses:
+            house.lay_cables()
+
     def lay_shared_cables(self) -> None:
         for battery in self.batteries:
             battery.lay_shared_cables()
