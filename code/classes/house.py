@@ -106,4 +106,10 @@ class House:
         self.cables = []
 
     def set_cables(self, cables: list[str]) -> None:
+        """
+        Sets the cables of the house to the given cables
+        Pre: cables argument is a list of strings, where the strings are in the
+            shape of 'x,y'
+        Post: the cables attribute is set to the cables argument"""
+
         self.cables = cables
