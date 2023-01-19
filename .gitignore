@@ -146,3 +146,6 @@ dmypy.json
 
 # snakeviz
 *.prof
+
+# results output
+results/output.json
