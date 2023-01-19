@@ -32,7 +32,9 @@ Voor `district` kan je 0 t/m 4 invullen en voor `algorithm` kan je kiezen uit ee
 - sd_hill_climber_shared
 - simulated_annealing
 
-Na het runnen zou een matplotlib venster moeten openen met de verbonden Smart Grid.
+Na het runnen zou een matplotlib venster moeten openen met de verbonden Smart Grid, zoals het voorbeeld hieronder.
+
+![](results/BestOf10%20district1%20simulated%20annealing.png)
 
 Resultaten van runs worden opgeslagen in een json bestand in de results folder. Om deze te visualiseren kan het volgende commando gebruikt worden:
 
