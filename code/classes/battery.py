@@ -105,4 +105,3 @@ class Battery:
         self.cables = None
         for house in self.connected_homes:
             house.remove_cables()
-

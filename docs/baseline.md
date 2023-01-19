@@ -24,8 +24,12 @@ Hier worden de resultaten gegeven voor de baseline van de drie districts.
 
 ### Analyse
 
-Alle bovenstaande histogrammen lijken redelijk op een normaalverdeling. 
+Alle bovenstaande histogrammen lijken redelijk op een normaalverdeling. Wij denken dat dit wél een uniforme steekproef is, want alleen de geldige oplossingen worden gebruikt, en omdat we alleen (zo goed mogelijk) random verbindingen maken, zit er nergens een bias in onze methode. De enige bias die wij kunnen bedenken, zou zijn dat computers niet écht random getallen kunnen creëeren, maar dat is verwaarloosbaar.
+
+Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 76000 en is de minimum oplossing 70225
+Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 68600 en is de minimum oplossing 64240
+Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 71000 en is de minimum oplossing 66229
 
 ## Conclusie
 
-Conclusie
+Op basis van de baseline, weten we dat ieder algoritme die een hogere cost heeft dan de gemiddelde random oplossing niet werkt. Zelfs oplossingen die in de buurt zitten van het minimum werken zo goed als je zou verwachten. Als we dit soort resultaten vinden, weten we dus dat of een algoritme niet naar behoren werkt, of dat het algoritme niet nuttig is voor deze casus.

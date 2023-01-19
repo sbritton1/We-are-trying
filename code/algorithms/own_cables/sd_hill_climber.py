@@ -69,12 +69,13 @@ def sd_hill_climber(grid: Grid) -> None:
 
         for house1 in grid.houses:
             for house2 in grid.houses:
-                if possible_swap(house1, house2) is True:
-                    improvement = calc_improvement(house1, house2)
-                    if improvement > best_improvement:
-                        best_improvement = improvement
-                        target1 = house1
-                        target2 = house2
+                if house1.connection != house2.connection:
+                    if possible_swap(house1, house2) is True:
+                        improvement = calc_improvement(house1, house2)
+                        if improvement > best_improvement:
+                            best_improvement = improvement
+                            target1 = house1
+                            target2 = house2
 
         if best_improvement == 0:
             return

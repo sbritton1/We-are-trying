@@ -9,7 +9,7 @@ class Grid:
     Class to read out files and store its contents
     """
 
-    def __init__(self, district: str) -> None:
+    def __init__(self, district: str, load_csv: bool = True) -> None:
         """
         Class initializer.
         Pre: district is a string of a number
@@ -21,8 +21,13 @@ class Grid:
         file_houses: str= "data/district_" + district + "/district-" + district + "_houses.csv"
 
         self.district = district
-        self.batteries: list[Battery] = self.read_batteries(file_batteries)
-        self.houses: list[House] = self.read_houses(file_houses)
+
+        self.batteries: list[Battery] = []
+        self.houses: list[House] = []
+
+        if load_csv:
+            self.batteries = self.read_batteries(file_batteries)
+            self.houses = self.read_houses(file_houses)
 
         # self.grid = self.init_grid()
 
@@ -188,6 +193,10 @@ class Grid:
 
         return self.cost
 
+    def lay_unique_cables(self) -> None:
+        for house in self.houses:
+            house.lay_cables()
+
     def lay_shared_cables(self) -> None:
         for battery in self.batteries:
             battery.lay_shared_cables()
@@ -195,3 +204,12 @@ class Grid:
     def remove_cables(self) -> None:
         for battery in self.batteries:
             battery.remove_cables()
+
+    def set_cost(self, cost: int) -> None:
+        self.cost = cost
+
+    def add_battery(self, battery: Battery) -> None:
+        self.batteries.append(battery)
+
+    def add_house(self, house: House) -> None:
+        self.houses.append(house)

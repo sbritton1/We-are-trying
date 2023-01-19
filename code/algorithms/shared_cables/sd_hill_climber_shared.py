@@ -3,42 +3,31 @@ from ...classes.house import House
 from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
-import matplotlib.pyplot as plt
 import random
 import copy
 
 
-def init_simulated_annealing(grid: Grid) -> Grid:
+def init_sd_hill_climber_shared(grid: Grid) -> Grid:
 
     # keeps track of costs of all solutions
-    costs_best_solution: list[int] = []
     lowest_cost: int = None
     best_solution: Grid = None
 
     for i in range(1):
-        print(f"=============================={i}==============================")
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
         while valid_solution(tmp_grid) is False:
             resolve_error(tmp_grid)
-        
-        tmp_grid.lay_shared_cables()
 
-        run_algo = simulated_annealing(tmp_grid)
+        sd_hill_climber_shared(tmp_grid)
 
-        tmp_grid: Grid = run_algo[0]
-
-        cost: int = tmp_grid.calc_cost_shared()
+        cost: int = tmp_grid.calc_cost_normal()
 
         if lowest_cost is None or cost < lowest_cost:
-            costs_best_solution = run_algo[1]
             lowest_cost = cost
             best_solution = tmp_grid
-        
-    plot_costs_graph(costs_best_solution)
 
-    best_solution.remove_cables()
     return best_solution
 
 
@@ -68,50 +57,34 @@ def add_random_connections(tmp_grid: Grid) -> Grid:
     return tmp_grid
 
 
-def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
-    cost_grid = grid.calc_cost_shared()
-    costs = []
-    iteration = 0
-    last_update = 0
+def sd_hill_climber_shared(grid: Grid) -> None:
+    grid.lay_shared_cables()
+    best_cost = grid.calc_cost_shared()
 
-    while iteration < 10000:
-        print(iteration)
-        tmp_grid = copy.deepcopy(grid)
+    while True:
+        best_improvement: int = 0
+        target1: House = None
+        target2: House = None
 
-        while True:
-            house1: House = random.choice(tmp_grid.houses)
-            house2: House = random.choice(tmp_grid.houses)
-            while house2.connection == house1.connection:
-                house2: House = random.choice(tmp_grid.houses)
+        for house1 in grid.houses:
+            print("check")
+            for house2 in grid.houses:
+                if house1.connection != house2.connection:
+                    if possible_swap(house1, house2) is True:
+                        improvement = calc_improvement(grid, best_cost, house1, house2)
+                        if improvement > best_improvement:
+                            best_improvement = improvement
+                            target1 = house1
+                            target2 = house2
 
-            if possible_swap(house1, house2) is True:
-                break
-        
-        swap_houses(house1, house2)
-        
-        tmp_grid.remove_cables()
-        tmp_grid.lay_shared_cables()
+        if best_improvement == 0:
+            return
 
-        new_cost = tmp_grid.calc_cost_shared()
-        if new_cost < cost_grid:
-            grid = tmp_grid
-            cost_grid = new_cost
-            last_update = iteration
         else:
-            temperature = 1000 * (0.997 ** iteration)
-            acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
-            if acceptation_chance > random.random():
-                grid = tmp_grid
-                cost_grid = new_cost
-                last_update = iteration
-
-        iteration += 1
-        if iteration - last_update == 300:
-            break
-
-        costs.append(cost_grid)
-
-    return grid, costs
+            swap_houses(target1, target2)
+            grid.remove_cables()
+            grid.lay_shared_cables()
+            best_cost = grid.calc_cost_shared()
 
 
 def possible_swap(house1: House, house2: House) -> bool:
@@ -122,6 +95,17 @@ def possible_swap(house1: House, house2: House) -> bool:
         return False
 
     return True
+
+
+def calc_improvement(grid: Grid, org_cost: int, house1: House, house2: House) -> int:
+    grid.remove_cables()
+    swap_houses(house1, house2)
+    grid.lay_shared_cables()
+    new_cost = grid.calc_cost_shared()
+    grid.remove_cables()
+    swap_houses(house1, house2)
+
+    return org_cost - new_cost
 
 
 def swap_houses(house1: House, house2: House):
@@ -137,12 +121,3 @@ def swap_houses(house1: House, house2: House):
     house2.make_connection(house1_bat)
     house2_bat.connect_home(house1)
     house1.make_connection(house2_bat)
-
-
-def plot_costs_graph(costs: list[int]) -> None:
-    iterations = list(range(len(costs)))
-    plt.plot(iterations, costs)
-    plt.title("Graph of cost at each iteration for best found\nsolution of simulated annealing algorithm")
-    plt.xlabel("Iteration")
-    plt.ylabel("Cost")
-    plt.show()
