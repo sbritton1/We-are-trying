@@ -4,6 +4,7 @@ from ...classes.grid import Grid
 from ...classes.house import House
 from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
+from ...helper_functions.add_random_connections import add_random_connections
 import random
 import copy
 
@@ -25,7 +26,7 @@ def baseline(grid: Grid) -> Grid:
     for _ in range(n_iterations):
 
         # create a temporary grid, all houses are connected to random battery
-        tmp_grid: Grid = add_connections(grid)
+        tmp_grid: Grid = add_random_connections(grid)
         cost: int = tmp_grid.calc_cost_normal()
 
         # add cost if it was a valid solution
@@ -40,35 +41,6 @@ def baseline(grid: Grid) -> Grid:
     plot_cost(costs, grid, n_iterations)
 
     return best_solution
-
-
-def add_connections(grid: Grid) -> Grid:
-    """
-    Connects houses to random batteries.
-    Pre: grid is of class Grid
-    Post: returns a copy of original grid, in which
-          houses are randomly connected to a battery
-    """
-
-    # create deepcopy of original grid
-    tmp_grid = copy.deepcopy(grid)
-
-    for house in tmp_grid.houses:
-
-        # loops until available battery is found
-        for i in range(len(tmp_grid.batteries)):
-            random.shuffle(tmp_grid.batteries)
-
-            # select random battery
-            battery = tmp_grid.batteries[i]
-
-            # if battery has enough capacity left, make connection
-            if battery.is_connection_possible(house) is True:
-                battery.connect_home(house)
-                house.make_connection(battery)
-                break
-
-    return tmp_grid
 
 
 def plot_cost(costs: list[int], grid: Grid, n_iterations: int):

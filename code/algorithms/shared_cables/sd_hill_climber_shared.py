@@ -31,32 +31,6 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
     return best_solution
 
 
-def add_random_connections(tmp_grid: Grid) -> Grid:
-    """
-    Connects houses to random batteries.
-    Pre: grid is of class Grid
-    Post: returns a copy of original grid, in which
-          houses are randomly connected to a battery
-    """
-
-    for house in tmp_grid.houses:
-
-        # loops until available battery is found
-        for i in range(len(tmp_grid.batteries)):
-            random.shuffle(tmp_grid.batteries)
-
-            # select random battery
-            battery: Battery = tmp_grid.batteries[i]
-
-            # if battery has enough capacity left, make connection
-            if battery.is_connection_possible(house) is True:
-                battery.connect_home(house)
-                house.make_connection(battery)
-                break
-
-    return tmp_grid
-
-
 def sd_hill_climber_shared(grid: Grid) -> None:
     grid.lay_shared_cables()
     best_cost = grid.calc_cost_shared()
