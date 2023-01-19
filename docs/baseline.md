@@ -26,9 +26,9 @@ Hier worden de resultaten gegeven voor de baseline van de drie districts.
 
 Alle bovenstaande histogrammen lijken redelijk op een normaalverdeling. Wij denken dat dit wél een uniforme steekproef is, want alleen de geldige oplossingen worden gebruikt, en omdat we alleen (zo goed mogelijk) random verbindingen maken, zit er nergens een bias in onze methode. De enige bias die wij kunnen bedenken, zou zijn dat computers niet écht random getallen kunnen creëeren, maar dat is verwaarloosbaar.
 
-Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 76000 en is de minimum oplossing 70225
-Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 68600 en is de minimum oplossing 64240
-Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 71000 en is de minimum oplossing 66229
+Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 76000 en is de minimum oplossing 70225.
+Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 68600 en is de minimum oplossing 64240.
+Voor district 1, is de gemiddelde cost van een random oplossing ongeveer 71000 en is de minimum oplossing 66229.
 
 ## Conclusie
 

@@ -83,7 +83,6 @@ class House:
         # voegt alle kabels toe langs de y-as
         for new_y in range(dist_y + 1):
             new_cable = f"{start_x},{start_y + new_y * y_direction}"
-            print(new_cable)
             self.cables.append(new_cable)
 
         x_direction = self.get_axis_direction(start_x, end_x)
@@ -91,10 +90,7 @@ class House:
         # voegt alle kabels toe langs de x-as
         for new_x in range(1, dist_x + 1):
             new_cable = f"{start_x + new_x * x_direction},{end_y}"
-            print(new_cable)
             self.cables.append(new_cable)
-
-        print("\n\n")
 
     def get_axis_direction(self, start, end) -> int:
         """
@@ -110,4 +106,10 @@ class House:
         self.cables = []
 
     def set_cables(self, cables: list[str]) -> None:
+        """
+        Sets the cables of the house to the given cables
+        Pre: cables argument is a list of strings, where the strings are in the
+            shape of 'x,y'
+        Post: the cables attribute is set to the cables argument"""
+
         self.cables = cables
