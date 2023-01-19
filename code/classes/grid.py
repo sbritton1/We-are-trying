@@ -206,10 +206,28 @@ class Grid:
             battery.remove_cables()
 
     def set_cost(self, cost: int) -> None:
+        """
+        Sets the cost attribute to the given cost
+        Pre: cost is an integer
+        Post: the cost attribute is set to the given cost
+        """
+
         self.cost = cost
 
     def add_battery(self, battery: Battery) -> None:
+        """
+        Adds a battery to the grid
+        Pre: the batteries list attribute is initialized
+        Post: the given battery is appended to the batteries list attribute
+        """
+
         self.batteries.append(battery)
 
     def add_house(self, house: House) -> None:
+        """
+        Adds a house to the grid
+        Pre: the houses list attribute is initialized
+        Post: the given house is appended to the houses list attribute
+        """
+
         self.houses.append(house)
