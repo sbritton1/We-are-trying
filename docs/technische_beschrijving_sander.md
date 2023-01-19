@@ -10,17 +10,18 @@ Als extra onderdeel wil ik het ook mogelijk maken om de JSON files te visualiser
 
 ## Wat te doen
 
-> Wat er aan functies/classes nog geschreven moet worden,
 Hier bespreek ik wat ik per onderdeel moet doen.
 
 ### Plant Propagation Algorithm
 In principe hoef ik alleen het Plant Propagation Algorithm te schrijven, omdat we al een steepest descent hill climber hebben die ik kan gebruiken. Deze hill climber zal ik waarschijnlijk wel nog een class van moeten maken.
 
-Voor de Plant Propagation Algorithm ga ik een apart bestand aanmaken met hierin een soort 'main' functie die gebruikt kan worden om de algorithm te laten runnen. Hiervoor 
+Voor de Plant Propagation Algorithm ga ik een apart bestand aanmaken met hierin een soort 'main' functie die gebruikt kan worden om de algorithm te laten runnen. Deze grote functie zal ik onderdelen in meerdere kleine functies om het overzicht te behouden. 
 
 ### JSON Visualisatie
-
+Voor de visualisatie van JSON bestanden zal ik een bestand aanmaken om de JSON files in te lezen en deze om te zetten naar een correct Grid object. Hiermee kan ik namelijk de bestaande visualisatie weer hergebruiken.
 
 ## Aansluiting project
 
-Hoe de functionaliteiten aansluiten aan het werk van de andere studenten uit de groep.
+De plant Propagation Algorithm zal gebruikt kunnen worden om een oplossing te vinden voor het probleem. Hier mee kunnen de anderen hun eigen algoritme vergelijken met die van mij en dus bepalen of hun algoritme waarschijnlijk beter kan of niet. 
+
+De JSON visualisatie kan gebruikt worden om de resultaten van lange runs op te slaan in JSON formaat en deze vervolgens later te visualiseren. Dit maakt het makkelijker om tweaks te maken aan de visualisatie, zonder het programma opnieuw lang te laten runnen. 
