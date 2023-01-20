@@ -14,7 +14,7 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
     lowest_cost: int = None
     best_solution: Grid = None
 
-    for i in range(10):
+    for i in range(1):
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
@@ -35,8 +35,6 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
 
 
 def sd_hill_climber(grid: Grid) -> None:
-    improve_loc: int = 0
-
     while True:
         best_improvement: int = 0
         target1: House = None
@@ -57,6 +55,7 @@ def sd_hill_climber(grid: Grid) -> None:
 
         else:
             swap_houses(target1, target2)
+            print("check")
 
 
 def possible_swap(house1: House, house2: House) -> bool:

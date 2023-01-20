@@ -13,7 +13,7 @@ import multiprocessing
 def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
-    for i in range(4):
+    for i in range(8):
         tmp_grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
@@ -83,7 +83,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
             cost_grid = new_cost
             last_update = iteration
         else:
-            temperature = 500 * (0.997 ** iteration)
+            temperature = 1000 * (0.997 ** iteration)
             acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
             if acceptation_chance > random.random():
                 grid = tmp_grid

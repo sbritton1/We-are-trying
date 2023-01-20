@@ -3,8 +3,11 @@ from ...classes.house import House
 from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
+from ...helper_functions.add_random_connections import add_random_connections
 import random
 import copy
+import math
+import multiprocessing
 
 
 def init_sd_hill_climber_shared(grid: Grid) -> Grid:
@@ -20,7 +23,7 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
         while valid_solution(tmp_grid) is False:
             resolve_error(tmp_grid)
 
-        sd_hill_climber_shared(tmp_grid)
+        tmp_grid = sd_hill_climber_shared(tmp_grid)
 
         cost: int = tmp_grid.calc_cost_shared()
 
@@ -28,37 +31,71 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
             lowest_cost = cost
             best_solution = tmp_grid
 
+    best_solution.remove_cables()
+
     return best_solution
 
 
-def sd_hill_climber_shared(grid: Grid) -> None:
+def sd_hill_climber_shared(grid: Grid) -> Grid:
     grid.lay_shared_cables()
-    best_cost = grid.calc_cost_shared()
 
     while True:
-        best_improvement: int = 0
-        target1: House = None
-        target2: House = None
+        print(grid.calc_cost_shared())
 
-        for house1 in grid.houses:
-            print("check")
-            for house2 in grid.houses:
-                if house1.connection != house2.connection:
-                    if possible_swap(house1, house2) is True:
-                        improvement = calc_improvement(grid, best_cost, house1, house2)
-                        if improvement > best_improvement:
-                            best_improvement = improvement
-                            target1 = house1
-                            target2 = house2
+        workers = 4
+        work = []
+        for worker in range(workers):
+            work.append((grid, worker, workers))
+
+        p = multiprocessing.Pool(workers)
+        results = (p.starmap(try_combinations, work))
+
+        best_improvement: int = 0
+        best_grid: Grid = None
+        for result in results:
+            new_grid: Grid = result[0]
+            improvement: int = result[1]
+            if improvement > best_improvement:
+                best_improvement = improvement
+                best_grid = new_grid
 
         if best_improvement == 0:
-            return
+            return grid
+        
+        grid = best_grid
 
-        else:
-            swap_houses(target1, target2)
-            grid.remove_cables()
-            grid.lay_shared_cables()
-            best_cost = grid.calc_cost_shared()
+
+def try_combinations(grid: Grid, id, workers) -> tuple[Grid, int]:
+    tmp_grid = copy.deepcopy(grid)
+    best_cost = tmp_grid.calc_cost_shared()
+
+    chunk_size = math.ceil(len(tmp_grid.houses) / workers)
+    houses_chunked: list[list[House]] = [tmp_grid.houses[i:i + chunk_size] for i in range(0, len(tmp_grid.houses), chunk_size)]
+    own_work: list[House] = houses_chunked[id]
+
+    best_improvement: int = 0
+    target1: House = None
+    target2: House = None
+
+    for house1 in own_work:
+        for house2 in tmp_grid.houses:
+            if house1.connection != house2.connection:
+                if possible_swap(house1, house2) is True:
+                    improvement = calc_improvement(tmp_grid, best_cost, house1, house2)
+                    if improvement > best_improvement:
+                        best_improvement = improvement
+                        target1 = house1
+                        target2 = house2
+
+    if best_improvement == 0:
+        pass
+
+    else:
+        swap_houses(target1, target2)
+        tmp_grid.remove_cables()
+        tmp_grid.lay_shared_cables()
+
+    return tmp_grid, best_improvement
 
 
 def possible_swap(house1: House, house2: House) -> bool:

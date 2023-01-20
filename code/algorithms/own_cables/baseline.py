@@ -17,20 +17,21 @@ def baseline(grid: Grid) -> Grid:
     """
 
     # set the amount of iterations
-    n_iterations = 1000
+    n_iterations = 100000
 
     # keeps track of costs of all solutions
     costs: list[int] = []
     best_solution: Grid = grid
 
     for _ in range(n_iterations):
+        tmp_grid = copy.deepcopy(grid)
 
         # create a temporary grid, all houses are connected to random battery
-        tmp_grid: Grid = add_random_connections(grid)
+        tmp_grid: Grid = add_random_connections(tmp_grid)
         cost: int = tmp_grid.calc_cost_normal()
 
         # add cost if it was a valid solution
-        if valid_solution(tmp_grid):
+        if valid_solution(tmp_grid) is True:
             costs.append(cost)
             
             # check if the solution is the best solution
