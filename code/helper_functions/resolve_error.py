@@ -4,12 +4,20 @@ from ..classes.battery import Battery
 import random
 
 def resolve_error(grid: Grid) -> None:
+    """
+    Tries to make an invalid grid a valid solution.
+    
+    Pre: grid of class Grid
+    Post: none
+    """
     unconnected: House = None
 
+    # saves unconnected house
     for house in grid.houses:
         if house.has_connection is False:
             unconnected = house
 
+    # saves all the current capacities of the batteries
     battery_weights = []
     for battery in grid.batteries:
         battery_weights.append(battery.current_capacity)
@@ -28,6 +36,9 @@ def resolve_error(grid: Grid) -> None:
 
         house = random.choices(best_bat.connected_homes, weights=house_weights, k=1)[0]
 
+        # ! handig om te checken of de comment wel klopt
+        # checks if it is possible to connect unconnected house if random
+        # house gets disconnected
         if house.maxoutput + best_bat.current_capacity > unconnected.maxoutput:
             best_bat.disconnect_home(house)
             house.delete_connection()

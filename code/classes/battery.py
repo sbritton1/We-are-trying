@@ -1,6 +1,12 @@
 from .house import House
 
 class Battery:
+    """
+    Class that contains all information for batteries, such as
+    its capacity, all the houses that are connected to the
+    battery and its coordinates.
+    """
+    
     def __init__(self, x: int, y: int, capacity: float):
         self.coord_x = x
         self.coord_y = y

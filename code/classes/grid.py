@@ -6,7 +6,7 @@ from typing import Union
 
 class Grid:
     """
-    Class to read out files and store its contents
+    Class to read out files and store its contents.
     """
 
     def __init__(self, district: str, load_csv: bool = True) -> None:

@@ -1,6 +1,11 @@
 from typing import Optional
 
 class House:
+    """
+    Class that contains all information for a house, such as
+    maxoutput, connection to a battery and the coordinates.
+    """
+    
     def __init__(self, x: int, y: int, maxoutput: float) -> None:
         self.coord_x = x
         self.coord_y = y
@@ -13,8 +18,10 @@ class House:
 
     def has_connection(self) -> bool:
         """
-        Checkt of een huis een connectie heeft met een batterij.
-        Returnt true of false.
+        Checks if house has connection with a battery
+        
+        Pre: none
+        Post: bool
         """
         return self.has_connection
 
