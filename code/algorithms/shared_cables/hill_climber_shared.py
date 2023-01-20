@@ -61,7 +61,18 @@ def hill_climber_shared(grid: Grid) -> Grid:
         
     # print functions to test if algorithm works
     print("\n\n")
-    print(best_costs)      
+    print(best_costs)
+    
+    # chooses best grid
+    min = best_costs[0]
+    index = 0
+    for i in range(1,len(best_costs)):
+        if best_costs[i] < min:
+            min = best_costs[i]
+            index = i
+            
+    tmp_grid = best_grids[index]
+            
             
     return tmp_grid
 

@@ -11,6 +11,13 @@ import multiprocessing
 
 
 def init_simulated_annealing(grid: Grid) -> Grid:
+    """
+    Initialises grid 8 times, then plots the results and
+    returns the grid with the best solution.
+    
+    Pre: grid of class grid
+    Post: grid of class grid
+    """
     grids: list[Grid] = []
 
     for i in range(8):
@@ -46,6 +53,13 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     return best_solution
 
 def work(tmp_grid: Grid) -> tuple[Grid, int]:
+    """
+    Runs the simulated annealing and returns the
+    grid and costs.
+    
+    Pre: grid of class grid
+    Post: tuple containing grid of class grid and integer
+    """
     run_algo = simulated_annealing(tmp_grid)
     tmp_grid: Grid = run_algo[0]
     costs = run_algo[1]
@@ -54,6 +68,12 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
 
 
 def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
+    """
+    Simulated annealing.
+    
+    Pre: grid of class grid
+    Post: tuple containing grid of class grid and list of integers
+    """
     cost_grid = grid.calc_cost_shared()
     costs = []
     iteration = 0
@@ -100,6 +120,12 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
 
 
 def possible_swap(house1: House, house2: House) -> bool:
+    """
+    Checks if it is possible to swap two houses.
+    
+    Pre: two houses of the house object
+    Post: bool
+    """
     if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
         return False
 
@@ -109,7 +135,13 @@ def possible_swap(house1: House, house2: House) -> bool:
     return True
 
 
-def swap_houses(house1: House, house2: House):
+def swap_houses(house1: House, house2: House) -> None:
+    """
+    Swaps two houses.
+    
+    Pre: two houses of the house object
+    Post: none
+    """
     house1_bat: Battery = house1.connection
     house2_bat: Battery = house2.connection
 
@@ -125,6 +157,12 @@ def swap_houses(house1: House, house2: House):
 
 
 def plot_costs_graph(costs: list[int]) -> None:
+    """
+    Plots a graph of all the costs from the random solutions.
+    
+    Pre: list of integers
+    Post: none
+    """
     iterations = list(range(len(costs)))
     plt.plot(iterations, costs)
     plt.title("Graph of cost at each iteration for best found\nsolution of simulated annealing algorithm")
