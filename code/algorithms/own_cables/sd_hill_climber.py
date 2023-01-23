@@ -4,6 +4,8 @@ from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
+from ...helper_functions.possible_swap import possible_swap
+from ...helper_functions.swap_houses import swap_houses
 import random
 import copy
 
@@ -82,25 +84,6 @@ def sd_hill_climber(grid: Grid) -> None:
             swap_houses(target1, target2)
 
 
-def possible_swap(house1: House, house2: House) -> bool:
-    """
-    Checks if two houses can be swapped by looking at the capacity
-    of the batteries and the output of the houses
-
-    Pre : house1 and house2 are of class House
-    Post: returns true if houses can be swapped
-          else return false    
-    """
-
-    if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
-        return False
-
-    elif house2.maxoutput > house1.maxoutput + house1.connection.current_capacity:
-        return False
-
-    return True
-
-
 def calc_improvement(house1: House, house2: House) -> int:
     """
     Calculates the improvement of a swap of the houses based
@@ -115,27 +98,3 @@ def calc_improvement(house1: House, house2: House) -> int:
     diff2 = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
 
     return diff1 + diff2
-
-
-def swap_houses(house1: House, house2: House) -> None:
-    """
-    Swaps the battery of two houses
-
-    Pre : house1 and house2 are of class House
-    Post: battery connection of two houses are swapped
-    """
-
-    house1_bat: Battery = house1.connection
-    house2_bat: Battery = house2.connection
-
-    # disconnect established connections
-    house1_bat.disconnect_home(house1)
-    house1.delete_connection()
-    house2_bat.disconnect_home(house2)
-    house2.delete_connection()
-
-    # make new connections
-    house1_bat.connect_home(house2)
-    house2.make_connection(house1_bat)
-    house2_bat.connect_home(house1)
-    house1.make_connection(house2_bat)
