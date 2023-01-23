@@ -128,13 +128,13 @@ def swap_houses(house1: House, house2: House) -> None:
     house1_bat: Battery = house1.connection
     house2_bat: Battery = house2.connection
 
-    # disconnects established connections
+    # disconnect established connections
     house1_bat.disconnect_home(house1)
     house1.delete_connection()
     house2_bat.disconnect_home(house2)
     house2.delete_connection()
 
-    # makes new connections
+    # make new connections
     house1_bat.connect_home(house2)
     house2.make_connection(house1_bat)
     house2_bat.connect_home(house1)

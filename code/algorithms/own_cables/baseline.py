@@ -12,6 +12,7 @@ def baseline(grid: Grid) -> Grid:
     """
     Creates a baseline for what cost we can expect, based on what
     the cost would be if the houses are randomly connected to batteries.
+    
     Pre: grid is of class Grid
     Post: returns lowest cost solution
     """

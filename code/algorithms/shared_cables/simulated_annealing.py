@@ -12,8 +12,8 @@ import multiprocessing
 
 def init_simulated_annealing(grid: Grid) -> Grid:
     """
-    Initialises grid 8 times, then plots the results and
-    returns the grid with the best solution.
+    Initialises random grids and runs simulated annealing algorithm
+    on them using multiple threads.
     
     Pre: grid is of class grid
     Post: returns best found solution using this algorithm
@@ -37,7 +37,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
             
         grids.append(tmp_grid)
 
-    # use multithread processing, with workers amount of threads
+    # use multithread processing, with workers = amount of threads
     workers = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(work, grids))
@@ -62,6 +62,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     best_solution.remove_cables()
     return best_solution
 
+
 def work(tmp_grid: Grid) -> tuple[Grid, int]:
     """
     Runs the simulated annealing and returns the
@@ -81,7 +82,7 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
 
 def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     """
-    Simulated annealing.
+    Simulated annealing algorithm.
     
     Pre: grid of class grid
     Post: tuple containing grid of class grid and list of integers
@@ -92,7 +93,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     costs = []
     last_update = 0
 
-    for iteration in range(1000):
+    for iteration in range(10000):
 
         # create deepcopy to make temporary changes
         tmp_grid = copy.deepcopy(grid)
