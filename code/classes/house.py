@@ -9,21 +9,12 @@ class House:
     def __init__(self, x: int, y: int, maxoutput: float) -> None:
         self.coord_x: int = x
         self.coord_y: int = y
-        self.maxoutput: int = maxoutput
+        self.maxoutput: float = maxoutput
 
         # ! attribute same name as method
         self.has_connection: bool = False
         self.connection: Optional[object] = None
         self.cables: list[str] = []
-
-    def has_connection(self) -> bool:
-        """
-        Checks if house has connection with a battery.
-        
-        Pre : none
-        Post: bool
-        """
-        return self.has_connection
 
     def make_connection(self, battery: object) -> None:
         """
@@ -36,7 +27,7 @@ class House:
         # ! Moet er niet een error worden geraised als er al een connectie is?
         if self.has_connection is False:
             self.has_connection = True
-            self.connection: object = battery
+            self.connection = battery
 
     def delete_connection(self) -> None:
         """
