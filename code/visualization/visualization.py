@@ -20,11 +20,11 @@ def visualize(grid: Grid) -> None:
     fig, ax = set_up_canvas(grid)
 
     # get and display the batteries
-    batteries = grid.batteries
+    batteries: list[Battery] = grid.batteries
     display_batteries(ax, batteries)
 
     # get and display the houses together with their cables
-    houses = grid.houses
+    houses: list[House] = grid.houses
     display_houses_and_cables(ax, houses, batteries)
 
     # show the plot
@@ -80,7 +80,7 @@ def display_batteries(ax, batteries: list[Battery]) -> None:
     """
 
     # load battery image
-    battery_path = "data/images/battery.png"
+    battery_path: str = "data/images/battery.png"
     battery_imagebox = load_imagebox(battery_path, 0.4)
 
     # loop through batteries and display
@@ -119,10 +119,10 @@ def display_houses_and_cables(ax, houses: list[House],
     """
 
     # load house image
-    house_path = "data/images/house.png"
+    house_path: str = "data/images/house.png"
     house_imagebox = load_imagebox(house_path, 0.2)
 
-    n_batteries = len(batteries)
+    n_batteries: int = len(batteries)
 
     # loop through houses and display the house and its cables
     for house in houses:
