@@ -10,6 +10,14 @@ import copy
 
 
 def baseline_shared(grid: Grid) -> Grid:
+    """
+    Creates a baseline for what cost we can expect, based on what
+    the cost would be if the houses are randomly connected to batteries
+    and when cables can be shared.
+    
+    Pre: grid is of class Grid
+    Post: returns lowest cost solution
+    """
 
     # set the amount of iterations
     iterations = 1000
@@ -21,16 +29,20 @@ def baseline_shared(grid: Grid) -> Grid:
 
     for i in range(iterations):
         print(i)
+
+        # create temporary grid and add random connections
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
         
+        # lay cables and calculate the cost
         tmp_grid.lay_shared_cables()
-
         cost: int = tmp_grid.calc_cost_shared()
 
+        # store only valid solutions
         if valid_solution(tmp_grid) is True:
             costs.append(cost)
 
+            # track if new solution is cheapest yet
             if lowest_cost is None or cost < lowest_cost:
                 lowest_cost = cost
                 best_solution = tmp_grid

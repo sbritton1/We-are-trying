@@ -52,9 +52,6 @@ def hill_climber_shared(grid: Grid) -> Grid:
 
             max_iterations += 1
             
-            # print functions to test if algorithm works
-            print("\n")
-            print(best_cost)
         # saves 
         best_grids.append(tmp_grid)
         best_costs.append(best_cost)
@@ -72,8 +69,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
             index = i
             
     tmp_grid = best_grids[index]
-            
-            
+
     return tmp_grid
 
     
