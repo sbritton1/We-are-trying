@@ -130,6 +130,7 @@ class House:
         Pre : none
         Post: none
         """
+
         # makes list of cables empty
         self.cables = []
 
@@ -139,6 +140,7 @@ class House:
         
         Pre: cables argument is a list of strings, where the strings are in the
              shape of 'x,y'
-        Post: the cables attribute is set to the cables argument"""
+        Post: the cables attribute is set to the cables argument
+        """
 
         self.cables = cables

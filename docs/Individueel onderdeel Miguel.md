@@ -12,6 +12,6 @@ Ik wil ook een plot maken, die de cost van het grid plot ten opzichte van de ite
 
 Ik kan vervolgens ook testen of het algoritme een beter antwoord krijg als ik hem vraag om meerdere veranderingen te laten maken per stap, die geaccepteerd kunnen worden. Ook wil ik kijken hoe het resultaat verschilt wanneer ik de begintemperatuur, of de curve van de temperatuur aanpas.
 
-# Aansluiting
+## Aansluiting
 
 Het programma sluit aan op het werk van de rest van het groep, doordat het één van de algoritmen is die een zo goed mogelijk antwoord probeert te zoeken voor onze casus. Het maakt natuurlijk gebruik van de reeds gecreëerde classes en de visualisatie, opdat je van het resultaat kan zien hoe goed de oplossing er intuitief uitziet. Natuurlijk kunnen de oplossingen van dit algoritme ook gebruikt worden om onze andere algoritmen mee te vergelijken, om te kijken hoe effectief ze onderling zijn
