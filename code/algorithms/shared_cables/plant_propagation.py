@@ -110,11 +110,19 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
 
         # create each runner
         for _ in range(n_runners):
+            # make a copy of the root
             runner = deepcopy(root_grid)
+
+            # append the work for the multiprocessing to the work list
             work.append((runner, n_changes))
 
+    # the amount of threads that will be used
     workers = 6
+
+    # multiprocessing stuff
     p = multiprocessing.Pool(workers)
+
+    # run the process to get the runners list
     runners: list[Grid] = p.starmap(make_change, work)
 
     return runners
@@ -139,9 +147,12 @@ def get_n_runners(fitness: float, max_runners: int, min_runners: int) -> int:
 
 
 def make_change(grid: Grid, n_changes: int) -> Grid:
+    # make a change n_changes times
     for _ in range(n_changes):
+        # shuffle the houses list of the grid
         shuffle(grid.houses)
 
+        # find random houses in the grid
         house1, house2 = find_random_houses(grid)
 
         # perform swap
