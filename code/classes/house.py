@@ -57,8 +57,8 @@ class House:
         """
         if self.has_connection:
             # calculates distance vertically and horizontally
-            dist_x = abs(self.coord_x - self.connection.coord_x)
-            dist_y = abs(self.coord_y - self.connection.coord_y)
+            dist_x: int = abs(self.coord_x - self.connection.coord_x)
+            dist_y: int = abs(self.coord_y - self.connection.coord_y)
             
             return dist_x + dist_y
 
@@ -92,21 +92,21 @@ class House:
         end_x, end_y = self.connection.coord_x, self.connection.coord_y
 
         # calculates distance vertically and horizontally
-        dist_x = abs(start_coords[0] - end_x)
-        dist_y = abs(start_coords[1] - end_y)
+        dist_x: int = abs(start_coords[0] - end_x)
+        dist_y: int = abs(start_coords[1] - end_y)
 
-        y_direction = self.get_axis_direction(start_coords[1], end_y)
+        y_direction: int = self.get_axis_direction(start_coords[1], end_y)
 
         # adds all cables along the y-axis
         for new_y in range(dist_y + 1):
-            new_cable = f"{start_coords[0]},{start_coords[1] + new_y * y_direction}"
+            new_cable: str = f"{start_coords[0]},{start_coords[1] + new_y * y_direction}"
             self.cables.append(new_cable)
 
-        x_direction = self.get_axis_direction(start_coords[0], end_x)
+        x_direction: int = self.get_axis_direction(start_coords[0], end_x)
 
         # adds all cables along the x-axis
         for new_x in range(1, dist_x + 1):
-            new_cable = f"{start_coords[0] + new_x * x_direction},{end_y}"
+            new_cable: str = f"{start_coords[0] + new_x * x_direction},{end_y}"
             self.cables.append(new_cable)
 
     def get_axis_direction(self, start, end) -> int:

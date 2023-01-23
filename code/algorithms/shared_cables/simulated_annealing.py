@@ -27,7 +27,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     for i in range(4):
 
         # create deepcopy to not mess with original
-        tmp_grid = copy.deepcopy(grid)
+        tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
         # make sure the grid already is a valid solution
@@ -39,9 +39,9 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers = amount of threads
-    workers = 8
+    workers: int = 8
     p = multiprocessing.Pool(workers)
-    results = (p.map(work, grids))
+    results: tuple(Grid, int) = (p.map(work, grids))
 
     # keeps track of costs of all solutions
     costs_best_solution: list[int] = []
@@ -74,9 +74,9 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     """
 
     # run algorithm and return the result
-    run_algo = simulated_annealing(tmp_grid)
+    run_algo: tuple(Grid, list[int]) = simulated_annealing(tmp_grid)
     tmp_grid: Grid = run_algo[0]
-    costs = run_algo[1]
+    costs: list[int] = run_algo[1]
     print(tmp_grid.cost)
     return (tmp_grid, costs)
 
@@ -90,14 +90,14 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     """
 
     # store current cost of the grid
-    cost_grid = grid.calc_cost_shared()
-    costs = []
-    last_update = 0
+    cost_grid: int = grid.calc_cost_shared()
+    costs: list[int] = []
+    last_update: int = 0
 
     for iteration in range(10000):
 
         # create deepcopy to make temporary changes
-        tmp_grid = copy.deepcopy(grid)
+        tmp_grid: Grid = copy.deepcopy(grid)
 
         # get two random houses not connected to the same battery
         while True:
@@ -148,7 +148,7 @@ def plot_costs_graph(costs: list[int], district: str) -> None:
     Post: none
     """
 
-    iterations = list(range(len(costs)))
+    iterations: list[int] = list(range(len(costs)))
     plt.plot(iterations, costs)
     plt.title(f"Graph of cost over time from simulated annealing algorithm\n \
               District: {district}")
