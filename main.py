@@ -57,6 +57,7 @@ if __name__ == "__main__":
         "greedy": (greedy, "unique"),
         "sd_hill_climber": (init_sd_hill_climber, "unique"),
         "baseline_shared": (baseline_shared, "shared"),
+        "greedy_shared": (greedy, "shared"),
         "hill_climber_shared": (hill_climber_shared, "shared"),
         "sd_hill_climber_shared": (init_sd_hill_climber_shared, "shared"),
         "simulated_annealing": (init_simulated_annealing, "shared"),
