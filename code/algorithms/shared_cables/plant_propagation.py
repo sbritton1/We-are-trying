@@ -1,6 +1,7 @@
 from copy import deepcopy
 from math import ceil
 from random import shuffle
+import multiprocessing
 
 from ...classes.grid import Grid
 from ...classes.battery import Battery
@@ -8,6 +9,9 @@ from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
+from ...helper_functions.find_random_houses import find_random_houses
+from ...helper_functions.possible_swap import possible_swap
+from ...helper_functions.swap_houses import swap_houses
 from .sd_hill_climber_shared import sd_hill_climber_shared
 from .hill_climber_shared import hill_climber_shared
 
@@ -77,7 +81,8 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
 
     # determine the fitness and thus how many runners should be created and how
     # far each runner should go
-    runners : list[Grid] = []
+
+    work = []
 
     for root_grid in root_grids:
         fitness = get_fitness(root_grid.cost, lowest_cost, highest_cost)
@@ -90,10 +95,11 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
 
         for _ in range(n_runners):
             runner = deepcopy(root_grid)
-            for _ in range(n_changes):
-                make_change(runner)
+            work.append((runner, n_changes))
 
-        runners.append(runner)
+    workers = 4
+    p = multiprocessing.Pool(workers)
+    runners: list[Grid] = p.starmap(make_change, work)
 
     return runners
 
@@ -116,65 +122,18 @@ def get_n_runners(fitness: float, max_runners: int, min_runners: int) -> int:
     return ceil(fitness * (max_runners - min_runners)) + min_runners
 
 
-def make_change(grid: Grid) -> None:
-    shuffle(grid.houses)
+def make_change(grid: Grid, n_changes) -> Grid:
+    for _ in range(n_changes):
+        shuffle(grid.houses)
 
-    # loop through possible swap of houses
-    for house1 in grid.houses:
-        for house2 in grid.houses:
-            if house1.connection != house2.connection:
-                
-                # check if swap is possible
-                if is_possible_swap(house1, house2) is True:
-                    # perform swap
-                    swap_houses(house1, house2)
+        house1, house2 = find_random_houses(grid)
+                        
+        # perform swap
+        swap_houses(house1, house2)
 
-                    # remove and then lay the cables back
-                    grid.remove_cables()
-                    grid.lay_shared_cables()
+        # remove and then lay the cables back
+        grid.remove_cables()
+        grid.lay_shared_cables()
 
-                    return        
-
-
-def is_possible_swap(house1: House, house2: House) -> bool:
-    """
-    Checks if two houses can be swapped by looking at the capacity
-    of the batteries and the output of the houses
-
-    Pre : house1 and house2 are of class House
-    Post: returns true if houses can be swapped
-          else return false    
-    """
-
-    if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
-        return False
-
-    elif house2.maxoutput > house1.maxoutput + house1.connection.current_capacity:
-        return False
-
-    return True
-
-
-def swap_houses(house1: House, house2: House) -> None:
-    """
-    Swaps the battery of two houses
-
-    Pre : house1 and house2 are of class House
-    Post: battery connection of two houses are swapped
-    """
-
-    house1_bat: Battery = house1.connection
-    house2_bat: Battery = house2.connection
-
-    # disconnects established connections
-    house1_bat.disconnect_home(house1)
-    house1.delete_connection()
-    house2_bat.disconnect_home(house2)
-    house2.delete_connection()
-
-    # makes new connections
-    house1_bat.connect_home(house2)
-    house2.make_connection(house1_bat)
-    house2_bat.connect_home(house1)
-    house1.make_connection(house2_bat)
+    return grid   
   

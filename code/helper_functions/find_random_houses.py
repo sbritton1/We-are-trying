@@ -4,7 +4,7 @@ from ..classes.grid import Grid
 from .possible_swap import possible_swap
 import random      
       
-def find_random_houses(tmp_grid: Grid) -> list[House, House]:
+def find_random_houses(grid: Grid) -> list[House, House]:
     """
     Chooses two random houses from all houses in the grid and checks
     if they are not connected to the same battery.
@@ -13,10 +13,10 @@ def find_random_houses(tmp_grid: Grid) -> list[House, House]:
     """
 
     while True:
-        house1: House = random.choice(tmp_grid.houses)
-        house2: House = random.choice(tmp_grid.houses)
+        house1: House = random.choice(grid.houses)
+        house2: House = random.choice(grid.houses)
         while house2.connection == house1.connection:
-            house2: House = random.choice(tmp_grid.houses)
+            house2: House = random.choice(grid.houses)
 
         if possible_swap(house1, house2) is True:
             break
