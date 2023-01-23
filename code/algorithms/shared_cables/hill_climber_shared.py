@@ -103,8 +103,8 @@ def hill_climber_shared(grid: Grid) -> Grid:
     times_no_improvement = 0
     max_iterations = 0
 
-    while times_no_improvement < 200 and max_iterations < 1500:
-        # print(max_iterations) 
+    while times_no_improvement < 200 and max_iterations < 50:
+        print(max_iterations) 
         
         # changes grid in random places
         a_grid, new_cost = change_grid_hill_climber(tmp_grid, best_cost)
@@ -117,25 +117,25 @@ def hill_climber_shared(grid: Grid) -> Grid:
         else:
             times_no_improvement += 1
 
-        while times_no_improvement < 200 and max_iterations < 5000:
-            print(max_iterations)
+        # while times_no_improvement < 200 and max_iterations < 5000:
+        #     print(max_iterations)
 
-            # changes grid in random places
-            changed_grid_and_costs = change_grid_hill_climber(tmp_grid, best_cost)
+        #     # changes grid in random places
+        #     changed_grid_and_costs = change_grid_hill_climber(tmp_grid, best_cost)
 
-            # condition that checks if it is an improved solution
-            if changed_grid_and_costs[0]:
-                times_no_improvement = 0
-                best_cost = changed_grid_and_costs[1]
-                tmp_grid = changed_grid_and_costs[2]
-            else:
-                times_no_improvement += 1
+        #     # condition that checks if it is an improved solution
+        #     if changed_grid_and_costs[0]:
+        #         times_no_improvement = 0
+        #         best_cost = changed_grid_and_costs[1]
+        #         tmp_grid = changed_grid_and_costs[2]
+        #     else:
+        #         times_no_improvement += 1
 
-            max_iterations += 1
+        max_iterations += 1
 
         # saves 
-        best_grids.append(tmp_grid)
-        best_costs.append(best_cost)
+        # best_grids.append(tmp_grid)
+        # best_costs.append(best_cost)
 
         costs.append(best_cost)
 
