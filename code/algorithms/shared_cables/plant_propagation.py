@@ -4,19 +4,15 @@ from random import shuffle
 import multiprocessing
 
 from ...classes.grid import Grid
-from ...classes.battery import Battery
-from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.find_random_houses import find_random_houses
-from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
-from .sd_hill_climber_shared import sd_hill_climber_shared
-from .hill_climber_shared import hill_climber_shared
+
 
 def plant_propagation(grid: Grid) -> Grid:
-    
+
     # * set algorithm parameters
     shared_cables = True
     min_runners = 1
@@ -32,28 +28,28 @@ def plant_propagation(grid: Grid) -> Grid:
     for _ in range(n_generations):
         print(_)
         runners = create_new_generation(root_grids, min_runners,
-                                           max_runners, min_changes,
-                                           max_changes, shared_cables)
-        
+                                        max_runners, min_changes,
+                                        max_changes, shared_cables)
+
         # sort runners in ascending order of cost
         runners.sort(key=lambda x: x.calc_cost_shared())
-        
+
         # set the best runners as the new roots
-        root_grids = runners[:max_runners]    
+        root_grids = runners[:max_runners]
 
     # choose the best runner of the last generation
     best_runner = runners[0]
 
     # remove the cables of the best runner
     best_runner.remove_cables()
-    
-    return best_runner 
+
+    return best_runner
 
 
 def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
     # make a list to store the temporary grids
     start_roots: list[Grid] = []
-    
+
     for _ in range(n_roots):
         tmp_grid: Grid = deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
@@ -64,7 +60,7 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
         tmp_grid.lay_shared_cables()
 
         start_roots.append(tmp_grid)
-    
+
     return start_roots
 
 
@@ -132,7 +128,7 @@ def make_change(grid: Grid, n_changes) -> Grid:
         shuffle(grid.houses)
 
         house1, house2 = find_random_houses(grid)
-                        
+
         # perform swap
         swap_houses(house1, house2)
 
@@ -140,5 +136,4 @@ def make_change(grid: Grid, n_changes) -> Grid:
         grid.remove_cables()
         grid.lay_shared_cables()
 
-    return grid   
-  
+    return grid
