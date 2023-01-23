@@ -6,13 +6,15 @@ from typing import Union
 
 class Grid:
     """
-    Class to read out files and store its contents.
+    Class representing a grid in which houses and batteries lay.
+    Also has methods to change the properties of objects within self.
     """
 
     def __init__(self, district: str, load_csv: bool = True) -> None:
         """
         Class initializer.
-        Pre: district is a string of a number
+
+        Pre : district is a string of a number
         Post: self variables created
         """
 
@@ -25,16 +27,16 @@ class Grid:
         self.batteries: list[Battery] = []
         self.houses: list[House] = []
 
+        # read csv files storing the data
         if load_csv:
             self.batteries = self.read_batteries(file_batteries)
             self.houses = self.read_houses(file_houses)
 
-        # self.grid = self.init_grid()
-
     def read_batteries(self, filename: str) -> list[Battery]:
         """
-        Reads files where data for the batteries is stored
-        Pre: filename is a string
+        Reads files where data for the batteries is stored.
+
+        Pre : filename is a string
         Post: returns list of objects of class Battery
         """
         
@@ -54,9 +56,9 @@ class Grid:
 
     def read_houses(self, filename) -> list[House]:
         """
-        Reads files where data for the houses is stored
+        Reads files where data for the houses is stored.
 
-        Pre: filename is a string
+        Pre : filename is a string
         Post: returns list of objects of class House
         """
 
@@ -77,9 +79,9 @@ class Grid:
 
     def split_line_in_file(self, line: str) -> tuple[int, int, float]:
         """
-        Removes junk characters from line and split the line into components
+        Removes junk characters from line and split the line into components.
 
-        Pre: line is a string
+        Pre : line is a string
         Post: returns tuple of int, int, float
         """
 
@@ -95,36 +97,12 @@ class Grid:
                         
         return (x, y, capacity)
 
-    def init_grid(self) -> list[list[tuple[Union[Battery, House]]]]:
-        """
-        Creates 2d numpy array, which represents the grid in which all the 
-        batteries and houses lie
-
-        Post: returns 2d array of 0's and objects
-        """
-
-        # find size grid needs to be
-        size_grid: tuple(int, int) = self.size_grid()
-
-        # create empty grid
-        grid: list[list[tuple[str, int]]] = np.zeros((size_grid[0], size_grid[1]), dtype=tuple)
-
-        # add batteries to correct coordinate in grid
-        for battery in self.batteries:
-            grid[battery.coord_y][battery.coord_x] = battery
-
-        # add houses to correct coordinate in grid
-        for house in self.houses:
-            grid[house.coord_y][house.coord_x] = house
-
-        return grid
-
-    def size_grid(self):
+    def size_grid(self) -> tuple[int, int]:
         """
         Find largest x and y coordinates of objects to know how large the grid
-        will be
+        will be.
 
-        Pre: self has non-empty list of batteries and houses
+        Pre : self has non-empty list of batteries and houses
         Post: return tuple of two ints
         """
 
@@ -148,22 +126,11 @@ class Grid:
 
         return (max_x, max_y)
 
-    def print_grid(self):
-        """
-        Print out the grid into the terminal.
-
-        Post: prints array
-        """
-
-        # make sure entire array appears in terminal
-        np.set_printoptions(threshold=sys.maxsize)
-        print(self.grid)
-
     def calc_cost_normal(self) -> int:
         """
         Calculates the price of a grid.
 
-        Pre: tmp_grid is of class Grid
+        Pre : tmp_grid is of class Grid
         Post: returns an int cost
         """
 
@@ -181,7 +148,8 @@ class Grid:
     def calc_cost_shared(self) -> int:
         """
         Calculates the price of a grid when cables can be shared.
-        Pre: tmp_grid is of class Grid
+
+        Pre : tmp_grid is of class Grid
         Post: returns an int cost
         """
 
@@ -194,21 +162,43 @@ class Grid:
         return self.cost
 
     def lay_unique_cables(self) -> None:
+        """
+        Lays non-shared cables for houses in self.
+
+        Pre : self has houses
+        Post: houses have cables
+        """
+
         for house in self.houses:
             house.lay_cables()
 
     def lay_shared_cables(self) -> None:
+        """
+        Lays shared cables for batteries in self.
+
+        Pre : self has batteries
+        Post: houses in batteries have cables
+        """
+
         for battery in self.batteries:
             battery.lay_shared_cables()
 
     def remove_cables(self) -> None:
+        """
+        Removes all cables in the grid.
+
+        Pre : self has batteries
+        Post: all cables are removed
+        """
+
         for battery in self.batteries:
             battery.remove_cables()
 
     def set_cost(self, cost: int) -> None:
         """
-        Sets the cost attribute to the given cost
-        Pre: cost is an integer
+        Sets the cost attribute to the given cost.
+
+        Pre : cost is an integer
         Post: the cost attribute is set to the given cost
         """
 
@@ -216,8 +206,9 @@ class Grid:
 
     def add_battery(self, battery: Battery) -> None:
         """
-        Adds a battery to the grid
-        Pre: the batteries list attribute is initialized
+        Adds a battery to the grid.
+
+        Pre : the batteries list attribute is initialized
         Post: the given battery is appended to the batteries list attribute
         """
 
@@ -225,8 +216,9 @@ class Grid:
 
     def add_house(self, house: House) -> None:
         """
-        Adds a house to the grid
-        Pre: the houses list attribute is initialized
+        Adds a house to the grid.
+
+        Pre : the houses list attribute is initialized
         Post: the given house is appended to the houses list attribute
         """
 

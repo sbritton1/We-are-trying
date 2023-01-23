@@ -51,6 +51,7 @@ def check_usage() -> None:
 
 
 if __name__ == "__main__":
+    
     # set the algorithms and their cable type in a dictionary
     algorithms: dict[str, tuple[Callable, str]] = {
         "baseline": (baseline, "unique"),

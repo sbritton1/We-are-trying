@@ -15,7 +15,6 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     """
     Initialises grid 8 times, then plots the results and
     returns the grid with the best solution.
-
     Pre: grid is of class grid
     Post: returns best found solution using this algorithm
     """
@@ -24,7 +23,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(4):
+    for i in range(6):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -40,7 +39,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers amount of threads
-    workers = 4
+    workers = 6
     p = multiprocessing.Pool(workers)
     results = (p.map(work, grids))
 
@@ -69,7 +68,6 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     """
     Runs the simulated annealing and returns the
     grid and costs.
-
     Pre: grid of class grid
     Post: tuple containing grid of class grid and integer
     """
@@ -82,13 +80,11 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     return (tmp_grid, costs)
 
 
-
 def hill_climber_shared(grid: Grid) -> Grid:
     """
     This is an algorithm for shared cables and it uses the
     hill climber method. This algorithm will be done a few
     times, to try to negate the randomness effect.
-
     Pre: grid is a class of grid
     Post: grid is a class of grid
     """
@@ -103,8 +99,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     times_no_improvement = 0
     max_iterations = 0
 
-    while times_no_improvement < 200 and max_iterations < 50:
-        print(max_iterations) 
+    while times_no_improvement < 500 and max_iterations < 10000:
         
         # changes grid in random places
         a_grid, new_cost = change_grid_hill_climber(tmp_grid, best_cost)
@@ -117,25 +112,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
         else:
             times_no_improvement += 1
 
-        # while times_no_improvement < 200 and max_iterations < 5000:
-        #     print(max_iterations)
-
-        #     # changes grid in random places
-        #     changed_grid_and_costs = change_grid_hill_climber(tmp_grid, best_cost)
-
-        #     # condition that checks if it is an improved solution
-        #     if changed_grid_and_costs[0]:
-        #         times_no_improvement = 0
-        #         best_cost = changed_grid_and_costs[1]
-        #         tmp_grid = changed_grid_and_costs[2]
-        #     else:
-        #         times_no_improvement += 1
-
         max_iterations += 1
-
-        # saves 
-        # best_grids.append(tmp_grid)
-        # best_costs.append(best_cost)
 
         costs.append(best_cost)
 
@@ -146,7 +123,6 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
     """
     This function tries n times to connect two different houses with two
     different batteries, to improve the current grid.
-
     Pre: grid is of class grid and best_cost is an integer
     Post: returns list with 3 items, where the first item is a bool item
           that refers to improvement of the grid. The second item is the new cost
@@ -186,7 +162,6 @@ def find_random_houses(grid: Grid) -> list[House, House]:
     """
     Chooses two random houses from all houses in the grid and checks
     if they are not connected to the same battery.
-
     Pre: grid is of class Grid
     Post: returns two different houses as house object
     """
@@ -205,7 +180,6 @@ def check_if_improvement(cost: int, best_cost: int, grid: Grid):
     """
     Checks if the new configuration of the houses gives an improved solution for the grid
     and it also checks if it is a valid solution.
-
     Pre: The cost and best_cost are integers, and grid is of class Grid
     Post: returns list with 3 items, where the first item is a bool item
           that refers to improvement of the grid. The second item is the new cost
@@ -221,7 +195,6 @@ def check_if_improvement(cost: int, best_cost: int, grid: Grid):
 def swap_houses(house1: House, house2: House) -> None:
     """
     Swaps two houses.
-
     Pre: two houses of the house object
     Post: it does not return anything
     """
@@ -247,7 +220,6 @@ def possible_swap(house1: House, house2: House) -> bool:
     """
     Checks if it is possible to swap two houses based on the
     remaining capacity of their batteries.
-
     Pre: house1 and house2 are of class House
     Post: returns True if houses can be swapped
           else returns False
@@ -268,7 +240,6 @@ def possible_swap(house1: House, house2: House) -> bool:
 def plot_costs_graph(costs: list[int], district: str) -> None:
     """
     Plots a graph of all the costs from the random solutions.
-
     Pre: list of integers
     Post: none
     """
