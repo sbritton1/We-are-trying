@@ -13,7 +13,8 @@ def visualize(grid: Grid) -> None:
 
     pre : grid is a Grid object
     post: a window should be opened with a plot containing the grid with its
-        houses, batteries and cables"""
+          houses, batteries and cables
+    """
 
     # set up canvas
     fig, ax = set_up_canvas(grid)
@@ -35,7 +36,8 @@ def set_up_canvas(grid: Grid):
     Sets up the 'canvas' to plot upon.
 
     pre : grid is a Grid object
-    post: a tuple with a figure object and axis object is returned"""
+    post: a tuple with a figure object and axis object is returned
+    """
 
     # make a figure and an axes cell
     fig, ax = plt.subplots()
@@ -72,9 +74,10 @@ def display_batteries(ax, batteries: list[Battery]) -> None:
     Places images of batteries on the given ax.
 
     pre : ax is an Axes object, batteries a list of Battery objects and the
-        hardcoded path exists and contains a png of a battery
+          hardcoded path exists and contains a png of a battery
     post: images of batteries are placed on a grid at the corresponding
-        coordinates"""
+          coordinates
+    """
 
     # load battery image
     battery_path = "data/images/battery.png"
@@ -91,9 +94,10 @@ def display_battery(ax, battery: Battery,
     Display a battery on the given Axes object.
 
     pre : ax is an Axes object, battery is a Battery object and
-        battery_imagebox is an OffsetImage object
+          battery_imagebox is an OffsetImage object
     post: the given imagebox is placed on the ax plot at the corresponding
-        coordinates"""
+          coordinates
+    """
 
     # get battery coordinates
     x, y = battery.coord_x, battery.coord_y
@@ -108,10 +112,11 @@ def display_houses_and_cables(ax, houses: list[House],
     Display the houses and their cables.
 
     pre : houses is a list of House objects, batteries is a list of Battery
-        objects and ax is an Axes object
+          objects and ax is an Axes object
     post: the houses are displayed on the grid at their corresponding
-        coordinates with a house image and for every house their cables are
-        plotted"""
+          coordinates with a house image and for every house their cables are
+          plotted
+    """
 
     # load house image
     house_path = "data/images/house.png"
@@ -133,9 +138,9 @@ def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
     Display a house on the plot.
 
     pre : ax is an Axes object, house is a House object and house_imagebox is
-        an OffsetImage object
+          an OffsetImage object
     post: the house is displayed with a house image given by house_imagebox
-        at the corresponding coordinates
+          at the corresponding coordinates
     """
 
     # get house coordinates
@@ -150,7 +155,8 @@ def load_imagebox(path: str, zoom: float) -> OffsetImage:
     Load and create an imagebox.
 
     pre : path is an existing path and a string, zoom is a float
-    post: the imagebox is returned as a OffsetImage object"""
+    post: the imagebox is returned as a OffsetImage object
+    """
 
     image = mpimg.imread(path)
 
@@ -167,9 +173,10 @@ def place_image(ax, x: int, y: int, imagebox: OffsetImage):
     Place image on plot.
 
     pre : ax is an Axes object, x and y are ints and imagebox is an OffsetImage
-        object
+          object
     post: the image given by imagebox is displayed on the grid at coordinates
-        given by x and y"""
+          given by x and y
+    """
 
     # Annotation box for image
     # Container for the imagebox referring to a specific position *xy*.
@@ -182,9 +189,10 @@ def display_cables(ax, cable_coordinates: list[str], color) -> None:
     Display cables on grid.
 
     pre : ax is an Axes object, cable_coordinates is a list of strings
-        containing the coordinates of the cable and color is a usable color
-        for the plot function of pyplot
-    post: the cables are plotted at the correct coordinates"""
+          containing the coordinates of the cable and color is a usable color
+          for the plot function of pyplot
+    post: the cables are plotted at the correct coordinates
+    """
 
     # loop over all elements except the last
     for i in range(len(cable_coordinates) - 1):
@@ -199,8 +207,9 @@ def get_x_y(coordinates: str) -> tuple[int, int]:
     Get the x and y values from a string.
 
     pre : coordinates is a string and is structured as 'x-value,y-value', which
-        are both strings
-    post: a tuple of 2 integers x and y is returned"""
+          are both strings
+    post: a tuple of 2 integers x and y is returned
+    """
 
     x, y = coordinates.split(",")
     return (int(x), int(y))
@@ -211,9 +220,10 @@ def display_cable(ax, x: list[int], y: list[int], color) -> None:
     Display a cable segment.
 
     pre : ax is an Axes object, x is a list of integers containing the start x
-        and then the end x, same goes for y, color should be a usable color for
-        the plot function of pyplot
+          and then the end x, same goes for y, color should be a usable color for
+          the plot function of pyplot
     post: the cable segment is plotted on the ax object with a color depicting
-        from which battery it came from"""
+          from which battery it came from
+    """
 
     ax.plot(x, y, c=color)
