@@ -1,5 +1,4 @@
 from ...classes.grid import Grid
-from ...classes.house import House
 from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
@@ -11,7 +10,7 @@ def greedy(grid: Grid) -> Grid:
     wherein cables are not shared.
 
     pre : grid is of class Grid
-    post: returns a grid of class Grid wherein each house 
+    post: returns a grid of class Grid wherein each house
           is connected to a battery
     """
 
@@ -50,7 +49,7 @@ def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Battery, int]:
 
     pre : grid is of class Grid, unconnected is list of ints
     post: returns tuple of class Battery and an integer, wherein the
-          integer the index is of the house in grid.houses that has 
+          integer the index is of the house in grid.houses that has
           to be connected to the battery
     """
 

@@ -5,7 +5,6 @@ from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.swap_houses import swap_houses
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.find_random_houses import find_random_houses
-
 import copy
 import multiprocessing
 import matplotlib.pyplot as plt
@@ -69,7 +68,7 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     """
     Runs the simulated annealing and returns the
     grid and costs.
-    
+
     Pre:  grid of class grid
     Post: tuple containing grid of class grid and integer
     """
@@ -87,7 +86,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     This is an algorithm for shared cables and it uses the hill climber
     method. This algorithm will be done a few times, to try to negate
     the randomness effect.
-    
+
     Pre:  grid is a class of grid
     Post: grid is a class of grid
     """
@@ -96,7 +95,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
 
     # list that contains all costs over all iterations
     costs = []
-    
+
     # the cost of the current grid is the initialized cost
     best_cost = tmp_grid.calc_cost_shared()
 
@@ -105,7 +104,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     max_iterations = 0
 
     while times_no_improvement < 500 and max_iterations < 100:
-        
+
         # changes grid in random places
         a_grid, new_cost = change_grid_hill_climber(tmp_grid, best_cost)
 
@@ -129,16 +128,16 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
     """
     This function tries n times to connect two different houses with two
     different batteries, to improve the current grid.
-    
+
     Pre:  grid is of class grid and best_cost is an integer
     Post: returns list with 3 items, where the first item is a bool item
-          that refers to improvement of the grid. The second item is the new cost
-          as integer. The final item is the new optimised grid
+          that refers to improvement of the grid. The second item is the new
+          cost as integer. The final item is the new optimised grid
     """
 
     tmp_grid = copy.deepcopy(grid)
     tmp_grid.remove_cables()
-    
+
     # gets two random houses
     house_1, house_2 = find_random_houses(tmp_grid)
 
@@ -164,16 +163,17 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
 
 def check_if_improvement(cost: int, best_cost: int, grid: Grid):
     """
-    Checks if the new configuration of the houses gives an improved solution for the grid
-    and it also checks if it is a valid solution.
-    
+    Checks if the new configuration of the houses gives an improved
+    solution for the grid and it also checks if it is a valid solution.
+
     Pre:  the cost and best_cost are integers, and grid is of class Grid
     Post: returns list with 3 items, where the first item is a bool item
-          that refers to improvement of the grid. The second item is the new cost
-          as integer. The final item is the new optimised grid
+          that refers to improvement of the grid. The second item is the
+          new cost as integer. The final item is the new optimised grid
     """
-    # checks if the cost is lower than the previous costs and also checks if it is a valid solution
-    if cost < best_cost and valid_solution(grid):
+
+    # checks if cost is lower than previous costs
+    if cost < best_cost:
         return grid, cost
     else:
         return grid, best_cost
@@ -182,14 +182,15 @@ def check_if_improvement(cost: int, best_cost: int, grid: Grid):
 def plot_costs_graph(costs: list[int], district: str) -> None:
     """
     Plots a graph of all the costs from the random solutions.
-    
-    Pre:  list of integers
+
+    Pre : list of integers
     Post: none
     """
 
     iterations = list(range(len(costs)))
     plt.plot(iterations, costs)
-    plt.title(f"Graph of cost over time from simulated annealing algorithm\nDistrict: {district}")
+    plt.title(f"Graph of cost over time from simulated annealing algorithm\n \
+              District: {district}")
     plt.xlabel("Iteration")
     plt.ylabel("Cost")
     plt.show()

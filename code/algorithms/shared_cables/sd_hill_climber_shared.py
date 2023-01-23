@@ -1,12 +1,10 @@
 from ...classes.grid import Grid
 from ...classes.house import House
-from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
-import random
 import copy
 import math
 import multiprocessing
@@ -87,7 +85,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
 
         if best_improvement == 0:
             return grid
-        
+
         grid = best_grid
 
 
@@ -136,9 +134,10 @@ def try_combinations(grid: Grid, id, workers) -> tuple[Grid, int]:
     return tmp_grid, best_improvement
 
 
-def calc_improvement(grid: Grid, org_cost: int, house1: House, house2: House) -> int:
+def calc_improvement(grid: Grid, org_cost: int, house1: House,
+                     house2: House) -> int:
     """
-    Calculates improvement by replacing the cables with the houses swapped 
+    Calculates improvement by replacing the cables with the houses swapped
     and comparing it to the original cost. Then swaps houses back.
 
     Pre : grid is of class Grid, org_cost is an int

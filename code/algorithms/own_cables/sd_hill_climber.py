@@ -1,18 +1,16 @@
 from ...classes.grid import Grid
 from ...classes.house import House
-from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
-import random
 import copy
 
 
 def init_sd_hill_climber(grid: Grid) -> Grid:
     """
-    Initializes grids for the steepest descent hill climber 
+    Initializes grids for the steepest descent hill climber
     algorithm to improve, optimized for non-shared cables.
 
     Pre : grid is of class Grid
@@ -67,7 +65,7 @@ def sd_hill_climber(grid: Grid) -> None:
         for house1 in grid.houses:
             for house2 in grid.houses:
                 if house1.connection != house2.connection:
-                    
+
                     # Check improvement if swap is possible
                     if possible_swap(house1, house2) is True:
                         improvement = calc_improvement(house1, house2)
@@ -88,9 +86,9 @@ def calc_improvement(house1: House, house2: House) -> int:
     """
     Calculates the improvement of a swap of the houses based
     on the manhattan distance difference.
-    
+
     Pre : house1 and house2 are of class House
-    Post: returns int value of improvement. improvement is 
+    Post: returns int value of improvement. improvement is
           negative when the swap increases the cost of the grid
     """
 
