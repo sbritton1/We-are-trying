@@ -1,7 +1,7 @@
 from ..classes.house import House
 from ..classes.battery import Battery
 
-def swap_houses(house1: House, house2: House):
+def swap_houses(house1: House, house2: House) -> None:
     """
     Swaps the battery of two houses
 

@@ -35,12 +35,12 @@ def resolve_error(grid: Grid) -> None:
     while True:
 
         # give house a weight to get picked
-        house_weights = []
+        house_weights: list[float] = []
         for house in best_bat.connected_homes:
             house_weights.append(1/house.maxoutput)
 
         # select random house based on weight
-        house = random.choices(best_bat.connected_homes, weights=house_weights, k=1)[0]
+        house: House = random.choices(best_bat.connected_homes, weights=house_weights, k=1)[0]
 
         # checks if possible to connect unconnected house if random
         # house gets disconnected

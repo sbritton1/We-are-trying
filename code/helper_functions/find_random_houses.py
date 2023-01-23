@@ -8,7 +8,8 @@ def find_random_houses(grid: Grid) -> list[House, House]:
     """
     Chooses two random houses from all houses in the grid and checks
     if they are not connected to the same battery.
-    Pre: grid is of class Grid
+
+    Pre : grid is of class Grid
     Post: returns two different houses as house object
     """
 

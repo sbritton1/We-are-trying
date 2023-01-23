@@ -5,7 +5,7 @@ def possible_swap(house1: House, house2: House) -> bool:
     Checks if it is possible to swap two houses based on the
     remaining capacity of their batteries.
     
-    Pre: house1 and house2 are of class House
+    Pre : house1 and house2 are of class House
     Post: returns True if houses can be swapped
           else returns False
     """
