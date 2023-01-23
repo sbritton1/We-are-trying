@@ -98,7 +98,7 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
             runner = deepcopy(root_grid)
             work.append((runner, n_changes))
 
-    workers = 4
+    workers = 8
     p = multiprocessing.Pool(workers)
     runners: list[Grid] = p.starmap(make_change, work)
 

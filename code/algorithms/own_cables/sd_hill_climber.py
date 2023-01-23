@@ -68,7 +68,7 @@ def sd_hill_climber(grid: Grid) -> None:
 
                     # Check improvement if swap is possible
                     if possible_swap(house1, house2) is True:
-                        improvement = calc_improvement(house1, house2)
+                        improvement: int = calc_improvement(house1, house2)
                         if improvement > best_improvement:
                             best_improvement = improvement
                             target1 = house1
@@ -92,7 +92,7 @@ def calc_improvement(house1: House, house2: House) -> int:
           negative when the swap increases the cost of the grid
     """
 
-    diff1 = house1.distance_to_battery() - house1.distance_to_any_battery(house2.connection)
-    diff2 = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
+    diff1: int = house1.distance_to_battery() - house1.distance_to_any_battery(house2.connection)
+    diff2: int = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
 
     return diff1 + diff2

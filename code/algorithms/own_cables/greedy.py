@@ -1,7 +1,9 @@
 from ...classes.grid import Grid
 from ...classes.battery import Battery
+from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
+from typing import Any
 
 
 def greedy(grid: Grid) -> Grid:
@@ -20,12 +22,12 @@ def greedy(grid: Grid) -> Grid:
     for i in range(len(grid.houses)):
 
         # call function to find unconnected house closes to available battery
-        minimum = find_minimum(grid, unconnected)
+        minimum: tuple[Any, Any] = find_minimum(grid, unconnected)
         if minimum == (None, None):
             break
 
-        battery = minimum[0]
-        house = grid.houses[minimum[1]]
+        battery: Battery = minimum[0]
+        house: House = grid.houses[minimum[1]]
 
         # connect house from battery and remove it from unconnected
         house.make_connection(battery)
@@ -42,7 +44,7 @@ def greedy(grid: Grid) -> Grid:
     return grid
 
 
-def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Battery, int]:
+def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Any, Any]:
     """
     Finds unconnected house that is closest to a battery with enough capacity
     to be able to make a connection.
@@ -53,14 +55,14 @@ def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Battery, int]:
           to be connected to the battery
     """
 
-    min_distance = 1000
-    minimum = (None, None)
+    min_distance: int = 1000
+    minimum: tuple[Any, Any] = (None, None)
 
     # loop through each battery and unconnected house
     for battery in grid.batteries:
         for i in unconnected:
-            distance = grid.houses[i].distance_to_any_battery(battery)
-            possible_connection = battery.is_connection_possible(grid.houses[i])
+            distance: int = grid.houses[i].distance_to_any_battery(battery)
+            possible_connection: bool = battery.is_connection_possible(grid.houses[i])
 
             # store battery and house index if it's current best option
             if distance < min_distance and possible_connection:
