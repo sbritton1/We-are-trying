@@ -23,7 +23,7 @@ def plant_propagation(grid: Grid) -> Grid:
     max_runners = 7
     min_changes = 2
     max_changes = 40
-    n_generations = 20
+    n_generations = 2
 
     # get the starting point for the plant propagation algorithm
     root_grids = get_start_roots(grid, max_runners)
