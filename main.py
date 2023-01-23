@@ -8,7 +8,7 @@ from code.algorithms.own_cables.baseline import baseline
 from code.algorithms.own_cables.greedy import greedy
 from code.algorithms.own_cables.sd_hill_climber import init_sd_hill_climber
 from code.algorithms.shared_cables.hill_climber_shared import init_hill_climber_shared
-from code.algorithms.shared_cables.baseline_shared import baseline_shared
+from code.algorithms.shared_cables.baseline_shared import init_baseline_shared
 from code.algorithms.shared_cables.sd_hill_climber_shared import init_sd_hill_climber_shared
 from code.algorithms.shared_cables.simulated_annealing import init_simulated_annealing
 from code.algorithms.shared_cables.plant_propagation import plant_propagation
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         "baseline": (baseline, "unique"),
         "greedy": (greedy, "unique"),
         "sd_hill_climber": (init_sd_hill_climber, "unique"),
-        "baseline_shared": (baseline_shared, "shared"),
+        "baseline_shared": (init_baseline_shared, "shared"),
         "greedy_shared": (greedy, "shared"),
         "hill_climber_shared": (init_hill_climber_shared, "shared"),
         "sd_hill_climber_shared": (init_sd_hill_climber_shared, "shared"),
