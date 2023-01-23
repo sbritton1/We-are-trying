@@ -23,11 +23,16 @@ def main(district: str, algorithm_name: str) -> None:
     # get the algorithm and cable type
     algorithm, cable_type = algorithms[algorithm_name]
 
+    # get the time before the algorithm starts
     start_time = time.time()
+
     # let the algorithm run on the grid
     grid = algorithm(grid)
+
+    # get the time when the algorithm is done
     end_time = time.time()
 
+    # print the time
     print(f"Time taken: {datetime.timedelta(seconds=round(end_time-start_time))} (H:MM:SS)")
 
     # lay cables and calculate cost accordingly
