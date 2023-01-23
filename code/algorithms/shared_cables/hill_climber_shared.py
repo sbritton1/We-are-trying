@@ -103,7 +103,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     times_no_improvement = 0
     max_iterations = 0
 
-    while times_no_improvement < 200 and max_iterations < 1500:
+    while times_no_improvement < 20 and max_iterations < 1500:
         # print(max_iterations) 
         
         # changes grid in random places
@@ -140,7 +140,7 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
     tmp_grid.remove_cables()
     
     # tries 20 times to change houses with batteries
-    for _ in range(2):
+    for _ in range(1):
         grid = copy.deepcopy(tmp_grid)
         
         house_1, house_2 = find_random_houses(tmp_grid)    
