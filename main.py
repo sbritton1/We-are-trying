@@ -18,7 +18,7 @@ from code.export.to_json import to_json
 
 def main(district: str, algorithm_name: str) -> None:
     # load grid
-    grid = Grid(district)
+    grid: Grid = Grid(district)
 
     # get the algorithm and cable type
     algorithm, cable_type = algorithms[algorithm_name]
@@ -48,7 +48,6 @@ def main(district: str, algorithm_name: str) -> None:
 
     to_json(grid)
     # visualize(grid)
-
 
 
 def check_usage() -> None:

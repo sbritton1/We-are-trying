@@ -24,7 +24,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(4):
+    for i in range(50):
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
@@ -48,16 +48,20 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     lowest_cost: int = None
     best_solution: Grid = None
 
+    all_costs = []
+
     # loop through results to find best one
     for result in results:
         tmp_grid: Grid = result[0]
         costs: list[int] = result[1]
+        all_costs.append(costs[-1])
         if lowest_cost is None or tmp_grid.cost < lowest_cost:
             costs_best_solution = costs
             lowest_cost = tmp_grid.cost
             best_solution = tmp_grid
 
     # graph how cost has decreased over time from algorithm
+    print(all_costs)
     plot_costs_graph(costs_best_solution, best_solution.district)
 
     best_solution.remove_cables()
@@ -150,8 +154,8 @@ def plot_costs_graph(costs: list[int], district: str) -> None:
 
     iterations: list[int] = list(range(len(costs)))
     plt.plot(iterations, costs)
-    plt.title(f"Graph of cost over time from simulated annealing algorithm\n \
-              District: {district}")
+    plt.title(f"Graph of cost over time from simulated annealing algorithm\n" + \
+              f"District: {district}, Cost: {costs[-1]}")
     plt.xlabel("Iteration")
     plt.ylabel("Cost")
     plt.show()

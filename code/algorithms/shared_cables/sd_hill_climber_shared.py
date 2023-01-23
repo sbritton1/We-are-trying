@@ -62,7 +62,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         print(grid.calc_cost_shared())
 
         # decide how many threads to use
-        workers: int = 4
+        workers: int = 8
 
         # create list of work to process
         work: list[Grid, int, int] = []
