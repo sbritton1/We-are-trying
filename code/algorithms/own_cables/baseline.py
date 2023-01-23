@@ -15,7 +15,7 @@ def baseline(grid: Grid) -> Grid:
     """
 
     # set the amount of iterations
-    n_iterations = 100000
+    n_iterations = 1000
 
     # keeps track of costs of all solutions
     costs: list[int] = []
@@ -49,9 +49,9 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int):
     Post: displays histogram
     """
 
-    plt.title(f"Histogram of costs (algorithm: baseline, district: \
-              {grid.district}, iterations: {n_iterations}, \
-              valid solutions: {len(costs)})")
+    plt.title(f"Histogram of costs (algorithm: baseline, district: " + \
+              f"{grid.district}, iterations: {n_iterations}, " + \
+              f"valid solutions: {len(costs)})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
     plt.ylabel("Frequency")
