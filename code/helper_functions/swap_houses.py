@@ -1,9 +1,10 @@
 from ..classes.house import House
 from ..classes.battery import Battery
 
+
 def swap_houses(house1: House, house2: House) -> None:
     """
-    Swaps the battery of two houses
+    Swaps the battery of two houses.
 
     Pre : house1 and house2 are of class House
     Post: battery connection of two houses are swapped
@@ -12,7 +13,7 @@ def swap_houses(house1: House, house2: House) -> None:
     house1_bat: Battery = house1.connection
     house2_bat: Battery = house2.connection
 
-    # disconnect established connections 
+    # disconnect established connections
     house1_bat.disconnect_home(house1)
     house1.delete_connection()
     house2_bat.disconnect_home(house2)

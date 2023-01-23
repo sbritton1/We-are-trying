@@ -1,15 +1,16 @@
 from ..classes.grid import Grid
 from ..classes.house import House
-from ..classes.battery import Battery
 import random
+
 
 def resolve_error(grid: Grid) -> None:
     """
     Tries to make an invalid grid a valid solution.
-    
+
     Pre : grid of class Grid
     Post: each house in grid is connected to a battery
     """
+
     unconnected: House = None
 
     # saves unconnected house
@@ -30,7 +31,7 @@ def resolve_error(grid: Grid) -> None:
         best_bat.connect_home(unconnected)
         unconnected.make_connection(best_bat)
         return
-    
+
     # if house does not fit, run this
     while True:
 
@@ -40,7 +41,8 @@ def resolve_error(grid: Grid) -> None:
             house_weights.append(1/house.maxoutput)
 
         # select random house based on weight
-        house: House = random.choices(best_bat.connected_homes, weights=house_weights, k=1)[0]
+        house: House = random.choices(best_bat.connected_homes,
+                                      weights=house_weights, k=1)[0]
 
         # checks if possible to connect unconnected house if random
         # house gets disconnected

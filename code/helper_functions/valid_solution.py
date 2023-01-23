@@ -1,5 +1,6 @@
 from ..classes.grid import Grid
 
+
 def valid_solution(grid: Grid) -> bool:
     """
     Checks if valid solution to grid has been found by

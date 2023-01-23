@@ -1,9 +1,9 @@
 from ..classes.house import House
 from ..classes.grid import Grid
-
 from .possible_swap import possible_swap
-import random      
-      
+import random
+
+
 def find_random_houses(grid: Grid) -> list[House, House]:
     """
     Chooses two random houses from all houses in the grid and checks
