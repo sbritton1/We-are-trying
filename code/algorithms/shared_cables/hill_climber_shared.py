@@ -1,4 +1,5 @@
 from ...classes.grid import Grid
+from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
@@ -91,28 +92,28 @@ def hill_climber_shared(grid: Grid) -> Grid:
     Post: grid is a class of grid
     """
 
-    tmp_grid = copy.deepcopy(grid)
+    tmp_grid: Grid = copy.deepcopy(grid)
 
     # list that contains all costs over all iterations
-    costs = []
+    costs: list[int] = []
 
     # the cost of the current grid is the initialized cost
-    best_cost = tmp_grid.calc_cost_shared()
+    best_cost: int = tmp_grid.calc_cost_shared()
 
     # initialize stop conditions
-    times_no_improvement = 0
-    max_iterations = 0
+    times_no_improvement: int = 0
+    max_iterations: int = 0
 
     while times_no_improvement < 500 and max_iterations < 100:
 
         # changes grid in random places
-        a_grid, new_cost = change_grid_hill_climber(tmp_grid, best_cost)
+        grid_and_cost: tuple(Grid, int) = change_grid_hill_climber(tmp_grid, best_cost)
 
         # condition that checks if it is an improved solution
-        if new_cost < best_cost:
+        if grid_and_cost[1] < best_cost:
             times_no_improvement = 0
-            best_cost = new_cost
-            tmp_grid = a_grid
+            best_cost = grid_and_cost[1]
+            tmp_grid = grid_and_cost[0]
         else:
             times_no_improvement += 1
 
@@ -135,30 +136,30 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
           cost as integer. The final item is the new optimised grid
     """
 
-    tmp_grid = copy.deepcopy(grid)
+    tmp_grid: Grid = copy.deepcopy(grid)
     tmp_grid.remove_cables()
 
     # gets two random houses
-    house_1, house_2 = find_random_houses(tmp_grid)
+    houses: tuple(House, House) = find_random_houses(tmp_grid)
 
     # swaps two houses if possible
-    if possible_swap(house_1, house_2):
-        swap_houses(house_1, house_2)
+    if possible_swap(houses[0], houses[1]):
+        swap_houses(houses[0], houses[1])
 
     # copy of grid
-    test_grid = copy.deepcopy(tmp_grid)
+    test_grid: Grid = copy.deepcopy(tmp_grid)
 
     # lays cables in copy of grid
     for battery in test_grid.batteries:
         battery.lay_shared_cables()
 
     # costs for the copy of the grid
-    cost = test_grid.calc_cost_shared()
+    cost: int = test_grid.calc_cost_shared()
 
     # checks for improvement
-    new_grid, new_cost = check_if_improvement(cost, best_cost, test_grid)
+    grid_and_cost: tuple(Grid, int) = check_if_improvement(cost, best_cost, test_grid)
 
-    return new_grid, new_cost
+    return grid_and_cost[0], grid_and_cost[1]
 
 
 def check_if_improvement(cost: int, best_cost: int, grid: Grid):

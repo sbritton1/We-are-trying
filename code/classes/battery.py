@@ -9,10 +9,10 @@ class Battery:
     """
 
     def __init__(self, x: int, y: int, capacity: float):
-        self.coord_x = x
-        self.coord_y = y
-        self.total_capacity = capacity
-        self.current_capacity = capacity
+        self.coord_x: int = x
+        self.coord_y: int = y
+        self.total_capacity: int = capacity
+        self.current_capacity: int = capacity
 
         self.connected_homes: list[House] = []
 
@@ -71,7 +71,7 @@ class Battery:
         """
 
         # saves coordinates from a cable
-        battery_cable = f"{self.coord_x},{self.coord_y}"
+        battery_cable: str = f"{self.coord_x},{self.coord_y}"
 
         # puts cables in a set, so there will be no duplicates
         self.cables: set[str] = {battery_cable}
@@ -145,10 +145,10 @@ class Battery:
         """
 
         # gets cable coordinates
-        cable_x, cable_y = [int(coord) for coord in cable.split(",")]
+        cable_coords: tuple(int, int) = [int(coord) for coord in cable.split(",")]
 
         # calculates distance between a cable and a house
-        distance = abs(house.coord_x - cable_x) + abs(house.coord_y - cable_y)
+        distance: int = abs(house.coord_x - cable_coords[0]) + abs(house.coord_y - cable_coords[1])
 
         return distance
 
