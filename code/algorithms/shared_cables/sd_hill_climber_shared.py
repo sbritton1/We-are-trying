@@ -89,7 +89,16 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         grid = best_grid
 
 
-def try_combinations(grid: Grid, id, workers) -> tuple[Grid, int]:
+def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
+    """
+    Finds the best swap possible in a subset of all houses in a grid.
+    The size of the subset is decided by the total amount of workers aka
+    threads of the CPU being used in multithread processing.
+
+    Pre : grid is of class Grid, id is an int, workers is an int
+    Post: returns Grid and int, where the grid is the new grid with 
+          best possible swap and int is the associated cost improvement.
+    """
 
     # create temporary deepcopy of original grid
     tmp_grid: Grid = copy.deepcopy(grid)
