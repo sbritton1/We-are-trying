@@ -1,6 +1,4 @@
 from ...classes.grid import Grid
-from ...classes.house import House
-from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
@@ -8,7 +6,6 @@ from ...helper_functions.swap_houses import swap_houses
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.find_random_houses import find_random_houses
 
-import random
 import copy
 import multiprocessing
 import matplotlib.pyplot as plt
@@ -19,7 +16,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     Initialises grid 8 times, then plots the results and
     returns the grid with the best solution.
 
-    Pre: grid is of class grid
+    Pre:  grid is of class grid
     Post: returns best found solution using this algorithm
     """
 
@@ -72,7 +69,8 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     """
     Runs the simulated annealing and returns the
     grid and costs.
-    Pre: grid of class grid
+    
+    Pre:  grid of class grid
     Post: tuple containing grid of class grid and integer
     """
 
@@ -86,24 +84,27 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
 
 def hill_climber_shared(grid: Grid) -> Grid:
     """
-    This is an algorithm for shared cables and it uses the
-    hill climber method. This algorithm will be done a few
-    times, to try to negate the randomness effect.
-    Pre: grid is a class of grid
+    This is an algorithm for shared cables and it uses the hill climber
+    method. This algorithm will be done a few times, to try to negate
+    the randomness effect.
+    
+    Pre:  grid is a class of grid
     Post: grid is a class of grid
     """
 
     tmp_grid = copy.deepcopy(grid)
 
+    # list that contains all costs over all iterations
     costs = []
-
-    best_cost = 10000000
+    
+    # the cost of the current grid is the initialized cost
+    best_cost = tmp_grid.calc_cost_shared()
 
     # initialize stop conditions
     times_no_improvement = 0
     max_iterations = 0
 
-    while times_no_improvement < 500 and max_iterations < 500:
+    while times_no_improvement < 500 and max_iterations < 100:
         
         # changes grid in random places
         a_grid, new_cost = change_grid_hill_climber(tmp_grid, best_cost)
@@ -118,6 +119,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
 
         max_iterations += 1
 
+        # saves new cost in cost list
         costs.append(best_cost)
 
     return tmp_grid, costs
@@ -127,24 +129,22 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
     """
     This function tries n times to connect two different houses with two
     different batteries, to improve the current grid.
-    Pre: grid is of class grid and best_cost is an integer
+    
+    Pre:  grid is of class grid and best_cost is an integer
     Post: returns list with 3 items, where the first item is a bool item
           that refers to improvement of the grid. The second item is the new cost
           as integer. The final item is the new optimised grid
     """
 
-
     tmp_grid = copy.deepcopy(grid)
     tmp_grid.remove_cables()
+    
+    # gets two random houses
+    house_1, house_2 = find_random_houses(tmp_grid)
 
-    # tries 20 times to change houses with batteries
-    for _ in range(1):
-        grid = copy.deepcopy(tmp_grid)
-
-        house_1, house_2 = find_random_houses(tmp_grid)
-
-        if possible_swap(house_1, house_2):
-            swap_houses(house_1, house_2)
+    # swaps two houses if possible
+    if possible_swap(house_1, house_2):
+        swap_houses(house_1, house_2)
 
     # copy of grid
     test_grid = copy.deepcopy(tmp_grid)
@@ -162,29 +162,12 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
     return new_grid, new_cost
 
 
-def find_random_houses(grid: Grid) -> list[House, House]:
-    """
-    Chooses two random houses from all houses in the grid and checks
-    if they are not connected to the same battery.
-    Pre: grid is of class Grid
-    Post: returns two different houses as house object
-    """
-    house_1 = random.choice(grid.houses)
-    house_2 = random.choice(grid.houses)
-
-    # chooses new houses if they are connected to the same battery
-    while house_1 is house_2 and house_1.connection is house_2.connection:
-        house_1 = random.choice(grid.houses)
-        house_2 = random.choice(grid.houses)
-
-    return house_1, house_2
-
-
 def check_if_improvement(cost: int, best_cost: int, grid: Grid):
     """
     Checks if the new configuration of the houses gives an improved solution for the grid
     and it also checks if it is a valid solution.
-    Pre: The cost and best_cost are integers, and grid is of class Grid
+    
+    Pre:  the cost and best_cost are integers, and grid is of class Grid
     Post: returns list with 3 items, where the first item is a bool item
           that refers to improvement of the grid. The second item is the new cost
           as integer. The final item is the new optimised grid
@@ -199,7 +182,8 @@ def check_if_improvement(cost: int, best_cost: int, grid: Grid):
 def plot_costs_graph(costs: list[int], district: str) -> None:
     """
     Plots a graph of all the costs from the random solutions.
-    Pre: list of integers
+    
+    Pre:  list of integers
     Post: none
     """
 
