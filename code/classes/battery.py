@@ -19,7 +19,7 @@ class Battery:
         """
         Connects house to battery and also substracts output from capacity.
         
-        Pre: house from the house class
+        Pre : house from the house class
         Post: none
         """
         if self.current_capacity - house.maxoutput >= 0:
@@ -30,9 +30,10 @@ class Battery:
         """
         Disconnects house from battery and also removes output of house.
         
-        Pre: house from the house class
+        Pre : house from the house class
         Post: none
         """
+
         if house in self.connected_homes:
             self.current_capacity = self.current_capacity + house.maxoutput
             self.connected_homes.remove(house)
@@ -41,33 +42,37 @@ class Battery:
         """
         Gets current capacity from battery.
         
-        Pre: none
+        Pre : none
         Post: capacity as float
         """
+
         return self.current_capacity
 
     def is_connection_possible(self, house: House) -> bool:
         """
         Check if house does not overflow capacity of battery.
         
-        Pre: house from house class
+        Pre : house from house class
         Post: bool    
         """
+
         return self.current_capacity - house.maxoutput >= 0
 
     def lay_shared_cables(self):
         """
         Lays shared cables in grid.
         
-        Pre: none
+        Pre : none
         Post: none
         """
+
         battery_cable = f"{self.coord_x},{self.coord_y}"
         self.cables: set[str] = {battery_cable}
 
         unconnected: list[int] = list(range(len(self.connected_homes)))
 
         for _ in range(len(self.connected_homes)):
+
             # random high placeholder
             min_dist: int = 100
             min_house: House = None
@@ -118,9 +123,10 @@ class Battery:
         """
         Calculates the distance between a house and a cable.
         
-        Pre: house from the house class and a cable as a string
+        Pre : house from the house class and a cable as a string
         Post: distance as integer
         """
+        
         cable_x, cable_y = [int(coord) for coord in cable.split(",")]
 
         distance = abs(house.coord_x - cable_x) + abs(house.coord_y - cable_y)
@@ -131,9 +137,10 @@ class Battery:
         """
         Removes connected cables from grid.
         
-        Pre: none
+        Pre : none
         Post: none
         """
+
         self.cables = None
         for house in self.connected_homes:
             house.remove_cables()

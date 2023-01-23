@@ -5,9 +5,9 @@ import random
 
 def add_random_connections(tmp_grid: Grid) -> Grid:
     """
-    Connects houses to random batteries.
+    Connects houses randomly to the batteries.
     
-    Pre: grid is of class Grid
+    Pre : grid is of class Grid
     Post: returns a copy of original grid, in which
           houses are randomly connected to a battery
     """

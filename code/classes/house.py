@@ -18,9 +18,9 @@ class House:
 
     def has_connection(self) -> bool:
         """
-        Checks if house has connection with a battery
+        Checks if house has connection with a battery.
         
-        Pre: none
+        Pre : none
         Post: bool
         """
         return self.has_connection
@@ -30,7 +30,7 @@ class House:
         This method connects a house to a battery if it is not already
         connected. 
         
-        Pre: battery of class Battery
+        Pre : battery of class Battery
         Post: none
         """
         # ! Moet er niet een error worden geraised als er al een connectie is?
@@ -42,7 +42,7 @@ class House:
         """
         Deletes connection with a battery.
         
-        Pre: none
+        Pre : none
         Post: none
         """
         self.has_connection = False
@@ -52,7 +52,7 @@ class House:
         """
         Calculates the distance to the connected battery.
         
-        Pre: none
+        Pre : none
         Post: returns distance as integer
         """
         if self.has_connection:
@@ -64,9 +64,9 @@ class House:
 
     def distance_to_any_battery(self, battery: object) -> int:
         """
-        Calculates distance between house and any battery object
+        Calculates distance between house and any battery object.
         
-        Pre: battery of class Battery
+        Pre : battery of class Battery
         Post: returns an int
         """
         # ! Sommige type hints zijn al implied
@@ -79,9 +79,9 @@ class House:
     
     def lay_cables(self) -> None:
         """
-        Puts all cables in list for the smallest distance
+        Puts all cables in list for the smallest distance.
         
-        Pre: none
+        Pre : none
         Post: none
         """
         # makes sure no cables will be layed if house has no connection
@@ -115,7 +115,7 @@ class House:
         Returns 1 if the connection is in the negative axis direction and 1 if
         in the positive direction.
         
-        Pre: a start and end coordinate as integer
+        Pre : a start and end coordinate as integer
         Post: returns direction as integer
         """
 
@@ -127,7 +127,7 @@ class House:
         """
         Removes all cables.
         
-        Pre: none
+        Pre : none
         Post: none
         """
         # makes list of cables empty
@@ -138,7 +138,7 @@ class House:
         Sets the cables of the house to the given cables.
         
         Pre: cables argument is a list of strings, where the strings are in the
-            shape of 'x,y'
+             shape of 'x,y'
         Post: the cables attribute is set to the cables argument"""
 
         self.cables = cables

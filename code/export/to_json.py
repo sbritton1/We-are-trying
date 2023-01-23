@@ -4,8 +4,9 @@ import json
 
 def to_json(grid: Grid) -> None:
     """
-    Exports the data to a json file in the prescribed format
-    Pre: grid is of class Grid
+    Exports the data to a json file in the prescribed format.
+    
+    Pre : grid is of class Grid
     Post: .json file is created
     """
 
