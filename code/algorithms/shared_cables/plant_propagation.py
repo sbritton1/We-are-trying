@@ -20,16 +20,22 @@ def plant_propagation(grid: Grid) -> Grid:
     min_changes = 2
     max_changes = 40
     n_generations = 2
+    print_stuff = False
 
     # get the starting point for the plant propagation algorithm
     root_grids = get_start_roots(grid, max_runners)
 
     # go over the generations
     for _ in range(n_generations):
-        print(_)
+        # print the generation number
+        if print_stuff:
+            print(_)
+
+        # get the runners of the new generation
         runners = create_new_generation(root_grids, min_runners,
                                         max_runners, min_changes,
-                                        max_changes, shared_cables)
+                                        max_changes, shared_cables,
+                                        print_stuff)
 
         # sort runners in ascending order of cost
         runners.sort(key=lambda x: x.calc_cost_shared())
@@ -50,13 +56,19 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
     # make a list to store the temporary grids
     start_roots: list[Grid] = []
 
+    # repeat n_roots times
     for _ in range(n_roots):
+        # make a copy of the grid
         tmp_grid: Grid = deepcopy(grid)
+
+        # make random connections
         tmp_grid = add_random_connections(tmp_grid)
 
+        # resolve errors untill grid is valid
         while valid_solution(tmp_grid) is False:
             resolve_error(tmp_grid)
 
+        # lay the shared cables
         tmp_grid.lay_shared_cables()
 
         start_roots.append(tmp_grid)
@@ -66,39 +78,42 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
 
 def create_new_generation(root_grids: list[Grid], min_runners: int,
                           max_runners: int, min_changes: int, max_changes: int,
-                          shared_cables: bool):
+                          shared_cables: bool, print_stuff: bool
+                          ) -> list[Grid]:
 
-    # keeps track of costs of all solutions
-    lowest_cost: int = None
-    highest_cost: int = None
+    # variables for keeping track of the costs (set to arbitrary values)
+    lowest_cost: int = 9999999
+    highest_cost: int = 0
 
     # go over each grid and check for the highest and lowest cost
     for root_grid in root_grids:
         cost = calculate_cost(root_grid, shared_cables)
-        if lowest_cost is None or cost < lowest_cost:
+        if cost < lowest_cost:
             lowest_cost = cost
-        if highest_cost is None or cost > highest_cost:
+        if cost > highest_cost:
             highest_cost = cost
 
-    # determine the fitness and thus how many runners should be created and how
-    # far each runner should go
-
+    # create a work list for the multithreading
     work = []
 
+    # go over all the roots to make the runners
     for root_grid in root_grids:
+        # determine the fitness of the root
         fitness = get_fitness(root_grid.cost, lowest_cost, highest_cost)
 
+        # based on the fitness, decide the amount of runners and their distance
         n_runners = get_n_runners(fitness, max_runners, min_runners)
-
         n_changes = get_n_changes(fitness, max_changes, min_changes)
 
-        print(f"Grid cost: {root_grid.cost}, fitness: {fitness}, n_runners: {n_runners}, n_changes: {n_changes}")
+        if print_stuff:
+            print(f"Grid cost: {root_grid.cost}, fitness: {fitness}, n_runners: {n_runners}, n_changes: {n_changes}")
 
+        # create each runner
         for _ in range(n_runners):
             runner = deepcopy(root_grid)
             work.append((runner, n_changes))
 
-    workers = 8
+    workers = 6
     p = multiprocessing.Pool(workers)
     runners: list[Grid] = p.starmap(make_change, work)
 
@@ -123,7 +138,7 @@ def get_n_runners(fitness: float, max_runners: int, min_runners: int) -> int:
     return ceil(fitness * (max_runners - min_runners)) + min_runners
 
 
-def make_change(grid: Grid, n_changes) -> Grid:
+def make_change(grid: Grid, n_changes: int) -> Grid:
     for _ in range(n_changes):
         shuffle(grid.houses)
 
