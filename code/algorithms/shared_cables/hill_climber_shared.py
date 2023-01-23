@@ -4,6 +4,9 @@ from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
+from ...helper_functions.swap_houses import swap_houses
+from ...helper_functions.possible_swap import possible_swap
+from ...helper_functions.find_random_houses import find_random_houses
 
 import random
 import copy
@@ -15,6 +18,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     """
     Initialises grid 8 times, then plots the results and
     returns the grid with the best solution.
+
     Pre: grid is of class grid
     Post: returns best found solution using this algorithm
     """
@@ -23,7 +27,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(6):
+    for i in range(4):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -39,7 +43,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers amount of threads
-    workers = 6
+    workers = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(work, grids))
 
@@ -99,7 +103,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     times_no_improvement = 0
     max_iterations = 0
 
-    while times_no_improvement < 500 and max_iterations < 10000:
+    while times_no_improvement < 500 and max_iterations < 500:
         
         # changes grid in random places
         a_grid, new_cost = change_grid_hill_climber(tmp_grid, best_cost)
@@ -190,51 +194,6 @@ def check_if_improvement(cost: int, best_cost: int, grid: Grid):
         return grid, cost
     else:
         return grid, best_cost
-
-
-def swap_houses(house1: House, house2: House) -> None:
-    """
-    Swaps two houses.
-    Pre: two houses of the house object
-    Post: it does not return anything
-    """
-
-    # gets battery to which houses are connected
-    house1_bat: Battery = house1.connection
-    house2_bat: Battery = house2.connection
-
-    # deletes connections
-    house1_bat.disconnect_home(house1)
-    house1.delete_connection()
-    house2_bat.disconnect_home(house2)
-    house2.delete_connection()
-
-    # connects houses to batteries
-    house1_bat.connect_home(house2)
-    house2.make_connection(house1_bat)
-    house2_bat.connect_home(house1)
-    house1.make_connection(house2_bat)
-
-
-def possible_swap(house1: House, house2: House) -> bool:
-    """
-    Checks if it is possible to swap two houses based on the
-    remaining capacity of their batteries.
-    Pre: house1 and house2 are of class House
-    Post: returns True if houses can be swapped
-          else returns False
-    """
-
-    try:
-        if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
-            return False
-
-        elif house2.maxoutput > house1.maxoutput + house1.connection.current_capacity:
-            return False
-
-        return True
-    except:
-        return False
 
 
 def plot_costs_graph(costs: list[int], district: str) -> None:
