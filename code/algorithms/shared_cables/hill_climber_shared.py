@@ -188,7 +188,7 @@ def plot_costs_graph(costs: list[int], district: str) -> None:
     Post: none
     """
 
-    iterations = list(range(len(costs)))
+    iterations: list[int] = list(range(len(costs)))
     plt.plot(iterations, costs)
     plt.title(f"Graph of cost over time from simulated annealing algorithm\n \
               District: {district}")

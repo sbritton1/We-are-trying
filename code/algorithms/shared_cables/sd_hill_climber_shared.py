@@ -62,10 +62,10 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         print(grid.calc_cost_shared())
 
         # decide how many threads to use
-        workers = 4
+        workers: int = 4
 
         # create list of work to process
-        work = []
+        work: list[Grid, int, int] = []
         for worker_id in range(workers):
             work.append((grid, worker_id, workers))
 
@@ -92,11 +92,11 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
 def try_combinations(grid: Grid, id, workers) -> tuple[Grid, int]:
 
     # create temporary deepcopy of original grid
-    tmp_grid = copy.deepcopy(grid)
-    best_cost = tmp_grid.calc_cost_shared()
+    tmp_grid: Grid = copy.deepcopy(grid)
+    best_cost: int = tmp_grid.calc_cost_shared()
 
     # divide all houses up in chunks, based on amount of workers
-    chunk_size = math.ceil(len(tmp_grid.houses) / workers)
+    chunk_size: int = math.ceil(len(tmp_grid.houses) / workers)
     houses_chunked: list[list[House]] = [tmp_grid.houses[i:i + chunk_size] for i in range(0, len(tmp_grid.houses), chunk_size)]
 
     # select own work based on id of worker
@@ -149,7 +149,7 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
     grid.remove_cables()
     swap_houses(house1, house2)
     grid.lay_shared_cables()
-    new_cost = grid.calc_cost_shared()
+    new_cost: int = grid.calc_cost_shared()
     grid.remove_cables()
     swap_houses(house1, house2)
 

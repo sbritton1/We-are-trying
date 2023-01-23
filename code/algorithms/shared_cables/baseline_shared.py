@@ -16,7 +16,7 @@ def baseline_shared(grid: Grid) -> Grid:
     """
 
     # set the amount of iterations
-    iterations = 1000
+    iterations: int = 1000
 
     # keeps track of costs of all solutions
     costs = []
@@ -49,7 +49,7 @@ def baseline_shared(grid: Grid) -> Grid:
     return best_solution
 
 
-def plot_cost(costs: list[int], grid: Grid, n_iterations: int):
+def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     """
     Plots a histogram of the costs of all solutions.
     Pre: costs is a list of ints
