@@ -7,9 +7,9 @@ class House:
     """
     
     def __init__(self, x: int, y: int, maxoutput: float) -> None:
-        self.coord_x = x
-        self.coord_y = y
-        self.maxoutput = maxoutput
+        self.coord_x: int = x
+        self.coord_y: int = y
+        self.maxoutput: int = maxoutput
 
         # ! attribute same name as method
         self.has_connection: bool = False
@@ -69,11 +69,10 @@ class House:
         Pre : battery of class Battery
         Post: returns an int
         """
-        # ! Sommige type hints zijn al implied
         # calculates distance vertically and horizontally
         dist_x: int = abs(self.coord_x - battery.coord_x)
         dist_y: int = abs(self.coord_y - battery.coord_y)
-        distance = dist_x + dist_y
+        distance: int = dist_x + dist_y
 
         return distance
     
@@ -89,25 +88,25 @@ class House:
             return
 
         # gets coordinates
-        start_x, start_y = self.coord_x, self.coord_y
+        start_coords: tuple(int, int) = self.coord_x, self.coord_y
         end_x, end_y = self.connection.coord_x, self.connection.coord_y
 
         # calculates distance vertically and horizontally
-        dist_x = abs(start_x - end_x)
-        dist_y = abs(start_y - end_y)
+        dist_x = abs(start_coords[0] - end_x)
+        dist_y = abs(start_coords[1] - end_y)
 
-        y_direction = self.get_axis_direction(start_y, end_y)
+        y_direction = self.get_axis_direction(start_coords[1], end_y)
 
         # adds all cables along the y-axis
         for new_y in range(dist_y + 1):
-            new_cable = f"{start_x},{start_y + new_y * y_direction}"
+            new_cable = f"{start_coords[0]},{start_coords[1] + new_y * y_direction}"
             self.cables.append(new_cable)
 
-        x_direction = self.get_axis_direction(start_x, end_x)
+        x_direction = self.get_axis_direction(start_coords[0], end_x)
 
         # adds all cables along the x-axis
         for new_x in range(1, dist_x + 1):
-            new_cable = f"{start_x + new_x * x_direction},{end_y}"
+            new_cable = f"{start_coords[0] + new_x * x_direction},{end_y}"
             self.cables.append(new_cable)
 
     def get_axis_direction(self, start, end) -> int:
