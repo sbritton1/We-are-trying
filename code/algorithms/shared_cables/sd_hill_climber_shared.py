@@ -11,6 +11,13 @@ import multiprocessing
 
 
 def init_sd_hill_climber_shared(grid: Grid) -> Grid:
+    """
+    Initializes grids for the steepest descent hill climber
+    to improve, optimized for shared cables
+
+    Pre : grid is of class Grid
+    Post: returns best found solution using this algorithm
+    """
 
     # keeps track of costs of all solutions
     lowest_cost: int = None
