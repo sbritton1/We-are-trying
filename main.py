@@ -5,7 +5,7 @@ from code.classes.grid import Grid
 from code.algorithms.own_cables.baseline import baseline
 from code.algorithms.own_cables.greedy import greedy
 from code.algorithms.own_cables.sd_hill_climber import init_sd_hill_climber
-from code.algorithms.shared_cables.hill_climber_shared import hill_climber_shared
+from code.algorithms.shared_cables.hill_climber_shared import init_hill_climber_shared
 from code.algorithms.shared_cables.baseline_shared import baseline_shared
 from code.algorithms.shared_cables.sd_hill_climber_shared import init_sd_hill_climber_shared
 from code.algorithms.shared_cables.simulated_annealing import init_simulated_annealing
@@ -58,7 +58,7 @@ if __name__ == "__main__":
         "sd_hill_climber": (init_sd_hill_climber, "unique"),
         "baseline_shared": (baseline_shared, "shared"),
         "greedy_shared": (greedy, "shared"),
-        "hill_climber_shared": (hill_climber_shared, "shared"),
+        "hill_climber_shared": (init_hill_climber_shared, "shared"),
         "sd_hill_climber_shared": (init_sd_hill_climber_shared, "shared"),
         "simulated_annealing": (init_simulated_annealing, "shared"),
     }
