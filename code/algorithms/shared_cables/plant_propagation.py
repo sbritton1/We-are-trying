@@ -20,28 +20,15 @@ def plant_propagation(grid: Grid) -> Grid:
     # * set algorithm parameters
     shared_cables = True
     min_runners = 1
-    max_runners = 5
-    min_changes = 1
+    max_runners = 7
+    min_changes = 2
     max_changes = 40
-    n_generations = 8
+    n_generations = 20
 
-    # make a list to store the temporary grids
-    tmp_grids: list[Grid] = []
-    
-    for _ in range(max_runners):
-        tmp_grid: Grid = deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
+    # get the starting point for the plant propagation algorithm
+    root_grids = get_start_roots(grid, max_runners)
 
-        while valid_solution(tmp_grid) is False:
-            resolve_error(tmp_grid)
-
-        tmp_grid.lay_shared_cables()
-
-        tmp_grids.append(tmp_grid)
-
-    # set 
-    root_grids = tmp_grids
-
+    # go over the generations
     for _ in range(n_generations):
         print(_)
         runners = create_new_generation(root_grids, min_runners,
@@ -61,6 +48,24 @@ def plant_propagation(grid: Grid) -> Grid:
     best_runner.remove_cables()
     
     return best_runner 
+
+
+def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
+    # make a list to store the temporary grids
+    start_roots: list[Grid] = []
+    
+    for _ in range(n_roots):
+        tmp_grid: Grid = deepcopy(grid)
+        tmp_grid = add_random_connections(tmp_grid)
+
+        while valid_solution(tmp_grid) is False:
+            resolve_error(tmp_grid)
+
+        tmp_grid.lay_shared_cables()
+
+        start_roots.append(tmp_grid)
+    
+    return start_roots
 
 
 def create_new_generation(root_grids: list[Grid], min_runners: int,
