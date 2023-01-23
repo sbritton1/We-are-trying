@@ -1,12 +1,13 @@
 from .house import House
 
+
 class Battery:
     """
     Class that contains all information for batteries, such as
     its capacity, all the houses that are connected to the
     battery and its coordinates.
     """
-    
+
     def __init__(self, x: int, y: int, capacity: float):
         self.coord_x = x
         self.coord_y = y
@@ -18,7 +19,7 @@ class Battery:
     def connect_home(self, house: House) -> None:
         """
         Connects house to battery and also substracts output from capacity.
-        
+
         Pre : house from the house class
         Post: none
         """
@@ -29,7 +30,7 @@ class Battery:
     def disconnect_home(self, house: House) -> None:
         """
         Disconnects house from battery and also removes output of house.
-        
+
         Pre : house from the house class
         Post: none
         """
@@ -37,14 +38,14 @@ class Battery:
         if house in self.connected_homes:
             # updates capacity for when house is disconnected
             self.current_capacity = self.current_capacity + house.maxoutput
-            
+
             # disconnects house
             self.connected_homes.remove(house)
 
     def get_capacity(self) -> float:
         """
         Gets current capacity from battery.
-        
+
         Pre : none
         Post: capacity as float
         """
@@ -54,9 +55,9 @@ class Battery:
     def is_connection_possible(self, house: House) -> bool:
         """
         Check if house does not overflow capacity of battery.
-        
+
         Pre : house from house class
-        Post: bool    
+        Post: bool
         """
 
         return self.current_capacity - house.maxoutput >= 0
@@ -64,14 +65,14 @@ class Battery:
     def lay_shared_cables(self):
         """
         Lays shared cables in grid.
-        
+
         Pre : none
         Post: none
         """
 
         # saves coordinates from a cable
         battery_cable = f"{self.coord_x},{self.coord_y}"
-        
+
         # puts cables in a set, so there will be no duplicates
         self.cables: set[str] = {battery_cable}
 
@@ -91,8 +92,10 @@ class Battery:
                 for cable in self.cables:
                     distance = self.calc_distance(house, cable)
 
-                    # later iterate on trying different configurations when two houses
-                    # have the same distance, this can lead to different results
+                    # later iterate on trying different
+                    # configurations when two houses
+                    # have the same distance, this can lead
+                    # to different results
 
                     # updates cable if the distance is smaller
                     if distance < min_dist:
@@ -136,11 +139,11 @@ class Battery:
     def calc_distance(self, house: House, cable: str) -> int:
         """
         Calculates the distance between a house and a cable.
-        
+
         Pre : house from the house class and a cable as a string
         Post: distance as integer
         """
-        
+
         # gets cable coordinates
         cable_x, cable_y = [int(coord) for coord in cable.split(",")]
 
@@ -152,7 +155,7 @@ class Battery:
     def remove_cables(self) -> None:
         """
         Removes connected cables from grid.
-        
+
         Pre : none
         Post: none
         """
