@@ -45,10 +45,8 @@ class House:
         Pre: none
         Post: none
         """
-        # ! Deze check is niet echt nodig
-        if self.has_connection is True:
-            self.has_connection = False
-            self.connection = None
+        self.has_connection = False
+        self.connection = None
 
     def distance_to_battery(self) -> int:
         """
@@ -58,6 +56,7 @@ class House:
         Post: returns distance as integer
         """
         if self.has_connection:
+            # calculates distance vertically and horizontally
             dist_x = abs(self.coord_x - self.connection.coord_x)
             dist_y = abs(self.coord_y - self.connection.coord_y)
             
@@ -71,9 +70,10 @@ class House:
         Post: returns an int
         """
         # ! Sommige type hints zijn al implied
+        # calculates distance vertically and horizontally
         dist_x: int = abs(self.coord_x - battery.coord_x)
         dist_y: int = abs(self.coord_y - battery.coord_y)
-        distance: int = dist_x + dist_y
+        distance = dist_x + dist_y
 
         return distance
     
@@ -84,26 +84,28 @@ class House:
         Pre: none
         Post: none
         """
-
+        # makes sure no cables will be layed if house has no connection
         if self.has_connection is False:
             return
 
+        # gets coordinates
         start_x, start_y = self.coord_x, self.coord_y
         end_x, end_y = self.connection.coord_x, self.connection.coord_y
 
+        # calculates distance vertically and horizontally
         dist_x = abs(start_x - end_x)
         dist_y = abs(start_y - end_y)
 
         y_direction = self.get_axis_direction(start_y, end_y)
 
-        # voegt alle kabels toe langs de y-as
+        # adds all cables along the y-axis
         for new_y in range(dist_y + 1):
             new_cable = f"{start_x},{start_y + new_y * y_direction}"
             self.cables.append(new_cable)
 
         x_direction = self.get_axis_direction(start_x, end_x)
 
-        # voegt alle kabels toe langs de x-as
+        # adds all cables along the x-axis
         for new_x in range(1, dist_x + 1):
             new_cable = f"{start_x + new_x * x_direction},{end_y}"
             self.cables.append(new_cable)
@@ -121,7 +123,14 @@ class House:
             return -1
         return 1
 
-    def remove_cables(self):
+    def remove_cables(self) -> None:
+        """
+        Removes all cables.
+        
+        Pre: none
+        Post: none
+        """
+        # makes list of cables empty
         self.cables = []
 
     def set_cables(self, cables: list[str]) -> None:
