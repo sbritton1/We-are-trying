@@ -6,6 +6,9 @@ from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.swap_houses import swap_houses
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.find_random_houses import find_random_houses
+from ..own_cables.greedy import greedy
+
+
 import copy
 import multiprocessing
 import matplotlib.pyplot as plt
@@ -24,11 +27,13 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(4):
+    for i in range(24):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
+        tmp_grid = greedy(tmp_grid)
+        
+        
 
         # make sure the grid already is a valid solution
         while valid_solution(tmp_grid) is False:
@@ -104,7 +109,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     times_no_improvement: int = 0
     max_iterations: int = 0
 
-    while times_no_improvement < 500 and max_iterations < 100:
+    while times_no_improvement < 700 and max_iterations < 15000:
 
         # changes grid in random places
         grid_and_cost: tuple(Grid, int) = change_grid_hill_climber(tmp_grid, best_cost)
