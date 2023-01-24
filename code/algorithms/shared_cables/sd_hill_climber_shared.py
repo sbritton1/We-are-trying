@@ -1,10 +1,12 @@
 from ...classes.grid import Grid
 from ...classes.house import House
+from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
+from ..own_cables.greedy import greedy
 import copy
 import math
 import multiprocessing
@@ -28,7 +30,7 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
 
         # create deepcopy and fill in randomly
         tmp_grid: Grid = copy.deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
+        tmp_grid = greedy(tmp_grid)
 
         # if solution is not valid, make it so
         while valid_solution(tmp_grid) is False:
@@ -62,7 +64,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         print(grid.calc_cost_shared())
 
         # decide how many threads to use
-        workers: int = 8
+        workers: int = 1
 
         # create list of work to process
         work: list[Grid, int, int] = []
@@ -76,12 +78,15 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         # find the best improvement made
         best_improvement: int = 0
         best_grid: Grid = None
+
         for result in results:
             new_grid: Grid = result[0]
             improvement: int = result[1]
             if improvement > best_improvement:
                 best_improvement = improvement
                 best_grid = new_grid
+        
+        print(best_improvement)
 
         if best_improvement == 0:
             return grid
@@ -110,6 +115,11 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
 
     # select own work based on id of worker
     own_work: list[House] = houses_chunked[id]
+    own_work_copy: list[House] = copy.copy(own_work)
+    tmp_grid_houses_copy: list[House] = copy.copy(tmp_grid.houses)
+    houses_in_batteries_copy = []
+    for battery in tmp_grid.batteries:
+        houses_in_batteries_copy.append(copy.copy(battery.connected_homes))
 
     # keep track of best improvement in this segment
     best_improvement: int = 0
@@ -119,6 +129,7 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
     # try each possible combination
     for house1 in own_work:
         for house2 in tmp_grid.houses:
+            print(tmp_grid.batteries[-1].connected_homes[-1])
             if house1.connection != house2.connection:
 
                 # if swap is possible, calculate its improvement
@@ -128,6 +139,11 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
                         best_improvement = improvement
                         target1 = house1
                         target2 = house2
+
+                own_work = own_work_copy
+                tmp_grid.houses = tmp_grid_houses_copy
+                for loc, battery in enumerate(tmp_grid.batteries):
+                    battery.connected_homes = houses_in_batteries_copy[loc]
 
     # catch when target1 and target2 are still None
     if best_improvement == 0:
