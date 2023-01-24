@@ -57,7 +57,9 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
         print(iteration)
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid.remove_all_connections()
-        tmp_grid = move_battery(tmp_grid)
+        print("check1")
+        move_battery(tmp_grid)
+        print("check2")
         tmp_grid = greedy(tmp_grid)
         tmp_grid.lay_shared_cables()
         new_cost = tmp_grid.calc_cost_shared()
@@ -124,9 +126,7 @@ def move_battery(grid: Grid) -> None:
                 
             new_x = old_x + x_direction
             new_y = old_y + y_direction
-      
 
-    
     
 def random_direction() -> int:
     """

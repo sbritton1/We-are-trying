@@ -263,6 +263,6 @@ class Grid:
 
     def remove_connection(self, house: House) -> None:
         if house.has_connection:
-            battery = house.connection
+            battery: Battery = house.connection
             battery.disconnect_home(house)
             house.delete_connection()
