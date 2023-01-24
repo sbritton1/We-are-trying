@@ -9,21 +9,23 @@ from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.find_random_houses import find_random_houses
 from ...helper_functions.swap_houses import swap_houses
+from ..own_cables.greedy import greedy
 
 
 def plant_propagation(grid: Grid) -> Grid:
 
     # * set algorithm parameters
     shared_cables = True
-    min_runners = 1
-    max_runners = 7
+    n_roots = 8
+    min_runners = 2
+    max_runners = 5
     min_changes = 1
-    max_changes = 30
+    max_changes = 20
     n_generations = 150
     print_stuff = True
 
     # get the starting point for the plant propagation algorithm
-    root_grids = get_start_roots(grid, max_runners)
+    root_grids = get_start_roots(grid, n_roots)
 
     # go over the generations
     for _ in range(n_generations):
@@ -41,7 +43,7 @@ def plant_propagation(grid: Grid) -> Grid:
         runners.sort(key=lambda x: x.calc_cost_shared())
 
         # set the best runners as the new roots
-        root_grids = runners[:max_runners]
+        root_grids = runners[:n_roots]
 
     # choose the best runner of the last generation
     best_runner = runners[0]
@@ -57,7 +59,7 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
     start_roots: list[Grid] = []
 
     # repeat n_roots times
-    for _ in range(n_roots):
+    for _ in range(n_roots * 50):
         # make a copy of the grid
         tmp_grid: Grid = deepcopy(grid)
 
@@ -67,13 +69,18 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
         # resolve errors untill grid is valid
         while valid_solution(tmp_grid) is False:
             resolve_error(tmp_grid)
-
+        
         # lay the shared cables
         tmp_grid.lay_shared_cables()
 
+
         start_roots.append(tmp_grid)
 
-    return start_roots
+    # sort runners in ascending order of cost
+    start_roots.sort(key=lambda x: x.calc_cost_shared())
+
+    # return the best n_roots roots
+    return start_roots[:n_roots]
 
 
 def create_new_generation(root_grids: list[Grid], min_runners: int,

@@ -130,7 +130,7 @@ def display_houses_and_cables(ax, houses: list[House],
 
         if house.connection is not None:
             color_idx = batteries.index(house.connection) / n_batteries
-            display_cables(ax, house.cables, plt.cm.hsv(color_idx))
+            display_cables(ax, house.cables, color_idx)
 
 
 def display_house(ax, house: House, house_imagebox: OffsetImage) -> None:
@@ -180,11 +180,11 @@ def place_image(ax, x: int, y: int, imagebox: OffsetImage):
 
     # Annotation box for image
     # Container for the imagebox referring to a specific position *xy*.
-    ab = AnnotationBbox(imagebox, (x, y), frameon=False)
+    ab = AnnotationBbox(imagebox, (x, y), frameon=False, zorder=50)
     ax.add_artist(ab)
 
 
-def display_cables(ax, cable_coordinates: list[str], color) -> None:
+def display_cables(ax, cable_coordinates: list[str], color_idx: float) -> None:
     """
     Display cables on grid.
 
@@ -199,7 +199,7 @@ def display_cables(ax, cable_coordinates: list[str], color) -> None:
         start_x, start_y = get_x_y(cable_coordinates[i])
         end_x, end_y = get_x_y(cable_coordinates[i + 1])
 
-        display_cable(ax, [start_x, end_x], [start_y, end_y], color)
+        display_cable(ax, [start_x, end_x], [start_y, end_y], color_idx)
 
 
 def get_x_y(coordinates: str) -> tuple[int, int]:
@@ -215,7 +215,7 @@ def get_x_y(coordinates: str) -> tuple[int, int]:
     return (int(x), int(y))
 
 
-def display_cable(ax, x: list[int], y: list[int], color) -> None:
+def display_cable(ax, x: list[int], y: list[int], color_idx: float) -> None:
     """
     Display a cable segment.
 
@@ -225,5 +225,20 @@ def display_cable(ax, x: list[int], y: list[int], color) -> None:
     post: the cable segment is plotted on the ax object with a color depicting
           from which battery it came from
     """
+    
+    # give the color index a bit of an offset to avoid unclear colors in the
+    # colormap
+    color_idx += 0.1
 
-    ax.plot(x, y, c=color)
+    # use the colormap to get an actual color
+    color = plt.cm.nipy_spectral(color_idx)
+
+    # calculate the offset of the cable
+    offset = (color_idx - 0.5)/20
+
+    # offset x and y coordinates for visibility
+    x_offset = [c + offset for c in x]
+    y_offset = [c + offset for c in y]
+
+    # plot cable
+    ax.plot(x_offset, y_offset, c=color)
