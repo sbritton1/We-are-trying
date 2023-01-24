@@ -10,6 +10,7 @@ from ..own_cables.greedy import greedy
 import copy
 import multiprocessing
 
+
 def init_hill_climber_battery(grid: Grid):
 
     # create list of grids as work for multithreading
@@ -32,7 +33,16 @@ def init_hill_climber_battery(grid: Grid):
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_battery, grids))
 
-    return
+    best_result: Grid = None
+    best_costs: list[int] = []
+    for result in results:
+        new_grid = result[0]
+        costs = result[1]
+        if costs[-1] < best_costs[-1]:
+            best_costs = costs
+            best_result = new_grid
+
+    return best_result
 
 
 def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
@@ -41,11 +51,10 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
     last_improvement: int = 0
     iteration: int = 0
 
-    while last_improvement < 0 and iteration < 1000:
+    while iteration - last_improvement < 100 and iteration < 1000:
+        print(iteration)
         tmp_grid: Grid = copy.deepcopy(grid)
-        tmp_grid.remove_cables()
-        tmp_grid.remove_connections()
-
+        tmp_grid.remove_all_connections()
         tmp_grid = move_battery(tmp_grid)
         tmp_grid = greedy(tmp_grid)
         tmp_grid.lay_shared_cables()
