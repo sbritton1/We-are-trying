@@ -26,7 +26,7 @@ District 1 runnen.
 
 #### Plant Propagation (shared cables)
 
-150 generaties. minimaal 1 runner. maximaal 7 runners. minimaal 1 change. maximaal 30 changes. fitness score: (highest score - score) / (highest score - lowest score). tijd: 21 minuut 18. eindscore: 32281.   
+150 generaties. minimaal 1 runner. maximaal 7 runners. minimaal 1 change. maximaal 30 changes. fitness score: (highest score - score) / (highest score - lowest score). tijd: 21 minuut 18. eindscore: 32281.  8 processen 
 
 #### Greedy (own cables)
 

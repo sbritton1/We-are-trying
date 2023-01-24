@@ -2,6 +2,7 @@ from copy import deepcopy
 from math import ceil
 from random import shuffle
 import multiprocessing
+import matplotlib.pyplot as plt
 
 from ...classes.grid import Grid
 from ...helper_functions.valid_solution import valid_solution
@@ -21,11 +22,15 @@ def plant_propagation(grid: Grid) -> Grid:
     max_runners = 5
     min_changes = 1
     max_changes = 20
-    n_generations = 150
+    n_generations = 100
     print_stuff = True
+    plot_stuff = True
 
     # get the starting point for the plant propagation algorithm
     root_grids = get_start_roots(grid, n_roots)
+
+    # store the best cost of each generation
+    best_costs: list[int] = []
 
     # go over the generations
     for _ in range(n_generations):
@@ -44,6 +49,12 @@ def plant_propagation(grid: Grid) -> Grid:
 
         # set the best runners as the new roots
         root_grids = runners[:n_roots]
+
+        # store the best score
+        best_costs.append(root_grids[0].calc_cost_shared())
+
+    if plot_stuff:
+        plot_results(best_costs, grid, n_generations)
 
     # choose the best runner of the last generation
     best_runner = runners[0]
@@ -157,7 +168,7 @@ def make_change(grid: Grid, n_changes: int) -> Grid:
     # make a change n_changes times
     for _ in range(n_changes):
         # shuffle the houses list of the grid
-        shuffle(grid.houses)
+        # shuffle(grid.houses)
 
         # find random houses in the grid
         house1, house2 = find_random_houses(grid)
@@ -170,3 +181,12 @@ def make_change(grid: Grid, n_changes: int) -> Grid:
         grid.lay_shared_cables()
 
     return grid
+
+
+def plot_results(best_costs: list[int], grid: Grid, n_generations: int) -> None:
+    plt.title(f"Plot of best costs per generation (algorithm: plant propagation, district: " + \
+              f"{grid.district}, generations: {n_generations})")
+    plt.plot(best_costs)
+    plt.xlabel("Generation")
+    plt.ylabel("Best cost")
+    plt.show()

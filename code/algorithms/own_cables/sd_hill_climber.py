@@ -112,8 +112,7 @@ def calc_improvement(house1: House, house2: House) -> int:
 def plot_costs(costs: list[int], grid: Grid, n_iterations: int) -> None:
     
     plt.title(f"Histogram of costs (algorithm: steepest descent hill climber " + \
-              f"(own cables), district: {grid.district}, iterations: {n_iterations}, " + \
-              f"valid solutions: {len(costs)})")
+              f"(own cables), district: {grid.district}, iterations: {n_iterations})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
     plt.ylabel("Frequency")
