@@ -1,5 +1,6 @@
 from ...classes.grid import Grid
 from ...classes.house import House
+from ...classes.house import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
@@ -9,6 +10,7 @@ from ...helper_functions.find_random_houses import find_random_houses
 from ..own_cables.greedy import greedy
 import copy
 import multiprocessing
+import random
 
 
 def init_hill_climber_battery(grid: Grid):
@@ -72,5 +74,48 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
     return grid, costs
 
 
-def move_battery():
+def move_battery(battery: Battery, grid: Grid) -> None:
+    """
+    Moves battery to different coordinates.
+    
+    Pre:  battery from Battery class and grid from Grid class
+    Post: none  
+    """
     pass
+
+    # y and x direction
+    y_direction = random_direction()
+    x_direction = random_direction()
+    
+    # battery coordinates
+    old_x = battery.coord_x        
+    old_y = battery.coord_y     
+
+    # new coordinates
+    new_x = old_x + x_direction
+    new_y = old_y + y_direction
+    
+    # checks if you can move battery
+    if grid.move_battery(battery, new_x, new_y):
+        battery.move_to(new_x, new_y)
+    else:
+        # when on house, move battery and try again
+        battery.move_to(new_x, new_y)
+        move_battery(battery, grid)
+    
+    
+def random_direction() -> int:
+    """
+    Gets random direction.
+    
+    Pre:  none
+    Post: integer
+    """
+    
+    # coin flip
+    direction = random.randint(0,1)
+    
+    if direction is 0:
+        direction = -1
+        
+    return direction
