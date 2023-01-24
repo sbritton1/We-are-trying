@@ -75,14 +75,14 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
     return grid, costs
 
 
-def move_battery(battery: Battery, grid: Grid) -> None:
+def move_battery(grid: Grid) -> None:
     """
     Moves battery to different coordinates.
     
-    Pre:  battery from Battery class and grid from Grid class
+    Pre:  grid from Grid class
     Post: none  
     """
-
+    battery = random.choice(grid.batteries)
     # y and x direction
     y_direction = random_direction()
     x_direction = random_direction()
@@ -101,7 +101,7 @@ def move_battery(battery: Battery, grid: Grid) -> None:
     else:
         # when on house, move battery and try again
         battery.move_to(new_x, new_y)
-        move_battery(battery, grid)
+        move_battery(grid)
     
     
 def random_direction() -> int:
