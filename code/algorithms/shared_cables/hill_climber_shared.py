@@ -27,11 +27,11 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(24):
+    for i in range(4):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
-        tmp_grid = greedy(tmp_grid)
+        tmp_grid = add_random_connections(tmp_grid)
         
         
 
@@ -195,7 +195,7 @@ def plot_costs_graph(costs: list[int], district: str) -> None:
 
     iterations: list[int] = list(range(len(costs)))
     plt.plot(iterations, costs)
-    plt.title(f"Graph of cost over time from simulated annealing algorithm\n \
+    plt.title(f"Graph of cost over time from hill climber algorithm\n \
               District: {district}")
     plt.xlabel("Iteration")
     plt.ylabel("Cost")
