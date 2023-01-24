@@ -1,6 +1,6 @@
 from ...classes.grid import Grid
 from ...classes.house import House
-from ...classes.house import Battery
+from ...classes.battery import Battery
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
@@ -64,6 +64,7 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
 
         if new_cost < org_cost:
             grid = tmp_grid
+            print(new_cost)
             costs.append(new_cost)
             org_cost = new_cost
             last_improvement = iteration
@@ -81,7 +82,6 @@ def move_battery(battery: Battery, grid: Grid) -> None:
     Pre:  battery from Battery class and grid from Grid class
     Post: none  
     """
-    pass
 
     # y and x direction
     y_direction = random_direction()
@@ -115,7 +115,7 @@ def random_direction() -> int:
     # coin flip
     direction = random.randint(0,1)
     
-    if direction is 0:
+    if direction == 0:
         direction = -1
         
     return direction

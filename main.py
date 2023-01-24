@@ -12,6 +12,7 @@ from code.algorithms.shared_cables.baseline_shared import init_baseline_shared
 from code.algorithms.shared_cables.sd_hill_climber_shared import init_sd_hill_climber_shared
 from code.algorithms.shared_cables.simulated_annealing import init_simulated_annealing
 from code.algorithms.shared_cables.plant_propagation import plant_propagation
+from code.algorithms.battery_move.hill_climber_battery import init_hill_climber_battery
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -74,7 +75,8 @@ if __name__ == "__main__":
         "hill_climber_shared": (init_hill_climber_shared, "shared"),
         "sd_hill_climber_shared": (init_sd_hill_climber_shared, "shared"),
         "simulated_annealing": (init_simulated_annealing, "shared"),
-        "plant_propagation": (plant_propagation, "shared")
+        "plant_propagation": (plant_propagation, "shared"),
+        "hill_climber_battery": (init_hill_climber_battery, "shared")
     }
 
     check_usage()
