@@ -23,3 +23,16 @@ Algoritmes:
   - Sander
 
 District 1 runnen.
+
+#### Plant Propagation (shared cables)
+
+150 generaties. minimaal 1 runner. maximaal 7 runners. minimaal 1 change. maximaal 30 changes. fitness score: (highest score - score) / (highest score - lowest score). tijd: 21 minuut 18. eindscore: 32281.   
+
+#### Greedy (own cables)
+
+tijd < 1s
+59119, 58453, 57715, 57895, 59281, 58687, 60433, 58471, 58399, 58975
+
+#### Steepest descent hill climber (own cables)
+
+56320 best cost voor 100 iteraties, tijd: ongeveer 1 minuut

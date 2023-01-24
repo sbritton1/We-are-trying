@@ -17,10 +17,10 @@ def plant_propagation(grid: Grid) -> Grid:
     shared_cables = True
     min_runners = 1
     max_runners = 7
-    min_changes = 2
-    max_changes = 40
-    n_generations = 2
-    print_stuff = False
+    min_changes = 1
+    max_changes = 30
+    n_generations = 150
+    print_stuff = True
 
     # get the starting point for the plant propagation algorithm
     root_grids = get_start_roots(grid, max_runners)
@@ -117,7 +117,7 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
             work.append((runner, n_changes))
 
     # the amount of threads that will be used
-    workers = 6
+    workers = 8
 
     # multiprocessing stuff
     p = multiprocessing.Pool(workers)

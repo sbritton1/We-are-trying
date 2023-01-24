@@ -5,6 +5,7 @@ from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
+import matplotlib.pyplot as plt
 import copy
 
 
@@ -17,12 +18,18 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
     Post: returns best found solution for grid
     """
 
+    # set the amount of iterations
+    n_iterations = 100
+
     # keeps track of costs of all solutions
     lowest_cost: int = None
     best_solution: Grid = None
 
+    # make a list to keep track of all costs
+    costs: list[int] = []
+
     # number of times to run the algorithm
-    for i in range(100):
+    for i in range(n_iterations):
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
@@ -35,12 +42,16 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
 
         cost: int = tmp_grid.calc_cost_normal()
 
+        costs.append(cost)
+
         # check if found solution is best solution
         if lowest_cost is None or cost < lowest_cost:
             lowest_cost = cost
             best_solution = tmp_grid
 
         print(i)
+
+    plot_costs(costs, grid, n_iterations)
 
     return best_solution
 
@@ -96,3 +107,15 @@ def calc_improvement(house1: House, house2: House) -> int:
     diff2: int = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
 
     return diff1 + diff2
+
+
+def plot_costs(costs: list[int], grid: Grid, n_iterations: int) -> None:
+    
+    plt.title(f"Histogram of costs (algorithm: steepest descent hill climber " + \
+              f"(own cables), district: {grid.district}, iterations: {n_iterations}, " + \
+              f"valid solutions: {len(costs)})")
+    plt.hist(costs, 20, facecolor='blue', alpha=0.5)
+    plt.xlabel("Cost")
+    plt.ylabel("Frequency")
+    plt.show()
+
