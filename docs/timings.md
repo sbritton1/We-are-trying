@@ -30,8 +30,8 @@ District 1 runnen.
 
 #### Greedy (own cables)
 
-tijd < 1s
-59119, 58453, 57715, 57895, 59281, 58687, 60433, 58471, 58399, 58975
+tijd: 2s
+rond de 57000
 
 #### Steepest descent hill climber (own cables)
 
