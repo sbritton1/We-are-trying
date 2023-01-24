@@ -33,7 +33,7 @@ def resolve_error(grid: Grid) -> None:
         return
 
     # if house does not fit, run this
-    while True:
+    for i in range(10000):
 
         # give house a weight to get picked
         house_weights: list[float] = []

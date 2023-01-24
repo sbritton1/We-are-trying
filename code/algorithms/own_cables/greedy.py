@@ -4,6 +4,7 @@ from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from typing import Any
+import copy
 
 
 def greedy(grid: Grid) -> Grid:
@@ -33,15 +34,28 @@ def greedy(grid: Grid) -> Grid:
         house.make_connection(battery)
         battery.connect_home(house)
         unconnected.remove(minimum[1])
+    
+    best_cost: int = 100000
+    best_solution: Grid = None
 
     # makes sure solution is valid
-    while valid_solution(grid) is False:
-        resolve_error(grid)
+    for i in range(1000):
+        tmp_grid = copy.deepcopy(grid)
+
+        while valid_solution(tmp_grid) is False:
+            resolve_error(tmp_grid)
+
+        cost = tmp_grid.calc_cost_normal()
+        if valid_solution(tmp_grid) is False:
+            pass
+        elif cost < best_cost:
+            best_cost = cost
+            best_solution = tmp_grid
 
     # calculate cost of solution
-    grid.calc_cost_normal()
+    best_solution.calc_cost_normal()
 
-    return grid
+    return best_solution
 
 
 def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Any, Any]:

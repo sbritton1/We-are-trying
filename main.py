@@ -47,7 +47,7 @@ def main(district: str, algorithm_name: str) -> None:
     # =============== CHOOSE METHOD(S) OF OUTPUT =================
 
     to_json(grid)
-    # visualize(grid)
+    visualize(grid)
 
 
 def check_usage() -> None:

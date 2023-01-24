@@ -5,6 +5,7 @@ from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
+from ..own_cables.greedy import greedy
 import matplotlib.pyplot as plt
 import random
 import copy
@@ -24,11 +25,11 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(50):
+    for i in range(4):
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
+        tmp_grid = greedy(tmp_grid)
 
         # make sure the grid already is a valid solution
         while valid_solution(tmp_grid) is False:
@@ -39,7 +40,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers = amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results: tuple(Grid, int) = (p.map(work, grids))
 
