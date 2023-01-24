@@ -46,7 +46,7 @@ def main(district: str, algorithm_name: str) -> None:
 
     # =============== CHOOSE METHOD(S) OF OUTPUT =================
 
-    to_json(grid)
+    to_json(grid, cable_type)
     visualize(grid)
 
 

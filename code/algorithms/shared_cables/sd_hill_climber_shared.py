@@ -64,7 +64,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         print(grid.calc_cost_shared())
 
         # decide how many threads to use
-        workers: int = 1
+        workers: int = 8
 
         # create list of work to process
         work: list[Grid, int, int] = []
@@ -85,8 +85,6 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
             if improvement > best_improvement:
                 best_improvement = improvement
                 best_grid = new_grid
-        
-        print(best_improvement)
 
         if best_improvement == 0:
             return grid
@@ -115,11 +113,6 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
 
     # select own work based on id of worker
     own_work: list[House] = houses_chunked[id]
-    own_work_copy: list[House] = copy.copy(own_work)
-    tmp_grid_houses_copy: list[House] = copy.copy(tmp_grid.houses)
-    houses_in_batteries_copy = []
-    for battery in tmp_grid.batteries:
-        houses_in_batteries_copy.append(copy.copy(battery.connected_homes))
 
     # keep track of best improvement in this segment
     best_improvement: int = 0
@@ -127,23 +120,21 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
     target2: House = None
 
     # try each possible combination
-    for house1 in own_work:
-        for house2 in tmp_grid.houses:
-            print(tmp_grid.batteries[-1].connected_homes[-1])
+    for loc1 in range(len(own_work)):
+        for loc2 in range(len(tmp_grid.houses)):
+            tmp_grid2: Grid = copy.deepcopy(grid)
+            house1 = tmp_grid2.houses[chunk_size * id + loc1]
+            house2 = tmp_grid2.houses[loc2]
+
             if house1.connection != house2.connection:
 
                 # if swap is possible, calculate its improvement
                 if possible_swap(house1, house2) is True:
-                    improvement = calc_improvement(tmp_grid, best_cost, house1, house2)
+                    improvement = calc_improvement(tmp_grid2, best_cost, house1, house2)
                     if improvement > best_improvement:
                         best_improvement = improvement
-                        target1 = house1
-                        target2 = house2
-
-                own_work = own_work_copy
-                tmp_grid.houses = tmp_grid_houses_copy
-                for loc, battery in enumerate(tmp_grid.batteries):
-                    battery.connected_homes = houses_in_batteries_copy[loc]
+                        target1 = own_work[loc1]
+                        target2 = tmp_grid.houses[loc2]
 
     # catch when target1 and target2 are still None
     if best_improvement == 0:

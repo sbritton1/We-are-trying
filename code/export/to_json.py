@@ -2,7 +2,7 @@ from ..classes.grid import Grid
 from typing import Any
 import json
 
-def to_json(grid: Grid) -> None:
+def to_json(grid: Grid, cable_type: str) -> None:
     """
     Exports the data to a json file in the prescribed format.
     
@@ -16,7 +16,11 @@ def to_json(grid: Grid) -> None:
     # Create dictionary with information about grid itself
     grid_dict: dict[str, Any] = {}
     grid_dict["district"] = grid.district
-    grid_dict["costs-shared"] = grid.cost
+    
+    if cable_type == "unique":
+        grid_dict["costs-own"] = grid.cost
+    elif cable_type == "shared":
+        grid_dict["costs-shared"] = grid.cost
     all_dicts.append(grid_dict)
 
     # For each battery, create its own dictionary
