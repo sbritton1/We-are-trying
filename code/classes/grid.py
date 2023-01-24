@@ -27,10 +27,14 @@ class Grid:
         self.batteries: list[Battery] = []
         self.houses: list[House] = []
 
+        self.used_coordinates: list[tuple[int, int]] = []
+
         # read csv files storing the data
         if load_csv:
             self.batteries = self.read_batteries(file_batteries)
             self.houses = self.read_houses(file_houses)
+
+            self.max_x, self.max_y = self.size_grid()
 
     def read_batteries(self, filename: str) -> list[Battery]:
         """
@@ -49,7 +53,9 @@ class Grid:
             for line in f:
                     # split the line into only its relevant data
                     x, y, capacity = self.split_line_in_file(line)
-                        
+
+                    self.add_used_coordinates(x, y)
+
                     batteries.append(Battery(x, y, capacity))
 
         return batteries
@@ -71,6 +77,8 @@ class Grid:
             for line in f:
                 # split line into only its relevant data
                 x, y, maxoutput = self.split_line_in_file(line)
+
+                self.add_used_coordinates(x, y)
 
                 # make House object and add it to the houses list    
                 houses.append(House(x, y, maxoutput))
@@ -223,3 +231,38 @@ class Grid:
         """
 
         self.houses.append(house)
+
+    def move_battery(self, battery: Battery, new_x: int, new_y: int) -> bool:
+        if self.is_coordinates_free(new_x, new_y) is True:
+            # free up the old coordinates
+            old_x, old_y = battery.get_coords()
+            self.remove_used_coordinates(old_x, old_y)
+            
+            # move battery
+            battery.move_to(new_x, new_y)
+            self.add_used_coordinates(new_x, new_y)
+
+            # return true to notify the battery was moved
+            return True
+        return False
+
+    def is_coordinates_free(self, x: int, y: int) -> bool:
+        if x < self.max_x and y < self.max_y:
+            return (x, y) in self.used_coordinates
+        return False
+
+    def add_used_coordinates(self, x: int, y: int) -> None:
+        self.used_coordinates.append((x, y))
+
+    def remove_used_coordinates(self, x: int, y: int) -> None:
+        self.used_coordinates.remove((x, y))
+
+    def remove_all_connections(self) -> None:
+        for house in self.houses:
+            self.remove_connection(house)
+
+    def remove_connection(self, house: House) -> None:
+        if house.has_connection:
+            battery = house.connection
+            battery.disconnect_home(house)
+            house.delete_connection()

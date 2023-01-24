@@ -163,3 +163,17 @@ class Battery:
         self.cables = None
         for house in self.connected_homes:
             house.remove_cables()
+
+    def move_to(self, x: int, y: int) -> None:
+        """
+        Moves the battery to position x,y
+        
+        Pre : x and y are integers
+        Post: x and y are stored in attributes coord_x and coord_y respectively
+        """
+
+        self.coord_x = x
+        self.coord_y = y
+
+    def get_coords(self) -> tuple[int, int]:
+        return (self.coord_x, self.coord_y)
