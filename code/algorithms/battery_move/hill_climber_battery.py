@@ -11,6 +11,7 @@ import copy
 import multiprocessing
 
 def init_hill_climber_battery(grid: Grid):
+
     # create list of grids as work for multithreading
     grids: list[Grid] = []
 
@@ -31,22 +32,26 @@ def init_hill_climber_battery(grid: Grid):
     p = multiprocessing.Pool(workers)
     results = (p.map(work, grids))
 
-    # keeps track of costs of all solutions
-    costs_best_solution: list[int] = []
-    lowest_cost: int = None
-    best_solution: Grid = None
+    return
 
-    # loop through results to find best one
-    for result in results:
-        tmp_grid: Grid = result[0]
-        costs: list[int] = result[1]
-        if lowest_cost is None or tmp_grid.cost < lowest_cost:
-            costs_best_solution = costs
-            lowest_cost = tmp_grid.cost
-            best_solution = tmp_grid
+def work(grid: Grid):
+    """
+    Runs the simulated annealing and returns the
+    grid and costs.
 
-    best_solution.remove_cables()
-    return best_solution
+    Pre:  grid of class grid
+    Post: tuple containing grid of class grid and integer
+    """
 
-def work(grid):
+    # run algorithm and return the result
+    run_algo = hill_climber_battery(grid)
+    grid: Grid = run_algo[0]
+    costs = run_algo[1]
+    print(grid.cost)
+    return (grid, costs)
+
+def hill_climber_battery(grid: Grid):
+    grid = move_battery(grid)
+
+def move_battery():
     pass
