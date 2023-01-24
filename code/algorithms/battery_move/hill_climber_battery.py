@@ -84,11 +84,16 @@ def move_battery(grid: Grid) -> None:
     """
     battery = random.choice(grid.batteries)
     # y and x direction
-    direction = random_direction()
     
+    # battery coordinates
+    old_x = battery.coord_x        
+    old_y = battery.coord_y   
+    
+    direction = random_direction()
+        
     y_direction = 0
     x_direction = direction
-    
+        
     y_or_x = random_direction()
     
     # chooses if x or y moves
@@ -96,22 +101,31 @@ def move_battery(grid: Grid) -> None:
         y_direction = direction
         x_direction = 0
     
-    # battery coordinates
-    old_x = battery.coord_x        
-    old_y = battery.coord_y     
-
     # new coordinates
     new_x = old_x + x_direction
     new_y = old_y + y_direction
     
     while True:
-        # checks if you can move battery
         if grid.move_battery(battery, new_x, new_y):
             break
         else:
             # when on house, move battery and try again
+            direction = random_direction()
+        
+            y_direction = 0
+            x_direction = direction
+            
+            y_or_x = random_direction()
+            
+            # chooses if x or y moves
+            if y_or_x == 1:
+                y_direction = direction
+                x_direction = 0 
+                
             new_x = old_x + x_direction
             new_y = old_y + y_direction
+      
+
     
     
 def random_direction() -> int:
