@@ -51,7 +51,26 @@ def work(grid: Grid):
     return (grid, costs)
 
 def hill_climber_battery(grid: Grid):
-    grid = move_battery(grid)
+    org_cost: int = grid.cost
+    last_improvement = 0
+    iteration = 0
+
+    while last_improvement < 0 and iteration < 1000:
+        tmp_grid: Grid = copy.deepcopy(grid)
+        tmp_grid.remove_cables()
+        tmp_grid.remove_connections()
+        
+        tmp_grid = move_battery(tmp_grid)
+        tmp_grid = greedy(tmp_grid)
+        tmp_grid.lay_shared_cables()
+        new_cost = tmp_grid.calc_cost_shared()
+
+        if new_cost < org_cost:
+            grid = tmp_grid
+            org_cost = new_cost
+            last_improvement = iteration
+        
+        iteration += 1
 
 def move_battery():
     pass
