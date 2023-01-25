@@ -107,8 +107,15 @@ def move_battery(grid: Grid) -> None:
         x_and_y_coordinates = get_x_and_y()
         
         # new coordinates x and y
-        new_x = new_x + x_and_y_coordinates[0]
-        new_y = new_y + x_and_y_coordinates[1]
+        new_x += x_and_y_coordinates[0]
+        new_y += x_and_y_coordinates[1]
+        
+        # checks if it does not go outside of grid
+        if new_x > 50:
+            new_x -= 1
+        
+        if new_y > 50:
+            new_y -= 1
 
     return
 
