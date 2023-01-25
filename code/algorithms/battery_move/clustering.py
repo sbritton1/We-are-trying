@@ -6,31 +6,57 @@ from ...classes.grid import Grid
 from ...classes.house import House
 from ...classes.battery import Battery
 from code.visualization.visualization import visualize
+from ..own_cables.greedy import greedy
+from ..shared_cables.hill_climber_shared import init_hill_climber_shared
 
 
 
 def clustering(grid: Grid) -> Grid:
 
-    n_iterations = 5
+    n_iterations = 10
+    visualize_clustering = False
 
     # randomly place batteries
     random_place_batteries(grid)
+
+    grid.cost = 99999999999
+
+    if visualize_clustering:
+        print("random battery placement without connections")
+        visualize(grid)
 
     for _ in range(n_iterations):
         # go over all houses and find their manhattan distances to the batteries
         # connect the closest houses first and stop when a battery is maxed
         connect_closest_houses(grid)
 
+        if visualize_clustering:
+        # ! VISUALISATIE
+            print(f"{_}: batteries connected but not moved")
+            grid.lay_shared_cables()
+            visualize(grid)
+
         # find the center of the connected houses
         move_batteries_to_center(grid)
+
+        if visualize_clustering:
+            # ! VISUALISATIE
+            grid.remove_cables()
 
         # remove all connections
         grid.remove_all_connections()
 
-    print(f"{grid.batteries[0].coord_x}, {grid.batteries[0].coord_y}")
+    print("Perform greedy")
+    grid = greedy(grid)
+    grid.lay_shared_cables()
+    print(f"Cost after greedy is {grid.calc_cost_shared()}")
+    grid.remove_cables()
 
-    grid.cost = 99999999999
-    visualize(grid)
+
+    # grid = init_hill_climber_shared(grid)
+    
+
+    return grid
 
 
 def random_place_batteries(grid: Grid) -> None:
@@ -48,7 +74,7 @@ def get_random_coordinates(max_x: int, max_y: int) -> tuple[int, int]:
 
 
 def connect_closest_houses(grid: Grid) -> None:
-    all_houses_distances: list[list[int]] = []
+    all_houses_distances: list[tuple[House, list[int]]] = []
 
     # loop over all houses
     for house in grid.houses:
@@ -58,19 +84,20 @@ def connect_closest_houses(grid: Grid) -> None:
         for battery in grid.batteries:
             house_distances.append(house.distance_to_any_battery(battery))
 
-        all_houses_distances.append(house_distances)
+        all_houses_distances.append((house, house_distances))
     
     # sort all houses on their minimum distance to a battery
-    all_houses_distances.sort(key=lambda x: min(x))
+    all_houses_distances.sort(key=lambda x: min(x[1]))
 
     # go over all houses and connect to closest battery if possible
-    for i, house in enumerate(grid.houses):
+    for house_and_distances in all_houses_distances:
+        house, distances = house_and_distances
+        
         # find minimum distance
-        house_distances = all_houses_distances[i]
-        min_distance = min(house_distances)
+        min_distance = min(distances)
         
         # find the battery with this minimum distance
-        closest_battery_index = house_distances.index(min_distance)
+        closest_battery_index = distances.index(min_distance)
         closest_battery = grid.batteries[closest_battery_index]
 
         # connect without loading the battery

@@ -180,6 +180,7 @@ class Battery:
 
     def connect_home_without_load(self, house: House) -> None:
         self.connected_homes.append(house)
+        house.make_connection(self)
 
     def disconnect_all_houses(self) -> None:
         for house in self.connected_homes:
