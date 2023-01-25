@@ -185,4 +185,4 @@ class Battery:
         for house in self.connected_homes:
             house.delete_connection()
         self.connected_homes = []
-        self.current_capacity = 0
+        self.current_capacity = self.total_capacity

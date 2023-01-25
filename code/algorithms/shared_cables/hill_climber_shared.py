@@ -27,7 +27,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(4):
+    for i in range(6):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -45,7 +45,7 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers amount of threads
-    workers = 4
+    workers = 6
     p = multiprocessing.Pool(workers)
     results = (p.map(work, grids))
 

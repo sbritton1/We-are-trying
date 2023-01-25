@@ -7,20 +7,20 @@ from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.swap_houses import swap_houses
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.find_random_houses import find_random_houses
-from ..shared_cables.hill_climber_shared import hill_climber_shared
+from ..shared_cables.hill_climber_shared import init_hill_climber_shared
 from ..own_cables.greedy import greedy
 import copy
 import multiprocessing
 import random
 
 
-def init_hill_climber_battery(grid: Grid):
+def init_hill_climber_battery(grid: Grid) -> Grid:
 
     # create list of grids as work for multithreading
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(1):
+    for _ in range(4):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -32,7 +32,7 @@ def init_hill_climber_battery(grid: Grid):
         grids.append(tmp_grid)
 
     # use multithread processing, with workers amount of threads
-    workers = 1
+    workers = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_battery, grids))
 
@@ -41,11 +41,13 @@ def init_hill_climber_battery(grid: Grid):
     for result in results:
         new_grid = result[0]
         costs = result[1]
+        print(costs[-1], best_costs[-1])
         if costs[-1] < best_costs[-1]:
             best_costs = costs
             best_result = new_grid
 
-    best_result = hill_climber_shared(best_result)
+    print(f"Best cost: {best_costs[-1]}")
+    best_result = init_hill_climber_shared(best_result)
 
     return best_result
 
@@ -60,14 +62,10 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
         print(iteration)
         tmp_grid: Grid = copy.deepcopy(grid)
         move_battery(tmp_grid)
-        print("check1")
         tmp_grid.remove_all_connections()
         tmp_grid = greedy(tmp_grid)
-        print("check2")
         tmp_grid.lay_shared_cables()
         new_cost = tmp_grid.calc_cost_shared()
-
-        print(org_cost, new_cost)
 
         if new_cost < org_cost:
             grid = tmp_grid
@@ -75,12 +73,9 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
             costs.append(new_cost)
             org_cost = new_cost
             last_improvement = iteration
-        
-        print("\n")
 
         iteration += 1
 
-    print(costs[-1])
     return grid, costs
 
 
