@@ -42,8 +42,11 @@ def greedy(grid: Grid) -> Grid:
     for i in range(1000):
         tmp_grid = copy.deepcopy(grid)
 
-        while valid_solution(tmp_grid) is False:
+        resolve_try = 0
+
+        while valid_solution(tmp_grid) is False and resolve_try < 10:
             resolve_error(tmp_grid)
+            resolve_try += 1
 
         cost = tmp_grid.calc_cost_normal()
         if valid_solution(tmp_grid) is False:

@@ -235,6 +235,8 @@ class Grid:
     def move_battery(self, battery: Battery, new_x: int, new_y: int) -> bool:
         if self.is_coordinates_free(new_x, new_y) is True:
             # free up the old coordinates
+
+            self.remove_cables()
             old_x, old_y = battery.get_coords()
             self.remove_used_coordinates(old_x, old_y)
             
