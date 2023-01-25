@@ -177,3 +177,12 @@ class Battery:
 
     def get_coords(self) -> tuple[int, int]:
         return (self.coord_x, self.coord_y)
+
+    def connect_home_without_load(self, house: House) -> None:
+        self.connected_homes.append(house)
+
+    def disconnect_all_houses(self) -> None:
+        for house in self.connected_homes:
+            house.delete_connection()
+        self.connected_homes = []
+        self.current_capacity = 0

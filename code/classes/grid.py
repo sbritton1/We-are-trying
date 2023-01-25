@@ -250,7 +250,7 @@ class Grid:
 
     def is_coordinates_free(self, x: int, y: int) -> bool:
         if x < self.max_x and y < self.max_y:
-            return (x, y) in self.used_coordinates
+            return (x, y) not in self.used_coordinates
         return False
 
     def add_used_coordinates(self, x: int, y: int) -> None:
@@ -260,11 +260,5 @@ class Grid:
         self.used_coordinates.remove((x, y))
 
     def remove_all_connections(self) -> None:
-        for house in self.houses:
-            self.remove_connection(house)
-
-    def remove_connection(self, house: House) -> None:
-        if house.has_connection:
-            battery: Battery = house.connection
-            battery.disconnect_home(house)
-            house.delete_connection()
+        for battery in self.batteries:
+            battery.disconnect_all_houses()
