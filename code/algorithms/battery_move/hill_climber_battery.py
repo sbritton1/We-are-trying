@@ -84,67 +84,53 @@ def move_battery(grid: Grid) -> None:
     Pre:  grid from Grid class
     Post: none  
     """
-    # y and x direction
-    battery = random.choice(grid.batteries)
-    direction = random_direction()
     
-    # get x or y is 1
-    x_direction, y_direction = get_x_and_y(direction)
+    # chooses random battery
+    battery: Battery = random.choice(grid.batteries)
+
+    # get x or y is either 1 or -1
+    x_and_y_coordinates: tuple[int, int] = get_x_and_y()
     
-    # battery coordinates
-    old_x = battery.coord_x        
-    old_y = battery.coord_y   
+    # initialised new coordinates
+    new_x: int = battery.coord_x + x_and_y_coordinates[0]
+    new_y: int = battery.coord_y + x_and_y_coordinates[1]
     
-    # new coordinates
-    new_x = old_x + x_direction
-    new_y = old_y + y_direction
-    
-    while True:
-        possible_to_move = grid.move_battery(battery, new_x, new_y)
+    while True:        
+        # tries to move battery
+        possible_to_move: bool = grid.move_battery(battery, new_x, new_y)
+        
+        # stops if battery can stay in location
         if possible_to_move:
             break
-        else:
-            # determines if you go up or to the right, or
-            # down or left
-            direction = random_direction()
-            
-            # get x or y is 1
-            x_direction, y_direction = get_x_and_y(direction)
-                
-            # new coordinates battery
-            new_x = new_x + x_direction
-            new_y = new_y + y_direction
+        
+        # get x or y is either 1 or -1
+        x_and_y_coordinates = get_x_and_y()
+        
+        # new coordinates x and y
+        new_x = new_x + x_and_y_coordinates[0]
+        new_y = new_y + x_and_y_coordinates[1]
 
-            
     return
 
 
-def get_x_and_y(direction):
-    y_direction = 0
-    x_direction = direction
-        
-    y_or_x = random_direction()
-    
-    # chooses if x or y moves
-    if y_or_x == 1:
-        y_direction = direction
-        x_direction = 0
-        
-    return (x_direction, y_direction)
-    
-    
-def random_direction() -> int:
+def get_x_and_y() -> tuple[int, int]:
     """
-    Gets random direction.
+    Gets for x or y either 1 or -1 as value, such that the movement
+    is either up, down left or right.
     
     Pre:  none
-    Post: integer
+    Post: tuple with two integers
     """
+
+    x_direction: int = 0
     
-    # coin flip
-    direction = random.randint(0,1)
+    # chooses random direction
+    direction: int = random.choice([-1, 1])
     
-    if direction == 0:
-        direction = -1
+    # makes y 0 or either 1 or -1
+    y_direction: int = random.choice([0, direction])
+    
+    if y_direction == 0:
+        x_direction = direction
         
-    return direction
+    return (x_direction, y_direction)
