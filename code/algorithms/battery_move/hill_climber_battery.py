@@ -84,15 +84,42 @@ def move_battery(grid: Grid) -> None:
     Pre:  grid from Grid class
     Post: none  
     """
-    battery = random.choice(grid.batteries)
     # y and x direction
+    battery = random.choice(grid.batteries)
+    direction = random_direction()
+    
+    # get x or y is 1
+    x_direction, y_direction = get_x_and_y(direction)
     
     # battery coordinates
     old_x = battery.coord_x        
     old_y = battery.coord_y   
     
-    direction = random_direction()
-        
+    # new coordinates
+    new_x = old_x + x_direction
+    new_y = old_y + y_direction
+    
+    while True:
+        possible_to_move = grid.move_battery(battery, new_x, new_y)
+        if possible_to_move:
+            break
+        else:
+            # determines if you go up or to the right, or
+            # down or left
+            direction = random_direction()
+            
+            # get x or y is 1
+            x_direction, y_direction = get_x_and_y(direction)
+                
+            # new coordinates battery
+            new_x = new_x + x_direction
+            new_y = new_y + y_direction
+
+            
+    return
+
+
+def get_x_and_y(direction):
     y_direction = 0
     x_direction = direction
         
@@ -102,31 +129,9 @@ def move_battery(grid: Grid) -> None:
     if y_or_x == 1:
         y_direction = direction
         x_direction = 0
-    
-    # new coordinates
-    new_x = old_x + x_direction
-    new_y = old_y + y_direction
-    
-    while True:
-        if grid.move_battery(battery, new_x, new_y):
-            break
-        else:
-            # when on house, move battery and try again
-            direction = random_direction()
         
-            y_direction = 0
-            x_direction = direction
-            
-            y_or_x = random_direction()
-            
-            # chooses if x or y moves
-            if y_or_x == 1:
-                y_direction = direction
-                x_direction = 0 
-                
-            new_x = old_x + x_direction
-            new_y = old_y + y_direction
-
+    return (x_direction, y_direction)
+    
     
 def random_direction() -> int:
     """
