@@ -365,8 +365,6 @@ class Grid:
         
         needed_capacity: float = self.total_maxoutput
         
-        print(needed_capacity)
-        
         while needed_capacity > 0:
             # get x and y coordinate that is not occupied by house
             while True:
@@ -389,5 +387,4 @@ class Grid:
                 another_battery = self.make_immerse_3(new_x, new_y)
                 needed_capacity -= 1800.0
             batteries.append(another_battery)
-            print("done")
         return batteries

@@ -3,6 +3,7 @@ from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
+from ..own_cables.greedy import greedy
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
 import matplotlib.pyplot as plt
@@ -28,7 +29,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
+        tmp_grid = greedy(tmp_grid)
 
         # make sure the grid already is a valid solution
         while valid_solution(tmp_grid) is False:
@@ -94,7 +95,8 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     """
 
     # store current cost of the grid
-    cost_grid: int = grid.calc_cost_shared()
+    org_cost = grid.calc_cost_shared()
+    cost_grid: int = org_cost
     costs: list[int] = []
     last_update: int = 0
 
@@ -127,13 +129,19 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
             last_update = iteration
 
         else:
+            # dont accept changes way over the original grid cost
+            if new_cost > org_cost * 1.1:
+                pass
+
             # make chance of acceptance based on cost difference and iteration
-            temperature = 1000 * (0.997 ** iteration)
-            acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
-            if acceptation_chance > random.random():
-                grid = tmp_grid
-                cost_grid = new_cost
-                last_update = iteration
+            else: 
+                temperature = (500 + 50 * int(iteration / 1000)) * (0.997 ** iteration)
+
+                acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
+                if acceptation_chance > random.random():
+                    grid = tmp_grid
+                    cost_grid = new_cost
+                    last_update = iteration
 
         # break if no more improvements have been found in a while
         if iteration - last_update == 300:

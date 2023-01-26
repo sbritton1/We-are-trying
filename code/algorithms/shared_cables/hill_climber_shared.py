@@ -14,7 +14,7 @@ import multiprocessing
 import matplotlib.pyplot as plt
 
 
-def init_hill_climber_shared(grid: Grid) -> Grid:
+def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     """
     Initialises grid 8 times, then plots the results and
     returns the grid with the best solution.
@@ -31,16 +31,15 @@ def init_hill_climber_shared(grid: Grid) -> Grid:
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
-        tmp_grid = add_random_connections(tmp_grid)
-        
-        
 
-        # make sure the grid already is a valid solution
-        while valid_solution(tmp_grid) is False:
-            resolve_error(tmp_grid)
+        if fill is True:
+            tmp_grid = add_random_connections(tmp_grid)
 
-        tmp_grid.lay_shared_cables()
-        # tmp_grid.remove_cables()
+            # make sure the grid already is a valid solution
+            while valid_solution(tmp_grid) is False:
+                resolve_error(tmp_grid)
+
+            tmp_grid.lay_shared_cables()
 
         grids.append(tmp_grid)
 
