@@ -308,7 +308,7 @@ class Grid:
         Pre:  two integers for coordinates
         Post: battery from class Battery
         """
-        powerstar: Battery = Battery(x, y, 900.0)
+        powerstar = Battery(x, y, 450.0)
         return powerstar
         
     def make_immerse_2(self, x: int, y: int) -> Battery:
@@ -318,7 +318,7 @@ class Grid:
         Pre:  two integers for coordinates
         Post: battery from class Battery
         """
-        immerse_2: Battery = Battery(x, y, 1350.0)
+        immerse_2: Battery = Battery(x, y, 900.0)
         return immerse_2
         
     def make_immerse_3(self, x: int, y: int) -> Battery:
@@ -340,10 +340,10 @@ class Grid:
         """
         # new cost calculation for 3 types of batteries
         for a_battery in self.batteries:
-            if a_battery.total_capacity == 900.0:
-                self.cost += 450
-            elif a_battery.total_capacity == 1350.0:
+            if a_battery.total_capacity == 450.0:
                 self.cost += 900
+            elif a_battery.total_capacity == 900.0:
+                self.cost += 1350
             else:
                 self.cost += 1800
                 

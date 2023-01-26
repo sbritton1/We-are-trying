@@ -6,6 +6,7 @@ from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
 
+handles = []
 
 def visualize(grid: Grid) -> None:
     """
@@ -19,6 +20,10 @@ def visualize(grid: Grid) -> None:
     # set up canvas
     fig, ax = set_up_canvas(grid)
 
+    grid.make_powerstar(0, 0)
+    grid.make_immerse_2(10,10)
+    grid.make_immerse_3(20,20)
+
     # get and display the batteries
     batteries: list[Battery] = grid.batteries
     display_batteries(ax, batteries)
@@ -26,6 +31,8 @@ def visualize(grid: Grid) -> None:
     # get and display the houses together with their cables
     houses: list[House] = grid.houses
     display_houses_and_cables(ax, houses, batteries)
+
+    ax.legend(handles=handles)
 
     # show the plot
     plt.show()
@@ -109,10 +116,17 @@ def load_battery_images() -> dict[int, OffsetImage]:
         1800,
     ]
 
+    zooms = [
+        0.4,
+        0.25,
+        0.2,
+        0.225,
+    ]
+
     battery_image_boxes = {}
 
     for i, path in enumerate(paths):
-        battery_image_boxes[capacities[i]] = load_imagebox(path, 0.4)
+        battery_image_boxes[capacities[i]] = load_imagebox(path, zooms[i])
 
     return battery_image_boxes
 
@@ -127,6 +141,9 @@ def display_battery(ax, battery: Battery,
     post: the given imagebox is placed on the ax plot at the corresponding
           coordinates
     """
+
+    if battery_imagebox not in handles:
+        handles.append(battery_imagebox)
 
     # get battery coordinates
     x, y = battery.coord_x, battery.coord_y
@@ -150,6 +167,8 @@ def display_houses_and_cables(ax, houses: list[House],
     # load house image
     house_path: str = "data/images/house.png"
     house_imagebox = load_imagebox(house_path, 0.2)
+
+    handles.append(house_imagebox)
 
     n_batteries: int = len(batteries)
 
