@@ -6,3 +6,16 @@ Sander:
 
 Nice-to-have:
 - PPA met plaatsen van batterijen
+
+MUST:
+- technische beschrijving afronden
+- README updaten
+- maak experiment.md:
+  - maak structuur
+  - link van readme naar experiment.md
+- code commenten en opschonen
+- repo opschonen
+- presentatie verbeteren
+
+Doing:
+- trails.py 

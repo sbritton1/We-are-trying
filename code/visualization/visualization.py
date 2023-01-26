@@ -6,7 +6,6 @@ from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
 
-handles = []
 
 def visualize(grid: Grid) -> None:
     """
@@ -136,9 +135,6 @@ def display_battery(ax, battery: Battery,
           coordinates
     """
 
-    if battery_imagebox not in handles:
-        handles.append(battery_imagebox)
-
     # get battery coordinates
     x, y = battery.coord_x, battery.coord_y
 
@@ -161,8 +157,6 @@ def display_houses_and_cables(ax, houses: list[House],
     # load house image
     house_path: str = "data/images/house.png"
     house_imagebox = load_imagebox(house_path, 0.2)
-
-    handles.append(house_imagebox)
 
     n_batteries: int = len(batteries)
 
