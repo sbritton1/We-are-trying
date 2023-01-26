@@ -20,10 +20,6 @@ def visualize(grid: Grid) -> None:
     # set up canvas
     fig, ax = set_up_canvas(grid)
 
-    grid.make_powerstar(0, 0)
-    grid.make_immerse_2(10,10)
-    grid.make_immerse_3(20,20)
-
     # get and display the batteries
     batteries: list[Battery] = grid.batteries
     display_batteries(ax, batteries)
@@ -31,8 +27,6 @@ def visualize(grid: Grid) -> None:
     # get and display the houses together with their cables
     houses: list[House] = grid.houses
     display_houses_and_cables(ax, houses, batteries)
-
-    ax.legend(handles=handles)
 
     # show the plot
     plt.show()
