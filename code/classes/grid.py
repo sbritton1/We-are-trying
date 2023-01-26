@@ -262,3 +262,54 @@ class Grid:
     def remove_all_connections(self) -> None:
         for battery in self.batteries:
             battery.disconnect_all_houses()
+            
+    def make_powerstar(self, x: int, y: int) -> None:
+        """
+        Makes an powerstar battery.
+        
+        Pre:  two integers
+        Post: none
+        """
+        powerstar = Battery(x, y, 900.0)
+        self.batteries.append(powerstar)
+        
+    def make_immerse_2(self, x: int, y: int) -> None:
+        """
+        Makes an immerse 2 battery.
+        
+        Pre:  two integers
+        Post: none
+        """
+        immerse_2 = Battery(x, y, 1350.0)
+        self.batteries.append(immerse_2)
+        
+    def make_immerse_3(self, x: int, y: int) -> None:
+        """
+        Makes an immerse 3 battery.
+        
+        Pre:  two integers
+        Post: none
+        """
+        immerse_3 = Battery(x, y, 1800.0)
+        self.batteries.append(immerse_3)   
+        
+    def calc_cost_advanced(self):
+        """
+        Calculates the price of a grid when cables can be shared.
+
+        Pre : tmp_grid is of class Grid
+        Post: returns an int cost
+        """
+        # new cost calculation for 3 types of batteries
+        for i in self.batteries:
+            if self.batteries[i].capacity == 900.0:
+                self.cost += 450
+            elif self.batteries[i].capacity == 1350.0:
+                self.cost += 900
+            else:
+                self.cost += 1800
+                
+        for house in self.houses:
+            self.cost += (len(house.cables) - 1) * 9
+
+        return self.cost
