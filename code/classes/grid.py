@@ -3,6 +3,7 @@ from .battery import Battery
 import numpy as np
 import sys
 from typing import Union
+import random
 
 class Grid:
     """
@@ -28,13 +29,17 @@ class Grid:
         self.houses: list[House] = []
 
         self.used_coordinates: list[tuple[int, int]] = []
-
+        
+        self.total_maxoutput = 0
+        
         # read csv files storing the data
         if load_csv:
-            self.batteries = self.read_batteries(file_batteries)
+            # self.batteries = self.read_batteries(file_batteries)
             self.houses = self.read_houses(file_houses)
 
             self.max_x, self.max_y = self.size_grid()
+            
+            self.batteries = self.initialize_advanced_batteries()
 
     def read_batteries(self, filename: str) -> list[Battery]:
         """
@@ -79,6 +84,8 @@ class Grid:
                 x, y, maxoutput = self.split_line_in_file(line)
 
                 self.add_used_coordinates(x, y)
+                
+                self.total_maxoutput += maxoutput
 
                 # make House object and add it to the houses list    
                 houses.append(House(x, y, maxoutput))
@@ -233,6 +240,13 @@ class Grid:
         self.houses.append(house)
 
     def move_battery(self, battery: Battery, new_x: int, new_y: int) -> bool:
+        """
+        Moves battery if it can move to place if the coordinates do not
+        contain a house.
+        
+        Pre:  battery of Battery class and two integers for coordinates
+        Post: bool
+        """
         if self.is_coordinates_free(new_x, new_y) is True:
             # free up the old coordinates
 
@@ -249,49 +263,73 @@ class Grid:
         return False
 
     def is_coordinates_free(self, x: int, y: int) -> bool:
+        """
+        Checks if coordinates are not occupied by a house.
+        
+        Pre:  two integers for coordinates
+        Post: bool
+        """
         if x < self.max_x and y < self.max_y:
             return (x, y) not in self.used_coordinates
         return False
 
     def add_used_coordinates(self, x: int, y: int) -> None:
+        """
+        Adds two coordinates if coordinates are occupied.
+        
+        Pre:  two integers for coordinates
+        Post: none
+        """
         self.used_coordinates.append((x, y))
 
     def remove_used_coordinates(self, x: int, y: int) -> None:
+        """
+        Removes coordinates that is no longer occupied.
+        
+        Pre:  two integers for coordinates
+        Post: none
+        """
         self.used_coordinates.remove((x, y))
 
     def remove_all_connections(self) -> None:
+        """
+        Removes all connections from batteries with houses.
+        
+        Pre:  none
+        Post: none
+        """
         for battery in self.batteries:
             battery.disconnect_all_houses()
             
-    def make_powerstar(self, x: int, y: int) -> None:
+    def make_powerstar(self, x: int, y: int) -> Battery:
         """
-        Makes an powerstar battery.
+        Makes a powerstar battery.
         
-        Pre:  two integers
-        Post: none
+        Pre:  two integers for coordinates
+        Post: battery from class Battery
         """
-        powerstar = Battery(x, y, 900.0)
-        self.batteries.append(powerstar)
+        powerstar: Battery = Battery(x, y, 900.0)
+        return powerstar
         
-    def make_immerse_2(self, x: int, y: int) -> None:
+    def make_immerse_2(self, x: int, y: int) -> Battery:
         """
         Makes an immerse 2 battery.
         
-        Pre:  two integers
-        Post: none
+        Pre:  two integers for coordinates
+        Post: battery from class Battery
         """
-        immerse_2 = Battery(x, y, 1350.0)
-        self.batteries.append(immerse_2)
+        immerse_2: Battery = Battery(x, y, 1350.0)
+        return immerse_2
         
-    def make_immerse_3(self, x: int, y: int) -> None:
+    def make_immerse_3(self, x: int, y: int) -> Battery:
         """
         Makes an immerse 3 battery.
         
-        Pre:  two integers
-        Post: none
+        Pre:  two integers for coordinates
+        Post: battery from class Battery
         """
-        immerse_3 = Battery(x, y, 1800.0)
-        self.batteries.append(immerse_3)   
+        immerse_3: Battery = Battery(x, y, 1800.0)
+        return immerse_3
         
     def calc_cost_advanced(self):
         """
@@ -301,10 +339,10 @@ class Grid:
         Post: returns an int cost
         """
         # new cost calculation for 3 types of batteries
-        for i in self.batteries:
-            if self.batteries[i].capacity == 900.0:
+        for a_battery in self.batteries:
+            if a_battery.total_capacity == 900.0:
                 self.cost += 450
-            elif self.batteries[i].capacity == 1350.0:
+            elif a_battery.total_capacity == 1350.0:
                 self.cost += 900
             else:
                 self.cost += 1800
@@ -313,3 +351,43 @@ class Grid:
             self.cost += (len(house.cables) - 1) * 9
 
         return self.cost
+    
+    def initialize_advanced_batteries(self) -> list[Battery]:
+        """
+        Generates advanced batteries such that there is enough
+        capacity.
+        
+        Pre:  none
+        Post: none
+        """
+        
+        batteries: list[Battery] = []
+        
+        needed_capacity: float = self.total_maxoutput
+        
+        print(needed_capacity)
+        
+        while needed_capacity > 0:
+            # get x and y coordinate that is not occupied by house
+            while True:
+                new_x = random.randrange(0, 50)
+                new_y = random.randrange(0, 50)
+                
+                if self.is_coordinates_free(new_x, new_y):
+                    self.add_used_coordinates(new_x, new_y)
+                    break
+            
+            # chooses randomly which battery to add
+            new_battery: str = random.choice(["p", "i_2", "i_3"])
+            if new_battery == "p":
+                another_battery = self.make_powerstar(new_x, new_y)
+                needed_capacity -= 450.0
+            elif new_battery == "i_2":
+                another_battery = self.make_immerse_2(new_x, new_y)
+                needed_capacity -= 900.0
+            else:
+                another_battery = self.make_immerse_3(new_x, new_y)
+                needed_capacity -= 1800.0
+            batteries.append(another_battery)
+            print("done")
+        return batteries
