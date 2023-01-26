@@ -66,4 +66,10 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
 
 [Home Page](https://icons8.com/icon/103183/home-page) icon by [Icons8](https://icons8.com)
 
-[Battery](https://icons8.com/icon/Vw6xKWsHOBPo/battery) icon by [Icons8](https://icons8.com)
+[Normal battery](https://icons8.com/icon/Vw6xKWsHOBPo/battery) icon by [Icons8](https://icons8.com)
+
+[PowerStar battery](https://icons8.com/icon/Sy5Roz5qTmgs/battery) icon by [Icons8](https://icons8.com)
+
+[Imerse-II battery](https://icons8.com/icon/nhowbLkfABQB/battery) icon by [Icons8](https://icons8.com)
+
+[Imerse-III battery](https://icons8.com/icon/09kDf3bDCwgu/battery) icon by [Icons8](https://icons8.com)

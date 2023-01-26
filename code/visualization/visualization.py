@@ -79,13 +79,42 @@ def display_batteries(ax, batteries: list[Battery]) -> None:
           coordinates
     """
 
-    # load battery image
-    battery_path: str = "data/images/battery.png"
-    battery_imagebox = load_imagebox(battery_path, 0.4)
+    # load battery images
+    battery_image_boxes = load_battery_images()
 
     # loop through batteries and display
     for battery in batteries:
-        display_battery(ax, battery, battery_imagebox)
+        # choose the correct battery image
+        if battery.total_capacity in battery_image_boxes.keys():
+            battery_image = battery_image_boxes[battery.total_capacity]
+        else:
+            battery_image = battery_image_boxes[0]
+
+        # display the battery
+        display_battery(ax, battery, battery_image)
+
+
+def load_battery_images() -> dict[int, OffsetImage]:
+    paths = [
+        "data/images/battery.png",
+        "data/images/Powerstar.png",
+        "data/images/Immerse-II.png",
+        "data/images/Immerse-III.png",
+    ]
+
+    capacities = [
+        0,
+        450,
+        900,
+        1800,
+    ]
+
+    battery_image_boxes = {}
+
+    for i, path in enumerate(paths):
+        battery_image_boxes[capacities[i]] = load_imagebox(path, 0.4)
+
+    return battery_image_boxes
 
 
 def display_battery(ax, battery: Battery,
