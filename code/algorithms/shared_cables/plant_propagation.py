@@ -20,9 +20,9 @@ def plant_propagation(grid: Grid) -> Grid:
     n_roots = 8
     min_runners = 2
     max_runners = 5
-    min_changes = 1
-    max_changes = 20
-    n_generations = 100
+    min_changes = 10
+    max_changes = 50
+    n_generations = 20
     print_stuff = True
     plot_stuff = True
 
@@ -70,17 +70,19 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
     start_roots: list[Grid] = []
 
     # repeat n_roots times
-    for _ in range(n_roots * 50):
+    for _ in range(n_roots * 5):
         # make a copy of the grid
         tmp_grid: Grid = deepcopy(grid)
 
-        # make random connections
-        tmp_grid = add_random_connections(tmp_grid)
+        # # make random connections
+        # tmp_grid = add_random_connections(tmp_grid)
 
-        # resolve errors untill grid is valid
-        while valid_solution(tmp_grid) is False:
-            resolve_error(tmp_grid)
-        
+        # # resolve errors untill grid is valid
+        # while valid_solution(tmp_grid) is False:
+        #     resolve_error(tmp_grid)
+
+        tmp_grid = greedy(tmp_grid)
+
         # lay the shared cables
         tmp_grid.lay_shared_cables()
 
@@ -143,7 +145,7 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
     # run the process to get the runners list
     runners: list[Grid] = p.starmap(make_change, work)
 
-    return runners
+    return root_grids + runners
 
 
 def calculate_cost(grid: Grid, shared_cables: bool) -> int:

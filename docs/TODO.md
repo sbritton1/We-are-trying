@@ -1,5 +1,5 @@
 Sander:
-- Plant propagation parents houden
+- Plant propagation parameters tweaken
 - greedy shared:
     - vind dichtsbijzijnde huis van batterij en de al verbonden huizen
 - clustering meerdere keren runnen en dan kijken welke het beste resultaat geeft met greedy
