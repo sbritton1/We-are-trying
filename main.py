@@ -48,7 +48,10 @@ def main(district: str, algorithm_name: str) -> None:
 
     # =============== CHOOSE METHOD(S) OF OUTPUT =================
 
+    # converts the output to a JSON file at filepath /results/output.json
     to_json(grid, cable_type)
+
+    # visualises the grid in a matplotlib window
     visualize(grid)
 
 

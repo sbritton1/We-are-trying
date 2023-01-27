@@ -39,7 +39,7 @@ class Grid:
 
             self.max_x, self.max_y = self.size_grid()
             
-            self.batteries = self.initialize_advanced_batteries()
+            self.batteries = self.read_batteries(file_batteries)
 
     def read_batteries(self, filename: str) -> list[Battery]:
         """

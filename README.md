@@ -28,15 +28,21 @@ Voor `district` kan je 0 t/m 4 invullen en voor `algorithm` kan je kiezen uit ee
 - greedy
 - sd_hill_climber
 - baseline_shared
+- greedy_shared
 - hill_climber_shared
 - sd_hill_climber_shared
 - simulated_annealing
+- plant_propagation
+- hill_climber_battery
+- clustering
 
-Na het runnen zou een matplotlib venster moeten openen met de verbonden Smart Grid, zoals het voorbeeld hieronder.
+Standaard wordt het resultaat opgeslagen in een JSON bestand te vinden op `/results/output.json`. Daarnaast wordt het ook gevisualiseerd in een matplotlib venster. Deze output methodes kunnen worden uitgeschakeld door de desbetreffende regel te commenten in regels 51 t/m 55 in main.py.
 
-![](results/BestOf10%20district1%20simulated%20annealing.png)
+De visualisatie zou er ongeveer zo uit moeten komen te zien:
 
-Resultaten van runs worden opgeslagen in een json bestand in de results folder. Om deze te visualiseren kan het volgende commando gebruikt worden:
+![](docs/images/example_grid.png)
+
+Om de eerdere resultaten die opgeslagen zijn een JSON bestand te visualiseren kan het volgende commando gebruikt worden:
 
 ```bash
 python3 visualize_json.py [FILEPATH]

@@ -8,7 +8,6 @@ Nice-to-have:
 - PPA met plaatsen van batterijen
 
 MUST:
-- technische beschrijving afronden
 - README updaten
 - maak experiment.md:
   - maak structuur

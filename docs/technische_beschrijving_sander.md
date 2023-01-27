@@ -45,21 +45,14 @@ Daarnaast geeft het algoritme ook geen geweldige resultaten. Dit komt denk ik vo
 #### Commits
 Hier zal ik een overzicht geven van de commits die betrekking hebben op de PPA.
 
-- [Main commit](https://github.com/sbritton1/We-are-trying/commit/63a20729fdb01661cd65c255c8d8b689a99617d9):
-  - Hierin heb ik eigenlijk bijna het hele algoritme geschreven.
+- [Main commit](https://github.com/sbritton1/We-are-trying/commit/63a20729fdb01661cd65c255c8d8b689a99617d9): Hierin heb ik eigenlijk bijna het hele algoritme geschreven.
 - Kleine aanpassingen/toevoegingen:
-  - [Functie opgesplitst](https://github.com/sbritton1/We-are-trying/commit/90f249c36c54a3002a7d81b4c155987ac20a465e):
-    - Het verkrijgen van de start roots heb ik hier in een aparte functie gezet.
-  - [Flake8](https://github.com/sbritton1/We-are-trying/commit/d070019a702ae32675d6f84ebd7810986f77cb6a):
-    - Na het runnen van flake8 op plant_propagation.py heb ik de errors bijna allemaal weggekregen.
-  - [Small changes](https://github.com/sbritton1/We-are-trying/commit/284bb4a4a888f31144402a0cb54ca2f533ceac3a):
-    - Hier heb ik wat missende type hints toegevoegd, aan flake8 gewerkt en er voor gezorgd dat het algoritme alleen print als de variable `print_stuff` True is.
-  - [Aantal start roots apart tunable](https://github.com/sbritton1/We-are-trying/commit/b3e61d87c40d36be9bdd9f2e941202ec14454e1b):
-    - Ik heb er voor gezorgd dat het aantal start roots van een generatie niet meer afhankelijk was van het maximale aantal runners.
-  - [Plot van results](https://github.com/sbritton1/We-are-trying/commit/9c1fb089da5ad42767c1e9b20daa3768f9eb584d):
-    - Toegevoegd dat als `plot_stuff` True is, dat er een plot wordt gemaakt met de beste root van elke generatie.
-  - [Houden van parents bij een nieuwe generatie](https://github.com/sbritton1/We-are-trying/commit/618b1fcdc99b5ba879666b54b13fd12c70dd8703):
-    - Hierna werden de parents van een generatie ook meegenomen in het bepalen van de beste roots voor de volgende generatie.
+  - [Functie opgesplitst](https://github.com/sbritton1/We-are-trying/commit/90f249c36c54a3002a7d81b4c155987ac20a465e): Het verkrijgen van de start roots heb ik hier in een aparte functie gezet.
+  - [Flake8](https://github.com/sbritton1/We-are-trying/commit/d070019a702ae32675d6f84ebd7810986f77cb6a): Na het runnen van flake8 op plant_propagation.py heb ik de errors bijna allemaal weggekregen.
+  - [Small changes](https://github.com/sbritton1/We-are-trying/commit/284bb4a4a888f31144402a0cb54ca2f533ceac3a): Hier heb ik wat missende type hints toegevoegd, aan flake8 gewerkt en er voor gezorgd dat het algoritme alleen print als de variable `print_stuff` True is.
+  - [Aantal start roots apart tunable](https://github.com/sbritton1/We-are-trying/commit/b3e61d87c40d36be9bdd9f2e941202ec14454e1b): Ik heb er voor gezorgd dat het aantal start roots van een generatie niet meer afhankelijk was van het maximale aantal runners.
+  - [Plot van results](https://github.com/sbritton1/We-are-trying/commit/9c1fb089da5ad42767c1e9b20daa3768f9eb584d): Toegevoegd dat als `plot_stuff` True is, dat er een plot wordt gemaakt met de beste root van elke generatie.
+  - [Houden van parents bij een nieuwe generatie](https://github.com/sbritton1/We-are-trying/commit/618b1fcdc99b5ba879666b54b13fd12c70dd8703): Hierna werden de parents van een generatie ook meegenomen in het bepalen van de beste roots voor de volgende generatie.
 
 ## JSON Visualisatie
 Voor de JSON visualisatie is er niet heel veel anders uitgepakt dan verwacht. Het enige wat echt anders is uitgepakt is het feit dat ik twee bestanden heb aangemaakt. Een soort 'main' file in de root folder van de repository en een file in de /code/visualization die de daadwerkelijke functies heeft.
@@ -74,8 +67,6 @@ Het later kunnen visualiseren van JSON bestanden is vaak nog erg handig gebleken
 ### Commits
 Hier zal ik een overzicht geven van de commits die betrekking hebben op de JSON visualisatie.
 
-- [Main commit](https://github.com/sbritton1/We-are-trying/commit/e6597a886105e782ee3806d7502bf23f7c81e396):
-  - Hier heb ik vrijwel het hele programma geschreven.
+- [Main commit](https://github.com/sbritton1/We-are-trying/commit/e6597a886105e782ee3806d7502bf23f7c81e396): Hier heb ik vrijwel het hele programma geschreven.
 - Kleine aanpassingen/toevoegingen:
-  - [Documentatie + opschonen](https://github.com/sbritton1/We-are-trying/commit/c3ac3298281f5ecad5223db3d632ed408b902901):
-    - Docstrings aan de functies en methods toegevoegd en code opgeschoond.
+  - [Documentatie + opschonen](https://github.com/sbritton1/We-are-trying/commit/c3ac3298281f5ecad5223db3d632ed408b902901): Docstrings aan de functies en methods toegevoegd en code opgeschoond.
