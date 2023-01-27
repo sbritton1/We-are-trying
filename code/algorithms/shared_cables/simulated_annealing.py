@@ -26,7 +26,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(8):
+    for i in range(50):
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)

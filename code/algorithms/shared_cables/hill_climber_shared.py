@@ -8,7 +8,6 @@ from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.find_random_houses import find_random_houses
 from ..own_cables.greedy import greedy
 
-
 import copy
 import multiprocessing
 import matplotlib.pyplot as plt
@@ -33,7 +32,7 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
         tmp_grid = copy.deepcopy(grid)
 
         if fill is True:
-            tmp_grid = add_random_connections(tmp_grid)
+            tmp_grid = greedy(tmp_grid)
 
             # make sure the grid already is a valid solution
             while valid_solution(tmp_grid) is False:

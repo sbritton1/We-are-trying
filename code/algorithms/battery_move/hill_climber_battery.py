@@ -13,7 +13,7 @@ def init_hill_climber_battery(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for _ in range(6):
+    for _ in range(50):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -26,7 +26,7 @@ def init_hill_climber_battery(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 6
+    workers: int = 8
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_battery, grids))
 
@@ -63,7 +63,6 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
     iteration: int = 0
 
     while iteration - last_improvement < 100 and iteration < 1000:
-        print(iteration)
         tmp_grid: Grid = copy.deepcopy(grid)
         move_battery(tmp_grid)
         tmp_grid.remove_all_connections()
@@ -73,13 +72,13 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
 
         if new_cost < org_cost:
             grid = tmp_grid
-            print(new_cost)
             costs.append(new_cost)
             org_cost = new_cost
             last_improvement = iteration
 
         iteration += 1
 
+    print(costs[-1])
     return grid, costs
 
 
