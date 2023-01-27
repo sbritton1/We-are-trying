@@ -52,7 +52,7 @@ Het programma kan worden gerund door de main.py file te runnen. Hiervoor moeten 
 python3 main.py [DISTRICT] [ALGORITHM]
 ```
 
-Voor `district` kan je 0 t/m 4 invullen en voor `algorithm` kan je kiezen uit een van de volgende algoritmes:
+Voor `DISTRICT` kan je 0 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit een van de volgende algoritmes([hier](#algoritmes) meer info):
 - baseline
 - greedy
 - sd_hill_climber
@@ -94,6 +94,53 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
 - /docs: bevat de verslagen voor dit project
 - /results: bevat de resultaten van eerdere runs geordend
 
+## Algoritmes
+
+Hier bespreken we de algoritmes die we hebben.
+
+### Baseline
+
+[Hier](docs/baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`.
+
+WAT INVULLEN VOOR BASELINE SHARED
+
+### Greedy
+
+WAT INVULLEN VOOR GREEDY
+
+WAT INVULLEN VOOR GREEDY SHARED
+
+### Hill Climber
+
+WAT INVULLEN VOOR HILL CLIMBER
+
+### Steepest Descent Hill Climber
+
+WAT INVULLEN VOOR SD HILL CLIMBER
+
+WAT INVULLEN VOOR SD HILL CLIMBER SHARED
+
+### Simulated Annealing
+
+WAT INVULLEN VOOR SIMULATED ANNEALING
+
+### Plant Propagation Algorithm
+
+WAT INVULLEN VOOR PLANT PROPAGATION ALGORITHM
+
+### Hill Climber Moveable Battery
+
+WAT INVULLEN VOOR HILL CLIMBER BATTERY
+
+### Clustering
+
+WAT INVULLEN VOOR CLUSTERING
+
+
+## Experimenteren
+
+Documentatie van onze experimenten met de verschillende algoritmes is [hier](docs/experiment.md) te vinden.
+
 ## Auteurs
 
 - Xander Broos
@@ -103,7 +150,11 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
 ## Credits
 
 [Home Page](https://icons8.com/icon/103183/home-page) icon by [Icons8](https://icons8.com)
+
 [Normal battery](https://icons8.com/icon/Vw6xKWsHOBPo/battery) icon by [Icons8](https://icons8.com)
+
 [PowerStar battery](https://icons8.com/icon/Sy5Roz5qTmgs/battery) icon by [Icons8](https://icons8.com)
+
 [Imerse-II battery](https://icons8.com/icon/nhowbLkfABQB/battery) icon by [Icons8](https://icons8.com)
+
 [Imerse-III battery](https://icons8.com/icon/09kDf3bDCwgu/battery) icon by [Icons8](https://icons8.com)

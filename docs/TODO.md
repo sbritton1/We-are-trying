@@ -11,7 +11,6 @@ MUST:
 - README updaten
 - maak experiment.md:
   - maak structuur
-  - link van readme naar experiment.md
 - code commenten en opschonen
 - repo opschonen
 - presentatie verbeteren
