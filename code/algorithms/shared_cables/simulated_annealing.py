@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 import random
 import copy
 import multiprocessing
+import math
 
 
 def init_simulated_annealing(grid: Grid) -> Grid:
@@ -25,11 +26,11 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(6):
+    for i in range(8):
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
-        tmp_grid = greedy(tmp_grid)
+        tmp_grid = add_random_connections(tmp_grid)
 
         # make sure the grid already is a valid solution
         while valid_solution(tmp_grid) is False:
@@ -40,7 +41,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers = amount of threads
-    workers: int = 6
+    workers: int = 8
     p = multiprocessing.Pool(workers)
     results: tuple(Grid, int) = (p.map(work, grids))
 
@@ -118,8 +119,10 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
         swap_houses(house1, house2)
 
         # lay cables again now that houses are swapped
-        tmp_grid.remove_cables()
-        tmp_grid.lay_shared_cables()
+        house1.connection.remove_cables()
+        house2.connection.remove_cables()
+        house1.connection.lay_shared_cables()
+        house2.connection.lay_shared_cables()
         new_cost = tmp_grid.calc_cost_shared()
 
         # if new cost is lower, accept the change
@@ -135,7 +138,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
 
             # make chance of acceptance based on cost difference and iteration
             else: 
-                temperature = (500 + 50 * int(iteration / 1000)) * (0.997 ** iteration)
+                temperature = 500 * (0.997 ** iteration) + ((25 / (math.sqrt(int(iteration / 1000)) + 1)) * 0.997 ** (iteration % 1000))
 
                 acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
                 if acceptation_chance > random.random():
