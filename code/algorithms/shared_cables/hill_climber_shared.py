@@ -19,7 +19,7 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     Initialises grid 8 times, then plots the results and
     returns the grid with the best solution.
 
-    Pre:  grid is of class grid
+    Pre : grid is of class grid
     Post: returns best found solution using this algorithm
     """
 
@@ -27,7 +27,7 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(6):
+    for i in range(4):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -44,7 +44,7 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers amount of threads
-    workers = 6
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(work, grids))
 
@@ -74,12 +74,12 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     Runs the simulated annealing and returns the
     grid and costs.
 
-    Pre:  grid of class grid
+    Pre : grid of class grid
     Post: tuple containing grid of class grid and integer
     """
 
     # run algorithm and return the result
-    run_algo = hill_climber_shared(tmp_grid)
+    run_algo: tuple[Grid, int] = hill_climber_shared(tmp_grid)
     tmp_grid: Grid = run_algo[0]
     costs = run_algo[1]
     print(tmp_grid.cost)
@@ -92,7 +92,7 @@ def hill_climber_shared(grid: Grid) -> Grid:
     method. This algorithm will be done a few times, to try to negate
     the randomness effect.
 
-    Pre:  grid is a class of grid
+    Pre : grid is a class of grid
     Post: grid is a class of grid
     """
 
@@ -129,15 +129,13 @@ def hill_climber_shared(grid: Grid) -> Grid:
     return tmp_grid, costs
 
 
-def change_grid_hill_climber(grid: Grid, best_cost: int):
+def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
     """
     This function tries n times to connect two different houses with two
     different batteries, to improve the current grid.
 
-    Pre:  grid is of class grid and best_cost is an integer
-    Post: returns list with 3 items, where the first item is a bool item
-          that refers to improvement of the grid. The second item is the new
-          cost as integer. The final item is the new optimised grid
+    Pre : grid is of class grid and best_cost is an integer
+    Post: tuple containing grid of class Grid and integer as cost
     """
 
     tmp_grid: Grid = copy.deepcopy(grid)
@@ -166,15 +164,13 @@ def change_grid_hill_climber(grid: Grid, best_cost: int):
     return grid_and_cost[0], grid_and_cost[1]
 
 
-def check_if_improvement(cost: int, best_cost: int, grid: Grid):
+def check_if_improvement(cost: int, best_cost: int, grid: Grid) -> tuple[Grid, int]:
     """
     Checks if the new configuration of the houses gives an improved
     solution for the grid and it also checks if it is a valid solution.
 
-    Pre:  the cost and best_cost are integers, and grid is of class Grid
-    Post: returns list with 3 items, where the first item is a bool item
-          that refers to improvement of the grid. The second item is the
-          new cost as integer. The final item is the new optimised grid
+    Pre : the cost and best_cost are integers, and grid is of class Grid
+    Post: tuple containing grid of class Grid and integer as cost
     """
 
     # checks if cost is lower than previous costs

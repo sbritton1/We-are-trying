@@ -7,6 +7,15 @@ import multiprocessing
 
 
 def init_baseline_shared(grid: Grid) -> Grid:
+    """
+    Creates a baseline for what cost we can expect, based on what
+    the cost would be if the houses are randomly connected to batteries
+    using shared cables.
+
+    Pre:  grid is of class Grid
+    Post: returns lowest cost solution as Grid
+    """
+
     iterations: int = 100000
 
     workers: int = 8
@@ -43,7 +52,7 @@ def baseline_shared(grid: Grid) -> tuple[Grid, int]:
     the cost would be if the houses are randomly connected to batteries
     and when cables can be shared.
 
-    Pre: grid is of class Grid
+    Pre : grid is of class Grid
     Post: returns lowest cost solution
     """
 
@@ -61,7 +70,8 @@ def baseline_shared(grid: Grid) -> tuple[Grid, int]:
 def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     """
     Plots a histogram of the costs of all solutions.
-    Pre: costs is a list of ints
+    
+    Pre : costs is a list of ints
     Post: displays histogram
     """
 

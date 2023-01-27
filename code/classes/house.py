@@ -11,7 +11,6 @@ class House:
         self.coord_y: int = y
         self.maxoutput: float = maxoutput
 
-        # ! attribute same name as method
         self.has_connection: bool = False
         self.connection: Optional[object] = None
         self.cables: list[str] = []
@@ -24,7 +23,7 @@ class House:
         Pre : battery of class Battery
         Post: none
         """
-        # ! Moet er niet een error worden geraised als er al een connectie is?
+
         if self.has_connection is False:
             self.has_connection = True
             self.connection = battery
@@ -36,6 +35,7 @@ class House:
         Pre : none
         Post: none
         """
+
         self.has_connection = False
         self.connection = None
 
@@ -46,6 +46,7 @@ class House:
         Pre : none
         Post: returns distance as integer
         """
+
         if self.has_connection:
             # calculates distance vertically and horizontally
             dist_x: int = abs(self.coord_x - self.connection.coord_x)
@@ -60,6 +61,7 @@ class House:
         Pre : battery of class Battery
         Post: returns an int
         """
+
         # calculates distance vertically and horizontally
         dist_x: int = abs(self.coord_x - battery.coord_x)
         dist_y: int = abs(self.coord_y - battery.coord_y)
@@ -74,6 +76,7 @@ class House:
         Pre : none
         Post: none
         """
+
         # makes sure no cables will be layed if house has no connection
         if self.has_connection is False:
             return
@@ -128,8 +131,8 @@ class House:
         """
         Sets the cables of the house to the given cables.
         
-        Pre: cables argument is a list of strings, where the strings are in the
-             shape of 'x,y'
+        Pre : cables argument is a list of strings, where the strings are in the
+              shape of 'x,y'
         Post: the cables attribute is set to the cables argument
         """
 

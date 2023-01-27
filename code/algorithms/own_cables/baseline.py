@@ -10,7 +10,7 @@ def baseline(grid: Grid) -> Grid:
     Creates a baseline for what cost we can expect, based on what
     the cost would be if the houses are randomly connected to batteries.
 
-    Pre: grid is of class Grid
+    Pre : grid is of class Grid
     Post: returns lowest cost solution
     """
 
@@ -45,7 +45,7 @@ def baseline(grid: Grid) -> Grid:
 def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     """
     Plots a histogram of the costs of all solutions.
-    Pre: costs is a list of ints
+    Pre : costs is a list of ints
     Post: displays histogram
     """
 

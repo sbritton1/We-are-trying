@@ -176,13 +176,34 @@ class Battery:
         self.coord_y = y
 
     def get_coords(self) -> tuple[int, int]:
+        """
+        Gets coordinates of battery:
+        
+        Pre : none
+        Post: tuple with two integers
+        """
+        
         return (self.coord_x, self.coord_y)
 
     def connect_home_without_load(self, house: House) -> None:
+        """
+        Connects a house to the battery.
+        
+        Pre : house of class House
+        Post: none
+        """
+        
         self.connected_homes.append(house)
         house.make_connection(self)
 
     def disconnect_all_houses(self) -> None:
+        """
+        Disconnects all houses from battery.
+        
+        Pre : none
+        Post: none
+        """
+        
         for house in self.connected_homes:
             house.delete_connection()
         self.connected_homes = []
