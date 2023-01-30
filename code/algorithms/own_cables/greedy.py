@@ -39,7 +39,7 @@ def greedy(grid: Grid) -> Grid:
     best_solution: Grid = None
 
     # makes sure solution is valid
-    for i in range(1000):
+    for i in range(100000):
         tmp_grid = copy.deepcopy(grid)
 
         resolve_try = 0
