@@ -10,7 +10,6 @@ from ..own_cables.greedy import greedy
 from ..shared_cables.hill_climber_shared import init_hill_climber_shared
 
 
-
 def clustering(grid: Grid) -> Grid:
 
     n_iterations = 10
