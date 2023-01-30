@@ -1,19 +1,17 @@
-Sander:
-- Plant propagation parameters tweaken
-- greedy shared:
-    - vind dichtsbijzijnde huis van batterij en de al verbonden huizen
-- clustering meerdere keren runnen en dan kijken welke het beste resultaat geeft met greedy
-
 Nice-to-have:
 - PPA met plaatsen van batterijen
+- trails
 
 MUST:
-- README updaten
-- maak experiment.md:
-  - maak structuur
+- experiment.md:
+  - maak lopend verhaal
+  - run nog voor battery move
 - code commenten en opschonen
 - repo opschonen
 - presentatie verbeteren
 
-Doing:
-- trails.py 
+
+
+Kleine dingetjes:
+- plant_propagation.py:
+  - haal de shared cables variable weg
