@@ -191,4 +191,3 @@ def plot_results(best_costs: list[int], grid: Grid, n_generations: int) -> None:
     plt.plot(best_costs)
     plt.xlabel("Generation")
     plt.ylabel("Best cost")
-    plt.show()

@@ -169,4 +169,3 @@ def plot_costs_graph(costs: list[int], district: str) -> None:
               f"District: {district}, Cost: {costs[-1]}")
     plt.xlabel("Iteration")
     plt.ylabel("Cost")
-    plt.show()

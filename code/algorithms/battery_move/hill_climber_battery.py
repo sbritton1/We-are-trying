@@ -7,7 +7,7 @@ import multiprocessing
 import random
 
 
-def init_hill_climber_battery(grid: Grid) -> Grid:
+def init_hill_climber_battery(grid: Grid, randomize=True) -> Grid:
     """
     Initializes grids with random battery placements and greedy solutions.
     Then calls function to move batteries to try and find a cheaper solution.
@@ -24,7 +24,10 @@ def init_hill_climber_battery(grid: Grid) -> Grid:
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
-        randomize_battery_placement(tmp_grid)
+
+        if randomize is True:
+            randomize_battery_placement(tmp_grid)
+
         tmp_grid = greedy(tmp_grid)
 
         tmp_grid.lay_shared_cables()

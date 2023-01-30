@@ -80,4 +80,3 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
     plt.ylabel("Frequency")
-    plt.show()
