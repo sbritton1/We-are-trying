@@ -51,9 +51,8 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
                 tmp_grid.lay_shared_cables()
 
             grids.append(tmp_grid)
+        
         # use multithread processing, with workers amount of threads
-        
-        
         workers: int = 4
         p = multiprocessing.Pool(workers)
         results = (p.map(work, grids))
@@ -159,27 +158,27 @@ def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
     """
 
     tmp_grid: Grid = copy.deepcopy(grid)
-    tmp_grid.remove_cables()
 
     # gets two random houses
     houses: tuple(House, House) = find_random_houses(tmp_grid)
+    
+    # removes cables  from selected batteries
+    houses[0].connection.remove_cables()
+    houses[1].connection.remove_cables()
 
     # swaps two houses if possible
     if possible_swap(houses[0], houses[1]):
         swap_houses(houses[0], houses[1])
 
-    # copy of grid
-    test_grid: Grid = copy.deepcopy(tmp_grid)
-
-    # lays cables in copy of grid
-    for battery in test_grid.batteries:
-        battery.lay_shared_cables()
+    # lays cables again
+    houses[0].connection.lay_shared_cables()
+    houses[1].connection.lay_shared_cables()
 
     # costs for the copy of the grid
-    cost: int = test_grid.calc_cost_shared()
+    cost: int = tmp_grid.calc_cost_shared()
 
     # checks for improvement
-    grid_and_cost: tuple(Grid, int) = check_if_improvement(cost, best_cost, test_grid)
+    grid_and_cost: tuple(Grid, int) = check_if_improvement(cost, best_cost, tmp_grid)
 
     return grid_and_cost[0], grid_and_cost[1]
 
