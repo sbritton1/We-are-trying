@@ -40,6 +40,7 @@ n_roots = 8
 | Simulated annealing           | 30409               | 4:03:03               | 50              | i5-12400F     |
 | Plant propagation             | 31534               | 1:40:32               | 1               | Sander laptop |
 | Greedy + hill climber         | 29752               | 1:32:00               | 24              | Xander laptop |
+| Greedy + hill climber 2.0     | 29905               | 1:01:23???            | 108             | Xander laptop |
 
 ## Batterijen verplaatsen
 

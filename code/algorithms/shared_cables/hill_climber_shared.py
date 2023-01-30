@@ -11,7 +11,6 @@ from ..own_cables.greedy import greedy
 import copy
 import multiprocessing
 import matplotlib.pyplot as plt
-import time
 
 
 def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
@@ -22,45 +21,25 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     Pre : grid is of class grid
     Post: returns best found solution using this algorithm
     """
-
-    best_costs = []
-    best_grids = []
-
-    start = time.time()
-    n_runs = 0
-    
-    while time.time() - start < 60:
         
     # create list of grids as work for multithreading
-        n = 4
-        grids: list[Grid] = []
-        
-        grids = get_grids(n, grids, grid, fill)
-
-        # use multithread processing, with workers amount of threads
-        workers: int = 4
-        p = multiprocessing.Pool(workers)
-        results = (p.map(work, grids))
-
-        solutions = get_best_solutions(results)
-
-        best_costs.append(solutions[1])
-        best_grids.append(solutions[2])
-
-    # graph how cost has decreased over time from algorithm
-    lowest_cost: int = None
+    n = 4
+    grids: list[Grid] = []
     
-    # alleen nodig voor in een uur runnen
-    for i in range(len(best_costs)):
-        if lowest_cost is None or best_grids[i].cost < lowest_cost:
-            best_solution = best_grids[i]
-            lowest_cost = best_grids[i].cost
-            # costs_best_solution = all_costs[i]
-        
+    grids = get_grids(n, grids, grid, fill)
+
+    # use multithread processing, with workers amount of threads
+    workers: int = 4
+    p = multiprocessing.Pool(workers)
+    results = (p.map(work, grids))
+
+    solutions: tuple[list[int], int, Grid] = get_best_solutions(results)
+
+    # graph how cost has decreased over time from algorithm    
     # plot_costs_graph(costs_best_solution, best_solution.district)
-    print(n_runs)
-    best_solution.remove_cables()
-    return best_solution
+    
+    solutions[2].remove_cables()
+    return solutions[2]
 
 def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple[list[int], int, Grid]:
     """
@@ -69,20 +48,19 @@ def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple[list[int], int,
     Pre : a tuple containing a grid and a list of integers
     Post: tuple containing list of integers, integer and a Grid 
     """
+    
     costs_best_solution: list[int] = []
     lowest_cost: int = None
     best_solution: Grid = None
     for result in results:
         tmp_grid: Grid = result[0]
         costs: list[int] = result[1]
-        # with open('test.txt', 'w') as f:
-        #     for row in tmp_grid:
-        #         for values in row.cost:
-        #             f.write("%i\n" % int(values))
+
         if lowest_cost is None or tmp_grid.cost < lowest_cost:
             costs_best_solution = costs
             lowest_cost = tmp_grid.cost
             best_solution = tmp_grid
+        
     all_info = (costs_best_solution, lowest_cost, best_solution)
     return all_info
 
