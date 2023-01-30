@@ -23,22 +23,9 @@ def init_baseline_shared(grid: Grid) -> Grid:
     p = multiprocessing.Pool(workers)
     results: tuple[list[Grid], int] = (p.map(baseline_shared, work))
 
-    costs = []
-    lowest_cost: int = None
-    best_solution: Grid = None
-
-    for result in results:
-        tmp_grid = result[0]
-        cost = result[1]
-
-        # store only valid solutions
-        if valid_solution(tmp_grid) is True:
-            costs.append(cost)
-
-            # track if new solution is cheapest yet
-            if lowest_cost is None or cost < lowest_cost:
-                lowest_cost = cost
-                best_solution = tmp_grid
+    final_results = analyze_results(results)
+    best_solution = final_results[0]
+    costs = final_results[1]
 
     plot_cost(costs, best_solution, iterations)
 
@@ -65,6 +52,36 @@ def baseline_shared(grid: Grid) -> tuple[Grid, int]:
     cost: int = tmp_grid.calc_cost_shared()
 
     return tmp_grid, cost
+
+
+def analyze_results(results: list[tuple[Grid, int]]) -> tuple[Grid, list[int]]:
+    """
+    Looks through results, stores final cost of each solution
+    and stores best found solution.
+
+    Pre : results is a list of a tuple of a grid and an int
+    Post: returns tuple of Grid and list of ints, where grid is
+          best solution and list of ints is list of cost of all solutions
+    """
+
+    costs = []
+    lowest_cost: int = None
+    best_solution: Grid = None
+
+    for result in results:
+        tmp_grid = result[0]
+        cost = result[1]
+
+        # store only valid solutions
+        if valid_solution(tmp_grid) is True:
+            costs.append(cost)
+
+            # track if new solution is cheapest yet
+            if lowest_cost is None or cost < lowest_cost:
+                lowest_cost = cost
+                best_solution = tmp_grid
+
+    return best_solution, costs
 
 
 def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:

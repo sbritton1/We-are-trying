@@ -32,10 +32,6 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = greedy(tmp_grid)
 
-        # if solution is not valid, make it so
-        while valid_solution(tmp_grid) is False:
-            resolve_error(tmp_grid)
-
         # run steepest descent hill climber algorithm
         tmp_grid = sd_hill_climber_shared(tmp_grid)
 
@@ -136,15 +132,11 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
                         target1 = own_work[loc1]
                         target2 = tmp_grid.houses[loc2]
 
-    # catch when target1 and target2 are still None
-    if best_improvement == 0:
-        pass
-
     # swap houses
-    else:
-        swap_houses(target1, target2)
+    if best_improvement > 0:
         target1.connection.remove_cables()
         target2.connection.remove_cables()
+        swap_houses(target1, target2)
         target1.connection.lay_shared_cables()
         target2.connection.lay_shared_cables()
 

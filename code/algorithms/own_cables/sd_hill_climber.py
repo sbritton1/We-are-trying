@@ -110,7 +110,14 @@ def calc_improvement(house1: House, house2: House) -> int:
 
 
 def plot_costs(costs: list[int], grid: Grid, n_iterations: int) -> None:
-    
+    """
+    Plts histogram of costs of solutions found using the SD hill climber
+
+    pre : costs is list of ints, grid is of class Grid
+          n_iterations is an int
+    Post: histogram is made
+    """
+
     plt.title(f"Histogram of costs (algorithm: steepest descent hill climber " + \
               f"(own cables), district: {grid.district}, iterations: {n_iterations})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)

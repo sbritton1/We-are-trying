@@ -108,9 +108,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
         tmp_grid: Grid = copy.deepcopy(grid)
 
         # get two random houses not connected to the same battery
-        two_houses: tuple[House, House] = find_random_houses(tmp_grid)
-        house1: House = two_houses[0]
-        house2: House = two_houses[1]
+        house1, house2 = find_random_houses(tmp_grid)
         
         house1.connection.remove_cables()
         house2.connection.remove_cables()
