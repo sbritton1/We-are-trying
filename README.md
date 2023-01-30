@@ -114,6 +114,10 @@ WAT INVULLEN VOOR GREEDY SHARED
 
 WAT INVULLEN VOOR HILL CLIMBER
 
+Dit algoritme maakt 1 willekeurige verandering op een random grid, en kijkt dan vervolgens of dit een betere oplossing is. Het kijkt een N aantal keer of er een verbetering is gevonden en als dit niet zo is wordt het algoritme gestopt. Als er wel een verbetering wordt gevonden, kijkt het algoritme opnieuw N keer met een willekeurige verandering of er een betere oplossing gevonden kan worden.
+
+Dit algoritme kan ook worden gecombineerd met een greedy algoritme. Dan is het initiele grid niet een random grid, maar een oplossing uit het greedy algoritme, waardoor je in het algemeen begint met een betere oplossing die dan vervolgens wordt berekend met het algoritme.
+
 ### Steepest Descent Hill Climber
 
 WAT INVULLEN VOOR SD HILL CLIMBER

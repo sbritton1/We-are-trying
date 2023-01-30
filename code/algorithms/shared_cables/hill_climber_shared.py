@@ -11,6 +11,7 @@ from ..own_cables.greedy import greedy
 import copy
 import multiprocessing
 import matplotlib.pyplot as plt
+import time
 
 
 def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
@@ -22,53 +23,73 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     Post: returns best found solution using this algorithm
     """
 
+    best_costs = []
+    best_grids = []
+
+    start = time.time()
+    n_runs = 0
+    
+    while time.time() - start < 3600:
+        
     # create list of grids as work for multithreading
-    grids: list[Grid] = []
+        grids: list[Grid] = []
 
-    # amount of grids to run algorithm on
-    for i in range(4):
+        # amount of grids to run algorithm on
+        for i in range(4):
+            n_runs += 1
 
-        # create deepcopy to not mess with original
-        tmp_grid = copy.deepcopy(grid)
+            # create deepcopy to not mess with original
+            tmp_grid = copy.deepcopy(grid)
+            
+            if fill is True:
+                tmp_grid = greedy(tmp_grid)
 
-        if fill is True:
-            tmp_grid = greedy(tmp_grid)
+                # make sure the grid already is a valid solution
+                while valid_solution(tmp_grid) is False:
+                    resolve_error(tmp_grid)
 
-            # make sure the grid already is a valid solution
-            while valid_solution(tmp_grid) is False:
-                resolve_error(tmp_grid)
+                tmp_grid.lay_shared_cables()
 
-            tmp_grid.lay_shared_cables()
+            grids.append(tmp_grid)
+        # use multithread processing, with workers amount of threads
+        
+        
+        workers: int = 4
+        p = multiprocessing.Pool(workers)
+        results = (p.map(work, grids))
 
-        grids.append(tmp_grid)
+        # keeps track of costs of all solutions
+        costs_best_solution: list[int] = []
+        lowest_cost: int = None
+        best_solution: Grid = None
 
-    # use multithread processing, with workers amount of threads
-    workers: int = 4
-    p = multiprocessing.Pool(workers)
-    results = (p.map(work, grids))
-
-    # keeps track of costs of all solutions
-    costs_best_solution: list[int] = []
-    lowest_cost: int = None
-    best_solution: Grid = None
-
-    # loop through results to find best one
-    for result in results:
-        tmp_grid: Grid = result[0]
-        costs: list[int] = result[1]
-        if lowest_cost is None or tmp_grid.cost < lowest_cost:
-            costs_best_solution = costs
-            lowest_cost = tmp_grid.cost
-            best_solution = tmp_grid
+        # loop through results to find best one
+        for result in results:
+            tmp_grid: Grid = result[0]
+            costs: list[int] = result[1]
+            if lowest_cost is None or tmp_grid.cost < lowest_cost:
+                costs_best_solution = costs
+                lowest_cost = tmp_grid.cost
+                best_solution = tmp_grid
+        best_costs.append(lowest_cost)
+        best_grids.append(best_solution)
 
     # graph how cost has decreased over time from algorithm
-    plot_costs_graph(costs_best_solution, best_solution.district)
-
+    lowest_cost: int = None
+    
+    for i in range(len(best_costs)):
+        if lowest_cost is None or best_grids[i].cost < lowest_cost:
+            best_solution = best_grids[i]
+            lowest_cost = best_grids[i].cost
+            # costs_best_solution = all_costs[i]
+        
+    # plot_costs_graph(costs_best_solution, best_solution.district)
+    print(n_runs)
     best_solution.remove_cables()
     return best_solution
 
 
-def work(tmp_grid: Grid) -> tuple[Grid, int]:
+def work(tmp_grid: Grid) -> tuple[Grid, list[int]]:
     """
     Runs the simulated annealing and returns the
     grid and costs.
@@ -85,7 +106,7 @@ def work(tmp_grid: Grid) -> tuple[Grid, int]:
     return (tmp_grid, costs)
 
 
-def hill_climber_shared(grid: Grid) -> Grid:
+def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
     """
     This is an algorithm for shared cables and it uses the hill climber
     method. This algorithm will be done a few times, to try to negate
