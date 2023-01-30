@@ -42,26 +42,15 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
         p = multiprocessing.Pool(workers)
         results = (p.map(work, grids))
 
-        # keeps track of costs of all solutions
-        costs_best_solution: list[int] = []
-        lowest_cost: int = None
-        best_solution: Grid = None
-
-        # loop through results to find best one
         solutions = get_best_solutions(results)
-        for result in results:
-            tmp_grid: Grid = result[0]
-            costs: list[int] = result[1]
-            if lowest_cost is None or tmp_grid.cost < lowest_cost:
-                costs_best_solution = costs
-                lowest_cost = tmp_grid.cost
-                best_solution = tmp_grid
-        best_costs.append(lowest_cost)
-        best_grids.append(best_solution)
+
+        best_costs.append(solutions[1])
+        best_grids.append(solutions[2])
 
     # graph how cost has decreased over time from algorithm
     lowest_cost: int = None
     
+    # alleen nodig voor in een uur runnen
     for i in range(len(best_costs)):
         if lowest_cost is None or best_grids[i].cost < lowest_cost:
             best_solution = best_grids[i]
@@ -73,7 +62,7 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     best_solution.remove_cables()
     return best_solution
 
-def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple(list[int], int, Grid):
+def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple[list[int], int, Grid]:
     """
     Gets the best solutions from all the runs.
     
@@ -86,11 +75,16 @@ def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple(list[int], int,
     for result in results:
         tmp_grid: Grid = result[0]
         costs: list[int] = result[1]
+        # with open('test.txt', 'w') as f:
+        #     for row in tmp_grid:
+        #         for values in row.cost:
+        #             f.write("%i\n" % int(values))
         if lowest_cost is None or tmp_grid.cost < lowest_cost:
             costs_best_solution = costs
             lowest_cost = tmp_grid.cost
             best_solution = tmp_grid
-    return costs_best_solution, lowest_cost, best_solution
+    all_info = (costs_best_solution, lowest_cost, best_solution)
+    return all_info
 
 
 def get_grids(n, grids, grid, fill) -> list[Grid]:
