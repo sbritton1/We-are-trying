@@ -89,7 +89,6 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
 
     """
 
-    org_cost: int = grid.cost
     costs: list[int] = []
     last_improvement: int = 0
     iteration: int = 0
@@ -106,10 +105,9 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
         new_cost = tmp_grid.calc_cost_shared()
 
         # replace grid if change creates cheaper solution
-        if new_cost < org_cost:
+        if new_cost < grid.cost:
             grid = tmp_grid
             costs.append(new_cost)
-            org_cost = new_cost
             last_improvement = iteration
 
         iteration += 1

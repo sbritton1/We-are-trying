@@ -1,8 +1,5 @@
 from .house import House
 from .battery import Battery
-import numpy as np
-import sys
-from typing import Union
 import random
 
 class Grid:

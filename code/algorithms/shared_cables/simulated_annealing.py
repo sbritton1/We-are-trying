@@ -3,9 +3,10 @@ from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
-from ..own_cables.greedy import greedy
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
+from ...helper_functions.find_random_houses import find_random_houses
+from ..own_cables.greedy import greedy
 import matplotlib.pyplot as plt
 import random
 import copy
@@ -26,7 +27,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(50):
+    for i in range(4):
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
@@ -41,7 +42,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers = amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results: tuple(Grid, int) = (p.map(work, grids))
 
@@ -101,58 +102,63 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     costs: list[int] = []
     last_update: int = 0
 
-    for iteration in range(10000):
+    for iteration in range(15000):
 
         # create deepcopy to make temporary changes
         tmp_grid: Grid = copy.deepcopy(grid)
 
         # get two random houses not connected to the same battery
-        while True:
-            house1: House = random.choice(tmp_grid.houses)
-            house2: House = random.choice(tmp_grid.houses)
-            while house2.connection == house1.connection:
-                house2: House = random.choice(tmp_grid.houses)
-
-            if possible_swap(house1, house2) is True:
-                break
-
+        two_houses: tuple[House, House] = find_random_houses(tmp_grid)
+        house1: House = two_houses[0]
+        house2: House = two_houses[1]
+        
+        house1.connection.remove_cables()
+        house2.connection.remove_cables()
         swap_houses(house1, house2)
 
         # lay cables again now that houses are swapped
-        house1.connection.remove_cables()
-        house2.connection.remove_cables()
         house1.connection.lay_shared_cables()
         house2.connection.lay_shared_cables()
         new_cost = tmp_grid.calc_cost_shared()
 
         # if new cost is lower, accept the change
-        if new_cost < cost_grid:
+        if pass_change(cost_grid, new_cost, iteration) is True:
             grid = tmp_grid
             cost_grid = new_cost
             last_update = iteration
 
-        else:
-            # dont accept changes way over the original grid cost
-            if new_cost > org_cost * 1.1:
-                pass
-
-            # make chance of acceptance based on cost difference and iteration
-            else: 
-                temperature = 500 * (0.997 ** iteration) + ((25 / (math.sqrt(int(iteration / 1000)) + 1)) * 0.997 ** (iteration % 1000))
-
-                acceptation_chance = 2 ** ((cost_grid - new_cost) / temperature)
-                if acceptation_chance > random.random():
-                    grid = tmp_grid
-                    cost_grid = new_cost
-                    last_update = iteration
-
         # break if no more improvements have been found in a while
-        if iteration - last_update == 300:
+        if iteration - last_update == 500:
             break
 
         costs.append(cost_grid)
 
     return grid, costs
+
+
+def pass_change(org_cost: int, new_cost: int, iteration: int) -> bool:
+    """
+    Checks if a change should be accepted, based on the new cost
+    of the grid, the original cost and a temperature function depending
+    on the iteration.
+
+    Pre : org_cost, new_cost and iteration are integers
+    Post: returns True if change should be accepted
+          else return False
+    """
+
+    if new_cost < org_cost:
+        return True
+
+    # dont accept changes way over the original grid cost
+    elif new_cost > org_cost * 1.1:
+        return False
+
+    else:
+        temperature = 500 * (0.997 ** iteration) + ((25 / (math.sqrt(int(iteration / 1000)) + 1)) * 0.997 ** (iteration % 1000))
+        acceptation_chance = 2 ** ((org_cost - new_cost) / temperature)
+        if acceptation_chance > random.random():
+            return True
 
 
 def plot_costs_graph(costs: list[int], district: str) -> None:

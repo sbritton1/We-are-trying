@@ -35,30 +35,10 @@ def greedy(grid: Grid) -> Grid:
         battery.connect_home(house)
         unconnected.remove(minimum[1])
     
-    best_cost: int = 100000
-    best_solution: Grid = None
+    if valid_solution(grid) is False:
+        grid = find_best_resolve_error(grid)
 
-    # makes sure solution is valid
-    for i in range(100000):
-        tmp_grid = copy.deepcopy(grid)
-
-        resolve_try = 0
-
-        while valid_solution(tmp_grid) is False and resolve_try < 10:
-            resolve_error(tmp_grid)
-            resolve_try += 1
-
-        cost = tmp_grid.calc_cost_normal()
-        if valid_solution(tmp_grid) is False:
-            pass
-        elif cost < best_cost:
-            best_cost = cost
-            best_solution = tmp_grid
-
-    # calculate cost of solution
-    best_solution.calc_cost_shared()
-
-    return best_solution
+    return grid
 
 
 def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Any, Any]:
@@ -87,3 +67,36 @@ def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Any, Any]:
                 minimum = (battery, i)
 
     return minimum
+
+
+def find_best_resolve_error(grid: Grid) -> Grid:
+    """
+    If an error needs to be resolved, this function will try to
+    resolve it multiple times and will return the best found solution.
+
+    Pre : grid is of class Grid
+    Post: returns Grid of valid solution
+    """
+
+    best_cost: int = 100000
+    best_solution: Grid = None
+
+    for i in range(1000):
+        tmp_grid = copy.deepcopy(grid)
+
+        resolve_try = 0
+
+        # occasionally a valid solution won't be found, so try max 10 times
+        while valid_solution(tmp_grid) is False and resolve_try < 10:
+            resolve_error(tmp_grid)
+            resolve_try += 1
+
+        # store result if it is an improvement
+        cost = tmp_grid.calc_cost_normal()
+        if valid_solution(tmp_grid) is False:
+            pass
+        elif cost < best_cost:
+            best_cost = cost
+            best_solution = tmp_grid
+
+    return best_solution
