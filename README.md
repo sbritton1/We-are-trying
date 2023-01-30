@@ -132,7 +132,21 @@ Iedere duizend stappen van de simulated annealing wordt de temperatuur iets omho
 
 ### Plant Propagation Algorithm
 
-WAT INVULLEN VOOR PLANT PROPAGATION ALGORITHM
+Plant Propagation Algorithm (PPA) is een population-based algorithm gebaseerd op de propagatie van een aardbeienplant ([bron](https://www.researchgate.net/publication/252321319_Nature-Inspired_Optimisation_Approaches_and_the_New_Plant_Propagation_Algorithm)). Voor onze case hebben we het zo geïmplementeerd dat we beginnen met een aantal willekeurige oplossingen van de grid. Deze oplossingen zijn onze eerste generatie. Deze krijgen elk een fitness score tussen de 0 en 1 op basis van hun kosten vergeleken met de rest van de populatie. Hiervoor wordt de volgende formule gebruikt:
+
+$$fitness(cost) = \frac{cost_{max} - cost}{cost_{max} - cost_{min}}$$
+
+Hierbij zijn $$cost_{max}$$ en $$cost_{min}$$ de maximale en minimale cost van de huidige generatie. 
+
+Op basis van deze fitness worden het aantal runners en het aantal aanpassingen berekend. Het aantal runners bepaald hoe veel kinderen een parent krijgt en het aantal aanpassingen bepaalt hoe veel deze kinderen verschillen van de parent. Een aanpassing is een wisseling van connecties bij twee willekeurige huizen, waarbij deze aanpassing nog steeds een valide oplossing geeft. De volgende formules worden gebruikt voor het bepalen van het aantal runners en het aantal aanpassingen:
+
+$$n_{runners}(fitness) = \lceil fitness \cdot (n_{runners_{max}} - n_{runners_{min}}) \rceil + n_{runners_{min}}$$
+
+$$n_{changes}(fitness) = \lceil (1 - fitness) \cdot (n_{changes_{max}} - n_{changes_{min}}) \rceil + n_{changes_{min}}$$
+
+$$n_{runners_{min}}$$, $$n_{runners_{max}}$$, $$n_{changes_{min}}$$ en $$n_{changes_{max}}$$ zijn parameters van het algoritme. 
+
+Van deze nieuwe generatie (inclusief de parents) worden de beste bewaard. Hier kan vervolgens een nieuwe generatie mee worden gemaakt. Dit wordt herhaald tot er een bepaald aantal keer geen verbetering wordt gevonden of tot een maximaal aantal generaties. 
 
 ### Hill Climber Moveable Battery
 

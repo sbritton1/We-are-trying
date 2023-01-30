@@ -18,17 +18,28 @@ intro
 
 intro
 
+### Plant Propagation Algorithm
+
+227 generaties gerund met beste cost 31534. 
+n_roots = 8
+    min_runners = 2
+    max_runners = 6
+    min_changes = 1
+    max_changes = 8
+    n_generations = 300
+    max_times_no_improvement = 20
+
 ### Resultaten
 
-| **Algoritme**                 | **Beste resultaat** | **Runtime** | **Aantal runs** | **PC**        | **Parameters** |
-|-------------------------------|---------------------|-------------|-----------------|---------------|----------------|
-| baseline                      | 34306               | 7:44:00     | 100000          | i7-9750H      |                |
-| greedy                        | 30562               | 0:04:01     | 100000          | i7-9750H      |                |
-| hill climber                  | 30724               | 2:04:16     | 40              | Xander laptop |                |
-| steepest descent hill climber | 31534               | 7:47:45     | 1               | i5-12400F     |                |
-| simulated annealing           | 30409               | 4:03:03     | 50              | i5-12400F     |                |
-| plant propagation             |                     |             |                 |               |                |
-| greedy + hill climber         | 29752               | 1:32:00     | 24              | Xander laptop |                |
+| **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC**        |
+|-------------------------------|---------------------|-----------------------|-----------------|---------------|
+| Baseline                      | 34306               | 7:44:00               | 100000          | i7-9750H      |
+| Greedy                        | 30562               | 0:04:01               | 100000          | i7-9750H      |
+| Hill climber                  | 30724               | 2:04:16               | 40              | Xander laptop |
+| Steepest descent hill climber | 31534               | 7:47:45               | 1               | i5-12400F     |
+| Simulated annealing           | 30409               | 4:03:03               | 50              | i5-12400F     |
+| Plant propagation             | 31534               | 1:40:32               | 1               | Sander laptop |
+| Greedy + hill climber         | 29752               | 1:32:00               | 24              | Xander laptop |
 
 ## Batterijen verplaatsen
 
