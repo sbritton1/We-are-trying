@@ -15,7 +15,7 @@ def baseline(grid: Grid) -> Grid:
     """
 
     # set the amount of iterations
-    n_iterations: int = 10000
+    n_iterations: int = 100000
 
     # keeps track of costs of all solutions
     costs: list[int] = []

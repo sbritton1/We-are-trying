@@ -8,11 +8,11 @@ intro
 
 ### Resultaten
 
-| **Algoritme**                 | **Beste resultaat** | **Runtime** | **CPU**  | **Parameters** |
-|-------------------------------|---------------------|-------------|----------|----------------|
-| random                        | 70225               | 0:00:00     | i7-9750H | /              |
-| greedy                        | 56923               | 0:00:00     | i7-9750H | /              |
-| steepest descent hill climber | 56320               | 0:00:01     | i7-9750H | /              |
+| **Algoritme**                 | **Beste resultaat** | **Runtime** | **Aantal runs** | **PC**   | **Parameters** |
+|-------------------------------|---------------------|-------------|-----------------|----------|----------------|
+| random                        | 70225               | 0:04:11     | 100000          | i7-9750H | /              |
+| greedy                        | 56905               | 0:03:54     | 100000          | i7-9750H | /              |
+| steepest descent hill climber | 56266               | 0:10:46     | 1000            | i7-9750H | /              |
 
 ## Gedeelde kabels
 
