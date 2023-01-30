@@ -118,23 +118,50 @@ class Battery:
                 dir_y = -1
 
             # adds all cables along the y-axis
-            for new_y in range(min_house.coord_y, min_cable_y, dir_y):
-                new_cable = f"{min_house.coord_x},{new_y + dir_y}"
-                min_house.cables.append(new_cable)
-                self.cables.add(new_cable)
+            # for new_y in range(min_house.coord_y, min_cable_y, dir_y):
+            #     new_cable = f"{min_house.coord_x},{new_y + dir_y}"
+            #     min_house.cables.append(new_cable)
+            #     self.cables.add(new_cable)
 
+            self.add_cables_y_axis(min_house, min_cable_y, dir_y)
             # checks if cable to the left or to the right
             dir_x = 1
             if min_house.coord_x - min_cable_x > 0:
                 dir_x = -1
 
+            self.add_cables_x_axis(min_house, min_cable_x, min_cable_y, dir_x)
             # adds all cables along the x-axis
-            for new_x in range(min_house.coord_x, min_cable_x, dir_x):
-                new_cable = f"{new_x + dir_x},{min_cable_y}"
-                min_house.cables.append(new_cable)
-                self.cables.add(new_cable)
+            # for new_x in range(min_house.coord_x, min_cable_x, dir_x):
+            #     new_cable = f"{new_x + dir_x},{min_cable_y}"
+            #     min_house.cables.append(new_cable)
+            #     self.cables.add(new_cable)
 
             unconnected.remove(loc_in_list)
+
+    def add_cables_x_axis(self, min_house: House, min_cable_x: int, min_cable_y: int, dir: int) -> None:
+        """
+        Lays cables along the x_axis.
+        
+        Pre : house from class House, and three integers
+        Post: none
+        """
+        for new_x in range(min_house.coord_x, min_cable_x, dir):
+            new_cable = f"{new_x + dir},{min_cable_y}"
+            min_house.cables.append(new_cable)
+            self.cables.add(new_cable)
+
+
+    def add_cables_y_axis(self, min_house: House, end_coord: int, dir: int) -> None:
+        """
+        Lays cables along the y_axis.
+        
+        Pre : house from class House, and two integers
+        Post: none
+        """
+        for new_y in range(min_house.coord_y, end_coord, dir):
+            new_cable = f"{min_house.coord_x},{new_y + dir}"
+            min_house.cables.append(new_cable)
+            self.cables.add(new_cable)
 
     def calc_distance(self, house: House, cable: str) -> int:
         """
