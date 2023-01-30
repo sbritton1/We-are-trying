@@ -106,9 +106,9 @@ WAT INVULLEN VOOR BASELINE SHARED
 
 ### Greedy
 
-WAT INVULLEN VOOR GREEDY
+Greedy verbindt constant het nog niet verbonden huis, die het dichtste bij een batterij staat met voldoende capaciteit om de verbinding aan te kunnen gaan. Omdat via deze methode niet altijd alle huizen verbonden zullen worden, wordt de functie resolve_error() aangeroepen, die huizen gaat wisselen tot alle huizen wel verbonden zijn. Vanwege de randomness in de resolve_error(), kan greedy dit meerdere keren proberen aan te roepen, en bewaart het alleen de goedkoopst gevonden oplossing.
 
-WAT INVULLEN VOOR GREEDY SHARED
+Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de gedeelde kabels neerlegt en hiervan de kosten berekent.
 
 ### Hill Climber
 
@@ -120,13 +120,15 @@ Dit algoritme kan ook worden gecombineerd met een greedy algoritme. Dan is het i
 
 ### Steepest Descent Hill Climber
 
-WAT INVULLEN VOOR SD HILL CLIMBER
+De steepest descent hill climber probeert elke combinatie van mogelijke swaps van twee huizen waarbij de capaciteit van beide batterijen niet overschreden wordt. Van elke swap berekent het de verbetering in kosten door de manhattan distance tussen de nieuwe verbindingen van twee huizen en de twee batterijen te berekenen en te vergelijken met de prijs van voor de swap. Als elke combinatie is geprobeerd, wordt de swap tussen twee huizen uitgevoerd die de kosten het meest verlaagt. Het algoritme stopt wanneer geen verbetering meer kan worden gevonden.
 
-WAT INVULLEN VOOR SD HILL CLIMBER SHARED
+De steepest descent hill climber voor shared cables werkt op eenzelfde manier, behalve dat bij iedere mogelijke swap tussen twee huizen, de kabels van de twee batterijen betrokken compleet opnieuw neergelegd moeten worden. Vervolgens berekent het algoritme de kosten van de nieuwe gelegde kabels en vergelijkt dit met de originele kosten. Uiteindelijk worden dan de twee huizen geswapt, die ervoor zorgen dat de kosten tussen twee huizen zoveel mogelijk verlaagt worden. Dit blijft zich herhalen tot er geen verbetering meer kan worden gevonden.
 
 ### Simulated Annealing
 
-WAT INVULLEN VOOR SIMULATED ANNEALING
+Simulated annealing is een versie van een hill climber, waarin ook sommige verslechteringen kunnen worden doorgevoerd. Door middel van een "temperatuursfunctie" wordt bepaald hoe groot de kans is dat een verslechtering wordt geaccepteerd. De temperatuursfunctie begint hoog, wat ervoor zorgt dat er een grote kans is dat een verslechtering wordt geaccepteerd, en vervolgens daalt de temperatuur over tijd. Ook is de kans dat een grotere verslechtering wordt geaccepteerd kleiner dan die van een kleine verslechtering.
+
+Iedere duizend stappen van de simulated annealing wordt de temperatuur iets omhoog gegooid, in de hoop dat het algoritme uit een locaal minimum kan springen naar een lager locaal minimum. Hoe hoger de stap, hoe lager deze bump is.
 
 ### Plant Propagation Algorithm
 
@@ -134,7 +136,9 @@ WAT INVULLEN VOOR PLANT PROPAGATION ALGORITHM
 
 ### Hill Climber Moveable Battery
 
-WAT INVULLEN VOOR HILL CLIMBER BATTERY
+De Hill climber moveable battery probeert goedkoopste manier te vinden om shared cables neer te leggen, waarbij de 5 batterijen overal mogen liggen. Hierbij begint het algoritme met de 5 batterijen op een willekeurige positie neer te leggen. Vervolgens wordt de cost berekent van een greedy oplossing. Dan wordt één batterij in zowel de x als de y richting willekeurig tussen -10 en 10 stappen verplaatst. Hiervan wordt wederom de greedy oplossing berekent. Als deze oplossing goedkoper is dan het origineel, dan wordt de batterij op die positie neergelegd. Het schuiven van 1 batterij wordt herhaalt tot er 100 iteraties lang geen verbetering is gevonden.
+
+Het resultaat hiervan wordt in de hill climber shared gestopt, om te kijken of er nog een paar kleine verbeteringen te vinden zijn.
 
 ### Clustering
 
