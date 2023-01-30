@@ -56,7 +56,7 @@ def greedy(grid: Grid) -> Grid:
             best_solution = tmp_grid
 
     # calculate cost of solution
-    best_solution.calc_cost_normal()
+    best_solution.calc_cost_shared()
 
     return best_solution
 

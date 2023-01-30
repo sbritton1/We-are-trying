@@ -16,7 +16,7 @@ def init_baseline_shared(grid: Grid) -> Grid:
     Post: returns lowest cost solution as Grid
     """
 
-    iterations: int = 100000
+    iterations: int = 10000
 
     workers: int = 8
     work = [grid] * iterations
