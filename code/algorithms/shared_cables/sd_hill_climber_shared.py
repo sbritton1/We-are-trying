@@ -72,15 +72,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         results = (p.starmap(try_combinations, work))
 
         # find the best improvement made
-        best_improvement: int = 0
-        best_grid: Grid = None
-
-        for result in results:
-            new_grid: Grid = result[0]
-            improvement: int = result[1]
-            if improvement > best_improvement:
-                best_improvement = improvement
-                best_grid = new_grid
+        best_grid, best_improvement = analyze_improvements(results)
 
         if best_improvement == 0:
             return grid
@@ -156,6 +148,7 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
           the cost after the swap is higher.
     """
 
+    # disconnect homes and reconnect to calculate improvement
     house1.connection.remove_cables()
     house2.connection.remove_cables()
     swap_houses(house1, house2)
@@ -166,3 +159,28 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
     swap_houses(house1, house2)
 
     return org_cost - new_cost
+
+
+def analyze_improvements(results: list[tuple[Grid, int]]) -> tuple[Grid, int]:
+    """
+    Analyze what each thread has found for improvements, and put through
+    the best improvement found
+
+    Pre : results is a list of tuples of Grid and ints
+    Post: returns a tuple of a Grid and an int, where the Grid is the 
+          grid with the best improvement, and int is the improvement
+    """
+
+    # find the best improvement made
+    best_improvement: int = 0
+    best_grid: Grid = None
+
+    # loop through results and pick out the best improvement
+    for result in results:
+        new_grid: Grid = result[0]
+        improvement: int = result[1]
+        if improvement > best_improvement:
+            best_improvement = improvement
+            best_grid = new_grid
+
+    return best_grid, best_improvement

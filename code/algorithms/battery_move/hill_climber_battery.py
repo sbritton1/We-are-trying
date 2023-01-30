@@ -7,7 +7,7 @@ import multiprocessing
 import random
 
 
-def init_hill_climber_battery(grid: Grid, randomize=True) -> Grid:
+def init_hill_climber_battery(grid: Grid, randomize: bool=True) -> Grid:
     """
     Initializes grids with random battery placements and greedy solutions.
     Then calls function to move batteries to try and find a cheaper solution.
@@ -16,11 +16,39 @@ def init_hill_climber_battery(grid: Grid, randomize=True) -> Grid:
     Post: returns grid with best found placement of batteries
     """
 
+    grids_amount = 50
+
     # create list of grids as work for multithreading
+    grids: list[Grid] = create_work(grid, randomize, grids_amount)
+
+    # use multithread processing, with workers amount of threads
+    workers: int = 8
+    p = multiprocessing.Pool(workers)
+    results = (p.map(hill_climber_battery, grids))
+
+    best_result: Grid = analyze_results(results)
+
+    print(f"Best cost: {best_result.cost}")
+
+    # find possible improvements using hill climber algorithm
+    best_result = init_hill_climber_shared(best_result, False)
+
+    return best_result
+
+
+def create_work(grid: Grid, randomize: bool, amount: int) -> list[Grid]:
+    """
+    Creates list of work for the workers to go through, by randomizing
+    battery placement if wanted. Runs greedy algorithm to get a baseline value
+    for the hill climber to improve upon.
+
+    Pre : grid is of class Grid, randomize is a bool, amount is an int
+    Post: returns list of Grids, with randomized battery placement if wanted
+    """
+
     grids: list[Grid] = []
 
-    # amount of grids to run algorithm on
-    for _ in range(50):
+    for _ in range(amount):
 
         # create deepcopy to not mess with original
         tmp_grid = copy.deepcopy(grid)
@@ -35,29 +63,7 @@ def init_hill_climber_battery(grid: Grid, randomize=True) -> Grid:
 
         grids.append(tmp_grid)
 
-    # use multithread processing, with workers amount of threads
-    workers: int = 8
-    p = multiprocessing.Pool(workers)
-    results = (p.map(hill_climber_battery, grids))
-
-    # store cheapest found grid
-    best_result: Grid = None
-    best_costs: list[int] = [1000000]
-
-    # look through results to find cheapest solution
-    for result in results:
-        new_grid = result[0]
-        costs = result[1]
-        if costs[-1] < best_costs[-1]:
-            best_costs = costs
-            best_result = new_grid
-
-    print(f"Best cost: {best_result.cost}")
-
-    # find possible improvements using hill climber algorithm
-    best_result = init_hill_climber_shared(best_result, False)
-
-    return best_result
+    return grids
 
 
 def randomize_battery_placement(grid: Grid) -> None:
@@ -158,3 +164,19 @@ def track_size(grid: Grid, coord: int, dir: int) -> int:
         coord = grid.size_grid()[dir]
 
     return coord
+
+
+def analyze_results(results: list[tuple[Grid, int]]) -> Grid:
+    # store cheapest found grid
+    best_result: Grid = None
+    best_costs: list[int] = [1000000]
+
+    # look through results to find cheapest solution
+    for result in results:
+        new_grid = result[0]
+        costs = result[1]
+        if costs[-1] < best_costs[-1]:
+            best_costs = costs
+            best_result = new_grid
+
+    return best_result
