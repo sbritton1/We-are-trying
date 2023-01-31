@@ -4,7 +4,7 @@ Hier bespreken we alle algoritmes.
 
 ## Baseline
 
-[Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het [Lay shared cables algoritme](#Lay-shared-cables) die hier later wordt uitgelegd.
+[Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden met behulp van het [Lay shared cables algoritme](#Lay-shared-cables).
 
 ## Lay shared cables
 
