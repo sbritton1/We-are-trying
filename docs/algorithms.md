@@ -6,9 +6,9 @@ Hier bespreken we alle algoritmes.
 
 [Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het [Shared Cables algoritme](#shared-cables-algoritme) die hier later wordt uitgelegd.
 
-## Shared cables algoritme
+## Shared cables algoritme !!! nog ff checken of dit klopt
 
-Dit algoritme verbindt huizen met de kabels met de kleinste afstand vanaf een huis. Dit wordt gedaan door voor elk huis, elk kabel te bekijken. Vervolgens wordt de kabel met de kleinste afstand tot het huis bewaard en opgeslagen in een set van de gebruikte kabels en worden de kabels richting deze kabel gelegd.
+Om alle huizen zo efficient mogelijk te verbinden met kabels, hebben we dit algoritme gemaakt. We hebben hiervoor per batterij gekeken. Een batterij heeft een paar belangrijke waardes hiervoor, zoals de kabels waarmee de batterij is verbonden en de huizen waarmee de batterij is verbonden. Voor elk huis, wordt er gekeken welke kabel het meest dichtbij ligt. Hiervoor gaan we door alle kabels van de batterij, om te kijken welke de kleinste afstand heeft tot een huis. Vervolgens slaan we deze kabel op, en verbinden we het huis en de kabel met elkaar. Ook wordt deze kabel opgeslagen in de batterij class. Al deze stappen worden vervolgens herhaald tot alle huizen van de batterij zijn verbonden aan een kabel of een batterij. En dit wordt vervolgens weer herhaald voor alle batterijen.
 
 ## Greedy
 

@@ -5,6 +5,13 @@ In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebbe
 ## Methode
 
 METHODE BESPREKEN
+Wat gedaan
+Wij hebben voor de tests eigenlijk alle algoritmes een aantal keer gerund. Voor de meeste algoritmes waren er niet veel parameters te veranderen, behalve voor de plant propagation en de simulated annealing. 
+
+Hoe verzameld
+We hebben de algoritmes parallel gerund. Hoeveel we er parallel hebben gerund, was afhankelijk van op welke pc het werd gerund. !Check of iedereen het zo gedaan heeft! We hebben vervolgens de resultaten geprint naar de terminal, en vervolgens hebben we deze waardes gekopieërd naar een resultaten file.
+
+Waarom 
 
 > Voor het runnen van de code zijn meerdere verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet: \
 > PC 1 - CPU: i5-12400F, RAM: 32GB, 3400MHz DDR4 \
