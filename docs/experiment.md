@@ -90,7 +90,7 @@ Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eer
 | Steepest descent hill climber | 31534               | 7:47:45               | 1                 | PC 1              |
 | Simulated annealing           | 30220               | 6:13:40               | 50                | PC 1              |
 | Plant propagation             | 31534               | 1:40:32               | 1 (227 generaties)| PC 3              |
-| Greedy + hill climber 2.0     | 29905               | 4:05:32               | 108               | PC 4              |
+| Greedy + hill climber         | 29752               | 4:05:32               | 108               | PC 4              |
 
 ### Conclusie
 Voor deze case zitten er duidelijke verschillen tussen de tijd en daarmee ook het aantal runs van de algoritmes.  Er valt niet duidelijk een beste algoritme te noemen. Als de hoogste prioriteit ligt op de minimale kosten, lijkt de combinatie van de hill climber met een greedy algoritme het beste resultaat te geven, omdat het ongeveer 400 kosten scheelt in vergelijking met de volgende laagste score van simulated annealing. Als er relatief snel een goede oplossing gevonden moet worden, is greedy het beste algoritme, sinds het in een aantal minuten tot een prima oplossing komt, in tegen stelling tot de uren die andere algoritmes moet runnen.
