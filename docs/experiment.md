@@ -109,3 +109,5 @@ Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, 
 | Hill climber              |                     |                       |                                |        |
 | Clustering + hill climber | 29563               | 8:30:56               | 10 clusters + 50 hill climbers | PC 3   |
 
+### Conclusie
+
