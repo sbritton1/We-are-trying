@@ -4,9 +4,9 @@ Hier bespreken we alle algoritmes.
 
 ## Baseline
 
-[Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het Shared Cables algoritme die hier later wordt uitgelegd.
+[Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het [Shared Cables algoritme](#shared-cables-algoritme) die hier later wordt uitgelegd.
 
-## Shared cables algorithms
+## Shared cables algoritme
 
 Dit algoritme verbindt huizen met de kabels met de kleinste afstand vanaf een huis. Dit wordt gedaan door voor elk huis, elk kabel te bekijken. Vervolgens wordt de kabel met de kleinste afstand tot het huis bewaard en opgeslagen in een set van de gebruikte kabels en worden de kabels richting deze kabel gelegd.
 
@@ -14,7 +14,7 @@ Dit algoritme verbindt huizen met de kabels met de kleinste afstand vanaf een hu
 
 Greedy verbindt constant het nog niet verbonden huis, die het dichtste bij een batterij staat met voldoende capaciteit om de verbinding aan te kunnen gaan. Omdat via deze methode niet altijd alle huizen verbonden zullen worden, wordt de functie resolve_error() aangeroepen, die huizen gaat wisselen tot alle huizen wel verbonden zijn. Vanwege de randomness in de resolve_error(), kan greedy dit meerdere keren proberen aan te roepen, en bewaart het alleen de goedkoopst gevonden oplossing.
 
-Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de gedeelde kabels neerlegt en hiervan de kosten berekent.
+Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de [gedeelde kabels](#shared-cables-algoritme) neerlegt en hiervan de kosten berekent.
 
 ## Hill Climber
 
@@ -71,7 +71,7 @@ Van deze nieuwe generatie (inclusief de parents) worden de beste $n_{roots}$ bew
 
 De Hill climber moveable battery probeert de goedkoopste manier te vinden om shared cables neer te leggen, waarbij de 5 batterijen overal mogen liggen. Hierbij begint het algoritme met de 5 batterijen op een willekeurige positie neer te leggen. Vervolgens wordt de cost berekent van een greedy oplossing. Dan wordt één batterij in zowel de x als de y richting willekeurig tussen -10 en 10 stappen verplaatst. Hiervan wordt wederom de greedy oplossing berekent. Als deze oplossing goedkoper is dan het origineel, dan wordt de batterij op die positie neergelegd. Het schuiven van 1 batterij wordt herhaalt tot er 100 iteraties lang geen verbetering is gevonden.
 
-Het resultaat hiervan wordt in de hill climber shared gestopt, om te kijken of er nog een paar kleine verbeteringen te vinden zijn.
+Het resultaat hiervan wordt in de [hill climber](#hill-climber) gestopt, om te kijken of er nog een paar kleine verbeteringen te vinden zijn.
 
 ## Clustering
 
