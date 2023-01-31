@@ -78,3 +78,7 @@ Het resultaat hiervan wordt in de [hill climber](#hill-climber) gestopt, om te k
 Clustering is een algoritme voor de case met het bewegen van de batterijen (gradatie 3 in de [Case Uitleg](#case-uitleg)). Het idee is dat er voor elke batterij een cluster wordt gevonden en vervolgens wordt de batterij in het midden hiervan geplaatst. Vervolgens kan een algoritme van shared cables hiervan de optimale oplossing vinden. 
 
 Voor het clusteren wordt er gebruik gemaakt van K-means clustering. Hierbij worden ten eerste de batterijen op willekeurige plekken op de grid geplaatst. Vervolgens worden alle huizen gekoppeld aan de dichtsbijzijnde batterij. Daarna wordt de batterij verplaatst naar het midden van al zijn gekoppelde huizen. Dit wordt een aantal keer herhaald en met een beetje mazzel worden er zo mooie clusters gevonden voor elke batterij. Hierna wordt het [greedy](#greedy) algoritme gebruikt om de daadwerkelijke connecties tussen de huizen en batterijen te maken.
+
+## Clustering and Hill Climber Moveable Battery
+
+De vorige twee algoritmes kunnen gecombineerd worden tot een 'nieuw' algoritme. Hierbij worden de random startposities van de hill climber moveable battery vervangen door de posities gevonden door het clustering algoritme. Het idee hierachter is dat het beginpunt voor de hill climber al redelijk goed is. Hierdoor zou de hill climber eerder tot een optimum moeten komen.
