@@ -73,7 +73,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
 
         # get two random houses not connected to the same battery
         house1, house2 = find_random_houses(tmp_grid)
-        
+
         house1.connection.remove_cables()
         house2.connection.remove_cables()
         swap_houses(house1, house2)

@@ -2,6 +2,7 @@ from .house import House
 from .battery import Battery
 import random
 
+
 class Grid:
     """
     Class representing a grid in which houses and batteries lay.
@@ -18,7 +19,7 @@ class Grid:
 
         # create file paths to where the data is stored
         file_batteries: str = "data/district_" + district + "/district-" + district + "_batteries.csv"
-        file_houses: str= "data/district_" + district + "/district-" + district + "_houses.csv"
+        file_houses: str = "data/district_" + district + "/district-" + district + "_houses.csv"
 
         self.district = district
 
@@ -26,16 +27,16 @@ class Grid:
         self.houses: list[House] = []
 
         self.used_coordinates: list[tuple[int, int]] = []
-        
+
         self.total_maxoutput = 0
-        
+
         # read csv files storing the data
         if load_csv:
             # self.batteries = self.read_batteries(file_batteries)
             self.houses = self.read_houses(file_houses)
 
             self.max_x, self.max_y = self.size_grid()
-            
+
             self.batteries = self.read_batteries(file_batteries)
 
     def read_batteries(self, filename: str) -> list[Battery]:
@@ -45,7 +46,7 @@ class Grid:
         Pre : filename is a string
         Post: returns list of objects of class Battery
         """
-        
+
         batteries: list[Battery] = []
 
         with open(filename) as f:
@@ -53,12 +54,12 @@ class Grid:
             next(f)
 
             for line in f:
-                    # split the line into only its relevant data
-                    x, y, capacity = self.split_line_in_file(line)
+                # split the line into only its relevant data
+                x, y, capacity = self.split_line_in_file(line)
 
-                    self.add_used_coordinates(x, y)
+                self.add_used_coordinates(x, y)
 
-                    batteries.append(Battery(x, y, capacity))
+                batteries.append(Battery(x, y, capacity))
 
         return batteries
 
@@ -81,10 +82,10 @@ class Grid:
                 x, y, maxoutput = self.split_line_in_file(line)
 
                 self.add_used_coordinates(x, y)
-                
+
                 self.total_maxoutput += maxoutput
 
-                # make House object and add it to the houses list    
+                # make House object and add it to the houses list  
                 houses.append(House(x, y, maxoutput))
 
         return houses
@@ -106,7 +107,7 @@ class Grid:
         x = int(values[0])
         y = int(values[1])
         capacity = float(values[2])
-                        
+
         return (x, y, capacity)
 
     def size_grid(self) -> tuple[int, int]:
@@ -240,7 +241,7 @@ class Grid:
         """
         Moves battery if it can move to place if the coordinates do not
         contain a house.
-        
+
         Pre:  battery of Battery class and two integers for coordinates
         Post: bool
         """
@@ -250,7 +251,7 @@ class Grid:
             self.remove_cables()
             old_x, old_y = battery.get_coords()
             self.remove_used_coordinates(old_x, old_y)
-            
+
             # move battery
             battery.move_to(new_x, new_y)
             self.add_used_coordinates(new_x, new_y)
@@ -262,10 +263,11 @@ class Grid:
     def is_coordinates_free(self, x: int, y: int) -> bool:
         """
         Checks if coordinates are not occupied by a house.
-        
+
         Pre:  two integers for coordinates
         Post: bool
         """
+
         if x < self.max_x and y < self.max_y:
             return (x, y) not in self.used_coordinates
         return False
@@ -273,7 +275,7 @@ class Grid:
     def add_used_coordinates(self, x: int, y: int) -> None:
         """
         Adds two coordinates if coordinates are occupied.
-        
+
         Pre:  two integers for coordinates
         Post: none
         """
@@ -282,52 +284,57 @@ class Grid:
     def remove_used_coordinates(self, x: int, y: int) -> None:
         """
         Removes coordinates that is no longer occupied.
-        
+
         Pre:  two integers for coordinates
         Post: none
         """
+
         self.used_coordinates.remove((x, y))
 
     def remove_all_connections(self) -> None:
         """
         Removes all connections from batteries with houses.
-        
+
         Pre:  none
         Post: none
         """
+
         for battery in self.batteries:
             battery.disconnect_all_houses()
-            
+
     def make_powerstar(self, x: int, y: int) -> Battery:
         """
         Makes a powerstar battery.
-        
+
         Pre:  two integers for coordinates
         Post: battery from class Battery
         """
+
         powerstar = Battery(x, y, 450.0)
         return powerstar
-        
+
     def make_immerse_2(self, x: int, y: int) -> Battery:
         """
         Makes an immerse 2 battery.
-        
+
         Pre:  two integers for coordinates
         Post: battery from class Battery
         """
+
         immerse_2: Battery = Battery(x, y, 900.0)
         return immerse_2
-        
+
     def make_immerse_3(self, x: int, y: int) -> Battery:
         """
         Makes an immerse 3 battery.
-        
+
         Pre:  two integers for coordinates
         Post: battery from class Battery
         """
+
         immerse_3: Battery = Battery(x, y, 1800.0)
         return immerse_3
-        
+
     def calc_cost_advanced(self):
         """
         Calculates the price of a grid when cables can be shared.
@@ -335,6 +342,7 @@ class Grid:
         Pre : tmp_grid is of class Grid
         Post: returns an int cost
         """
+
         # new cost calculation for 3 types of batteries
         for a_battery in self.batteries:
             if a_battery.total_capacity == 450.0:
@@ -343,35 +351,35 @@ class Grid:
                 self.cost += 1350
             else:
                 self.cost += 1800
-                
+
         for house in self.houses:
             self.cost += (len(house.cables) - 1) * 9
 
         return self.cost
-    
+
     def initialize_advanced_batteries(self) -> list[Battery]:
         """
         Generates advanced batteries such that there is enough
         capacity.
-        
+
         Pre:  none
         Post: none
         """
-        
+
         batteries: list[Battery] = []
-        
+
         needed_capacity: float = self.total_maxoutput
-        
+
         while needed_capacity > 0:
             # get x and y coordinate that is not occupied by house
             while True:
                 new_x = random.randrange(0, 50)
                 new_y = random.randrange(0, 50)
-                
+
                 if self.is_coordinates_free(new_x, new_y):
                     self.add_used_coordinates(new_x, new_y)
                     break
-            
+
             # chooses randomly which battery to add
             new_battery: str = random.choice(["p", "i_2", "i_3"])
             if new_battery == "p":
