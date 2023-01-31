@@ -69,7 +69,8 @@ Standaard wordt het resultaat opgeslagen in een JSON bestand te vinden op `/resu
 
 De visualisatie zou er ongeveer zo uit moeten komen te zien:
 
-![](docs/images/example_grid.png)
+<img src="docs/images/example_grid.png" width="50%" height="auto">
+ <!-- ![](docs/images/example_grid.png =100x100) --> -->
 
 Om de eerdere resultaten die opgeslagen zijn een JSON bestand te visualiseren kan het volgende commando gebruikt worden:
 
