@@ -32,7 +32,7 @@ $$theoretisch\; optimum = 5000 \cdot 5 + 9 \cdot 150 = 26350$$
 
 ## Unieke kabels
 
-De case uitleg van de unieke kabels kan worden gevonden in de README !!!!!op een of andere manier linken daarnaar!!!!! Voor deze case hebben we drie algoritmen gemaakt, de resultaten waarvan hieronder gevonden kunnen worden. De manier waarop deze algoritmen werken kan gevonden worden !!!!!!!ergens!!!!!!!
+De case uitleg van de unieke kabels kan worden gevonden in de README !!!!!op een of andere manier linken daarnaar!!!!! Voor deze case hebben we drie algoritmen gemaakt, de resultaten waarvan hieronder gevonden kunnen worden. De manier waarop deze algoritmen werken kan [hier](algorithms.md) gevonden worden.
 
 ### Resultaten
 
@@ -101,14 +101,9 @@ intro
 
 ### Resultaten
 
-| **Algoritme**             | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC** |
-|---------------------------|---------------------|-----------------------|-----------------|--------|
-| Clustering                |                     |                       |                 |        |
-| Hill climber              |                     |                       |                 |        |
-| Clustering + hill climber | 29563               |                       |                 |        |
-
-clustering met hill climber battery:
-- best cost 29563
-- time taken 1:03:52
-- 50 keer hill climber
+| **Algoritme**             | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs**                | **PC** |
+|---------------------------|---------------------|-----------------------|--------------------------------|--------|
+| Clustering                | 29923               | 0:00:20               | 10                             | PC 3   |
+| Hill climber              |                     |                       |                                |        |
+| Clustering + hill climber | 29563               | 8:30:56               | 10 clusters + 50 hill climbers | PC 3   |
 

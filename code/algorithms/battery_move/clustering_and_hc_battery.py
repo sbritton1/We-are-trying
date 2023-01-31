@@ -4,9 +4,7 @@ from ...classes.grid import Grid
 
 
 def clustering_and_hill_climber_battery(grid: Grid) -> Grid:
-    grid = clustering(grid)
-
-    grid.remove_all_connections()
+    grid = clustering(grid, connect=False)
 
     grid = init_hill_climber_battery(grid, randomize=False)
 

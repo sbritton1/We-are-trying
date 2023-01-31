@@ -7,7 +7,7 @@ from code.visualization.visualization import visualize
 from ..own_cables.greedy import greedy
 
 
-def clustering(grid: Grid) -> Grid:
+def clustering(grid: Grid, connect: bool=True) -> Grid:
     """"
     Clusters the batteries on a grid according to the houses using K-means
         clustering.
@@ -51,11 +51,10 @@ def clustering(grid: Grid) -> Grid:
 
     print("Clustering complete!")
 
-    # perform the connection algorithm
-    print("Running connection algorithm...")
-    grid = greedy(grid)
-
-    # ! TESTEN MET HILL CLIMBER
+    if connect:
+        # perform the connection algorithm
+        print("Running connection algorithm...")
+        grid = greedy(grid)
 
     return grid
 
