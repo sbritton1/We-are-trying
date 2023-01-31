@@ -23,13 +23,13 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     """
         
     # create list of grids as work for multithreading
-    n = 50
+    n = 4
     grids: list[Grid] = []
     
     grids = get_grids(n, grids, grid, fill)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_shared, grids))
 
@@ -112,6 +112,7 @@ def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
     # initialize stop conditions
     times_no_improvement: int = 0
     max_iterations: int = 0
+    
 
     while times_no_improvement < 700 and max_iterations < 15000:
 
@@ -165,25 +166,25 @@ def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
     cost: int = tmp_grid.calc_cost_shared()
 
     # checks for improvement
-    grid_and_cost: tuple(Grid, int) = check_if_improvement(cost, best_cost, tmp_grid)
+    new_cost: tuple(Grid, int) = check_if_improvement(cost, best_cost)
 
-    return grid_and_cost[0], grid_and_cost[1]
+    return tmp_grid, new_cost
 
 
-def check_if_improvement(cost: int, best_cost: int, grid: Grid) -> tuple[Grid, int]:
+def check_if_improvement(cost: int, best_cost: int) -> int:
     """
     Checks if the new configuration of the houses gives an improved
     solution for the grid and it also checks if it is a valid solution.
 
-    Pre : the cost and best_cost are integers, and grid is of class Grid
-    Post: tuple containing grid of class Grid and integer as cost
+    Pre : the cost and best_cost are integers
+    Post: integer
     """
 
     # checks if cost is lower than previous costs
     if cost < best_cost:
-        return grid, cost
+        return cost
     else:
-        return grid, best_cost
+        return best_cost
 
 
 def plot_costs_graph(costs: list[int], district: str) -> None:
