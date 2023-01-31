@@ -87,7 +87,7 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
     threads of the CPU being used in multithread processing.
 
     Pre : grid is of class Grid, id is an int, workers is an int
-    Post: returns Grid and int, where the grid is the new grid with 
+    Post: returns Grid and int, where the grid is the new grid with
           best possible swap and int is the associated cost improvement.
     """
 
@@ -177,7 +177,7 @@ def analyze_improvements(results: list[tuple[Grid, int]]) -> tuple[Grid, int]:
     the best improvement found
 
     Pre : results is a list of tuples of Grid and ints
-    Post: returns a tuple of a Grid and an int, where the Grid is the 
+    Post: returns a tuple of a Grid and an int, where the Grid is the
           grid with the best improvement, and int is the improvement
     """
 

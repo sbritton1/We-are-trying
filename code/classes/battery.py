@@ -112,12 +112,12 @@ class Battery:
             self.add_cables_x_axis(min_house, min_cable_x, min_cable_y)
 
             unconnected.remove(loc_in_list)
-            
+
     def get_axis_direction(self, start, end) -> int:
         """
         Returns 1 if the connection is in the negative axis direction and 1 if
         in the positive direction.
-        
+
         Pre : a start and end coordinate as integer
         Post: returns direction as integer
         """
@@ -129,29 +129,28 @@ class Battery:
     def add_cables_x_axis(self, min_house: House, min_cable_x: int, min_cable_y: int) -> None:
         """
         Lays cables along the x_axis.
-        
+
         Pre : house from class House, and three integers
         Post: none
         """
-        
+
         direction = self.get_axis_direction(min_house.coord_x, min_cable_x)
-        
+
         for new_x in range(min_house.coord_x, min_cable_x, direction):
             new_cable = f"{new_x + direction},{min_cable_y}"
             min_house.cables.append(new_cable)
             self.cables.add(new_cable)
 
-
     def add_cables_y_axis(self, min_house: House, end_coord: int) -> None:
         """
         Lays cables along the y_axis.
-        
+
         Pre : house from class House, and two integers
         Post: none
         """
-        
+
         direction = self.get_axis_direction(min_house.coord_y, end_coord)
-        
+
         for new_y in range(min_house.coord_y, end_coord, direction):
             new_cable = f"{min_house.coord_x},{new_y + direction}"
             min_house.cables.append(new_cable)
@@ -188,7 +187,7 @@ class Battery:
     def move_to(self, x: int, y: int) -> None:
         """
         Moves the battery to position x,y
-        
+
         Pre : x and y are integers
         Post: x and y are stored in attributes coord_x and coord_y respectively
         """
@@ -199,32 +198,32 @@ class Battery:
     def get_coords(self) -> tuple[int, int]:
         """
         Gets coordinates of battery:
-        
+
         Pre : none
         Post: tuple with two integers
         """
-        
+
         return (self.coord_x, self.coord_y)
 
     def connect_home_without_load(self, house: House) -> None:
         """
         Connects a house to the battery.
-        
+
         Pre : house of class House
         Post: none
         """
-        
+
         self.connected_homes.append(house)
         house.make_connection(self)
 
     def disconnect_all_houses(self) -> None:
         """
         Disconnects all houses from battery.
-        
+
         Pre : none
         Post: none
         """
-        
+
         for house in self.connected_homes:
             house.delete_connection()
         self.connected_homes = []

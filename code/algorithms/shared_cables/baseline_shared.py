@@ -87,7 +87,7 @@ def analyze_results(results: list[tuple[Grid, int]]) -> tuple[Grid, list[int]]:
 def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     """
     Plots a histogram of the costs of all solutions.
-    
+
     Pre : costs is a list of ints
     Post: displays histogram
     """
