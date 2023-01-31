@@ -4,9 +4,9 @@ Hier bespreken we alle algoritmes.
 
 ## Baseline
 
-[Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het [Shared Cables algoritme](#shared-cables-algoritme) die hier later wordt uitgelegd.
+[Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het [Lay shared cables algoritme](#Lay-shared-cables) die hier later wordt uitgelegd.
 
-## Shared cables algoritme !!! nog ff checken of dit klopt
+## Lay shared cables
 
 Om alle huizen zo efficient mogelijk te verbinden met kabels, hebben we dit algoritme gemaakt. We hebben hiervoor per batterij gekeken. Een batterij heeft een paar belangrijke waardes hiervoor, zoals de kabels verbonden aan de batterij en de huizen waarmee de batterij is verbonden. Voor elk huis die verbonden moet worden aan de batterij wordt gekeken wat de afstand is tot de dichtstbijzijnde kabel reeds aan de batterij verbonden. Van alle huizen wordt dan het huis gekozen die het dichtste bij een kabel ligt en verbinden we het huis en de kabel met elkaar. Ook wordt deze kabel opgeslagen in de batterij class. Al deze stappen worden vervolgens herhaald tot alle huizen van de batterij zijn verbonden aan de batterij. Dit wordt herhaald voor alle batterijen.
 
@@ -14,7 +14,7 @@ Om alle huizen zo efficient mogelijk te verbinden met kabels, hebben we dit algo
 
 Greedy verbindt constant het nog niet verbonden huis, die het dichtste bij een batterij staat met voldoende capaciteit om de verbinding aan te kunnen gaan. Omdat via deze methode niet altijd alle huizen verbonden zullen worden, wordt de functie resolve_error() aangeroepen, die huizen gaat wisselen tot alle huizen wel verbonden zijn. Vanwege de randomness in de resolve_error(), kan greedy dit meerdere keren proberen aan te roepen, en bewaart het alleen de goedkoopst gevonden oplossing.
 
-Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de [gedeelde kabels](#shared-cables-algoritme) neerlegt en hiervan de kosten berekent.
+Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de [gedeelde kabels](#Lay-shared-cables) neerlegt en hiervan de kosten berekent.
 
 ## Hill Climber
 

@@ -53,7 +53,7 @@ Het programma kan worden gerund door de main.py file te runnen. Hiervoor moeten 
 python3 main.py [DISTRICT] [ALGORITHM]
 ```
 
-Voor `DISTRICT` kan je 1 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit een van de volgende algoritmes([hier](#algoritmes) meer info):
+Voor `DISTRICT` kan je 1 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit een van de volgende algoritmes ([hier](#algoritmes) meer info):
 - baseline
 - greedy
 - sd_hill_climber
@@ -72,7 +72,7 @@ De visualisatie zou er ongeveer zo uit moeten komen te zien:
 
 <img src="docs/images/example_grid.png" width="50%" height="auto">
 
-Om de eerdere resultaten die opgeslagen zijn een JSON bestand te visualiseren kan het volgende commando gebruikt worden:
+Om de eerdere resultaten die opgeslagen zijn een als JSON bestand te visualiseren kan het volgende commando gebruikt worden:
 
 ```bash
 python3 visualize_json.py [FILEPATH]
