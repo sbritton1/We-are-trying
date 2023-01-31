@@ -4,9 +4,7 @@ Hier bespreken we alle algoritmes.
 
 ## Baseline
 
-[Hier](docs/baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`.
-
-> WAT INVULLEN VOOR BASELINE SHARED
+[Hier](docs/baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' of 'baseline_shared' in te vullen bij `ALGORITHM`.
 
 ## Greedy
 
@@ -15,8 +13,6 @@ Greedy verbindt constant het nog niet verbonden huis, die het dichtste bij een b
 Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de gedeelde kabels neerlegt en hiervan de kosten berekent.
 
 ## Hill Climber
-
-> WAT INVULLEN VOOR HILL CLIMBER
 
 Dit algoritme maakt 1 willekeurige verandering op een random grid, en kijkt dan vervolgens of dit een betere oplossing is. De verandering wordt uitgevoerd door twee huizen met elkaar te swappen, waardoor ze aan een andere batterij verbonden zijn. Het kijkt een N aantal keer of er een verbetering is gevonden en als dit niet zo is wordt het algoritme gestopt. Als er wel een verbetering wordt gevonden, kijkt het algoritme opnieuw N keer met een willekeurige verandering of er een betere oplossing gevonden kan worden.
 

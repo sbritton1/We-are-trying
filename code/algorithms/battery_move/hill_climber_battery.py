@@ -95,7 +95,7 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
 
     """
 
-    costs: list[int] = []
+    costs: list[int] = [grid.cost]
     last_improvement: int = 0
     iteration: int = 0
 
@@ -118,7 +118,7 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
 
         iteration += 1
 
-    print(costs[-1])
+    print(grid.cost)
     return grid, costs
 
 

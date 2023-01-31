@@ -99,7 +99,7 @@ Voor deze case zitten er duidelijke verschillen tussen de tijd en daarmee ook he
 
 ## Batterijen verplaatsen
 
-intro
+Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, om een nog goedkopere oplossing te kunnen vinden. Bij het verplaatsen van de batterijen, kan een configuratie worden gevonden waarbij er minder kabels intotaal nodig zijn om alle huizen te verbinden, dan bij de locaties van de batterijen die in de bestanden van district 1, 2 en 3 worden meegegeven. Om te zoeken naar betere configuraties van de batterijen, hebben we twee algoritmes geschreven. De eerste is een clustering algoritme en de tweede is een hill climber voor de batterijen. Uitleg voor deze algoritmes worden [hier](algorithms.md) toegelicht.
 
 ### Resultaten
 
