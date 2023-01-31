@@ -124,7 +124,6 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
                         target1 = own_work[loc1]
                         target2 = tmp_grid.houses[loc2]
 
-    # swap houses
     if best_improvement > 0:
         SwapAndReplaceCables(target1, target2)
 
@@ -159,7 +158,7 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
 
 def SwapAndReplaceCables(target1: House, target2: House) -> None:
     """
-    Swaps two houses and re-lays the cables for those batteries
+    Swaps two houses and re-lays the cables for those batteries.
 
     Pre : target1 and target2 are of class House
     Post: houses swapped batteries and the new cables are layd
