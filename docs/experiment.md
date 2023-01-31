@@ -49,7 +49,7 @@ intro
 
 ### Plant Propagation Algorithm
 
-Voor de Plant Propagation Algorithm (PPA) zijn er veel parameters die de effectiviteit van het algoritme sterk bepalen. De parameters worden hieronder gegeven. Meer informatie over het algoritme en de parameters is [hier](../README.md#plant-propagation-algorithm) te vinden.
+Voor de Plant Propagation Algorithm (PPA) zijn er veel parameters die de effectiviteit van het algoritme sterk bepalen. De parameters worden hieronder gegeven. Meer informatie over het algoritme en de parameters is [hier](algorithms.md#plant-propagation-algorithm) te vinden.
 
 PPA parameters:
 - $n_{roots}$
@@ -73,7 +73,7 @@ De uiteindelijke parameters zijn hieronder gegeven:
 - $n_{changes_{max}}$ = 8
 - $n_{generations}$ = 300
 - Maximum generations with no improvement = 20
-- Fitness functie is [hier](../README.md#plant-propagation-algorithm) te vinden
+- Fitness functie is [hier](algorithms.md#plant-propagation-algorithm) te vinden
 
 Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eerder vermeld is het algoritme niet heel snel en dus lastig om veranderingen op te maken en hier snel de resultaten van te zien. Daarnaast was de informatievoorziening online ook beperkt en niet makkelijk te begrijpen. Zo is later gebleken dat de fitness functie nog door een tangens hyperbolicus gehaald had kunnen worden, wat de resultaten zou moeten verbeteren. 
 
@@ -98,11 +98,11 @@ intro
 
 ### Resultaten
 
-| **Algoritme** | **Beste resultaat** | **Tijd per core** | **Parameters** |
-|---------------|---------------------|-------------------|----------------|
-|               |                     |                   |                |
-|               |                     |                   |                |
-|               |                     |                   |                |
+| **Algoritme**             | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC** |
+|---------------------------|---------------------|-----------------------|-----------------|--------|
+| Clustering                |                     |                       |                 |        |
+| Hill climber              |                     |                       |                 |        |
+| Clustering + hill climber | 29563               |                       |                 |        |
 
 clustering met hill climber battery:
 - best cost 29563

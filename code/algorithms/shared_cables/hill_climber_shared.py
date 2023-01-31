@@ -23,26 +23,26 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     """
         
     # create list of grids as work for multithreading
-    n = 50
+    n_grids: int = 4
     grids: list[Grid] = []
     
-    grids = get_grids(n, grids, grid, fill)
+    grids = get_grids(n_grids, grids, grid, fill)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_shared, grids))
 
-    solutions: tuple[list[int], int, Grid] = get_best_solutions(results)
+    best_solution: Grid = get_best_solution(results)
 
     # graph how cost has decreased over time from algorithm    
     # plot_costs_graph(costs_best_solution, best_solution.district)
     
-    solutions[2].remove_cables()
-    return solutions[2]
+    best_solution.remove_cables()
+    return best_solution
 
 
-def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple[list[int], int, Grid]:
+def get_best_solution(results: tuple[Grid, list[int]]) -> Grid:
     """
     Gets the best solutions from all the runs.
     
@@ -50,32 +50,27 @@ def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple[list[int], int,
     Post: tuple containing list of integers, integer and a Grid 
     """
     
-    costs_best_solution: list[int] = []
     lowest_cost: int = None
     best_solution: Grid = None
     for result in results:
         tmp_grid: Grid = result[0]
-        costs: list[int] = result[1]
-
         if lowest_cost is None or tmp_grid.cost < lowest_cost:
-            costs_best_solution = costs
             lowest_cost = tmp_grid.cost
             best_solution = tmp_grid
         
-    all_info = (costs_best_solution, lowest_cost, best_solution)
-    return all_info
+    return best_solution
 
 
-def get_grids(n, grids, grid, fill) -> list[Grid]:
+def get_grids(n_grids: int, grids: list[Grid], grid: Grid, fill: bool) -> list[Grid]:
     """
     Gets n grids on which hill climber can be used.
     
     Pre : integer and list of grids
     Post: list of grids
     """
-    for i in range(n):
+    for i in range(n_grids):
         # create deepcopy to not mess with original
-        tmp_grid = copy.deepcopy(grid)
+        tmp_grid: Grid = copy.deepcopy(grid)
         
         if fill is True:
             tmp_grid = greedy(tmp_grid)
@@ -117,7 +112,7 @@ def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
     while times_no_improvement < 700 and max_iterations < 15000:
 
         # changes grid in random places
-        grid_and_cost: tuple(Grid, int) = change_grid_hill_climber(tmp_grid, best_cost)
+        grid_and_cost: tuple[Grid, int] = change_grid_hill_climber(tmp_grid, best_cost)
 
         # condition that checks if it is an improved solution
         if grid_and_cost[1] < best_cost:
@@ -148,7 +143,7 @@ def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
     tmp_grid: Grid = copy.deepcopy(grid)
 
     # gets two random houses
-    houses: tuple(House, House) = find_random_houses(tmp_grid)
+    houses: tuple[House, House] = find_random_houses(tmp_grid)
     
     # removes cables  from selected batteries
     houses[0].connection.remove_cables()
@@ -166,7 +161,7 @@ def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
     cost: int = tmp_grid.calc_cost_shared()
 
     # checks for improvement
-    new_cost: tuple(Grid, int) = check_if_improvement(cost, best_cost)
+    new_cost: int = check_if_improvement(cost, best_cost)
 
     return tmp_grid, new_cost
 
