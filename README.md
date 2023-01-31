@@ -143,7 +143,8 @@ Plant Propagation Algorithm (PPA) is een population-based algorithm gebaseerd op
 - $n_{changes_{min}}$ 
 - $n_{changes_{max}}$
 - $n_{generations}$
-- maximum generations with no improvement
+- Maximum generations with no improvement
+- Fitness functie
 
 Voor onze case hebben we het zo geïmplementeerd dat we beginnen met $n_{roots}$ willekeurige oplossingen van de grid. Deze oplossingen zijn onze eerste generatie. Deze krijgen elk een fitness score tussen de 0 en 1 op basis van hun kosten vergeleken met de rest van de populatie. Hiervoor wordt de volgende formule gebruikt:
 
