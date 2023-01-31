@@ -36,11 +36,11 @@ De case uitleg van de unieke kabels kan worden gevonden in de README !!!!!op een
 
 ### Resultaten
 
-| **Algoritme**                 | **Beste resultaat** | **Runtime** | **Aantal runs** | **PC**   | **Parameters** |
-|-------------------------------|---------------------|-------------|-----------------|----------|----------------|
-| random                        | 70225               | 0:04:11     | 100000          | i7-9750H | /              |
-| greedy                        | 56905               | 0:03:54     | 100000          | i7-9750H | /              |
-| steepest descent hill climber | 56266               | 0:10:46     | 1000            | i7-9750H | /              |
+| **Algoritme**                 | **Beste resultaat** | **Runtime** | **Aantal runs** | **PC**   |
+|-------------------------------|---------------------|-------------|-----------------|----------|
+| random                        | 70225               | 0:04:11     | 100000          | PC 2     |
+| greedy                        | 56905               | 0:03:54     | 100000          | PC 2     |
+| steepest descent hill climber | 56266               | 0:10:46     | 1000            | PC 2     |
 
 ### Conclusie
 
@@ -84,14 +84,14 @@ Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eer
 
 | **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs**   | **PC**            |
 |-------------------------------|---------------------|-----------------------|-------------------|-------------------|
-| Baseline                      | 34306               | 7:44:00               | 100000            | i7-9750H          |
-| Greedy                        | 30562               | 0:04:01               | 100000            | i7-9750H          |
-| Hill climber                  | 30724               | 2:04:16               | 40                | AMD Ryzen 7 4700U |
-| Steepest descent hill climber | 31534               | 7:47:45               | 1                 | i5-12400F         |
-| Simulated annealing           | 30220               | 6:13:40               | 50                | i5-12400F         |
-| Plant propagation             | 31534               | 1:40:32               | 1 (227 generaties)| Sander laptop     |
-| Greedy + hill climber         | 29752               | 1:32:00               | 24                | AMD Ryzen 7 4700U |
-| Greedy + hill climber 2.0     | 29905               | 4:05:32               | 108               | AMD Ryzen 7 4700U |
+| Baseline                      | 34306               | 7:44:00               | 100000            | PC 2              |
+| Greedy                        | 30562               | 0:04:01               | 100000            | PC 2              |
+| Hill climber                  | 30724               | 2:04:16               | 40                | PC 4              |
+| Steepest descent hill climber | 31534               | 7:47:45               | 1                 | PC 1              |
+| Simulated annealing           | 30220               | 6:13:40               | 50                | PC 1              |
+| Plant propagation             | 31534               | 1:40:32               | 1 (227 generaties)| PC 3              |
+| Greedy + hill climber         | 29752               | 1:32:00               | 24                | PC 4              |
+| Greedy + hill climber 2.0     | 29905               | 4:05:32               | 108               | PC 4              |
 
 ### Conclusie
 
