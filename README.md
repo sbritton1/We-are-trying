@@ -65,8 +65,9 @@ Voor `DISTRICT` kan je 1 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit ee
 - plant_propagation
 - hill_climber_battery
 - clustering
+- clustering_and_hc_battery
 
-Standaard wordt het resultaat opgeslagen in een JSON bestand te vinden op `/results/output.json`. Daarnaast wordt het ook gevisualiseerd in een matplotlib venster. Deze output methodes kunnen worden uitgeschakeld door de desbetreffende regel te commenten in regels 51 t/m 55 in main.py.
+Standaard wordt het resultaat opgeslagen in een JSON bestand te vinden op `/results/output.json`. Daarnaast wordt het ook gevisualiseerd in een matplotlib venster. Deze output methodes kunnen worden uitgeschakeld door de desbetreffende regel te commenten in regels 52 t/m 56 in main.py.
 
 De visualisatie zou er ongeveer zo uit moeten komen te zien:
 
@@ -84,20 +85,21 @@ De hierop volgende lijst beschrijft de belangrijkste mappen en files in het proj
 
 - /code: bevat alle code van dit project
     - /code/algorithms: bevat de code voor algoritmes
-      - /code/algorithms/own_cables: bevat alle algoritmes voor het unieke kabel probleem
-      - /code/algorithms/shared_cables: bevat alle algoritmes voor het gedeelde kabel probleem
-      - /code/algorithms/battery_move: bevat alle algoritmes voor het gedeelde kabel en batterij bewegen probleem
+      - /code/algorithms/own_cables: bevat alle algoritmes voor gradatie 1 van de case
+      - /code/algorithms/shared_cables: bevat alle algoritmes voor gradatie 2 van de case
+      - /code/algorithms/battery_move: bevat alle algoritmes voor gradatie 3 van de case
+      - /code/algorithms/battery_choose: bevat alle algoritmes voor gradatie 4 van de case
     - /code/classes: bevat de benodigde classes voor deze case
     - /code/visualisation: bevat de code voor de visualisatie
     - /code/export: bevat de code voor het exporteren naar een JSON bestand
     - /code/helper_functions: bevat functies die in meerdere algoritmes worden gebruikt
 - /data: bevat de verschillende databestanden die nodig zijn om de grid in te laden
-- /docs: bevat de verslagen voor dit project
-- /results: bevat de resultaten van eerdere runs geordend
+- /docs: bevat de documentatie voor dit project
+- /results: bevat de resultaten van eerdere runs
 
 ## Algoritmes
 
-Documentatie van onze algoritmes is [hier](docs/algorithms.md).
+Documentatie van onze algoritmes is [hier](docs/algorithms.md) te vinden.
 
 ## Experimenteren
 
