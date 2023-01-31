@@ -2,18 +2,13 @@
 
 In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebben verzameld. Ten eerste bespreken we dit voor de case met unieke kabels, dan met gedeelde kabels en dan met het verplaatsen van batterijen.
 
-## Methode - moet worden bijgewerkt
+## Methode - moet worden gecheckt
 
-METHODE BESPREKEN
-Wat gedaan
-Wij hebben voor de tests eigenlijk alle algoritmes een aantal keer gerund. Voor de meeste algoritmes waren er niet veel parameters te veranderen, behalve voor de plant propagation en de simulated annealing. 
-Hieronder (misschien linken naar kopjes) wordt uitgelegd hoe we zijn gekomen op de door ons gekozen parameter waardes. De resultaten hebben we vervolgens opgeslagen en we hebben de beste waardes in een tabel gezet. We hebben dit gedaan voor drie cases die hieronder (misschien linkje naar kop) worden beschreven.
+Wij hebben voor de tests eigenlijk alle algoritmes een aantal keer gerund. Deze algoritmes hebben we allemaal op hetzelfde district gerund, namelijk district 1, zodat we de resultaten goed met elkaar konden vergelijken. Voor de meeste algoritmes waren er niet veel parameters te veranderen, behalve voor de plant propagation en de simulated annealing. Hieronder (misschien linken naar kopjes) wordt uitgelegd hoe we zijn gekomen op de door ons gekozen parameter waardes.
 
-Hoe verzameld
-We hebben de algoritmes parallel gerund. Hoeveel we er parallel hebben gerund, was afhankelijk van op welke pc het werd gerund. !Check of iedereen het zo gedaan heeft! We hebben vervolgens de resultaten geprint naar de terminal, en vervolgens hebben we deze waardes gekopieërd naar een resultaten file.
+We hebben de algoritmes parallel gerund, zodat de we meer oplossingen kregen in dezelfde tijd. Hiervoor hebben we in de runtime gecompenseerd, door de runtime te vermenigvuldigen met het aantal dat het algoritme parallel is gerund. !Check of iedereen het zo gedaan heeft! We hebben vervolgens de resultaten geprint naar de terminal, en daarna hebben we deze waardes gekopieërd naar een resultaten file. De beste resultaten voor elk algoritme hebben we opgeslagen in een tabel. Dit hebben we gedaan voor de drie cases, die hieronder worden uitgelegd.
 
-Waarom verschillen de tijden?
-Onze code was zo geschreven, zodat het lastig was om al onze algoritmes te runnen in een vaste tijd. Hierdoor verschillen de tijden per algoritme. Dit leek ons geen probleem, omdat het voor een smartgrid niet veel uitmaakt of het twee minuten of twee uur kost om een oplossing te vinden, als het maar niet weken of maanden duurt.
+Onze code was zo geschreven, zodat het lastig was om al onze algoritmes te runnen in een vaste tijd. Hierdoor hebben we niet alle algoritmes even lang laten runnen.
 
 ## Verschillen in runtime
 Voor het runnen van de code zijn meerdere verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet:
