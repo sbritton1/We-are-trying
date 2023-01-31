@@ -1,6 +1,6 @@
 # Experimenteren
 
-In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebben verzameld. Ten eerste bespreken we dit voor de case met unieke kabels, dan met gedeelde kabels en dan met het verplaatsen van batterijen.
+In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebben verzameld. Ten eerste bespreken we de methode die we hebben gebruikt. Vervolgens bespreken we een theoretisch optimum die kan helpen met het beoordelen van resultaten. Daarna gaan we de resultaten en experimenten voor de case met unieke kabels, gedeelde kabels en dan met het verplaatsen van batterijen bespreken.
 
 ## Methode - moet worden gecheckt
 
@@ -10,8 +10,9 @@ We hebben de algoritmes parallel gerund, zodat de we meer oplossingen kregen in 
 
 Onze code was zo geschreven, zodat het lastig was om al onze algoritmes te runnen in een vaste tijd. Hierdoor hebben we niet alle algoritmes even lang laten runnen.
 
-## Verschillen in runtime
-Voor het runnen van de code zijn meerdere verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet:
+### Verschillen in runtime
+
+Voor het runnen van de code zijn verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet:
 <pre>
 - PC 1   CPU: i5-12400F             RAM: 32GB, 3400MHz DDR4
 - PC 2   CPU: i7-9750H              RAM: 16GB, 2667MHz DDR4
@@ -45,9 +46,9 @@ De case uitleg van de unieke kabels kan worden gevonden in de [README](../README
 
 | **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC**   |
 |-------------------------------|---------------------|-----------------------|-----------------|----------|
-| random                        | 70225               | 0:04:11               | 100000          | PC 2     |
-| greedy                        | 56905               | 0:03:54               | 100000          | PC 2     |
-| steepest descent hill climber | 56266               | 0:10:46               | 1000            | PC 2     |
+| Random                        | 70225               | 0:04:11               | 100000          | PC 2     |
+| Greedy                        | 56905               | 0:03:54               | 100000          | PC 2     |
+| Steepest descent hill climber | 56266               | 0:10:46               | 1000            | PC 2     |
 
 ### Conclusie
 
@@ -105,7 +106,7 @@ Voor deze case zitten er duidelijke verschillen tussen de tijd en daarmee ook he
 
 ## Batterijen verplaatsen
 
-Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, om een nog goedkopere oplossing te kunnen vinden. Bij het verplaatsen van de batterijen, kan een configuratie worden gevonden waarbij er minder kabels intotaal nodig zijn om alle huizen te verbinden, dan bij de locaties van de batterijen die in de bestanden van district 1, 2 en 3 worden meegegeven. Om te zoeken naar betere configuraties van de batterijen, hebben we twee algoritmes geschreven. De eerste is een clustering algoritme en de tweede is een hill climber voor de batterijen. Uitleg voor deze algoritmes worden [hier](algorithms.md) toegelicht.
+Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, om een nog goedkopere oplossing te kunnen vinden. Bij het verplaatsen van de batterijen, kan een configuratie worden gevonden waarbij er minder kabels in totaal nodig zijn om alle huizen te verbinden, dan bij de locaties van de batterijen die in de bestanden van district 1, 2 en 3 worden meegegeven. Om te zoeken naar betere configuraties van de batterijen, hebben we twee algoritmes geschreven. De eerste is een clustering algoritme en de tweede is een hill climber voor de batterijen. Uitleg voor deze algoritmes worden [hier](algorithms.md) toegelicht.
 
 ### Resultaten
 
@@ -118,3 +119,8 @@ Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, 
 ### Conclusie
 
 Hill climber lijkt goed te werken
+
+## Beste oplossing
+
+> Geef plaatje van beste oplossing en vergelijk deze met de baseline en het theoretische optimum
+
