@@ -85,7 +85,7 @@ class Grid:
 
                 self.total_maxoutput += maxoutput
 
-                # make House object and add it to the houses list  
+                # make House object and add it to the houses list
                 houses.append(House(x, y, maxoutput))
 
         return houses

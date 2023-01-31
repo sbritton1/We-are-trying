@@ -7,7 +7,7 @@ import multiprocessing
 import random
 
 
-def init_hill_climber_battery(grid: Grid, randomize: bool=True) -> Grid:
+def init_hill_climber_battery(grid: Grid, randomize: bool = True) -> Grid:
     """
     Initializes grids with random battery placements and greedy solutions.
     Then calls function to move batteries to try and find a cheaper solution.
@@ -76,8 +76,8 @@ def randomize_battery_placement(grid: Grid) -> None:
 
     for battery in grid.batteries:
         new_x = -1
-        new_y = -1 
-        
+        new_y = -1
+
         # grid.move_battery() returns false when move cannot be made, so keep trying
         while grid.move_battery(battery, new_x, new_y) is False:
             new_x = random.choice(list(range(grid.size_grid()[0])))
@@ -124,7 +124,7 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
 
 def move_battery(grid: Grid) -> None:
     """
-    Moves one random battery to a new location somewhere 
+    Moves one random battery to a new location somewhere
     around its current location.
 
     Pre : grid is of class Grid

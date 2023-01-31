@@ -34,7 +34,7 @@ def greedy(grid: Grid) -> Grid:
         house.make_connection(battery)
         battery.connect_home(house)
         unconnected.remove(minimum[1])
-    
+
     if valid_solution(grid) is False:
         grid = find_best_resolve_error(grid)
 
