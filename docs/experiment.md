@@ -58,6 +58,12 @@ Voor deze case nemen geen van de algoritmen heel veel tijd in beslag. De steepes
 
 Ook hier moeten de kosten zo laag mogelijk gehouden worden. In deze casus mogen de huizen kabels delen, zonder dat de kosten verhogen, zodat de totale kosten verlagen. Het is daarbij ook belangrijk dat kabels op de goede plekken worden gelegd, zodat zoveel mogelijk huizen zoveel mogelijk kabels delen, om de kosten te drukken. Op deze case hebben we zeven algoritmes losgelaten. De manier waarop deze algoritmen werken kan [hier](algorithms.md) gevonden worden.
 
+### Simulated Annealing Algorithm
+
+Voor simulated annealing gebruik je een temperatuursfunctie om te bepalen of een verandering geaccepteerd moet worden, zoals [hier](algorithms.md#simulated-annealing) uitgelegd is. De temperatuursfunctie die uiteindelijk gebruikt is, is emperisch tot stand gekomen. Op het begin was de temperatuursfunctie slechts een beginstemperatuur, die verder afnam naarmate het algoritme langer runde. Echter viel het op dat na ongeveer 1800 iteraties dit algoritme praktisch functioneerde als een hill climber. Om dit op te lossen, wordt iedere 1000 iteraties de temperatuur een kleine bump gegeven, maar deze bump wordt ook steeds kleiner naarmate het algoritme langer runt.
+
+De uiteindelijke parameters van begintemperatuur, snelheid van temperatuurafname, en de grootte van de bump zijn tot stand gekomen door het simulated annealing algoritme lang te testen en empirisch te kijken welke waardes van de parameters de beste oplossingen geven. Hieruit is dus de temperatuursfunctie gekomen die [hier](algorithms.md#simulated-annealing) uitgeschreven en afgebeeld is.
+
 ### Plant Propagation Algorithm
 
 Voor de Plant Propagation Algorithm (PPA) zijn er veel parameters die de effectiviteit van het algoritme sterk bepalen. De parameters worden hieronder gegeven. Meer informatie over het algoritme en de parameters is [hier](algorithms.md#plant-propagation-algorithm) te vinden.
@@ -102,7 +108,7 @@ Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eer
 
 ### Conclusie
 
-Voor deze case zitten er duidelijke verschillen tussen de tijd en daarmee ook het aantal runs van de algoritmes.  Er valt niet duidelijk een beste algoritme te noemen. Als de hoogste prioriteit ligt op de minimale kosten, lijkt de combinatie van de hill climber met een greedy algoritme het beste resultaat te geven, omdat het ongeveer 400 kosten scheelt in vergelijking met de volgende laagste score van simulated annealing. Als er relatief snel een goede oplossing gevonden moet worden, is greedy het beste algoritme, sinds het in een aantal minuten tot een prima oplossing komt, in tegen stelling tot de uren die andere algoritmes moet runnen.
+Voor deze case zitten er duidelijke verschillen tussen de tijd en daarmee ook het aantal runs van de algoritmes. Er valt niet duidelijk een beste algoritme te noemen. Als de hoogste prioriteit ligt op de minimale kosten, lijkt de combinatie van de hill climber met een greedy algoritme het beste resultaat te geven, omdat het ongeveer 400 kosten scheelt in vergelijking met de volgende laagste score van simulated annealing. Als er relatief snel een goede oplossing gevonden moet worden, is greedy het beste algoritme, sinds het in een aantal minuten tot een prima oplossing komt, in tegen stelling tot de uren die andere algoritmes moet runnen.
 
 ## Batterijen verplaatsen
 
