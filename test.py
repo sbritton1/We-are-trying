@@ -6,4 +6,6 @@ for iteration in range(10000):
     temps.append(temperature)
 
 plt.plot(list(range(len(temps))), temps)
+plt.xlabel("Iteration")
+plt.ylabel("Temperature")
 plt.show()
