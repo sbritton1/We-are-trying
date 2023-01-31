@@ -6,6 +6,10 @@ Hier bespreken we alle algoritmes.
 
 [Hier](baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`. De baseline voor gedeelde kabels werkt op een gelijke manier, maar dan worden de kabels op zo'n manier neergelegd, dat ze gedeeld worden door middel van het Shared Cables algoritme die hier later wordt uitgelegd.
 
+## Shared cables algorithms
+
+Dit algoritme verbindt huizen met de kabels met de kleinste afstand vanaf een huis. Dit wordt gedaan door voor elk huis, elk kabel te bekijken. Vervolgens wordt de kabel met de kleinste afstand tot het huis bewaard en opgeslagen in een set van de gebruikte kabels en worden de kabels richting deze kabel gelegd.
+
 ## Greedy
 
 Greedy verbindt constant het nog niet verbonden huis, die het dichtste bij een batterij staat met voldoende capaciteit om de verbinding aan te kunnen gaan. Omdat via deze methode niet altijd alle huizen verbonden zullen worden, wordt de functie resolve_error() aangeroepen, die huizen gaat wisselen tot alle huizen wel verbonden zijn. Vanwege de randomness in de resolve_error(), kan greedy dit meerdere keren proberen aan te roepen, en bewaart het alleen de goedkoopst gevonden oplossing.
