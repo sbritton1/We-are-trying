@@ -134,10 +134,10 @@ Wel is te zien dat de runtime van de hill climber vele malen groter is en dat he
 
 De beste oplossing zonder het verplaatsen van de batterijen komt van het greedy + hill climber algoritme met een cost van 29752. Als we dit vergelijken met de baseline, waarbij de beste waarde 34306 was, dan is dit een grote verbetering. Hieruit kunnen we meteen concluderen dat het algoritme veel beter werkt dan slechts willekeurig huizen verbinden. Als we dit resultaat vervolgens vergelijken met het theoretisch minimum van 26350, dan zitten we zelfs hier niet heel ver van af, als rekening wordt gehouden met het feit dat dit theoretish optimum wel uit gaat van een heel ideale situatie. De gevonden oplossing ziet er dan als volgt uit.
 
-<img src="images/Best_no_movement.png" width="100%" height="auto">
+<img src="images/Best_no_movement.png" width="70%" height="auto">
 
 ### Met batterij bewegen
 
 De beste oplossing wanneer we wel batterijen mogen verplaatsen komt van het [hill climber battery algoritme](algorithms.md#hill-climber-moveable-battery) met een cost van 29329. Deze score kan niet vergeleken worden met de baseline, omdat bij de baseline de batterijen op de niet-optimale positie zitten. Wel kan het vergeleken worden met het theoretisch optimum. Dit algoritme verbetert de score met meer dan 300, en als we kijken naar het feit dat greedy + hill climber slechts 3400 van het theoretisch optimum af zit, dan is een score van 300 een substantiële verbetering. Deze oplossing ziet er als volgt uit.
 
-<img src="images/Best_with_movement.png" width="100%" height="auto">
+<img src="images/Best_with_movement.png" width="70%" height="auto">
