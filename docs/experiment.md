@@ -4,11 +4,11 @@ In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebbe
 
 ## Methode - moet worden gecheckt
 
-Wij hebben voor de tests eigenlijk alle algoritmes een aantal keer gerund. Deze algoritmes hebben we allemaal op hetzelfde district gerund, namelijk district 1, zodat we de resultaten goed met elkaar konden vergelijken. Voor de meeste algoritmes waren er niet veel parameters te veranderen, behalve voor de plant propagation en de simulated annealing. Hieronder (misschien linken naar kopjes) wordt uitgelegd hoe we zijn gekomen op de door ons gekozen parameter waardes.
+Wij hebben voor de tests eigenlijk alle algoritmes een aantal keer gerund. Deze algoritmes hebben we allemaal op hetzelfde district gerund, namelijk district 1, zodat we de resultaten goed met elkaar konden vergelijken. Voor de meeste algoritmes waren er niet veel parameters te veranderen, behalve voor de plant propagation en de simulated annealing. Hieronder (misschien linken naar kopjes) wordt uitgelegd hoe we zijn gekomen op de door ons gekozen parameter waardes voor [plant propagation](#plant-propagation-algorithm) en [simulated annealing](#simulated-annealing-algorithm).
 
-We hebben de algoritmes parallel gerund, zodat de we meer oplossingen kregen in dezelfde tijd. Hiervoor hebben we in de runtime gecompenseerd, door de runtime te vermenigvuldigen met het aantal dat het algoritme parallel is gerund. !Check of iedereen het zo gedaan heeft! We hebben vervolgens de resultaten geprint naar de terminal, en daarna hebben we deze waardes gekopieërd naar een resultaten file. De beste resultaten voor elk algoritme hebben we opgeslagen in een tabel. Dit hebben we gedaan voor de drie cases, die hieronder worden uitgelegd.
+We hebben de algoritmes parallel gerund, zodat de we meer oplossingen kregen in dezelfde tijd. Hiervoor hebben we in de runtime gecompenseerd, door de runtime te vermenigvuldigen met het aantal dat het algoritme parallel is gerund. De beste resultaten voor elk algoritme hebben we opgeslagen in een tabel. Dit hebben we gedaan voor de drie cases, die hieronder worden uitgelegd.
 
-Onze code was zo geschreven, zodat het lastig was om al onze algoritmes te runnen in een vaste tijd. Hierdoor hebben we niet alle algoritmes even lang laten runnen.
+Onze code was zo geschreven, zodat het lastig was om al onze algoritmes te runnen in een vaste tijd. Hierdoor hebben we niet alle algoritmes even lang laten runnen. Voor de rest was het niet erg interessant om de runtimes hetzelfde te houden, omdat hier alsnog verschul had kunnen komen tussen verschillend runtimes van de [PC's](#Verschillen-in-runtime). Om wel redelijke resultaten te krijgen, hebben we de parameters zo gekozen, zodat algoritmes genoeg tijd kregen om tot een goede oplossing te komen, maar zodat ze niet te lang runde waardoor ze dagen tot weken zouden gaan runnen.
 
 ### Verschillen in runtime
 
