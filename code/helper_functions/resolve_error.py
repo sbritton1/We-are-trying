@@ -1,5 +1,6 @@
 from ..classes.grid import Grid
 from ..classes.house import House
+from ..classes.battery import Battery
 import random
 
 
@@ -32,29 +33,47 @@ def resolve_error(grid: Grid) -> None:
         unconnected.make_connection(best_bat)
         return
 
-    # if house does not fit, run this
+    else:
+        swap_unconnected(grid, unconnected, best_bat)
+        return
+
+
+def swap_unconnected(grid: Grid, unconnected_house: House, battery: Battery) -> None:
+    """
+    Swaps unconnected house with a house connected to the battery,
+    with a high chance that this house has a lower max output than
+    the unconnected house, to hopefully be able to freely connect
+    that house to another battery. Then calls resolve_error() to connect
+    newly unconnected house to a battery.
+
+    Pre : grid is of class Grid, unconnected_house is of class House,
+          battery is of class Battery
+    Post: unconnected house is now connected to a battery, and resolve_error()
+          will be run to fix the newly unconnected house
+    """
+
     for i in range(10000):
 
         # give house a weight to get picked
         house_weights: list[float] = []
-        for house in best_bat.connected_homes:
+        for house in battery.connected_homes:
             house_weights.append(1/house.maxoutput)
 
         # select random house based on weight
-        house: House = random.choices(best_bat.connected_homes,
-                                      weights=house_weights, k=1)[0]
+        house: House = random.choices(battery.connected_homes,
+                                        weights=house_weights, k=1)[0]
 
         # checks if possible to connect unconnected house if random
         # house gets disconnected
-        if house.maxoutput + best_bat.current_capacity > unconnected.maxoutput:
+        if house.maxoutput + battery.current_capacity > unconnected_house.maxoutput:
 
             # disconnect original house
-            best_bat.disconnect_home(house)
+            battery.disconnect_home(house)
             house.delete_connection()
 
             # connect the previous unconnected house
-            best_bat.connect_home(unconnected)
-            unconnected.make_connection(best_bat)
+            battery.connect_home(unconnected_house)
+            unconnected_house.make_connection(battery)
 
             # run function again to solve newly unconnected house
             resolve_error(grid)

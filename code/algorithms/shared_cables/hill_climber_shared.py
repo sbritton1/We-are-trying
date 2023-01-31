@@ -23,15 +23,15 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     """
         
     # create list of grids as work for multithreading
-    n = 4
+    n = 50
     grids: list[Grid] = []
     
     grids = get_grids(n, grids, grid, fill)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 4
+    workers: int = 8
     p = multiprocessing.Pool(workers)
-    results = (p.map(work, grids))
+    results = (p.map(hill_climber_shared, grids))
 
     solutions: tuple[list[int], int, Grid] = get_best_solutions(results)
 
@@ -40,6 +40,7 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     
     solutions[2].remove_cables()
     return solutions[2]
+
 
 def get_best_solutions(results: tuple[Grid, list[int]]) -> tuple[list[int], int, Grid]:
     """
@@ -89,22 +90,6 @@ def get_grids(n, grids, grid, fill) -> list[Grid]:
     
     return grids
 
-def work(tmp_grid: Grid) -> tuple[Grid, list[int]]:
-    """
-    Runs the simulated annealing and returns the
-    grid and costs.
-
-    Pre : grid of class grid
-    Post: tuple containing grid of class grid and integer
-    """
-
-    # run algorithm and return the result
-    run_algo: tuple[Grid, int] = hill_climber_shared(tmp_grid)
-    tmp_grid: Grid = run_algo[0]
-    costs = run_algo[1]
-    print(tmp_grid.cost)
-    return (tmp_grid, costs)
-
 
 def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
     """
@@ -146,6 +131,7 @@ def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
         # saves new cost in cost list
         costs.append(best_cost)
 
+    print(tmp_grid.cost)
     return tmp_grid, costs
 
 

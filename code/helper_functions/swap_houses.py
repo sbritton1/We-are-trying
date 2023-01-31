@@ -1,14 +1,18 @@
 from ..classes.house import House
 from ..classes.battery import Battery
+from .possible_swap import possible_swap
 
 
-def swap_houses(house1: House, house2: House) -> None:
+def swap_houses(house1: House, house2: House) -> bool:
     """
     Swaps the battery of two houses.
 
     Pre : house1 and house2 are of class House
     Post: battery connection of two houses are swapped
     """
+
+    if possible_swap(house1, house2) is False:
+        return False
 
     house1_bat: Battery = house1.connection
     house2_bat: Battery = house2.connection
@@ -24,3 +28,5 @@ def swap_houses(house1: House, house2: House) -> None:
     house2.make_connection(house1_bat)
     house2_bat.connect_home(house1)
     house1.make_connection(house2_bat)
+
+    return True
