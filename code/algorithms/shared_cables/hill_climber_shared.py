@@ -23,13 +23,13 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     """
 
     # create list of grids as work for multithreading
-    n_grids: int = 4
+    n_grids: int = 50
     grids: list[Grid] = []
 
     grids = get_grids(n_grids, grids, grid, fill)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 4
+    workers: int = 8
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_shared, grids))
 

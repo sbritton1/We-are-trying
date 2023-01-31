@@ -92,7 +92,6 @@ def hill_climber_battery(grid: Grid) -> tuple[Grid, list[int]]:
     Pre : grid is of class Grid
     Post: returns tuple of grid of cheapest found battery configuration and its
           associated cost
-
     """
 
     costs: list[int] = [grid.cost]

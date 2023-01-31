@@ -44,11 +44,11 @@ De case uitleg van de unieke kabels kan worden gevonden in de [README](../README
 
 ### Resultaten
 
-| **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC**   |
-|-------------------------------|---------------------|-----------------------|-----------------|----------|
-| Random                        | 70225               | 0:04:11               | 100000          | PC 2     |
-| Greedy                        | 56905               | 0:03:54               | 100000          | PC 2     |
-| Steepest descent hill climber | 56266               | 0:10:46               | 1000            | PC 2     |
+| **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC** |
+|-------------------------------|---------------------|-----------------------|-----------------|--------|
+| Random                        | 70225               | 0:04:11               | 100000          | PC 2   |
+| Greedy                        | 56905               | 0:03:54               | 100000          | PC 2   |
+| Steepest descent hill climber | 56266               | 0:10:46               | 1000            | PC 2   |
 
 ### Conclusie
 
@@ -96,15 +96,15 @@ Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eer
 
 ### Resultaten
 
-| **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs**   | **PC**            |
-|-------------------------------|---------------------|-----------------------|-------------------|-------------------|
-| Baseline                      | 34306               | 7:44:00               | 100000            | PC 2              |
-| Greedy                        | 30562               | 0:04:01               | 100000            | PC 2              |
-| Hill climber                  | 30724               | 2:04:16               | 40                | PC 4              |
-| Steepest descent hill climber | 31534               | 7:47:45               | 1                 | PC 1              |
-| Simulated annealing           | 30220               | 6:13:40               | 50                | PC 1              |
-| Plant propagation             | 31534               | 1:40:32               | 1 (227 generaties)| PC 3              |
-| Greedy + hill climber         | 29752               | 4:05:32               | 108               | PC 4              |
+| **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs**   | **PC** |
+|-------------------------------|---------------------|-----------------------|-------------------|--------|
+| Baseline                      | 34306               | 7:44:00               | 100000            | PC 2   |
+| Greedy                        | 30562               | 0:04:01               | 100000            | PC 2   |
+| Hill climber                  | 30724               | 2:04:16               | 40                | PC 4   |
+| Steepest descent hill climber | 31534               | 7:47:45               | 1                 | PC 1   |
+| Simulated annealing           | 30220               | 6:13:40               | 50                | PC 1   |
+| Plant propagation             | 31534               | 1:40:32               | 1 (227 generaties)| PC 3   |
+| Greedy + hill climber         | 29752               | 4:05:32               | 108               | PC 4   |
 
 ### Conclusie
 
@@ -119,14 +119,25 @@ Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, 
 | **Algoritme**             | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs**                | **PC** |
 |---------------------------|---------------------|-----------------------|--------------------------------|--------|
 | Clustering                | 29923               | 0:00:20               | 10                             | PC 3   |
-| Hill climber              |                     |                       |                                |        |
+| Hill climber              | 29329               | 6:07:52               | 50 hill climbers               | PC 1   |
 | Clustering + hill climber | 29563               | 8:30:56               | 10 clusters + 50 hill climbers | PC 3   |
 
 ### Conclusie
 
-Hill climber lijkt goed te werken
+Uit de bovenstaande resultaten is te zien dat de Hill climber het beste lijkt te werken om de batterijen op de beste posities neer te zetten. Het lijkt misschien tegenstrijdig dat de hill climber een beter resultaat geeft wanneer deze begint met een willekeurige startpositie in plaats van met een clustering startpunt. Een mogelijke verklaring dat hill climber hier beter werkt, is dat je al snel in een lokaal minimum terecht komt wanneer je met een clustering begint. Omdat er echter maar 5 batterijen zijn en het grid niet zo groot is, is de state space van batterijen plaatsen ook niet enorm groot, dus is de kans dat je met 50 hill climbers één van de betere oplossingen vindt vrij groot.
 
-## Beste oplossing
+Wel is te zien dat de runtime van de hill climber vele malen groter is en dat het clustering algoritme al een redelijk goede oplossing vindt, terwijl clustering maar een fractie van de tijd inneemt. Als je een snelle en redelijk goede oplossing wilt vinden, is clustering dus een goed algoritme om te implementeren.
 
-> Geef plaatje van beste oplossing en vergelijk deze met de baseline en het theoretische optimum
+## Beste oplossinging
 
+### Zonder batterij bewegen
+
+De beste oplossing zonder het verplaatsen van de batterijen komt van het greedy + hill climber algoritme met een cost van 29752. Als we dit vergelijken met de baseline, waarbij de beste waarde 34306 was, dan is dit een grote verbetering. Hieruit kunnen we meteen concluderen dat het algoritme veel beter werkt dan slechts willekeurig huizen verbinden. Als we dit resultaat vervolgens vergelijken met het theoretisch minimum van 26350, dan zitten we zelfs hier niet heel ver van af, als rekening wordt gehouden met het feit dat dit theoretish optimum wel uit gaat van een heel ideale situatie. De gevonden oplossing ziet er dan als volgt uit.
+
+<img src="images/Best_no_movement.png" width="50%" height="auto">
+
+### Met batterij bewegen
+
+De beste oplossing wanneer we wel batterijen mogen verplaatsen komt van het [hill climber battery algoritme](algorithms.md#hill-climber-moveable-battery) met een cost van 29329. Deze score kan niet vergeleken worden met de baseline, omdat bij de baseline de batterijen op de niet-optimale positie zitten. Wel kan het vergeleken worden met het theoretisch optimum. Dit algoritme verbetert de score met meer dan 300, en als we kijken naar het feit dat greedy + hill climber slechts 3400 van het theoretisch optimum af zit, dan is een score van 300 een substantiële verbetering. Deze oplossing ziet er als volgt uit.
+
+<img src="images/Best_with_movement.png" width="50%" height="auto">
