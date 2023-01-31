@@ -131,7 +131,7 @@ Simulated annealing is een versie van een hill climber, waarin ook sommige versl
 Iedere duizend stappen van de simulated annealing wordt de temperatuur iets omhoog gegooid, in de hoop dat het algoritme uit een locaal minimum kan springen naar een lager locaal minimum. Hoe hoger de stap, hoe lager deze bump is.
 
 De temperatuursfunctie die gebruikt is om dit effect te krijgen is de volgende:
-$$temperature = 500 * 0.997 ^ {iteration} + \frac{25}{(\sqrt{int(iteration / 1000)} + 1)} * 0.997 ^ {iteration {\%} 1000}$$
+$$temperature = 500 * 0.997 ^ {iteration} + \frac{25}{(\sqrt{int(iteration / 1000)} + 1)} * 0.997 ^ {iteration \mod 1000}$$
 
 ### Plant Propagation Algorithm
 
