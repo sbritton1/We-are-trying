@@ -38,7 +38,7 @@ De temperatuursfunctie die gebruikt is om dit effect te krijgen is de volgende:
 $$temperature = 500 * 0.997 ^ {iteration} + \frac{25}{(\sqrt{int(iteration / 1000)} + 1)} * 0.997 ^ {iteration \mod 1000}$$
 
 Wanneer een grafiek wordt gemaakt van de temperatuursfunctie, ziet deze er dan als volgt uit.
-<img src="images/drawing.jpg" alt="drawing" width="200"/>
+![](images/Temperature_graph.png|width=200px)
 
 ## Plant Propagation Algorithm
 
