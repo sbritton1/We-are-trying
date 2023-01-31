@@ -22,10 +22,12 @@ def baseline(grid: Grid) -> Grid:
     best_solution: Grid = grid
 
     for _ in range(n_iterations):
+        # create a temporary grid
         tmp_grid: Grid = copy.deepcopy(grid)
 
-        # create a temporary grid, all houses are connected to random battery
+        # connect all houses to a random battery
         tmp_grid: Grid = add_random_connections(tmp_grid)
+
         cost: int = tmp_grid.calc_cost_normal()
 
         # add cost if it was a valid solution
@@ -45,6 +47,7 @@ def baseline(grid: Grid) -> Grid:
 def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     """
     Plots a histogram of the costs of all solutions.
+
     Pre : costs is a list of ints
     Post: displays histogram
     """
