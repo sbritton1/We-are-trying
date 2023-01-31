@@ -36,11 +36,11 @@ De case uitleg van de unieke kabels kan worden gevonden in de README !!!!!op een
 
 ### Resultaten
 
-| **Algoritme**                 | **Beste resultaat** | **Runtime** | **Aantal runs** | **PC**   |
-|-------------------------------|---------------------|-------------|-----------------|----------|
-| random                        | 70225               | 0:04:11     | 100000          | PC 2     |
-| greedy                        | 56905               | 0:03:54     | 100000          | PC 2     |
-| steepest descent hill climber | 56266               | 0:10:46     | 1000            | PC 2     |
+| **Algoritme**                 | **Beste resultaat** | **Runtime (H:MM:SS)** | **Aantal runs** | **PC**   |
+|-------------------------------|---------------------|-----------------------|-----------------|----------|
+| random                        | 70225               | 0:04:11               | 100000          | PC 2     |
+| greedy                        | 56905               | 0:03:54               | 100000          | PC 2     |
+| steepest descent hill climber | 56266               | 0:10:46               | 1000            | PC 2     |
 
 ### Conclusie
 
