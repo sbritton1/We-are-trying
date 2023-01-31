@@ -6,10 +6,10 @@ In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebbe
 
 METHODE BESPREKEN
 
-> Voor het runnen van de code zijn meerdere verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet.
-> PC 1 - CPU: i5-12400F, RAM: 32GB, 3400MHz DDR4
-> PC 2 - CPU: i7-9750H, RAM: 16GB, 2667MHz DDR4
-> PC 3 - CPU: i7-8750-H, RAM: 16GB, 2667MHz SODIMM
+> Voor het runnen van de code zijn meerdere verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet: \
+> PC 1 - CPU: i5-12400F, RAM: 32GB, 3400MHz DDR4 \
+> PC 2 - CPU: i7-9750H, RAM: 16GB, 2667MHz DDR4 \
+> PC 3 - CPU: i7-8750-H, RAM: 16GB, 2667MHz SODIMM \
 > PC 4 - CPU: AMD Ryzen 7 4700U, RAM: 16 GB, 3200MHz SODIMM
 
 ## Theoretisch optimum
@@ -26,13 +26,13 @@ Voor de gedeelde kabels case is dit echter wel mogelijk. Hierbij is het namelijk
 
 Het theoretische optimum kan volgens de volgende formule worden berekend.
 
-$$theoretisch\; optimum = kosten_{per\; batterij} \cdot n_{batterijen} + kosten_{per\; kabel} \cdot n_{kabels}$$
+$$theoretisch\ optimum = kosten_{per\ batterij} \cdot n_{batterijen} + kosten_{per\ kabel} \cdot n_{kabels}$$
 
-$$theoretisch\; optimum = 5000 \cdot 5 + 9 \cdot 150 = 26350$$
+$$theoretisch\ optimum = 5000 \cdot 5 + 9 \cdot 150 = 26350$$
 
 ## Unieke kabels
 
-De case uitleg van de unieke kabels kan worden gevonden in de README !!!!!op een of andere manier linken daarnaar!!!!! Voor deze case hebben we drie algoritmen gemaakt, de resultaten waarvan hieronder gevonden kunnen worden. De manier waarop deze algoritmen werken kan [hier](algorithms.md) gevonden worden.
+De case uitleg van de unieke kabels kan worden gevonden in de [README](../README.md). Voor deze case hebben we drie algoritmen gemaakt, de resultaten waarvan hieronder gevonden kunnen worden. De manier waarop deze algoritmen werken kan [hier](algorithms.md) gevonden worden.
 
 ### Resultaten
 
@@ -93,7 +93,9 @@ Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eer
 | Greedy + hill climber         | 29752               | 4:05:32               | 108               | PC 4              |
 
 ### Conclusie
+
 Voor deze case zitten er duidelijke verschillen tussen de tijd en daarmee ook het aantal runs van de algoritmes.  Er valt niet duidelijk een beste algoritme te noemen. Als de hoogste prioriteit ligt op de minimale kosten, lijkt de combinatie van de hill climber met een greedy algoritme het beste resultaat te geven, omdat het ongeveer 400 kosten scheelt in vergelijking met de volgende laagste score van simulated annealing. Als er relatief snel een goede oplossing gevonden moet worden, is greedy het beste algoritme, sinds het in een aantal minuten tot een prima oplossing komt, in tegen stelling tot de uren die andere algoritmes moet runnen.
+
 ## Batterijen verplaatsen
 
 Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, om een nog goedkopere oplossing te kunnen vinden. Bij het verplaatsen van de batterijen, kan een configuratie worden gevonden waarbij er minder kabels intotaal nodig zijn om alle huizen te verbinden, dan bij de locaties van de batterijen die in de bestanden van district 1, 2 en 3 worden meegegeven. Om te zoeken naar betere configuraties van de batterijen, hebben we twee algoritmes geschreven. De eerste is een clustering algoritme en de tweede is een hill climber voor de batterijen. Uitleg voor deze algoritmes worden [hier](algorithms.md) toegelicht.
