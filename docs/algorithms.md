@@ -69,7 +69,7 @@ Van deze nieuwe generatie (inclusief de parents) worden de beste $n_{roots}$ bew
 
 ## Hill Climber Moveable Battery
 
-De Hill climber moveable battery probeert de goedkoopste manier te vinden om shared cables neer te leggen, waarbij de 5 batterijen overal mogen liggen. Hierbij begint het algoritme met de 5 batterijen op een willekeurige positie neer te leggen. Vervolgens wordt de cost berekent van een greedy oplossing. Dan wordt één batterij in zowel de x als de y richting willekeurig tussen -10 en 10 stappen verplaatst. Hiervan wordt wederom de greedy oplossing berekent. Als deze oplossing goedkoper is dan het origineel, dan wordt de batterij op die positie neergelegd. Het schuiven van 1 batterij wordt herhaalt tot er 100 iteraties lang geen verbetering is gevonden.
+De Hill climber moveable battery probeert de goedkoopste manier te vinden om shared cables neer te leggen, waarbij de 5 batterijen overal mogen liggen. Hierbij begint het algoritme met de 5 batterijen op een willekeurige positie neer te leggen. Vervolgens wordt de cost berekent van een greedy oplossing. Dan wordt één batterij in zowel de x als de y richting willekeurig tussen -10 en 10 stappen verplaatst. Hiervan wordt wederom de greedy oplossing berekent. Als deze oplossing goedkoper is dan het origineel, dan wordt de batterij op die positie neergelegd. Het schuiven van een willekeurige batterij wordt herhaalt tot er 100 iteraties lang geen verbetering is gevonden.
 
 Het resultaat hiervan wordt in de [hill climber](#hill-climber) gestopt, om te kijken of er nog een paar kleine verbeteringen te vinden zijn.
 
