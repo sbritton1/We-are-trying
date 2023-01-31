@@ -6,6 +6,9 @@ In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebbe
 
 METHODE BESPREKEN
 
+> HIER INFO OVER PCs
+> 
+
 ## Theoretisch optimum
 
 Het is voor deze case lastig te bepalen wanneer het absolute optimum is gevonden. Daarom is het interessant om te kijken naar een theoretisch optimum. Dit geeft een idee van hoe veel kosten je minimaal moet maken en dus hoe goed een oplossing is.
@@ -46,14 +49,33 @@ intro
 
 ### Plant Propagation Algorithm
 
-227 generaties gerund met beste cost 31534. 
-n_roots = 8
-    min_runners = 2
-    max_runners = 6
-    min_changes = 1
-    max_changes = 8
-    n_generations = 300
-    max_times_no_improvement = 20
+Voor de Plant Propagation Algorithm (PPA) zijn er veel parameters die de effectiviteit van het algoritme sterk bepalen. De parameters worden hieronder gegeven. Meer informatie over het algoritme en de parameters is [hier](../README.md#plant-propagation-algorithm) te vinden.
+
+PPA parameters:
+- $n_{roots}$
+- $n_{runners_{min}}$ 
+- $n_{runners_{max}}$ 
+- $n_{changes_{min}}$ 
+- $n_{changes_{max}}$
+- $n_{generations}$
+- Maximum generations with no improvement
+- Fitness functie
+
+De uiteindelijke parameters zijn achterhaald door trial en error. Hierbij is het gebleken dat de minimale aantal changes erg laag moet zijn, om zo met kleine aanpassingen op een optimum te komen. Daarnaast moet het maximale aantal changes niet te laag zijn, om zo nog uit een lokaal optimum te kunnen 'springen'. Dit bleek een lastig optimalisatieprobleem, ook door de redelijk lange runtijd van het algoritme. 
+
+De runtijd moest aan de andere kant namelijk niet uit de hand lopen, wat voornamelijk bepaald werd door het aantal runners. Hierbij is voornamelijk met het maximale aantal runners geëxperimenteerd, omdat de minimale aantal runners eigenlijk 1 of 2 is geweest. 
+
+De uiteindelijke parameters zijn hieronder gegeven:
+- $n_{roots}$ = 8
+- $n_{runners_{min}}$ = 2 
+- $n_{runners_{max}}$ = 6
+- $n_{changes_{min}}$ = 1
+- $n_{changes_{max}}$ = 8
+- $n_{generations}$ = 300
+- Maximum generations with no improvement = 20
+- Fitness functie is [hier](../README.md#plant-propagation-algorithm) te vinden
+
+Door een gebrek aan tijd is het algoritme niet geheel geoptimaliseerd. Zoals eerder vermeld is het algoritme niet heel snel en dus lastig om veranderingen op te maken en hier snel de resultaten van te zien. Daarnaast was de informatievoorziening online ook beperkt en niet makkelijk te begrijpen. Zo is later gebleken dat de fitness functie nog door een tangens hyperbolicus gehaald had kunnen worden, wat de resultaten zou moeten verbeteren. 
 
 ### Resultaten
 
@@ -64,9 +86,11 @@ n_roots = 8
 | Hill climber                  | 30724               | 2:04:16               | 40              | AMD Ryzen 7 4700U |
 | Steepest descent hill climber | 31534               | 7:47:45               | 1               | i5-12400F         |
 | Simulated annealing           | 30220               | 6:13:40               | 50              | i5-12400F         |
-| Plant propagation             | 31534               | 1:40:32               | 1               | Sander laptop     |
+| Plant propagation             | 31534               | 1:40:32               | 1 (227 generaties)| Sander laptop     |
 | Greedy + hill climber         | 29752               | 1:32:00               | 24              | AMD Ryzen 7 4700U |
 | Greedy + hill climber 2.0     | 29905               | 4:05:32               | 108             | AMD Ryzen 7 4700U |
+
+### Conclusie
 
 ## Batterijen verplaatsen
 
@@ -84,3 +108,4 @@ clustering met hill climber battery:
 - best cost 29563
 - time taken 1:03:52
 - 50 keer hill climber
+
