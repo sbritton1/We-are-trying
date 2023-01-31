@@ -126,11 +126,7 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
 
     # swap houses
     if best_improvement > 0:
-        target1.connection.remove_cables()
-        target2.connection.remove_cables()
-        swap_houses(target1, target2)
-        target1.connection.lay_shared_cables()
-        target2.connection.lay_shared_cables()
+        SwapAndReplaceCables(target1, target2)
 
     # after each combination has been tried, return
     return tmp_grid, best_improvement
@@ -159,6 +155,21 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
     swap_houses(house1, house2)
 
     return org_cost - new_cost
+
+
+def SwapAndReplaceCables(target1: House, target2: House) -> None:
+    """
+    Swaps two houses and re-lays the cables for those batteries
+
+    Pre : target1 and target2 are of class House
+    Post: houses swapped batteries and the new cables are layd
+    """
+
+    target1.connection.remove_cables()
+    target2.connection.remove_cables()
+    swap_houses(target1, target2)
+    target1.connection.lay_shared_cables()
+    target2.connection.lay_shared_cables()
 
 
 def analyze_improvements(results: list[tuple[Grid, int]]) -> tuple[Grid, int]:
