@@ -29,7 +29,7 @@ Bij de laatste gradatie kan uit de volgende batterijtypes worden gekozen met elk
 
 Om ons algoritme te testen, zijn er drie dummy-woonwijken opgesteld. Deze zijn gegeven in csv-bestanden. Deze wijken zien er als volgt uit:
 
-<img src="docs/images/Wijk1.png" width="50%" height="auto">
+<img src="docs/images/Wijk1.png" width="70%" height="auto">
 
 
 ## Aan de slag
@@ -71,7 +71,7 @@ Standaard wordt het resultaat opgeslagen in een JSON bestand te vinden op `/resu
 
 De visualisatie zou er ongeveer zo uit moeten komen te zien:
 
-<img src="docs/images/example_grid.png" width="50%" height="auto">
+<img src="docs/images/example_grid.png" width="70%" height="auto">
 
 Om de eerdere resultaten die opgeslagen zijn een als JSON bestand te visualiseren kan het volgende commando gebruikt worden:
 
