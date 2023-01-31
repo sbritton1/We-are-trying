@@ -18,10 +18,10 @@ Onze code was zo geschreven, zodat het lastig was om al onze algoritmes te runne
 ## Verschillen in runtime
 Voor het runnen van de code zijn meerdere verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet:
 <pre>
-- PC 1 - CPU: i5-12400F        , RAM: 32GB, 3400MHz DDR4
-- PC 2 - CPU: i7-9750H         , RAM: 16GB, 2667MHz DDR4
-- PC 3 - CPU: i7-8750-H        , RAM: 16GB, 2667MHz DDR4
-- PC 4 - CPU: AMD Ryzen 7 4700U, RAM: 16GB, 3200MHz DDR4
+- PC 1   CPU: i5-12400F             RAM: 32GB, 3400MHz DDR4
+- PC 2   CPU: i7-9750H              RAM: 16GB, 2667MHz DDR4
+- PC 3   CPU: i7-8750-H             RAM: 16GB, 2667MHz DDR4
+- PC 4   CPU: AMD Ryzen 7 4700U     RAM: 16GB, 3200MHz DDR4
 </pre>
 
 ## Theoretisch optimum
