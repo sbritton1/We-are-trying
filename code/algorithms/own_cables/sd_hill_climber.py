@@ -30,10 +30,11 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
 
     # number of times to run the algorithm
     for i in range(n_iterations):
+        # make a copy of the grid and make random connections
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
-        # if not every house is connected, resolve for valid solution
+        # if not every house is connected, resolve untill a valid solution
         while valid_solution(tmp_grid) is False:
             resolve_error(tmp_grid)
 
@@ -65,6 +66,7 @@ def sd_hill_climber(grid: Grid) -> None:
           minimum has been reached.
     """
 
+    # repeat untill no more improvements can be found
     while True:
 
         # keep track of best possible swap
@@ -77,7 +79,7 @@ def sd_hill_climber(grid: Grid) -> None:
             for house2 in grid.houses:
                 if house1.connection != house2.connection:
 
-                    # Check improvement if swap is possible
+                    # check improvement if swap is possible
                     if possible_swap(house1, house2) is True:
                         improvement: int = calc_improvement(house1, house2)
                         if improvement > best_improvement:
@@ -111,11 +113,11 @@ def calc_improvement(house1: House, house2: House) -> int:
 
 def plot_costs(costs: list[int], grid: Grid, n_iterations: int) -> None:
     """
-    Plts histogram of costs of solutions found using the SD hill climber
+    Plots a histogram of costs of solutions found using the SD hill climber.
 
-    pre : costs is list of ints, grid is of class Grid
+    Pre : costs is list of ints, grid is of class Grid
           n_iterations is an int
-    Post: histogram is made
+    Post: histogram is made, but not yet shown
     """
 
     plt.title(f"Histogram of costs (algorithm: steepest descent hill climber " + \
