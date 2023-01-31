@@ -92,11 +92,6 @@ class Battery:
                 for cable in self.cables:
                     distance = self.calc_distance(house, cable)
 
-                    # later iterate on trying different
-                    # configurations when two houses
-                    # have the same distance, this can lead
-                    # to different results
-
                     # updates cable if the distance is smaller
                     if distance < min_dist:
                         min_dist = distance
@@ -112,54 +107,53 @@ class Battery:
             # gets coordinates from cable with whe smallest distance
             min_cable_x, min_cable_y = [int(coord) for coord in min_cable.split(",")]
 
-            # checks if cable up or down
-            dir_y = 1
-            if min_house.coord_y - min_cable_y > 0:
-                dir_y = -1
+            self.add_cables_y_axis(min_house, min_cable_y)
 
-            # adds all cables along the y-axis
-            # for new_y in range(min_house.coord_y, min_cable_y, dir_y):
-            #     new_cable = f"{min_house.coord_x},{new_y + dir_y}"
-            #     min_house.cables.append(new_cable)
-            #     self.cables.add(new_cable)
-
-            self.add_cables_y_axis(min_house, min_cable_y, dir_y)
-            # checks if cable to the left or to the right
-            dir_x = 1
-            if min_house.coord_x - min_cable_x > 0:
-                dir_x = -1
-
-            self.add_cables_x_axis(min_house, min_cable_x, min_cable_y, dir_x)
-            # adds all cables along the x-axis
-            # for new_x in range(min_house.coord_x, min_cable_x, dir_x):
-            #     new_cable = f"{new_x + dir_x},{min_cable_y}"
-            #     min_house.cables.append(new_cable)
-            #     self.cables.add(new_cable)
+            self.add_cables_x_axis(min_house, min_cable_x, min_cable_y)
 
             unconnected.remove(loc_in_list)
+            
+    def get_axis_direction(self, start, end) -> int:
+        """
+        Returns 1 if the connection is in the negative axis direction and 1 if
+        in the positive direction.
+        
+        Pre : a start and end coordinate as integer
+        Post: returns direction as integer
+        """
 
-    def add_cables_x_axis(self, min_house: House, min_cable_x: int, min_cable_y: int, dir: int) -> None:
+        if end - start < 0:
+            return -1
+        return 1
+
+    def add_cables_x_axis(self, min_house: House, min_cable_x: int, min_cable_y: int) -> None:
         """
         Lays cables along the x_axis.
         
         Pre : house from class House, and three integers
         Post: none
         """
-        for new_x in range(min_house.coord_x, min_cable_x, dir):
-            new_cable = f"{new_x + dir},{min_cable_y}"
+        
+        direction = self.get_axis_direction(min_house.coord_x, min_cable_x)
+        
+        for new_x in range(min_house.coord_x, min_cable_x, direction):
+            new_cable = f"{new_x + direction},{min_cable_y}"
             min_house.cables.append(new_cable)
             self.cables.add(new_cable)
 
 
-    def add_cables_y_axis(self, min_house: House, end_coord: int, dir: int) -> None:
+    def add_cables_y_axis(self, min_house: House, end_coord: int) -> None:
         """
         Lays cables along the y_axis.
         
         Pre : house from class House, and two integers
         Post: none
         """
-        for new_y in range(min_house.coord_y, end_coord, dir):
-            new_cable = f"{min_house.coord_x},{new_y + dir}"
+        
+        direction = self.get_axis_direction(min_house.coord_y, end_coord)
+        
+        for new_y in range(min_house.coord_y, end_coord, direction):
+            new_cable = f"{min_house.coord_x},{new_y + direction}"
             min_house.cables.append(new_cable)
             self.cables.add(new_cable)
 
