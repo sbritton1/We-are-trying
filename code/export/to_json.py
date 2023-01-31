@@ -4,6 +4,7 @@ from ..classes.house import House
 from typing import Any
 import json
 
+
 def to_json(grid: Grid, cable_type: str) -> None:
     """
     Exports the data to a json file in the prescribed format.
@@ -56,7 +57,6 @@ def add_batteries(grid: Grid, all_dicts: list[dict[str, Any]]) -> None:
 
         # add battery dict to full list
         all_dicts.append(bat_dict)
-
 
 
 def add_houses(battery: Battery) -> list[dict[str, Any]]:

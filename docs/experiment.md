@@ -26,7 +26,7 @@ $$theoretisch\; optimum = 5000 \cdot 5 + 9 \cdot 150 = 26350$$
 
 ## Unieke kabels
 
-intro
+De case uitleg van de unieke kabels kan worden gevonden in de README !!!!!op een of andere manier linken daarnaar!!!!! Voor deze case hebben we drie algoritmen gemaakt, de resultaten waarvan hieronder gevonden kunnen worden. De manier waarop deze algoritmen werken kan gevonden worden !!!!!!!ergens!!!!!!!
 
 ### Resultaten
 
@@ -35,6 +35,10 @@ intro
 | random                        | 70225               | 0:04:11     | 100000          | i7-9750H | /              |
 | greedy                        | 56905               | 0:03:54     | 100000          | i7-9750H | /              |
 | steepest descent hill climber | 56266               | 0:10:46     | 1000            | i7-9750H | /              |
+
+### Conclusie
+
+Voor deze case nemen geen van de algoritmen heel veel tijd in beslag. De steepest descent hill climber geeft de beste oplossing, met slechts een cost van 56266. Iedere run van dit algoritme kost ongeveer 1 seconde. De random en greedy algoritmen kosten beide ongeveer evenveel tijd per run, maar het greedy algoritme geeft een veel beter resultaat, dus als snel redelijk goede oplossing gevonden moet worden, is het greedy algoritme aan te raden.
 
 ## Gedeelde kabels
 
