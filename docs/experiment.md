@@ -6,6 +6,24 @@ In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebbe
 
 METHODE BESPREKEN
 
+## Theoretisch optimum
+
+Het is voor deze case lastig te bepalen wanneer het absolute optimum is gevonden. Daarom is het interessant om te kijken naar een theoretisch optimum. Dit geeft een idee van hoe veel kosten je minimaal moet maken en dus hoe goed een oplossing is.
+
+Voor het theoretisch optimum doen we de volgende aannames:
+- Er zijn altijd 5 batterijen en 150 huizen.
+- Elk huis heeft minstens 1 kabel nodig om de connectie tussen de batterij en het huis te verwezenlijken.
+
+Deze aannames is ver van de daadwerkelijke situatie voor de unieke kabels case. Hierbij zouden namelijk alle huizen op een afstand van 1 van een batterij moeten zitten, wat zou betekenen dat er heel veel huizen op dezelfde plek zouden moeten zitten. 
+
+Voor de gedeelde kabels case is dit echter wel mogelijk. Hierbij is het namelijk mogelijk dat alle huizen op een sliert liggen, met 1 afstand tussen elk huis en 1 afstand naar een batterij.
+
+Het theoretische optimum kan volgens de volgende formule worden berekend.
+
+$$theoretisch\; optimum = kosten_{per\; batterij} \cdot n_{batterijen} + kosten_{per\; kabel} \cdot n_{kabels}$$
+
+$$theoretisch\; optimum = 5000 \cdot 5 + 9 \cdot 150 = 26350$$
+
 ## Unieke kabels
 
 intro
