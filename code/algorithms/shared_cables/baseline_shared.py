@@ -12,24 +12,32 @@ def init_baseline_shared(grid: Grid) -> Grid:
     the cost would be if the houses are randomly connected to batteries
     using shared cables.
 
-    Pre:  grid is of class Grid
+    Pre : grid is of class Grid
     Post: returns lowest cost solution as Grid
     """
 
+    # set the amount of times a random grid is created
     iterations: int = 10000
 
+    # amount of threads used for multiprocessing
     workers: int = 8
+
+    # use multiprocessing to get the results
     work = [grid] * iterations
     p = multiprocessing.Pool(workers)
-    results: tuple[list[Grid], int] = (p.map(baseline_shared, work))
+    results: list[tuple[Grid, int]] = (p.map(baseline_shared, work))
 
+    # analyze all the results to find the best grid and the costs of
+    # all solutions
     final_results = analyze_results(results)
     best_solution = final_results[0]
     costs = final_results[1]
 
     plot_cost(costs, best_solution, iterations)
 
+    # remove cables before returning
     best_solution.remove_cables()
+
     return best_solution
 
 
@@ -40,7 +48,8 @@ def baseline_shared(grid: Grid) -> tuple[Grid, int]:
     and when cables can be shared.
 
     Pre : grid is of class Grid
-    Post: returns lowest cost solution
+    Post: returns a randomly connected grid with shared cables without checking
+        if the solution is valid
     """
 
     # create temporary grid and add random connections
@@ -60,7 +69,7 @@ def analyze_results(results: list[tuple[Grid, int]]) -> tuple[Grid, list[int]]:
     and stores best found solution.
 
     Pre : results is a list of a tuple of a grid and an int
-    Post: returns tuple of Grid and list of ints, where grid is
+    Post: returns tuple of Grid and list of ints, where grid is the
           best solution and list of ints is list of cost of all solutions
     """
 
