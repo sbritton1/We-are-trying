@@ -1,6 +1,5 @@
 from copy import deepcopy
 from math import ceil
-from random import shuffle
 import multiprocessing
 import matplotlib.pyplot as plt
 
@@ -10,21 +9,19 @@ from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.find_random_houses import find_random_houses
 from ...helper_functions.swap_houses import swap_houses
-from ..own_cables.greedy import greedy
 
 
 def plant_propagation(grid: Grid) -> Grid:
     """
     Find an optimal solution for the Smart Grid problem with shared cables
     using the Plant Propagation Algorithm.
-    
+
     Pre : grid is a Grid object with no connections between houses and
         batteries and no cables
     Post: the best found grid is returned with connections but no cables
     """
 
     # * set algorithm parameters
-    shared_cables = True
     n_roots = 8
     min_runners = 2
     max_runners = 6
@@ -54,8 +51,7 @@ def plant_propagation(grid: Grid) -> Grid:
         # get the runners of the new generation
         runners = create_new_generation(root_grids, min_runners,
                                         max_runners, min_changes,
-                                        max_changes, shared_cables,
-                                        print_stuff)
+                                        max_changes, print_stuff)
 
         current_generation += 1
 
@@ -73,8 +69,8 @@ def plant_propagation(grid: Grid) -> Grid:
             n_times_no_improvement += 1
             if n_times_no_improvement == max_times_no_improvement:
                 print(f"Stopped after {current_generation} generations")
-                
-                break 
+
+                break
         else:
             n_times_no_improvement = 0
 
@@ -82,7 +78,7 @@ def plant_propagation(grid: Grid) -> Grid:
 
     # plot the best results of each generation, if plot_stuff is set to True
     if plot_stuff:
-        plot_results(best_costs, grid, n_generations)
+        plot_results(best_costs, grid, current_generation)
 
     # choose the best runner of the last generation
     best_runner = runners[0]
@@ -120,7 +116,6 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
         # lay the shared cables
         tmp_grid.lay_shared_cables()
 
-
         start_roots.append(tmp_grid)
 
     # sort runners in ascending order of cost
@@ -132,8 +127,7 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
 
 def create_new_generation(root_grids: list[Grid], min_runners: int,
                           max_runners: int, min_changes: int, max_changes: int,
-                          shared_cables: bool, print_stuff: bool
-                          ) -> list[Grid]:
+                          print_stuff: bool) -> list[Grid]:
     """
     Creates a new generation of grids according to the PPA.
 
@@ -148,7 +142,7 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
 
     # go over each grid and check for the highest and lowest cost
     for root_grid in root_grids:
-        cost = calculate_cost(root_grid, shared_cables)
+        cost = calculate_cost(root_grid)
         if cost < lowest_cost:
             lowest_cost = cost
         if cost > highest_cost:
@@ -167,7 +161,10 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
         n_changes = get_n_changes(fitness, max_changes, min_changes)
 
         if print_stuff:
-            print(f"Grid cost: {root_grid.cost}, fitness: {fitness}, n_runners: {n_runners}, n_changes: {n_changes}")
+            print(
+                f"Grid cost: {root_grid.cost}, fitness: {fitness}," +
+                f"n_runners: {n_runners}, n_changes: {n_changes}"
+                )
 
         # create each runner
         for _ in range(n_runners):
@@ -189,17 +186,15 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
     return root_grids + runners
 
 
-def calculate_cost(grid: Grid, shared_cables: bool) -> int:
+def calculate_cost(grid: Grid) -> int:
     """
-    Calculates the cost of a grid depending on if the cables are shared or not.
-    
+    Calculates the cost of a grid.
+
     Pre : grid is a Grid object with connections leading to a valid solution
         with cables already laid down
     Post: an integer representing the cost is returned
     """
-    if shared_cables:
-        return grid.calc_cost_shared()
-    return grid.calc_cost_normal()
+    return grid.calc_cost_shared()
 
 
 def get_fitness(cost: int, lowest_cost: int, highest_cost: int) -> float:
@@ -272,8 +267,10 @@ def plot_results(best_costs: list[int], grid: Grid, n_generations: int) -> None:
     Pre : type hints are met
     Post: a matplotlib window should be shown with the correct plot
     """
-    plt.title(f"Plot of best costs per generation (algorithm: plant propagation, district: " + \
-              f"{grid.district}, generations: {n_generations})")
+    plt.title(
+                "Plot of best costs per generation (algorithm: plant" +
+                "propagation, district: " +
+                f"{grid.district}, generations: {n_generations})")
     plt.plot(best_costs)
     plt.xlabel("Generation")
     plt.ylabel("Best cost")

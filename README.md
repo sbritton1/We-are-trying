@@ -102,7 +102,7 @@ Hier bespreken we de algoritmes die we hebben.
 
 [Hier](docs/baseline.md) wordt meer informatie gegeven over de baseline met unieke kabels. Dit algoritme kan gerund worden door 'baseline' in te vullen bij `ALGORITHM`.
 
-WAT INVULLEN VOOR BASELINE SHARED
+> WAT INVULLEN VOOR BASELINE SHARED
 
 ### Greedy
 
@@ -112,7 +112,7 @@ Greedy_shared werkt op dezelfde manier, behalve dat deze op het einde de gedeeld
 
 ### Hill Climber
 
-WAT INVULLEN VOOR HILL CLIMBER
+> WAT INVULLEN VOOR HILL CLIMBER
 
 Dit algoritme maakt 1 willekeurige verandering op een random grid, en kijkt dan vervolgens of dit een betere oplossing is. De verandering wordt uitgevoerd door twee huizen met elkaar te swappen, waardoor ze aan een andere batterij verbonden zijn. Het kijkt een N aantal keer of er een verbetering is gevonden en als dit niet zo is wordt het algoritme gestopt. Als er wel een verbetering wordt gevonden, kijkt het algoritme opnieuw N keer met een willekeurige verandering of er een betere oplossing gevonden kan worden.
 
@@ -140,7 +140,7 @@ Plant Propagation Algorithm (PPA) is een population-based algorithm gebaseerd op
 - $n_{changes_{min}}$ 
 - $n_{changes_{max}}$
 - $n_{generations}$
-- maximum times no improvement
+- maximum generations with no improvement
 
 Voor onze case hebben we het zo geïmplementeerd dat we beginnen met $n_{roots}$ willekeurige oplossingen van de grid. Deze oplossingen zijn onze eerste generatie. Deze krijgen elk een fitness score tussen de 0 en 1 op basis van hun kosten vergeleken met de rest van de populatie. Hiervoor wordt de volgende formule gebruikt:
 
@@ -156,18 +156,20 @@ Van deze nieuwe generatie (inclusief de parents) worden de beste $n_{roots}$ bew
 
 ### Hill Climber Moveable Battery
 
-De Hill climber moveable battery probeert goedkoopste manier te vinden om shared cables neer te leggen, waarbij de 5 batterijen overal mogen liggen. Hierbij begint het algoritme met de 5 batterijen op een willekeurige positie neer te leggen. Vervolgens wordt de cost berekent van een greedy oplossing. Dan wordt één batterij in zowel de x als de y richting willekeurig tussen -10 en 10 stappen verplaatst. Hiervan wordt wederom de greedy oplossing berekent. Als deze oplossing goedkoper is dan het origineel, dan wordt de batterij op die positie neergelegd. Het schuiven van 1 batterij wordt herhaalt tot er 100 iteraties lang geen verbetering is gevonden.
+De Hill climber moveable battery probeert de goedkoopste manier te vinden om shared cables neer te leggen, waarbij de 5 batterijen overal mogen liggen. Hierbij begint het algoritme met de 5 batterijen op een willekeurige positie neer te leggen. Vervolgens wordt de cost berekent van een greedy oplossing. Dan wordt één batterij in zowel de x als de y richting willekeurig tussen -10 en 10 stappen verplaatst. Hiervan wordt wederom de greedy oplossing berekent. Als deze oplossing goedkoper is dan het origineel, dan wordt de batterij op die positie neergelegd. Het schuiven van 1 batterij wordt herhaalt tot er 100 iteraties lang geen verbetering is gevonden.
 
 Het resultaat hiervan wordt in de hill climber shared gestopt, om te kijken of er nog een paar kleine verbeteringen te vinden zijn.
 
 ### Clustering
 
-WAT INVULLEN VOOR CLUSTERING
+Clustering is een algoritme voor de case met het bewegen van de batterijen (gradatie 3 in de [Case Uitleg](#case-uitleg)). Het idee is dat er voor elke batterij een cluster wordt gevonden en vervolgens wordt de batterij in het midden hiervan geplaatst. Vervolgens kan een algoritme van shared cables hiervan de optimale oplossing vinden. 
+
+Voor het clusteren wordt er gebruik gemaakt van K-means clustering. Hierbij worden ten eerste de batterijen op willekeurige plekken op de grid geplaatst. Vervolgens worden alle huizen gekoppeld aan de dichtsbijzijnde batterij. Daarna wordt de batterij verplaatst naar het midden van al zijn gekoppelde huizen. Dit wordt een aantal keer herhaald en met een beetje mazzel worden er zo mooie clusters gevonden voor elke batterij. Hierna wordt het [greedy](#greedy) algoritme gebruikt om de daadwerkelijke connecties tussen de huizen en batterijen te maken.
 
 
 ## Experimenteren
 
-Documentatie van onze experimenten met de verschillende algoritmes is [hier](docs/experiment.md) te vinden.
+Documentatie van onze experimenten en resultaten met de verschillende algoritmes is [hier](docs/experiment.md) te vinden.
 
 ## Auteurs
 

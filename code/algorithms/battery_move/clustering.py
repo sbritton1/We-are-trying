@@ -1,20 +1,17 @@
-import numpy as np
 from random import randint
 from random import choice
 
 from ...classes.grid import Grid
-from ...classes.house import House
 from ...classes.battery import Battery
 from code.visualization.visualization import visualize
 from ..own_cables.greedy import greedy
-from ..shared_cables.hill_climber_shared import init_hill_climber_shared
 
 
 def clustering(grid: Grid) -> Grid:
     """"
     Clusters the batteries on a grid according to the houses using K-means
         clustering.
-    
+
     Pre : grid is a Grid object with no connections and no cables
     Post: the batteries are clustered and connections are made using the greedy
         algorithm, the grid is then returned
@@ -29,22 +26,20 @@ def clustering(grid: Grid) -> Grid:
     # visualisatie
     if visualize_clustering:
         grid.cost = 99999999999
-        print("random battery placement without connections")
+        print("Random battery placement without connections")
         visualize(grid)
 
     for _ in range(n_iterations):
-        # go over all houses and find their manhattan distances to the
-        # batteries connect the closest houses first and stop when a battery
-        # is maxed
+        # connect each house to the closest battery (without load)
         connect_closest_houses(grid)
 
         # visualisatie
         if visualize_clustering:
-            print(f"{_}: batteries connected but not moved")
+            print(f"iteration {_}")
             grid.lay_shared_cables()
             visualize(grid)
 
-        # find the center of the connected houses
+        # move the battery to the center of its connected houses
         move_batteries_to_center(grid)
 
         # visualisatie
@@ -54,16 +49,13 @@ def clustering(grid: Grid) -> Grid:
         # remove all connections
         grid.remove_all_connections()
 
+    print("Clustering complete!")
+
     # perform the connection algorithm
-    print("Perform greedy")
+    print("Running connection algorithm...")
     grid = greedy(grid)
 
-    # lay the cables
-    grid.lay_shared_cables()
-
-    # ! TESTEN
-    # grid = init_hill_climber_shared(grid)
-    
+    # ! TESTEN MET HILL CLIMBER
 
     return grid
 
@@ -107,37 +99,23 @@ def connect_closest_houses(grid: Grid) -> None:
     Post: every house is connected to the closest battery without adjusting
         the capacity of the battery
     """
-    # ! DIT KAN VEEL KORTER
-    # connect gelijk het dichtsbijzijnde huis
+    # get the batteries and houses of the grid
+    batteries = grid.batteries
+    houses = grid.houses
 
+    for house in houses:
+        # make a list for storing the distances of the house to each battery
+        distances: list[int] = []
 
-    all_houses_distances: list[tuple[House, list[int]]] = []
+        # get the distance to each battery
+        for battery in batteries:
+            distances.append(house.distance_to_any_battery(battery))
 
-    # loop over all houses
-    for house in grid.houses:
-        house_distances: list[int] = []
+        # get the closest battery
+        closest_battery_idx = distances.index(min(distances))
+        closest_battery = batteries[closest_battery_idx]
 
-        # find distances to every battery
-        for battery in grid.batteries:
-            house_distances.append(house.distance_to_any_battery(battery))
-
-        all_houses_distances.append((house, house_distances))
-
-    # sort all houses on their minimum distance to a battery
-    all_houses_distances.sort(key=lambda x: min(x[1]))
-
-    # go over all houses and connect to closest battery if possible
-    for house_and_distances in all_houses_distances:
-        house, distances = house_and_distances
-
-        # find minimum distance
-        min_distance = min(distances)
-
-        # find the battery with this minimum distance
-        closest_battery_index = distances.index(min_distance)
-        closest_battery = grid.batteries[closest_battery_index]
-
-        # connect without loading the battery
+        # connect the house to the closest battery without loading it
         closest_battery.connect_home_without_load(house)
 
 
@@ -205,4 +183,3 @@ def get_random_offset() -> tuple[int, int]:
     """
     offsets = [-1, 0, 1]
     return (choice(offsets), choice(offsets))
-

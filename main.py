@@ -14,6 +14,7 @@ from code.algorithms.shared_cables.simulated_annealing import init_simulated_ann
 from code.algorithms.shared_cables.plant_propagation import plant_propagation
 from code.algorithms.battery_move.hill_climber_battery import init_hill_climber_battery
 from code.algorithms.battery_move.clustering import clustering
+from code.algorithms.battery_move.clustering_and_hc_battery import clustering_and_hill_climber_battery
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -82,6 +83,7 @@ if __name__ == "__main__":
         "plant_propagation": (plant_propagation, "shared"),
         "hill_climber_battery": (init_hill_climber_battery, "shared"),
         "clustering": (clustering, "shared"),
+        "clustering_and_hc_battery": (clustering_and_hill_climber_battery, "shared"),
     }
 
     check_usage()

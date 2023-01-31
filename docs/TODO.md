@@ -6,12 +6,9 @@ MUST:
 - experiment.md:
   - maak lopend verhaal
   - run nog voor battery move
+  - clustering met hill climber runnen
 - code commenten en opschonen
 - repo opschonen
 - presentatie verbeteren
 
 
-
-Kleine dingetjes:
-- plant_propagation.py:
-  - haal de shared cables variable weg

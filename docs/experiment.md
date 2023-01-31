@@ -1,6 +1,10 @@
 # Experimenteren
 
-Intro
+In dit document bespreken we hoe we hebben geëxperimenteerd en resultaten hebben verzameld. Ten eerste bespreken we dit voor de case met unieke kabels, dan met gedeelde kabels en dan met het verplaatsen van batterijen.
+
+## Methode
+
+METHODE BESPREKEN
 
 ## Unieke kabels
 
@@ -53,3 +57,8 @@ intro
 |               |                     |                   |                |
 |               |                     |                   |                |
 |               |                     |                   |                |
+
+clustering met hill climber battery:
+- best cost 29563
+- time taken 1:03:52
+- 50 keer hill climber
