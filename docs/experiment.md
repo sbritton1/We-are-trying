@@ -117,4 +117,4 @@ Het vervolg op de casus is dat batterijen verplaatst kunnen worden in het grid, 
 
 ### Conclusie
 
-Sup
+Hill climber lijkt goed te werken

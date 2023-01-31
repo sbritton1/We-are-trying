@@ -8,7 +8,7 @@ Hier bespreken we alle algoritmes.
 
 ## Shared cables algoritme !!! nog ff checken of dit klopt
 
-Om alle huizen zo efficient mogelijk te verbinden met kabels, hebben we dit algoritme gemaakt. We hebben hiervoor per batterij gekeken. Een batterij heeft een paar belangrijke waardes hiervoor, zoals de kabels waarmee de batterij is verbonden en de huizen waarmee de batterij is verbonden. Voor elk huis, wordt er gekeken welke kabel het meest dichtbij ligt. Hiervoor gaan we door alle kabels van de batterij, om te kijken welke de kleinste afstand heeft tot een huis. Vervolgens slaan we deze kabel op, en verbinden we het huis en de kabel met elkaar. Ook wordt deze kabel opgeslagen in de batterij class. Al deze stappen worden vervolgens herhaald tot alle huizen van de batterij zijn verbonden aan een kabel of een batterij. En dit wordt vervolgens weer herhaald voor alle batterijen.
+Om alle huizen zo efficient mogelijk te verbinden met kabels, hebben we dit algoritme gemaakt. We hebben hiervoor per batterij gekeken. Een batterij heeft een paar belangrijke waardes hiervoor, zoals de kabels verbonden aan de batterij en de huizen waarmee de batterij is verbonden. Voor elk huis die verbonden moet worden aan de batterij wordt gekeken wat de afstand is tot de dichtstbijzijnde kabel reeds aan de batterij verbonden. Van alle huizen wordt dan het huis gekozen die het dichtste bij een kabel ligt en verbinden we het huis en de kabel met elkaar. Ook wordt deze kabel opgeslagen in de batterij class. Al deze stappen worden vervolgens herhaald tot alle huizen van de batterij zijn verbonden aan de batterij. Dit wordt herhaald voor alle batterijen.
 
 ## Greedy
 
