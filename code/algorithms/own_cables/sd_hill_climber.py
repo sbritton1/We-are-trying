@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import copy
+
 from ...classes.grid import Grid
 from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
@@ -5,8 +8,6 @@ from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
-import matplotlib.pyplot as plt
-import copy
 
 
 def init_sd_hill_climber(grid: Grid) -> Grid:
@@ -34,7 +35,7 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
         tmp_grid: Grid = copy.deepcopy(grid)
         tmp_grid = add_random_connections(tmp_grid)
 
-        # if not every house is connected, resolve untill a valid solution
+        # if not every house is connected, resolve until solution is valid
         while valid_solution(tmp_grid) is False:
             resolve_error(tmp_grid)
 
@@ -105,8 +106,16 @@ def calc_improvement(house1: House, house2: House) -> int:
           negative when the swap increases the cost of the grid
     """
 
-    diff1: int = house1.distance_to_battery() - house1.distance_to_any_battery(house2.connection)
-    diff2: int = house2.distance_to_battery() - house2.distance_to_any_battery(house1.connection)
+    # get the old and new distances of the houses
+    old_distance_1: int = house1.distance_to_any_battery(house2.connection)
+    new_distance_1: int = house1.distance_to_battery()
+
+    old_distance_2: int = house2.distance_to_any_battery(house1.connection)
+    new_distance_2: int = house2.distance_to_battery()
+
+    # calculate the improvements for each house
+    diff1 = new_distance_1 - old_distance_1
+    diff2 = new_distance_2 - old_distance_2
 
     return diff1 + diff2
 
@@ -120,8 +129,9 @@ def plot_costs(costs: list[int], grid: Grid, n_iterations: int) -> None:
     Post: histogram is made, but not yet shown
     """
 
-    plt.title(f"Histogram of costs (algorithm: steepest descent hill climber " + \
-              f"(own cables), district: {grid.district}, iterations: {n_iterations})")
+    plt.title("Histogram of costs (algorithm: steepest descent hill climber " +
+              f"(own cables), district: {grid.district}, " +
+              f"iterations: {n_iterations})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
     plt.ylabel("Frequency")
