@@ -4,6 +4,15 @@ from ...classes.grid import Grid
 from ...classes.battery import Battery
 from ...classes.house import House
 
+""""
+Het idee van dit algoritme is als volgt:
+
+Ga alle combinaties van huizen langs en vind de combinatie met de kortste
+afstand. Hier kan vervolgens een Trail object van worden gemaakt. Deze houdt
+bij welke huizen er aan gekoppeld zijn, met welke kabels deze zijn verbonden
+en de totale output van de huizen in deze trail. 
+"""
+
 batteries = {
     450: {"type": "Powerstar", "cost": 900},
     900: {"type": "Imerse-II", "cost": 1350},
@@ -31,11 +40,15 @@ def trails(grid: Grid) -> Grid:
 
 
 class Trail():
-    def __init__(self) -> None:
-        self.houses: list[House] = []
+    def __init__(self, house1: House, house2: House) -> None:
+        self.houses: list[House] = [house1, house2]
         self.total_load = 0.0
 
         self.battery = batteries[450]
+
+        self.cables: set[str] = {f"{house1.coord_x},{house1.coord_y}"}
+
+        self.connect_house(house2)
 
     def connect_house(self, house: House) -> None:
         self.houses.append(house)
@@ -47,11 +60,11 @@ class Trail():
 
         house_x, house_y = house.coord_x, house.coord_y
         
-        for trail_house in self.houses:
-            trail_x, trail_y = trail_house.coord_x, trail_house.coord_y
+        for cable in self.cables:
+            cable_x, cable_y = [int(coord) for coord in cable.split(",")]
 
-            abs_dist_x = abs(trail_x - house_x)
-            abs_dist_y = abs(trail_y - house_y)
+            abs_dist_x = abs(cable_x - house_x)
+            abs_dist_y = abs(cable_y - house_y)
 
             distance = abs_dist_x + abs_dist_y
 
@@ -59,7 +72,8 @@ class Trail():
 
         return min_distance
 
-        
+    def add_cables(self, house: House) -> None:
+        pass
 
 
             
