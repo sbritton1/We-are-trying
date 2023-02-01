@@ -1,10 +1,11 @@
+import copy
+from typing import Any
+
 from ...classes.grid import Grid
 from ...classes.battery import Battery
 from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
-from typing import Any
-import copy
 
 
 def greedy(grid: Grid) -> Grid:
@@ -66,8 +67,9 @@ def find_minimum(grid: Grid, unconnected: list[int]) -> tuple[Any, Any]:
     # loop through each battery and unconnected house
     for battery in grid.batteries:
         for i in unconnected:
-            distance: int = grid.houses[i].distance_to_any_battery(battery)
-            possible_connection: bool = battery.is_connection_possible(grid.houses[i])
+            house: House = grid.houses[i]
+            distance: int = house.distance_to_any_battery(battery)
+            possible_connection: bool = battery.is_connection_possible(house)
 
             # store battery and house index if it's current best option
             if distance < min_distance and possible_connection:
