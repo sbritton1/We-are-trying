@@ -5,12 +5,25 @@ from ...classes.battery import Battery
 from ...classes.house import House
 
 """"
+NOTE: Dit algoritme is niet afgemaakt, maar was bedoeld voor de laatste
+gradatie van de case, waarin batterijen zelf gekozen en geplaatst mochten
+worden uit een bepaalde selectie. 
+
 Het idee van dit algoritme is als volgt:
 
-Ga alle combinaties van huizen langs en vind de combinatie met de kortste
-afstand. Hier kan vervolgens een Trail object van worden gemaakt. Deze houdt
-bij welke huizen er aan gekoppeld zijn, met welke kabels deze zijn verbonden
-en de totale output van de huizen in deze trail. 
+Maak van elk huis een Trail object. Deze houdt bij welke huizen er aan
+gekoppeld zijn, met welke kabels deze zijn verbonden en de totale output van de
+huizen in deze trail. Deze trail houdt ook bij welke batterij nodig is om aan
+de output te voldoen. Hiermee kan dus ook de kosten van de trail worden
+bepaald. 
+
+Vervolgens kan naar elke combinatie van trails worden gekeken en kan worden
+nagegaan welke combinatie de kosten het meeste mindert. Hierbij wordt gekeken
+naar de kosten van de kabels om de trails te verbinden en de besparing van
+kosten door een batterij te delen. 
+
+Dit wordt herhaald totdat er geen mogelijke combinaties van trails meer zijn
+die de kosten verbeteren.
 """
 
 batteries = {
