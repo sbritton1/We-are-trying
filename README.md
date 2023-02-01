@@ -53,7 +53,7 @@ Het programma kan worden gerund door de main.py file te runnen. Hiervoor moeten 
 python3 main.py [DISTRICT] [ALGORITHM]
 ```
 
-Voor `DISTRICT` kan je 1 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit een van de volgende algoritmes ([hier](#algoritmes) meer info):
+Voor `DISTRICT` kan je 1 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit een van de volgende algoritmes [hier](docs/algorithms.md) meer info):
 - baseline
 - greedy
 - sd_hill_climber
