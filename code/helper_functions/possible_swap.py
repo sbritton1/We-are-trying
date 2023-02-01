@@ -11,6 +11,9 @@ def possible_swap(house1: House, house2: House) -> bool:
           else returns False
     """
 
+    if house1.connection == house2.connection:
+        return False
+
     if house1.maxoutput > house2.maxoutput + house2.connection.current_capacity:
         return False
 

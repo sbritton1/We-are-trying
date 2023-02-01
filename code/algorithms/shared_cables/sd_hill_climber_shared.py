@@ -1,15 +1,12 @@
-from ...classes.grid import Grid
-from ...classes.house import House
-from ...classes.battery import Battery
-from ...helper_functions.valid_solution import valid_solution
-from ...helper_functions.resolve_error import resolve_error
-from ...helper_functions.add_random_connections import add_random_connections
-from ...helper_functions.possible_swap import possible_swap
-from ...helper_functions.swap_houses import swap_houses
-from ..own_cables.greedy import greedy
 import copy
 import math
 import multiprocessing
+
+from ...classes.grid import Grid
+from ...classes.house import House
+from ...helper_functions.possible_swap import possible_swap
+from ...helper_functions.swap_houses import swap_houses
+from ..own_cables.greedy import greedy
 
 
 def init_sd_hill_climber_shared(grid: Grid) -> Grid:
@@ -25,8 +22,11 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
     lowest_cost: int = None
     best_solution: Grid = None
 
+    # amount of grids to run algorithm on
+    n_grids = 1
+
     # how many random grids to run algorithm on
-    for i in range(1):
+    for _ in range(n_grids):
 
         # create deepcopy and fill in randomly
         tmp_grid: Grid = copy.deepcopy(grid)
@@ -50,7 +50,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
     """
     Steepest descent hill climber algorithm
 
-    Pre : Grid is of class Grid
+    Pre : grid is of class Grid
     Post: returns grid with all improvements applied
     """
 
@@ -60,7 +60,7 @@ def sd_hill_climber_shared(grid: Grid) -> Grid:
         print(grid.calc_cost_shared())
 
         # decide how many threads to use
-        workers: int = 8
+        workers: int = 4
 
         # create list of work to process
         work: list[Grid, int, int] = []
@@ -97,10 +97,11 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
 
     # divide all houses up in chunks, based on amount of workers
     chunk_size: int = math.ceil(len(tmp_grid.houses) / workers)
-    houses_chunked: list[list[House]] = [tmp_grid.houses[i:i + chunk_size] for i in range(0, len(tmp_grid.houses), chunk_size)]
+    chunks: list[list[House]] = [tmp_grid.houses[i:i + chunk_size] for i in
+                                 range(0, len(tmp_grid.houses), chunk_size)]
 
     # select own work based on id of worker
-    own_work: list[House] = houses_chunked[id]
+    own_work: list[House] = chunks[id]
 
     # keep track of best improvement in this segment
     best_improvement: int = 0
@@ -114,18 +115,19 @@ def try_combinations(grid: Grid, id: int, workers: int) -> tuple[Grid, int]:
             house1 = tmp_grid2.houses[chunk_size * id + loc1]
             house2 = tmp_grid2.houses[loc2]
 
-            if house1.connection != house2.connection:
+            # only continue if houses can be swapped
+            if possible_swap(house1, house2):
 
-                # if swap is possible, calculate its improvement
-                if possible_swap(house1, house2) is True:
-                    improvement = calc_improvement(tmp_grid2, best_cost, house1, house2)
-                    if improvement > best_improvement:
-                        best_improvement = improvement
-                        target1 = own_work[loc1]
-                        target2 = tmp_grid.houses[loc2]
+                # calc improvement and compare to current improvement
+                improvement = calc_improvement(tmp_grid2, best_cost,
+                                               house1, house2)
+                if improvement > best_improvement:
+                    best_improvement = improvement
+                    target1 = own_work[loc1]
+                    target2 = tmp_grid.houses[loc2]
 
     if best_improvement > 0:
-        SwapAndReplaceCables(target1, target2)
+        swap_and_replace_cables(target1, target2)
 
     # after each combination has been tried, return
     return tmp_grid, best_improvement
@@ -144,11 +146,7 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
     """
 
     # disconnect homes and reconnect to calculate improvement
-    house1.connection.remove_cables()
-    house2.connection.remove_cables()
-    swap_houses(house1, house2)
-    house1.connection.lay_shared_cables()
-    house2.connection.lay_shared_cables()
+    swap_and_replace_cables(house1, house2)
     new_cost: int = grid.calc_cost_shared()
     grid.remove_cables()
     swap_houses(house1, house2)
@@ -156,17 +154,19 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
     return org_cost - new_cost
 
 
-def SwapAndReplaceCables(target1: House, target2: House) -> None:
+def swap_and_replace_cables(target1: House, target2: House) -> None:
     """
     Swaps two houses and re-lays the cables for those batteries.
 
     Pre : target1 and target2 are of class House
-    Post: houses swapped batteries and the new cables are layd
+    Post: houses swapped batteries and the new cables are placed
     """
 
     target1.connection.remove_cables()
     target2.connection.remove_cables()
+
     swap_houses(target1, target2)
+
     target1.connection.lay_shared_cables()
     target2.connection.lay_shared_cables()
 
