@@ -67,6 +67,8 @@ Voor `DISTRICT` kan je 1 t/m 3 invullen en voor `ALGORITHM` kan je kiezen uit ee
 - clustering
 - clustering_and_hc_battery
 
+> Om greedy + hill climber (shared cables) te runnen moet `use_greedy` op line 77 in /code/algorithms/shared_cables/hill_climber_shared.py op True worden gezet. Vervolgens kan je voor `ALGORITHM` hill_climber_shared invullen. Voor hill climber (shared cables) met random startpunten te laten beginnen moet `use_greedy` juist op False staan. Standaard staat deze op True.
+
 Standaard wordt het resultaat opgeslagen in een JSON bestand te vinden op `/results/output.json`. Daarnaast wordt het ook gevisualiseerd in een matplotlib venster. Deze output methodes kunnen worden uitgeschakeld door de desbetreffende regel te commenten in regels 52 t/m 56 in main.py.
 
 De visualisatie zou er ongeveer zo uit moeten komen te zien:
