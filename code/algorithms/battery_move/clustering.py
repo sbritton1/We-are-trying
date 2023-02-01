@@ -3,49 +3,31 @@ from random import choice
 
 from ...classes.grid import Grid
 from ...classes.battery import Battery
-from code.visualization.visualization import visualize
 from ..own_cables.greedy import greedy
 
 
-def clustering(grid: Grid, connect: bool=True) -> Grid:
+def clustering(grid: Grid, connect: bool = True) -> Grid:
     """"
     Clusters the batteries on a grid according to the houses using K-means
-        clustering.
+    clustering.
 
     Pre : grid is a Grid object with no connections and no cables
     Post: the batteries are clustered and connections are made using the greedy
-        algorithm, the grid is then returned
+          algorithm, the grid is then returned
     """
 
     # * ALGORITHM PARAMETERS
     n_iterations = 10
-    visualize_clustering = False
 
     # randomly place batteries
     random_place_batteries(grid)
-
-    # visualisatie
-    if visualize_clustering:
-        grid.cost = 99999999999
-        print("Random battery placement without connections")
-        visualize(grid)
 
     for _ in range(n_iterations):
         # connect each house to the closest battery (without load)
         connect_closest_houses(grid)
 
-        # visualisatie
-        if visualize_clustering:
-            print(f"iteration {_}")
-            grid.lay_shared_cables()
-            visualize(grid)
-
         # move the battery to the center of its connected houses
         move_batteries_to_center(grid)
-
-        # visualisatie
-        if visualize_clustering:
-            grid.remove_cables()
 
         # remove all connections
         grid.remove_all_connections()
@@ -66,8 +48,9 @@ def random_place_batteries(grid: Grid) -> None:
 
     Pre : grid is a Grid object
     Post: the given grid is modified such that the batteries are placed
-        randomly, but not on top of a house or other battery
+          randomly, but not on top of a house or other battery
     """
+
     # get the maximum range of coordinates
     max_x, max_y = grid.max_x, grid.max_y
 
@@ -88,6 +71,7 @@ def get_random_coordinates(max_x: int, max_y: int) -> tuple[int, int]:
     Pre : max_x and max_y are positive integers
     Post: a tuple is returned as such (random x, random y) both in given range
     """
+
     return (randint(0, max_x), randint(0, max_y))
 
 
@@ -97,7 +81,7 @@ def connect_closest_houses(grid: Grid) -> None:
 
     Pre : grid is a Grid object with no connections
     Post: every house is connected to the closest battery without adjusting
-        the capacity of the battery
+          the capacity of the battery
     """
 
     # get the batteries and houses of the grid
@@ -126,8 +110,8 @@ def move_batteries_to_center(grid: Grid) -> None:
 
     Pre : grid is a Grid object with connected houses
     Post: the batteries are moved to the center of its connected houses, if
-        a house is on this center, it is randomly moved to on of the
-        neighbouring cells
+          a house is on this center, it is randomly moved to on of the
+          neighbouring cells
     """
 
     for battery in grid.batteries:
@@ -151,7 +135,7 @@ def get_new_center_battery(battery: Battery) -> tuple[int, int]:
 
     Pre : battery is a Battery object
     Post: a tuple of two integers is returned in the format (new_x, new_y), if
-        no houses are connected, the original coordinates are returned
+          no houses are connected, the original coordinates are returned
     """
 
     # get the connected houses to the battery
@@ -173,6 +157,7 @@ def get_new_center_battery(battery: Battery) -> tuple[int, int]:
         center_y = int(round(total_y/n_houses))
 
         return (center_x, center_y)
+
     # return original coordinates
     return (battery.coord_x, battery.coord_y)
 
@@ -181,9 +166,10 @@ def get_random_offset() -> tuple[int, int]:
     """
     Get a random offset for a coordinate.
 
-    Post: a tuple of two integers where each integer is a random choice in
-          [-1, 0, 1]
+    Post: a tuple of two integers is returned where each integer is a random
+          choice in [-1, 0, 1]
     """
 
     offsets = [-1, 0, 1]
+
     return (choice(offsets), choice(offsets))
