@@ -16,6 +16,7 @@ def clustering(grid: Grid, connect: bool=True) -> Grid:
     Post: the batteries are clustered and connections are made using the greedy
         algorithm, the grid is then returned
     """
+
     # * ALGORITHM PARAMETERS
     n_iterations = 10
     visualize_clustering = False
@@ -98,6 +99,7 @@ def connect_closest_houses(grid: Grid) -> None:
     Post: every house is connected to the closest battery without adjusting
         the capacity of the battery
     """
+
     # get the batteries and houses of the grid
     batteries = grid.batteries
     houses = grid.houses
@@ -127,6 +129,7 @@ def move_batteries_to_center(grid: Grid) -> None:
         a house is on this center, it is randomly moved to on of the
         neighbouring cells
     """
+
     for battery in grid.batteries:
         # find rounded coordinates of the center of its connected houses
         new_x, new_y = get_new_center_battery(battery)
@@ -150,6 +153,7 @@ def get_new_center_battery(battery: Battery) -> tuple[int, int]:
     Post: a tuple of two integers is returned in the format (new_x, new_y), if
         no houses are connected, the original coordinates are returned
     """
+
     # get the connected houses to the battery
     connected_houses = battery.connected_homes
 
@@ -178,7 +182,8 @@ def get_random_offset() -> tuple[int, int]:
     Get a random offset for a coordinate.
 
     Post: a tuple of two integers where each integer is a random choice in
-        [-1, 0, 1]
+          [-1, 0, 1]
     """
+
     offsets = [-1, 0, 1]
     return (choice(offsets), choice(offsets))

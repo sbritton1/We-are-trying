@@ -75,6 +75,8 @@ def randomize_battery_placement(grid: Grid) -> None:
     """
 
     for battery in grid.batteries:
+
+        # choose two temporary coords outside of grid
         new_x = -1
         new_y = -1
 
