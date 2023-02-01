@@ -1,16 +1,15 @@
+import copy
+import multiprocessing
+import matplotlib.pyplot as plt
+
 from ...classes.grid import Grid
 from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
-from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.swap_houses import swap_houses
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.find_random_houses import find_random_houses
 from ..own_cables.greedy import greedy
-
-import copy
-import multiprocessing
-import matplotlib.pyplot as plt
 
 
 def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
@@ -22,10 +21,11 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     Post: returns best found solution using this algorithm
     """
 
-    # create list of grids as work for multithreading
+    # amount of grids to run hill climber on
     n_grids: int = 50
-    grids: list[Grid] = []
 
+    # create list of grids as work for multithreading
+    grids: list[Grid] = []
     grids = get_grids(n_grids, grids, grid, fill)
 
     # use multithread processing, with workers amount of threads
@@ -61,7 +61,8 @@ def get_best_solution(results: tuple[Grid, list[int]]) -> Grid:
     return best_solution
 
 
-def get_grids(n_grids: int, grids: list[Grid], grid: Grid, fill: bool) -> list[Grid]:
+def get_grids(n_grids: int, grids: list[Grid], grid: Grid,
+              fill: bool) -> list[Grid]:
     """
     Gets n grids on which hill climber can be used.
 
