@@ -6,6 +6,7 @@ from ...classes.grid import Grid
 from ...classes.house import House
 from ...helper_functions.possible_swap import possible_swap
 from ...helper_functions.swap_houses import swap_houses
+from ...helper_functions.swap_and_replace_cables import swap_and_replace_cables
 from ..own_cables.greedy import greedy
 
 
@@ -152,23 +153,6 @@ def calc_improvement(grid: Grid, org_cost: int, house1: House,
     swap_houses(house1, house2)
 
     return org_cost - new_cost
-
-
-def swap_and_replace_cables(target1: House, target2: House) -> None:
-    """
-    Swaps two houses and re-lays the cables for those batteries.
-
-    Pre : target1 and target2 are of class House
-    Post: houses swapped batteries and the new cables are placed
-    """
-
-    target1.connection.remove_cables()
-    target2.connection.remove_cables()
-
-    swap_houses(target1, target2)
-
-    target1.connection.lay_shared_cables()
-    target2.connection.lay_shared_cables()
 
 
 def analyze_improvements(results: list[tuple[Grid, int]]) -> tuple[Grid, int]:
