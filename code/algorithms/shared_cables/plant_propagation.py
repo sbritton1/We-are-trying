@@ -17,7 +17,7 @@ def plant_propagation(grid: Grid) -> Grid:
     using the Plant Propagation Algorithm.
 
     Pre : grid is a Grid object with no connections between houses and
-        batteries and no cables
+          batteries and no cables
     Post: the best found grid is returned with connections but no cables
     """
 
@@ -94,10 +94,11 @@ def get_start_roots(grid: Grid, n_roots: int) -> list[Grid]:
     Creates random start roots for the PPA.
 
     Pre : grid is a Grid object with no connections and cables and n_roots is
-        an integer
+          an integer
     Post: a list of n_roots Grid objects is returned with random connections
-        that still give a valid solution
+          that still give a valid solution
     """
+
     # make a list to store the temporary grids
     start_roots: list[Grid] = []
 
@@ -132,10 +133,11 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
     Creates a new generation of grids according to the PPA.
 
     Pre : the set type hints match, all root grids have no connections and
-        cables, min_runners < max_runners, min_changes < max)changes
+          cables, min_runners < max_runners, min_changes < max)changes
     Post: a list of grids is returned, containing all the original root grids
-        and their runners
+          and their runners
     """
+
     # variables for keeping track of the costs (set to arbitrary values)
     lowest_cost: int = 9999999
     highest_cost: int = 0
@@ -191,9 +193,10 @@ def calculate_cost(grid: Grid) -> int:
     Calculates the cost of a grid.
 
     Pre : grid is a Grid object with connections leading to a valid solution
-        with cables already laid down
+          with cables already laid down
     Post: an integer representing the cost is returned
     """
+
     return grid.calc_cost_shared()
 
 
@@ -202,10 +205,11 @@ def get_fitness(cost: int, lowest_cost: int, highest_cost: int) -> float:
     Calculates the fitness of a certain root in its generation
 
     Pre : cost, lowest_cost and highest_cost are integers and lowest_cost is
-        lower than highest_cost.
+          lower than highest_cost.
     Post: a float is returned that is between 0 and 1 that represents its
-        fitness
+          fitness
     """
+
     return (highest_cost - cost) / (highest_cost - lowest_cost)
 
 
@@ -216,8 +220,9 @@ def get_n_changes(fitness: float, max_changes: int, min_changes: int) -> int:
 
     Pre : type hints are met and min_changes < max_changes
     Post: an integer is returned that is at least min_changes and at most
-        max_changes
+          max_changes
     """
+
     return ceil((1 - fitness) * (max_changes - min_changes)) + min_changes
 
 
@@ -227,8 +232,9 @@ def get_n_runners(fitness: float, max_runners: int, min_runners: int) -> int:
 
     Pre : type hints are met and min_runners < max_runners
     Post: an integer is returned that is at least min_runenrs and at most
-        max_runners
+          max_runners
     """
+
     return ceil(fitness * (max_runners - min_runners)) + min_runners
 
 
@@ -238,15 +244,13 @@ def make_change(grid: Grid, n_changes: int) -> Grid:
         connection of two random houses that still give a valid solution.
 
     Pre : grid is a valid solution with connections and n_changes is a positive
-        integer
+          integer
     Post: a grid is returned with n_changes changes and its cables newly laid
-        down according to the new connections
+          down according to the new connections
     """
+
     # make a change n_changes times
     for _ in range(n_changes):
-        # shuffle the houses list of the grid
-        # shuffle(grid.houses)
-
         # find random houses in the grid
         house1, house2 = find_random_houses(grid)
 
@@ -260,17 +264,17 @@ def make_change(grid: Grid, n_changes: int) -> Grid:
     return grid
 
 
-def plot_results(best_costs: list[int], grid: Grid, n_generations: int) -> None:
+def plot_results(costs: list[int], grid: Grid, n_generations: int) -> None:
     """
     Plots the best results of each generation.
 
     Pre : type hints are met
     Post: a matplotlib window should be shown with the correct plot
     """
-    plt.title(
-                "Plot of best costs per generation (algorithm: plant" +
-                "propagation, district: " +
-                f"{grid.district}, generations: {n_generations})")
-    plt.plot(best_costs)
+
+    plt.title("Plot of best costs per generation (algorithm: plant" +
+              "propagation, district: " +
+              f"{grid.district}, generations: {n_generations})")
+    plt.plot(costs)
     plt.xlabel("Generation")
     plt.ylabel("Best cost")
