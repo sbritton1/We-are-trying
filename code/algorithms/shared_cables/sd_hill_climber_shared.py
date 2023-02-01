@@ -44,6 +44,7 @@ def init_sd_hill_climber_shared(grid: Grid) -> Grid:
             best_solution = tmp_grid
 
     best_solution.remove_cables()
+
     return best_solution
 
 

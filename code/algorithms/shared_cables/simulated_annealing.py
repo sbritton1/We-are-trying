@@ -1,12 +1,9 @@
 from ...classes.grid import Grid
-from ...classes.house import House
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
-from ...helper_functions.possible_swap import possible_swap
-from ...helper_functions.swap_houses import swap_houses
 from ...helper_functions.find_random_houses import find_random_houses
-from ..own_cables.greedy import greedy
+from ...helper_functions.swap_and_replace_cables import swap_and_replace_cables
 import matplotlib.pyplot as plt
 import random
 import copy
@@ -19,7 +16,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     Initialises random grids and runs simulated annealing algorithm
     on them using multiple threads.
 
-    Pre: grid is of class grid
+    Pre : grid is of class grid
     Post: returns best found solution using this algorithm
     """
 
@@ -27,7 +24,10 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    for i in range(50):
+    n_grids = 50
+
+    # amount of grids to run algorithm on
+    for _ in range(n_grids):
 
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
@@ -49,15 +49,18 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     best_solution: Grid = analyze_results(results)
 
     best_solution.remove_cables()
+
     return best_solution
 
 
 def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     """
-    Simulated annealing algorithm.
+    Simulated annealing algorithm, which is a hill climber that has a
+    chance to accept negative changes based on a temperature function.
 
-    Pre: grid of class grid
-    Post: tuple containing grid of class grid and list of integers
+    Pre : grid of class grid
+    Post: tuple containing grid of class grid and list of integers,
+          where the list of integers is the cost history of the grid
     """
 
     # store current cost of the grid
@@ -66,7 +69,10 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
     costs: list[int] = []
     last_update: int = 0
 
-    for iteration in range(15000):
+    # try a maximum of n_iterations of swaps
+    n_iterations = 15000
+
+    for iteration in range(n_iterations):
 
         # create deepcopy to make temporary changes
         tmp_grid: Grid = copy.deepcopy(grid)
@@ -74,14 +80,8 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
         # get two random houses not connected to the same battery
         house1, house2 = find_random_houses(tmp_grid)
 
-        house1.connection.remove_cables()
-        house2.connection.remove_cables()
-        swap_houses(house1, house2)
-
-        # lay cables again now that houses are swapped
-        house1.connection.lay_shared_cables()
-        house2.connection.lay_shared_cables()
-        new_cost = tmp_grid.calc_cost_shared()
+        swap_and_replace_cables(house1, house2)
+        new_cost: int = tmp_grid.calc_cost_shared()
 
         # if new cost is lower, accept the change
         if pass_change(cost_grid, new_cost, iteration) is True:
@@ -96,6 +96,7 @@ def simulated_annealing(grid: Grid) -> tuple[Grid, list[int]]:
         costs.append(cost_grid)
 
     print(grid.cost)
+
     return grid, costs
 
 
@@ -110,6 +111,7 @@ def pass_change(org_cost: int, new_cost: int, iteration: int) -> bool:
           else return False
     """
 
+    # always accept a positive change
     if new_cost < org_cost:
         return True
 
@@ -125,6 +127,15 @@ def pass_change(org_cost: int, new_cost: int, iteration: int) -> bool:
 
 
 def analyze_results(results: list[tuple[Grid, list[int]]]) -> Grid:
+    """
+    Looks through all the results to find the best solution. Then plots
+    a graph of the cost history of the best solution.
+
+    pre : results is a list of tuples of Grid and a list of ints
+    post: plots graph of cost history of best solution and returns
+          Grid of best solution
+    """
+
     # keeps track of costs of all solutions
     costs_best_solution: list[int] = []
     lowest_cost: int = None
@@ -136,6 +147,8 @@ def analyze_results(results: list[tuple[Grid, list[int]]]) -> Grid:
         tmp_grid: Grid = result[0]
         costs: list[int] = result[1]
         all_costs.append(costs[-1])
+
+        # check if this cost is lowest yets
         if lowest_cost is None or tmp_grid.cost < lowest_cost:
             costs_best_solution = costs
             lowest_cost = tmp_grid.cost
@@ -149,15 +162,16 @@ def analyze_results(results: list[tuple[Grid, list[int]]]) -> Grid:
 
 def plot_costs_graph(costs: list[int], district: str) -> None:
     """
-    Plots a graph of all the costs from the random solutions.
+    Plots a graph of the cost over time of the best solution from
+    the simulated annealing algorithm.
 
-    Pre: list of integers
-    Post: none
+    Pre : list of integers
+    Post: graph of cost over time is plotted
     """
 
     iterations: list[int] = list(range(len(costs)))
     plt.plot(iterations, costs)
-    plt.title(f"Graph of cost over time from simulated annealing algorithm\n" + \
+    plt.title("Graph of cost over time from simulated annealing algorithm\n" +
               f"District: {district}, Cost: {costs[-1]}")
     plt.xlabel("Iteration")
     plt.ylabel("Cost")

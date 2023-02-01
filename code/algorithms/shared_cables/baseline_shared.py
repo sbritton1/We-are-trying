@@ -99,7 +99,7 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     Plots a histogram of the costs of all solutions.
 
     Pre : costs is a list of ints
-    Post: displays histogram
+    Post: displays histogram of all costs of valid solutions
     """
 
     plt.title("Histogram of costs (algorithm:"
