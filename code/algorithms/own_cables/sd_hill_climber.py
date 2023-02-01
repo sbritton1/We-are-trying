@@ -20,7 +20,7 @@ def init_sd_hill_climber(grid: Grid) -> Grid:
     """
 
     # set the amount of iterations
-    n_iterations = 1000
+    n_iterations = 100
 
     # keeps track of costs of all solutions
     lowest_cost: int = None

@@ -25,7 +25,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
     grids: list[Grid] = []
 
     # amount of grids to run algorithm on
-    n_grids = 50
+    n_grids = 4
 
     # amount of grids to run algorithm on
     for _ in range(n_grids):
@@ -43,7 +43,7 @@ def init_simulated_annealing(grid: Grid) -> Grid:
         grids.append(tmp_grid)
 
     # use multithread processing, with workers = amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results: tuple(Grid, int) = (p.map(simulated_annealing, grids))
 

@@ -21,7 +21,7 @@ def init_baseline_shared(grid: Grid) -> Grid:
     iterations: int = 10000
 
     # amount of threads used for multiprocessing
-    workers: int = 8
+    workers: int = 4
 
     # use multiprocessing to get the results
     work = [grid] * iterations

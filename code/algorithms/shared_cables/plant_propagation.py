@@ -179,7 +179,7 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
             work.append((runner, n_changes))
 
     # the amount of threads that will be used
-    workers = 8
+    workers = 4
 
     # multiprocessing stuff
     p = multiprocessing.Pool(workers)

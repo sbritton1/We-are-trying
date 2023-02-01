@@ -18,13 +18,13 @@ def init_hill_climber_battery(grid: Grid, randomize: bool = True) -> Grid:
     """
 
     # amount of random grids to run hill climber on
-    grids_amount = 50
+    grids_amount = 4
 
     # create list of grids as work for multithreading
     grids: list[Grid] = create_work(grid, randomize, grids_amount)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_battery, grids))
 
