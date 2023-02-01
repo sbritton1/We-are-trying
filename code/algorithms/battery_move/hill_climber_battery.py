@@ -1,10 +1,11 @@
+import copy
+import multiprocessing
+import random
+
 from ...classes.grid import Grid
 from ...classes.battery import Battery
 from ..shared_cables.hill_climber_shared import init_hill_climber_shared
 from ..own_cables.greedy import greedy
-import copy
-import multiprocessing
-import random
 
 
 def init_hill_climber_battery(grid: Grid, randomize: bool = True) -> Grid:
@@ -16,6 +17,7 @@ def init_hill_climber_battery(grid: Grid, randomize: bool = True) -> Grid:
     Post: returns grid with best found placement of batteries
     """
 
+    # amount of random grids to run hill climber on
     grids_amount = 50
 
     # create list of grids as work for multithreading
@@ -30,7 +32,7 @@ def init_hill_climber_battery(grid: Grid, randomize: bool = True) -> Grid:
 
     print(f"Best cost: {best_result.cost}")
 
-    # find possible improvements using hill climber algorithm
+    # improve connections between houses and batteries using hill climber
     best_result = init_hill_climber_shared(best_result, False)
 
     return best_result
@@ -80,7 +82,7 @@ def randomize_battery_placement(grid: Grid) -> None:
         new_x = -1
         new_y = -1
 
-        # grid.move_battery() returns false when move cannot be made, so keep trying
+        # grid.move_battery() returns false when move cannot be made, try again
         while grid.move_battery(battery, new_x, new_y) is False:
             new_x = random.choice(list(range(grid.size_grid()[0])))
             new_y = random.choice(list(range(grid.size_grid()[1])))
@@ -137,7 +139,7 @@ def move_battery(grid: Grid) -> None:
     target_x: int = battery.coord_x
     target_y: int = battery.coord_y
 
-    # grid.move_battery() returns false when chosen location is already occupied
+    # grid.move_battery() returns false when chosen location is occupied
     while grid.move_battery(battery, target_x, target_y) is False:
 
         # move battery random steps in both x and y directions
@@ -167,9 +169,19 @@ def track_size(grid: Grid, coord: int, dir: int) -> int:
     return coord
 
 
-def analyze_results(results: list[tuple[Grid, int]]) -> Grid:
+def analyze_results(results: list[tuple[Grid, list[int]]]) -> Grid:
+    """
+    Looks through all the results to find the best solution
+
+    Pre : results is a list of tuples of Grid and a list of ints,
+          where the ints is the cost history of the grid
+    Post: returns Grid of cheapest solution
+    """
+
     # store cheapest found grid
     best_result: Grid = None
+
+    # arbitrarily large number, so any cost will be below it
     best_costs: list[int] = [1000000]
 
     # look through results to find cheapest solution
