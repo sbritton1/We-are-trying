@@ -21,7 +21,7 @@ class Battery:
         Connects house to battery and also substracts output from capacity.
 
         Pre : house from the house class
-        Post: none
+        Post: connects a house to battery and corrects capacity battery
         """
         if self.current_capacity - house.maxoutput >= 0:
             self.current_capacity = self.current_capacity - house.maxoutput
@@ -32,7 +32,8 @@ class Battery:
         Disconnects house from battery and also removes output of house.
 
         Pre : house from the house class
-        Post: none
+        Post: disconnected connection house from battery and corrected capacity
+              from battery
         """
 
         if house in self.connected_homes:
@@ -46,8 +47,7 @@ class Battery:
         """
         Gets current capacity from battery.
 
-        Pre : none
-        Post: capacity as float
+        Post: capacity from battery as float
         """
 
         return self.current_capacity
@@ -57,17 +57,17 @@ class Battery:
         Check if house does not overflow capacity of battery.
 
         Pre : house from house class
-        Post: bool
+        Post: bool that says if you can connect a house to the battery
         """
 
         return self.current_capacity - house.maxoutput >= 0
 
-    def lay_shared_cables(self):
+    def lay_shared_cables(self) -> None:
         """
-        Lays shared cables in grid.
+        Lays shared cables in grid based on the shortest distance from a
+        house to a cable or the battery.
 
-        Pre : none
-        Post: none
+        Post: all shared cables in the grid are placed
         """
 
         # saves coordinates from a cable
@@ -105,15 +105,15 @@ class Battery:
             self.cables.add(house_cable)
 
             # gets coordinates from cable with whe smallest distance
-            min_cable_x, min_cable_y = [int(coord) for coord in min_cable.split(",")]
+            coord_x, coord_y = [int(coord) for coord in min_cable.split(",")]
 
-            self.add_cables_y_axis(min_house, min_cable_y)
+            self.add_cables_y_axis(min_house, coord_y)
 
-            self.add_cables_x_axis(min_house, min_cable_x, min_cable_y)
+            self.add_cables_x_axis(min_house, coord_x, coord_y)
 
             unconnected.remove(loc_in_list)
 
-    def get_axis_direction(self, start, end) -> int:
+    def get_axis_direction(self, start: int, end: int) -> int:
         """
         Returns 1 if the connection is in the negative axis direction and 1 if
         in the positive direction.
@@ -126,15 +126,17 @@ class Battery:
             return -1
         return 1
 
-    def add_cables_x_axis(self, min_house: House, min_cable_x: int, min_cable_y: int) -> None:
+    def add_cables_x_axis(self, min_house: House, min_cable_x: int,
+                          min_cable_y: int) -> None:
         """
-        Lays cables along the x_axis.
+        Lays cables along the x-axis in the right direction.
 
         Pre : house from class House, and three integers
-        Post: none
+        Post: cables along the x-axis are placed in grid
         """
 
-        direction = self.get_axis_direction(min_house.coord_x, min_cable_x)
+        min_house_x: int = min_house.coord_x
+        direction: int = self.get_axis_direction(min_house_x, min_cable_x)
 
         for new_x in range(min_house.coord_x, min_cable_x, direction):
             new_cable = f"{new_x + direction},{min_cable_y}"
@@ -143,13 +145,13 @@ class Battery:
 
     def add_cables_y_axis(self, min_house: House, end_coord: int) -> None:
         """
-        Lays cables along the y_axis.
+        Lays cables along the y-axis in the right direction.
 
         Pre : house from class House, and two integers
-        Post: none
+        Post: cables along the y-axis are placed in grid
         """
 
-        direction = self.get_axis_direction(min_house.coord_y, end_coord)
+        direction: int = self.get_axis_direction(min_house.coord_y, end_coord)
 
         for new_y in range(min_house.coord_y, end_coord, direction):
             new_cable = f"{min_house.coord_x},{new_y + direction}"
@@ -165,19 +167,21 @@ class Battery:
         """
 
         # gets cable coordinates
-        cable_coords: tuple(int, int) = [int(coord) for coord in cable.split(",")]
+        coord: tuple[int, int] = [int(coord) for coord in cable.split(",")]
 
-        # calculates distance between a cable and a house
-        distance: int = abs(house.coord_x - cable_coords[0]) + abs(house.coord_y - cable_coords[1])
+        # calculates distance between a house and a cable
+        distance_x = abs(house.coord_x - coord[0])
+        distance_y = abs(house.coord_y - coord[1])
 
-        return distance
+        return distance_x + distance_y
 
     def remove_cables(self) -> None:
         """
-        Removes connected cables from grid.
+        Removes connected cables from grid for the batteries and all
+        connected houses.
 
-        Pre : none
-        Post: none
+        Post: removed all cables from the battery and
+              removed the cables from all houses
         """
 
         self.cables = None
@@ -186,7 +190,7 @@ class Battery:
 
     def move_to(self, x: int, y: int) -> None:
         """
-        Moves the battery to position x,y
+        Moves the battery to position x, y.
 
         Pre : x and y are integers
         Post: x and y are stored in attributes coord_x and coord_y respectively
@@ -197,10 +201,9 @@ class Battery:
 
     def get_coords(self) -> tuple[int, int]:
         """
-        Gets coordinates of battery:
+        Gets coordinates of battery.
 
-        Pre : none
-        Post: tuple with two integers
+        Post: tuple with two integers which are the coordinates
         """
 
         return (self.coord_x, self.coord_y)
@@ -210,7 +213,7 @@ class Battery:
         Connects a house to the battery.
 
         Pre : house of class House
-        Post: none
+        Post: connects house to battery in Battery class and House class
         """
 
         self.connected_homes.append(house)
@@ -220,11 +223,13 @@ class Battery:
         """
         Disconnects all houses from battery.
 
-        Pre : none
-        Post: none
+        Post: removes for all houses the connection to battery,
+              removes all connection in Battery class and also sets
+              current capacity to total capacity
         """
 
         for house in self.connected_homes:
             house.delete_connection()
+
         self.connected_homes = []
         self.current_capacity = self.total_capacity

@@ -22,7 +22,7 @@ class House:
         connected.
 
         Pre : battery of class Battery
-        Post: none
+        Post: house now has a connection to a battery
         """
 
         if self.has_connection is False:
@@ -33,8 +33,7 @@ class House:
         """
         Deletes connection with a battery.
 
-        Pre : none
-        Post: none
+        Post: house is not connected to a battery
         """
 
         self.has_connection = False
@@ -44,7 +43,6 @@ class House:
         """
         Calculates the distance to the connected battery.
 
-        Pre : none
         Post: returns distance as integer
         """
 
@@ -60,7 +58,7 @@ class House:
         Calculates distance between house and any battery object.
 
         Pre : battery of class Battery
-        Post: returns an int
+        Post: returns an integer which is the distance to a battery
         """
 
         # calculates distance vertically and horizontally
@@ -74,8 +72,7 @@ class House:
         """
         Puts all cables in list for the smallest distance.
 
-        Pre : none
-        Post: none
+        Post: all cables are now placed
         """
 
         # makes sure no cables will be layed if house has no connection
@@ -94,14 +91,16 @@ class House:
 
         # adds all cables along the y-axis
         for new_y in range(dist_y + 1):
-            new_cable: str = f"{start_coords[0]},{start_coords[1] + new_y * y_direction}"
+            updated_y: int = start_coords[1] + new_y * y_direction
+            new_cable: str = f"{start_coords[0]},{updated_y}"
             self.cables.append(new_cable)
 
         x_direction: int = self.get_axis_direction(start_coords[0], end_x)
 
         # adds all cables along the x-axis
         for new_x in range(1, dist_x + 1):
-            new_cable: str = f"{start_coords[0] + new_x * x_direction},{end_y}"
+            updated_x: int = start_coords[0] + new_x * x_direction
+            new_cable: str = f"{updated_x},{end_y}"
             self.cables.append(new_cable)
 
     def get_axis_direction(self, start, end) -> int:
@@ -121,8 +120,7 @@ class House:
         """
         Removes all cables.
 
-        Pre : none
-        Post: none
+        Post: list of cables is now empty
         """
 
         # makes list of cables empty
@@ -132,8 +130,8 @@ class House:
         """
         Sets the cables of the house to the given cables.
 
-        Pre : cables argument is a list of strings, where the strings are in the
-              shape of 'x,y'
+        Pre : cables argument is a list of strings, where the strings are in
+              the shape of 'x,y'
         Post: the cables attribute is set to the cables argument
         """
 
