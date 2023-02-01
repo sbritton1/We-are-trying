@@ -1,9 +1,10 @@
-from ...classes.grid import Grid
-from ...helper_functions.valid_solution import valid_solution
-from ...helper_functions.add_random_connections import add_random_connections
 import matplotlib.pyplot as plt
 import copy
 import multiprocessing
+
+from ...classes.grid import Grid
+from ...helper_functions.valid_solution import valid_solution
+from ...helper_functions.add_random_connections import add_random_connections
 
 
 def init_baseline_shared(grid: Grid) -> Grid:
@@ -49,7 +50,7 @@ def baseline_shared(grid: Grid) -> tuple[Grid, int]:
 
     Pre : grid is of class Grid
     Post: returns a randomly connected grid with shared cables without checking
-        if the solution is valid
+          if the solution is valid
     """
 
     # create temporary grid and add random connections
@@ -101,7 +102,8 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     Post: displays histogram
     """
 
-    plt.title(f"Histogram of costs (algorithm: baseline, district: {grid.district}, " + \
+    plt.title("Histogram of costs (algorithm:"
+              f"baseline, district: {grid.district}, "
               f"iterations: {n_iterations}, valid solutions: {len(costs)})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
