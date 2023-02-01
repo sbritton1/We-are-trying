@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
+import copy
+
 from ...classes.grid import Grid
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.add_random_connections import add_random_connections
-import copy
 
 
 def baseline(grid: Grid) -> Grid:
@@ -52,8 +53,8 @@ def plot_cost(costs: list[int], grid: Grid, n_iterations: int) -> None:
     Post: displays histogram
     """
 
-    plt.title(f"Histogram of costs (algorithm: baseline, district: " + \
-              f"{grid.district}, iterations: {n_iterations}, " + \
+    plt.title("Histogram of costs (algorithm: baseline, district: "
+              f"{grid.district}, iterations: {n_iterations}, "
               f"valid solutions: {len(costs)})")
     plt.hist(costs, 20, facecolor='blue', alpha=0.5)
     plt.xlabel("Cost")
