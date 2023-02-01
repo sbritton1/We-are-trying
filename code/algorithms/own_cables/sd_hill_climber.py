@@ -98,24 +98,24 @@ def sd_hill_climber(grid: Grid) -> None:
 
 def calc_improvement(house1: House, house2: House) -> int:
     """
-    Calculates the improvement of a swap of the houses based
+    Calculates the improvement of a theoretical swap of the houses based
     on the manhattan distance difference.
 
-    Pre : house1 and house2 are of class House
+    Pre : house1 and house2 are of class House and not already swapped
     Post: returns int value of improvement. improvement is
           negative when the swap increases the cost of the grid
     """
 
     # get the old and new distances of the houses
-    old_distance_1: int = house1.distance_to_any_battery(house2.connection)
-    new_distance_1: int = house1.distance_to_battery()
+    new_distance_1: int = house1.distance_to_any_battery(house2.connection)
+    old_distance_1: int = house1.distance_to_battery()
 
-    old_distance_2: int = house2.distance_to_any_battery(house1.connection)
-    new_distance_2: int = house2.distance_to_battery()
+    new_distance_2: int = house2.distance_to_any_battery(house1.connection)
+    old_distance_2: int = house2.distance_to_battery()
 
     # calculate the improvements for each house
-    diff1 = new_distance_1 - old_distance_1
-    diff2 = new_distance_2 - old_distance_2
+    diff1 = old_distance_1 - new_distance_1
+    diff2 = old_distance_2 - new_distance_2
 
     return diff1 + diff2
 
