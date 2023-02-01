@@ -1,16 +1,16 @@
-from ..classes.grid import Grid
-from ..classes.battery import Battery
-from ..classes.house import House
 from typing import Any
 import json
+
+from ..classes.grid import Grid
+from ..classes.battery import Battery
 
 
 def to_json(grid: Grid, cable_type: str) -> None:
     """
     Exports the data to a json file in the prescribed format.
-    
+
     Pre : grid is of class Grid
-    Post: .json file is created
+    Post: .json file is created and exported to /results folder
     """
 
     # list of dictionaries
@@ -19,11 +19,13 @@ def to_json(grid: Grid, cable_type: str) -> None:
     # Create dictionary with information about grid itself
     grid_dict: dict[str, Any] = {}
     grid_dict["district"] = grid.district
-    
+
+    # make distinction between unique cables and shared cables
     if cable_type == "unique":
         grid_dict["costs-own"] = grid.cost
     elif cable_type == "shared":
         grid_dict["costs-shared"] = grid.cost
+
     all_dicts.append(grid_dict)
 
     add_batteries(grid, all_dicts)
@@ -42,7 +44,7 @@ def add_batteries(grid: Grid, all_dicts: list[dict[str, Any]]) -> None:
     get turned into a json file.
 
     Pre : grid is of class Grid, all_dicts is a list of dictionaries
-    Post: all necessary information for each battery is added 
+    Post: all necessary information for each battery is added
           to the complete list
     """
 

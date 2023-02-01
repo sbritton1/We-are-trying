@@ -1,14 +1,15 @@
+import matplotlib.pyplot as plt
+import random
+import copy
+import multiprocessing
+import math
+
 from ...classes.grid import Grid
 from ...helper_functions.valid_solution import valid_solution
 from ...helper_functions.resolve_error import resolve_error
 from ...helper_functions.add_random_connections import add_random_connections
 from ...helper_functions.find_random_houses import find_random_houses
 from ...helper_functions.swap_and_replace_cables import swap_and_replace_cables
-import matplotlib.pyplot as plt
-import random
-import copy
-import multiprocessing
-import math
 
 
 def init_simulated_annealing(grid: Grid) -> Grid:
