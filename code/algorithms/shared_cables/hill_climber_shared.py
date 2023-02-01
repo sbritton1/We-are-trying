@@ -22,14 +22,14 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
     """
 
     # amount of grids to run hill climber on
-    n_grids: int = 50
+    n_grids: int = 4
 
     # create list of grids as work for multithreading
     grids: list[Grid] = []
     grids = get_grids(n_grids, grids, grid, fill)
 
     # use multithread processing, with workers amount of threads
-    workers: int = 8
+    workers: int = 4
     p = multiprocessing.Pool(workers)
     results = (p.map(hill_climber_shared, grids))
 
@@ -44,10 +44,10 @@ def init_hill_climber_shared(grid: Grid, fill: bool = True) -> Grid:
 
 def get_best_solution(results: tuple[Grid, list[int]]) -> Grid:
     """
-    Gets the best solutions from all the runs.
+    Gets the best grid from all the runs.
 
     Pre : a tuple containing a grid and a list of integers
-    Post: tuple containing list of integers, integer and a Grid
+    Post: returns a grid of class Grid
     """
 
     lowest_cost: int = None
@@ -64,13 +64,15 @@ def get_best_solution(results: tuple[Grid, list[int]]) -> Grid:
 def get_grids(n_grids: int, grids: list[Grid], grid: Grid,
               fill: bool) -> list[Grid]:
     """
-    Gets n grids on which hill climber can be used.
+    Gets n grids on which hill climber can be used. These are generated
+    by using a greedy algorithm.
 
-    Pre : integer and list of grids
+    Pre : integer which represents the amount of grids, a list of
+          grids, a grid of class Grid and a bool
     Post: list of grids
     """
 
-    for i in range(n_grids):
+    for _ in range(n_grids):
         # create deepcopy to not mess with original
         tmp_grid: Grid = copy.deepcopy(grid)
 
@@ -95,7 +97,8 @@ def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
     the randomness effect.
 
     Pre : grid is a class of grid
-    Post: grid is a class of grid
+    Post: tuple containing a grid of class Grid and a list of integers
+          which represent the cost
     """
 
     tmp_grid: Grid = copy.deepcopy(grid)
@@ -112,14 +115,14 @@ def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
 
     while times_no_improvement < 700 and max_iterations < 15000:
 
-        # changes grid in random places
-        grid_and_cost: tuple[Grid, int] = change_grid_hill_climber(tmp_grid, best_cost)
+        # changes grid in random places and gets the new grid
+        new_grid: Grid = change_grid_hill_climber(tmp_grid)
 
         # condition that checks if it is an improved solution
-        if grid_and_cost[1] < best_cost:
+        if new_grid.cost < best_cost:
             times_no_improvement = 0
-            best_cost = grid_and_cost[1]
-            tmp_grid = grid_and_cost[0]
+            best_cost = new_grid.cost
+            tmp_grid = new_grid
         else:
             times_no_improvement += 1
 
@@ -132,10 +135,9 @@ def hill_climber_shared(grid: Grid) -> tuple[Grid, list[int]]:
     return tmp_grid, costs
 
 
-def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
+def change_grid_hill_climber(grid: Grid) -> Grid:
     """
-    This function tries n times to connect two different houses with two
-    different batteries, to improve the current grid.
+    Changes the grid in one place and then returns the new cost.
 
     Pre : grid is of class grid and best_cost is an integer
     Post: tuple containing grid of class Grid and integer as cost
@@ -158,37 +160,15 @@ def change_grid_hill_climber(grid: Grid, best_cost: int) -> tuple[Grid, int]:
     houses[0].connection.lay_shared_cables()
     houses[1].connection.lay_shared_cables()
 
-    # costs for the copy of the grid
-    cost: int = tmp_grid.calc_cost_shared()
-
-    # checks for improvement
-    new_cost: int = check_if_improvement(cost, best_cost)
-
-    return tmp_grid, new_cost
-
-
-def check_if_improvement(cost: int, best_cost: int) -> int:
-    """
-    Checks if the new configuration of the houses gives an improved
-    solution for the grid and it also checks if it is a valid solution.
-
-    Pre : the cost and best_cost are integers
-    Post: integer
-    """
-
-    # checks if cost is lower than previous costs
-    if cost < best_cost:
-        return cost
-    else:
-        return best_cost
+    return tmp_grid
 
 
 def plot_costs_graph(costs: list[int], district: str) -> None:
     """
     Plots a graph of all the costs from the random solutions.
 
-    Pre : list of integers
-    Post: none
+    Pre : list of integers as all the costs and the district as string
+    Post: plots a graph from all the costs
     """
 
     iterations: list[int] = list(range(len(costs)))
