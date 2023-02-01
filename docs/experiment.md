@@ -12,7 +12,7 @@ De code was zo geschreven, zodat het lastig was om al onze algoritmes te runnen 
 
 ### Verschillen in runtime
 
-Voor het runnen van de code zijn verschillende laptops gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma. Om deze reden zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen, en wordt hier een lijst met de specificaties van de PCs neergezet:
+Voor het runnen van de code zijn verschillende laptops/PC's gebruikt met verschillende specificaties. Omdat dit grote gevolgen kan hebben voor de runtime van een programma, zetten we bij de resultaten neer welke PC het algoritme heeft gerund om bij een bepaalde tijd uit te komen. Hieronder is een lijst weergegeven met de specificaties van deze PC's.
 <pre>
 - PC 1   CPU: i5-12400F             RAM: 32GB, 3400MHz DDR4
 - PC 2   CPU: i7-9750H              RAM: 16GB, 2667MHz DDR4
