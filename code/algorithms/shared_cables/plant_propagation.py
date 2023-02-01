@@ -29,6 +29,8 @@ def plant_propagation(grid: Grid) -> Grid:
     max_changes = 8
     n_generations = 300
     max_times_no_improvement = 20
+
+    # * set the feedback methods
     print_stuff = True
     plot_stuff = True
 
@@ -144,7 +146,7 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
 
     # go over each grid and check for the highest and lowest cost
     for root_grid in root_grids:
-        cost = calculate_cost(root_grid)
+        cost = root_grid.calc_cost_shared()
         if cost < lowest_cost:
             lowest_cost = cost
         if cost > highest_cost:
@@ -188,18 +190,6 @@ def create_new_generation(root_grids: list[Grid], min_runners: int,
     return root_grids + runners
 
 
-def calculate_cost(grid: Grid) -> int:
-    """
-    Calculates the cost of a grid.
-
-    Pre : grid is a Grid object with connections leading to a valid solution
-          with cables already laid down
-    Post: an integer representing the cost is returned
-    """
-
-    return grid.calc_cost_shared()
-
-
 def get_fitness(cost: int, lowest_cost: int, highest_cost: int) -> float:
     """
     Calculates the fitness of a certain root in its generation
@@ -216,7 +206,7 @@ def get_fitness(cost: int, lowest_cost: int, highest_cost: int) -> float:
 def get_n_changes(fitness: float, max_changes: int, min_changes: int) -> int:
     """
     Gets the 'distance' of the PPA runner, represented by the amount of changes
-        from the parent root.
+    from the parent root.
 
     Pre : type hints are met and min_changes < max_changes
     Post: an integer is returned that is at least min_changes and at most
