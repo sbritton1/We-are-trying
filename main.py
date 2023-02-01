@@ -14,7 +14,7 @@ from code.algorithms.shared_cables.simulated_annealing import init_simulated_ann
 from code.algorithms.shared_cables.plant_propagation import plant_propagation
 from code.algorithms.battery_move.hill_climber_battery import init_hill_climber_battery
 from code.algorithms.battery_move.clustering import clustering
-from code.algorithms.battery_move.clustering_and_hc_battery import clustering_and_hill_climber_battery
+from code.algorithms.battery_move.clustering_and_hc_battery import clustering_and_hc_battery
 from code.visualization.visualization import visualize
 from code.export.to_json import to_json
 
@@ -35,8 +35,11 @@ def main(district: str, algorithm_name: str) -> None:
     # get the time when the algorithm is done
     end_time = time.time()
 
+    # calculate time it took to run algorithm
+    time_taken = round(end_time-start_time)
+
     # print the time
-    print(f"Time taken: {datetime.timedelta(seconds=round(end_time-start_time))} (H:MM:SS)")
+    print(f"Time taken: {datetime.timedelta(seconds=time_taken)} (H:MM:SS)")
 
     # lay cables and calculate cost accordingly
     if cable_type == "unique":
@@ -83,8 +86,8 @@ if __name__ == "__main__":
         "plant_propagation": (plant_propagation, "shared"),
         "hill_climber_battery": (init_hill_climber_battery, "shared"),
         "clustering": (clustering, "shared"),
-        "clustering_and_hc_battery": (clustering_and_hill_climber_battery, "shared"),
-    }
+        "clustering_and_hc_battery": (clustering_and_hc_battery, "shared")
+        }
 
     check_usage()
 

@@ -11,6 +11,7 @@ def valid_solution(grid: Grid) -> bool:
           returns False if solution is invalid
     """
 
+    # return False when a house isn't connected
     for house in grid.houses:
         if house.has_connection is False:
             return False

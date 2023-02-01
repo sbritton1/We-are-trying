@@ -1,7 +1,8 @@
+import random
+
 from ..classes.grid import Grid
 from ..classes.house import House
 from ..classes.battery import Battery
-import random
 
 
 def resolve_error(grid: Grid) -> None:
@@ -10,16 +11,22 @@ def resolve_error(grid: Grid) -> None:
 
     Pre : grid of class Grid
     Post: each house in grid is connected to a battery
+
+    Side-effects: A very small chance this function gets stuck
+                  and the resulting grid is still not valid.
+
+                  Function assumes only a single house is not connected,
+                  run multiple times when this is not the case.
     """
 
     unconnected: House = None
 
-    # saves unconnected house
+    # save unconnected house
     for house in grid.houses:
         if house.has_connection is False:
             unconnected = house
 
-    # saves all the current capacities of the batteries
+    # use current capacity of batteries as weights to sort by
     battery_weights = []
     for battery in grid.batteries:
         battery_weights.append(battery.current_capacity)
@@ -32,13 +39,13 @@ def resolve_error(grid: Grid) -> None:
         best_bat.connect_home(unconnected)
         unconnected.make_connection(best_bat)
         return
-
     else:
         swap_unconnected(grid, unconnected, best_bat)
         return
 
 
-def swap_unconnected(grid: Grid, unconnected_house: House, battery: Battery) -> None:
+def swap_unconnected(grid: Grid, unconnected_house: House,
+                     battery: Battery) -> None:
     """
     Swaps unconnected house with a house connected to the battery,
     with a high chance that this house has a lower max output than
@@ -52,7 +59,9 @@ def swap_unconnected(grid: Grid, unconnected_house: House, battery: Battery) -> 
           will be run to fix the newly unconnected house
     """
 
-    for i in range(10000):
+    # allow for 10000 swaps to attempt to resolve the error
+    max_swap_attempts = 10000
+    for _ in range(max_swap_attempts):
 
         # give house a weight to get picked
         house_weights: list[float] = []
@@ -61,11 +70,12 @@ def swap_unconnected(grid: Grid, unconnected_house: House, battery: Battery) -> 
 
         # select random house based on weight
         house: House = random.choices(battery.connected_homes,
-                                        weights=house_weights, k=1)[0]
+                                      weights=house_weights, k=1)[0]
 
         # checks if possible to connect unconnected house if random
         # house gets disconnected
-        if house.maxoutput + battery.current_capacity > unconnected_house.maxoutput:
+        available_capacity = house.maxoutput + battery.current_capacity
+        if available_capacity > unconnected_house.maxoutput:
 
             # disconnect original house
             battery.disconnect_home(house)

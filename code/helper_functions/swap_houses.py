@@ -9,7 +9,7 @@ def swap_houses(house1: House, house2: House) -> bool:
 
     Pre : house1 and house2 are of class House
     Post: battery connection of two houses are swapped and returns True,
-          returns false if a swap isn't possible
+          returns False if a swap isn't possible
     """
 
     if possible_swap(house1, house2) is False:

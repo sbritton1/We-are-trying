@@ -1,11 +1,12 @@
+import random
+
 from ..classes.grid import Grid
 from ..classes.battery import Battery
-import random
 
 
 def add_random_connections(tmp_grid: Grid) -> Grid:
     """
-    Connects houses randomly to the batteries.
+    Connects all houses randomly to the batteries.
 
     Pre : grid is of class Grid
     Post: returns a copy of original grid, in which

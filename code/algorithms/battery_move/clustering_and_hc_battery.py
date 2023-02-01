@@ -3,7 +3,7 @@ from .hill_climber_battery import init_hill_climber_battery
 from ...classes.grid import Grid
 
 
-def clustering_and_hill_climber_battery(grid: Grid) -> Grid:
+def clustering_and_hc_battery(grid: Grid) -> Grid:
     """
     Uses the clustering algorithm to create startpoints for the hill climber
         battery algorithm.

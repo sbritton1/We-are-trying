@@ -1,7 +1,8 @@
+import random
+
 from ..classes.house import House
 from ..classes.grid import Grid
 from .possible_swap import possible_swap
-import random
 
 
 def find_random_houses(grid: Grid) -> tuple[House, House]:
@@ -13,12 +14,13 @@ def find_random_houses(grid: Grid) -> tuple[House, House]:
     Post: returns two different houses as house object
     """
 
+    # pick random houses until a swap is possible
     while True:
         house1: House = random.choice(grid.houses)
         house2: House = random.choice(grid.houses)
-        while house2.connection == house1.connection:
-            house2: House = random.choice(grid.houses)
 
+        # swap is possible if both houses are not connected to the same
+        # battery and both batteries have enough capacity
         if possible_swap(house1, house2) is True:
             break
 
