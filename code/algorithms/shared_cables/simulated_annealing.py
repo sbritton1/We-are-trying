@@ -132,8 +132,8 @@ def analyze_results(results: list[tuple[Grid, list[int]]]) -> Grid:
     Looks through all the results to find the best solution. Then plots
     a graph of the cost history of the best solution.
 
-    pre : results is a list of tuples of Grid and a list of ints
-    post: plots graph of cost history of best solution and returns
+    Pre : results is a list of tuples of Grid and a list of ints
+    Post: plots graph of cost history of best solution and returns
           Grid of best solution
     """
 
