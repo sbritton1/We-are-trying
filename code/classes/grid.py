@@ -1,25 +1,30 @@
+import random
+
 from .house import House
 from .battery import Battery
-import random
 
 
 class Grid:
     """
-    Class representing a grid in which houses and batteries lay.
-    Also has methods to change the properties of objects within self.
+    Class representing a grid on which houses and batteries lay. Can load these
+    houses and batteries from csv files.
     """
 
     def __init__(self, district: str, load_csv: bool = True) -> None:
         """
-        Class initializer.
+        Class initializer. Reads the grid data from csv files if load_csv is
+        set to True.
 
-        Pre : district is a string of a number
-        Post: self variables created
+        Pre : district is a string of a number in range 1 to 3
+        Post: attributes are initialized and filled from the csv files
+              if load_csv is True
         """
 
         # create file paths to where the data is stored
-        file_batteries: str = "data/district_" + district + "/district-" + district + "_batteries.csv"
-        file_houses: str = "data/district_" + district + "/district-" + district + "_houses.csv"
+        file_batteries: str = "data/district_" + district + "/district-" + \
+                              district + "_batteries.csv"
+        file_houses: str = "data/district_" + district + "/district-" + \
+                           district + "_houses.csv"
 
         self.district = district
 
@@ -41,10 +46,12 @@ class Grid:
 
     def read_batteries(self, filename: str) -> list[Battery]:
         """
-        Reads files where data for the batteries is stored.
+        Reads the file with given filename and creates the Battery objects from
+        this data.
 
-        Pre : filename is a string
-        Post: returns list of objects of class Battery
+        Pre : filename is a string and is an existing filepath for the battery
+              data
+        Post: returns list of objects of class Battery read from the data
         """
 
         batteries: list[Battery] = []
@@ -65,10 +72,12 @@ class Grid:
 
     def read_houses(self, filename) -> list[House]:
         """
-        Reads files where data for the houses is stored.
+        Reads the file with given filename and creates the House objects from
+        this data.
 
-        Pre : filename is a string
-        Post: returns list of objects of class House
+        Pre : filename is a string and is an existing filepath for the house
+              data
+        Post: returns list of objects of class House read from the data
         """
 
         houses: list[House] = []
@@ -103,7 +112,7 @@ class Grid:
         line = line.replace("\n", "")
         values: list[str] = line.split(",")
 
-        # give meaning to the values and return them
+        # cast values to the right types
         x = int(values[0])
         y = int(values[1])
         capacity = float(values[2])
@@ -112,11 +121,13 @@ class Grid:
 
     def size_grid(self) -> tuple[int, int]:
         """
-        Find largest x and y coordinates of objects to know how large the grid
-        will be.
+        Find the size the grid should be, depending on the location of the
+        houses and batteries.
 
-        Pre : self has non-empty list of batteries and houses
-        Post: return tuple of two ints
+        Pre : self has non-empty lists for the batteries and houses
+        Post: return tuple of two ints where the first int is the maximum
+              x-value of all the batteries and houses and the second int is the
+              maximum y-value of all the batteries and houses
         """
 
         max_x: int = 0
@@ -141,10 +152,10 @@ class Grid:
 
     def calc_cost_normal(self) -> int:
         """
-        Calculates the price of a grid.
+        Calculates the price of the grid for the 'normal' case.
 
-        Pre : tmp_grid is of class Grid
-        Post: returns an int cost
+        Post: returns an int representing the cost and stores it in the
+              attribute self.cost
         """
 
         # each battery in the grid costs 5000
@@ -160,9 +171,8 @@ class Grid:
 
     def calc_cost_shared(self) -> int:
         """
-        Calculates the price of a grid when cables can be shared.
+        Calculates the price of the grid when cables can be shared.
 
-        Pre : tmp_grid is of class Grid
         Post: returns an int cost
         """
 
@@ -176,10 +186,11 @@ class Grid:
 
     def lay_unique_cables(self) -> None:
         """
-        Lays non-shared cables for houses in self.
+        Lays non-shared cables on the grid to satisfy all the connections.
 
-        Pre : self has houses
-        Post: houses have cables
+        Pre : all houses in the houses attribute are connected properly
+        Post: the correct cables are stored in the house objects in the houses
+              attribute
         """
 
         for house in self.houses:
@@ -187,10 +198,11 @@ class Grid:
 
     def lay_shared_cables(self) -> None:
         """
-        Lays shared cables for batteries in self.
+        Lays shared cables on the grid to satisfy all the connections.
 
-        Pre : self has batteries
-        Post: houses in batteries have cables
+        Pre : all houses in the houses attribute are connected properly
+        Post: the correct cables are stored in the house objects in the houses
+              attribute
         """
 
         for battery in self.batteries:
@@ -200,8 +212,9 @@ class Grid:
         """
         Removes all cables in the grid.
 
-        Pre : self has batteries
-        Post: all cables are removed
+        Post: all cables are removed from the battery objects in the batteries
+              attribute and from all connected house objects in each of these
+              battery
         """
 
         for battery in self.batteries:
@@ -209,7 +222,7 @@ class Grid:
 
     def set_cost(self, cost: int) -> None:
         """
-        Sets the cost attribute to the given cost.
+        Sets the cost of the grid to the given cost.
 
         Pre : cost is an integer
         Post: the cost attribute is set to the given cost
@@ -242,15 +255,21 @@ class Grid:
         Moves battery if it can move to place if the coordinates do not
         contain a house.
 
-        Pre:  battery of Battery class and two integers for coordinates
-        Post: bool
+        Pre : type hints are met and battery is a battery in the batteries
+              attribute
+        Post: if the new coordinates are free, the battery is moved to these
+              coordinates, its cables are removed, used_coordinates attribute
+              is updated and True is returned, if new coordinates are not free
+              False is returned
         """
+
         if self.is_coordinates_free(new_x, new_y) is True:
             # free up the old coordinates
-
-            self.remove_cables()
             old_x, old_y = battery.get_coords()
             self.remove_used_coordinates(old_x, old_y)
+
+            # remove all the cables from the grid
+            self.remove_cables()
 
             # move battery
             battery.move_to(new_x, new_y)
@@ -262,10 +281,11 @@ class Grid:
 
     def is_coordinates_free(self, x: int, y: int) -> bool:
         """
-        Checks if coordinates are not occupied by a house.
+        Checks if coordinates are not occupied by a house or battery.
 
-        Pre:  two integers for coordinates
-        Post: bool
+        Pre : x and y are positive integers
+        Post: returns True if (x, y) is not in the used coordinates, returns
+              False if not
         """
 
         if x < self.max_x and y < self.max_y:
@@ -274,80 +294,88 @@ class Grid:
 
     def add_used_coordinates(self, x: int, y: int) -> None:
         """
-        Adds two coordinates if coordinates are occupied.
+        Sets coordinates as occupied.
 
-        Pre:  two integers for coordinates
-        Post: none
+        Pre : x and y are positive integers that are smaller than the max_x and
+              max_y attributes respectively
+        Post: (x, y) is appended to the used_coordinates attribute
         """
+
         self.used_coordinates.append((x, y))
 
     def remove_used_coordinates(self, x: int, y: int) -> None:
         """
-        Removes coordinates that is no longer occupied.
+        Sets coordinates as no longer occupied.
 
-        Pre:  two integers for coordinates
-        Post: none
+        Pre : x and y are integers
+        Post: (x, y) is removed from the used_coordinates attribute if it was
+              there in the first place
         """
 
         self.used_coordinates.remove((x, y))
 
     def remove_all_connections(self) -> None:
         """
-        Removes all connections from batteries with houses.
+        Removes all connections from batteries to houses.
 
-        Pre:  none
-        Post: none
+        Pre : none
+        Post: all connections of the battery objects in the batteries attribute
+              are removed
         """
 
         for battery in self.batteries:
             battery.disconnect_all_houses()
 
-    def make_powerstar(self, x: int, y: int) -> Battery:
+    def make_powerstar(self, x: int, y: int) -> None:
         """
-        Makes a powerstar battery.
+        Makes a Powerstar battery and places it on the grid.
 
-        Pre:  two integers for coordinates
-        Post: battery from class Battery
+        Pre : x and y are positive integers that are smaller than the max_x and
+              max_y attributes respectively
+        Post: a battery object with the specs of Powerstar is created and
+              appended to the batteries attribute
         """
 
-        powerstar = Battery(x, y, 450.0)
-        return powerstar
+        self.batteries.append(Battery(x, y, 450.0))
 
     def make_immerse_2(self, x: int, y: int) -> Battery:
         """
-        Makes an immerse 2 battery.
+        Makes a Immerse-II battery and places it on the grid.
 
-        Pre:  two integers for coordinates
-        Post: battery from class Battery
+        Pre : x and y are positive integers that are smaller than the max_x and
+              max_y attributes respectively
+        Post: a battery object with the specs of Immerse-II is created and
+              appended to the batteries attribute
         """
 
-        immerse_2: Battery = Battery(x, y, 900.0)
-        return immerse_2
+        self.batteries.append(Battery(x, y, 900.0))
 
     def make_immerse_3(self, x: int, y: int) -> Battery:
         """
-        Makes an immerse 3 battery.
+        Makes a Immerse-III battery and places it on the grid.
 
-        Pre:  two integers for coordinates
-        Post: battery from class Battery
+        Pre : x and y are positive integers that are smaller than the max_x and
+              max_y attributes respectively
+        Post: a battery object with the specs of Immerse-III is created and
+              appended to the batteries attribute
         """
 
-        immerse_3: Battery = Battery(x, y, 1800.0)
-        return immerse_3
+        self.batteries.append(Battery(x, y, 1800.0))
 
     def calc_cost_advanced(self):
         """
-        Calculates the price of a grid when cables can be shared.
+        Calculates the price of a grid for the Advanced case.
 
-        Pre : tmp_grid is of class Grid
-        Post: returns an int cost
+        Pre : the Battery objects in the batteries attribute are only of the
+              types Powerstar, Immerse-II or Immerse-III
+        Post: returns an integer representing the cost
         """
 
-        # new cost calculation for 3 types of batteries
-        for a_battery in self.batteries:
-            if a_battery.total_capacity == 450.0:
+        # cost calculation for 3 types of batteries
+        for battery in self.batteries:
+            if battery.total_capacity == 450.0:
                 self.cost += 900
-            elif a_battery.total_capacity == 900.0:
+            elif battery.total_capacity == 900.0:
                 self.cost += 1350
             else:
                 self.cost += 1800
@@ -359,10 +387,12 @@ class Grid:
 
     def initialize_advanced_batteries(self) -> list[Battery]:
         """
+        NOT FINISHED AND USED!
+
         Generates advanced batteries such that there is enough
         capacity.
 
-        Pre:  none
+        Pre : none
         Post: none
         """
 
